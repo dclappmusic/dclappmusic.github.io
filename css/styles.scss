@@ -1,0 +1,159 @@
+@import "variables";
+@import "main";
+
+@font-face {
+	font-family: 'Gotham';
+	src: url('fonts/gotham_medium.ttf');
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'Gotham';
+	src: url('fonts/gotham_light.ttf');
+	font-weight: 200;
+}
+
+.container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	max-width: 500px;
+	height: 100%;
+	background-color: #f1f1f1; 
+	overflow: hidden;
+
+	.menu {
+		position: fixed;
+		top: calc(100% - 65px);
+		left: 0;
+		width: 100%;
+		height: 65px;
+		background-color: #fff;
+		z-index: 100;
+		li {
+			display: inline-block;
+			width: 32%;
+			text-align: center;
+			font-family: Changa;
+			font-weight: light;
+			color: $azul_texto;
+			font-size: 15px;
+			vertical-align: bottom;
+			img {
+				display: block;
+				width: 29px;
+				margin: 9px auto 0;
+			}
+		}
+	}
+
+	.uno {
+		width: 100%;
+		height: 100%;
+		display: block;	
+
+		.main_logo {
+			width: 80%;
+			margin-left: 10%;
+			margin-top: 25%;
+		}
+	
+		a {
+			position: absolute;
+			display: block;
+			bottom: 15%;
+			left: calc(50% - 72px);
+			padding: 1em 1.2em;
+			border-radius: 40px;
+			color: white;
+			font-family: Roboto, Arial, sans-serif;
+			font-size: 20px;
+			background-color: $rojo;
+			box-shadow: 0px 5px 20px rgba(0,0,0,.3);
+
+			&:hover {
+				box-shadow: 0px 1px 7px rgba(0,0,0,.6);
+				bottom: calc(15% - 5px);
+			}
+		}
+		
+
+	}
+	.dos {
+		position: absolute;
+		top: 0;
+		background-image: url(../images/fondo_2.png);
+		background-size: cover;
+		background-position: center;
+		width: 100%;
+		height: 100%;
+		display: none;	
+	}
+	.tres {
+		width: 100%;
+		height: 100%;
+		display: none;	
+
+		.musico_imagen {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 60%;
+			img {
+				width: 100%;
+				margin: 0 auto;
+			}
+		}
+		.musico_info {
+			position: absolute;
+			width: 100%;
+			height: 65%;
+			top: 35%;
+			background-image: url(../images/fondo3.png);
+			background-size: 100% 100%;
+		}
+		a {
+			position: absolute;
+			display: block;
+			bottom: 20%;
+			width: 40vw;
+			left: 30vw;
+			z-index: 2;
+			-webkit-transition: all ease-in .5s; /* Safari */
+			transition: all ease-in .5s;
+			img {
+				width: 100%;
+			}
+		}
+		p {
+			font-family: Roboto, Arial, sans-serif;
+			font-size: 20px;
+		    position: absolute;
+		    opacity: 0;
+		    bottom: 45%;
+		    z-index: 2;
+		    color: white;
+		    width: 100%;
+		    text-align: center;
+		    -webkit-transition: all ease-in .5s; /* Safari */
+			transition: all ease-in .5s;
+
+			&.active {
+				opacity: 1;
+				bottom: calc(45% + 2em);
+				-webkit-transition: all ease-in .5s; /* Safari */
+				transition: all ease-in .2s;
+			}
+		}
+	
+		.clap img {
+			width: 40vw;
+		}
+	}
+}
+
+
+
+
+	
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="dClapp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>dClapp</title>
+	<link rel="icon" type="image/jpg" href="images/icon.png">
+	<link rel="stylesheet" href="css/landing.css">
+	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="hero">
+			<img class="logo" src="images/landing/logo.png"/>
+			<h1>aplaude el talento</h1>
+			<!-- <img src="images/landing/mob_mockup.png"/> -->
+		</div>
+		<div class="suscripcion">
+			<p>¿te interesa nuestra idea?</p>
+			<h3>SÉ PARTE DE ELLA</h3>
+			<p>tan sólo dinos tu email y podrás ser de los primeros en poder usarla</p>
+			<form>
+				<input type="email" name="email" required placeholder="escribe tu email" />
+				<button type="submit">
+					<img src="images/landing/arrow.svg">
+				</button>
+			</form>
+		</div>
+		<footer>
+			<img scr="images/landing/facebook.png" />
+			<p>También puedes seguirnos en las redes sociales | 
+				<a href="https://www.facebook.com/dclappmusic">
+					<img scr="images/landing/facebook.png">
+				</a></p>
+			<span>
+				<a href="https://www.facebook.com/dclappmusic">
+					<img scr="images/landing/facebook.spng">
+				</a>
+				<a href="https://www.facebook.com/dclappmusic">
+					<img scr="images/landing/twitter.png">
+				</a>
+			</span>
+		</footer>
+	</div>
+
+	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		$("button").click(() => {
+            $.ajax({
+                type: "POST",
+                url: $("#popup-form").attr("action"),
+                data: $("#popup-form").serialize(),
+                success: (data) => {
+                    $("#popup-box-content").html("<p style='text-align: center'>Thank you for subscribing to The Polyglot Developer newsletter!</p>");
+                }
+            });
+        });
+	</script>
+	
+ </body>
+</html>
+
+
+
+
+
+
+
+
