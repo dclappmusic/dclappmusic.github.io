@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<title>dClapp</title>
-	<link rel="icon" type="image/jpg" href="images/landing/favicon.png">
+	<link rel="icon" type="image/jpg" href="images/favicon.png">
 	<link rel="stylesheet" href="css/landing.css">
 	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
 
@@ -16,33 +16,56 @@
 <body>
 	<div class="container">
 		<div class="hero">
-			<img class="logo" src="images/landing/logo.png"/>
+			<img class="logo" src="images/logo.png"/>
 			<h1>aplaude el talento</h1>
-			<!-- <img src="images/landing/mob_mockup.png"/> -->
+			<img class="mockup" src="images/mob_mockup.png"/>
 		</div>
 		<div class="suscripcion">
 			<p>¿te interesa nuestra idea?</p>
 			<h3>SÉ PARTE DE ELLA</h3>
 			<p>tan sólo dinos tu email y podrás ser de los primeros en poder usarla</p>
-			<form>
-				<input type="email" name="email" required placeholder="escribe tu email" />
-				<button type="submit">
-					<img src="images/landing/arrow.svg">
+			<form action="https://dclappmusic.us18.list-manage.com/subscribe/post?u=10a9ff771fff14a7ac528706e&amp;id=9bc44af218" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+				<input type="email" value="" placeholder="escribe tu email" name="EMAIL" class="required email" id="mce-EMAIL">
+				<button type="submit" id="mc-embedded-subscribe" class="button">
+					<img src="images/arrow.svg">
 				</button>
 			</form>
+			<!-- Begin MailChimp Signup Form -->
+			<!-- <div id="mc_embed_signup">
+				<form action="https://dclappmusic.us18.list-manage.com/subscribe/post?u=10a9ff771fff14a7ac528706e&amp;id=9bc44af218" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			   		<div id="mc_embed_signup_scroll">
+						<div class="mc-field-group">
+							<input type="email" value="" placeholder="escribe tu email" name="EMAIL" class="required email" id="mce-EMAIL">
+						</div>
+						<div id="mce-responses" class="clear">
+							<div class="response" id="mce-error-response" style="display:none"></div>
+							<div class="response" id="mce-success-response" style="display:none"></di
+			  			<div style="position: absolute; left: -5000px;" aria-hidden="true">
+			  				<input type="text" name="b_10a9ff771fff14a7ac528706e_9bc44af218" tabindex="-1" value="">
+			  			</div>
+			   			 <div class="clear">
+			   			 	<button type="submit" id="mc-embedded-subscribe" class="button">
+			   			 		<img src="images/arrow.svg">
+			   			 	</button>
+			   			 </div>
+			    	</div>
+				</form>
+			</div>
+ -->
+			<!--End mc_embed_signup-->
 		</div>
 		<footer>
-			<img scr="images/landing/facebook.png" />
+			<img scr="images/landing/facebook.png"/>
 			<p>También puedes seguirnos en las redes sociales | 
 				<a href="https://www.facebook.com/dclappmusic">
-					<img scr="images/landing/facebook.png">
+					<img scr="images/facebook.png">
 				</a></p>
 			<span>
-				<a href="https://www.facebook.com/dclappmusic">
-					<img scr="images/landing/facebook.spng">
+				<a href="https://www.facebook.com/dclappmusic" style="background-image: url(images/facebook.png)">
+					<img scr="images/facebook.png">
 				</a>
 				<a href="https://www.facebook.com/dclappmusic">
-					<img scr="images/landing/twitter.png">
+					<img scr="images/twitter.png">
 				</a>
 			</span>
 		</footer>
@@ -53,16 +76,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 
-		$("button").click(() => {
-            $.ajax({
-                type: "POST",
-                url: $("#popup-form").attr("action"),
-                data: $("#popup-form").serialize(),
-                success: (data) => {
-                    $("#popup-box-content").html("<p style='text-align: center'>Thank you for subscribing to The Polyglot Developer newsletter!</p>");
-                }
-            });
-        });
+		
 	</script>
 	
  </body>

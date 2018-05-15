@@ -21,10 +21,11 @@ h1, p {
 	width: 98vw;
 	//max-width: 1200px;
 	height: 100%;
-	margin-top: 2vw;
+	margin-top: 1vw;
 	margin-left: 1vw;
 	.hero {
-		background-image: url(../images/landing/hero.png);
+		position: relative;
+		background-image: url(../images/hero.png);
 		background-size: cover;
 		height: 310px;
 		width: 100%;
@@ -35,6 +36,11 @@ h1, p {
 			margin: 0 auto;
 			top: 83px;
 		}
+		.mockup {
+		    position: absolute;
+		    bottom: 0;
+		    left: -2vw;
+		}
 		h1 {
 			font-size: 41px;
 			font-weight: light;
@@ -44,7 +50,7 @@ h1, p {
 		}
 	}
 	.suscripcion {
-		margin-top: 62px;
+		margin-top: 50px;
 		margin-left: 8%;
 		p {
 			color: $color_parr;
@@ -88,7 +94,7 @@ h1, p {
 			    font-size: 20px;
 			    background-color: transparent;
 			}
-			button {
+			.button {
 				border-radius: 20px;
 			    margin-left: 10px;
 			    width: 36px;
@@ -110,7 +116,7 @@ h1, p {
 	}
 	footer {
 		width: 100%;
-		margin: 62px auto;
+		margin: 30px auto;
 		p {
 			text-align: center;
 			font-size: 20px;
