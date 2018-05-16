@@ -219,10 +219,12 @@ h1, p {
       font-size: 20px;
       color: #3688BD;
       margin-bottom: .7em;
-      line-height: 1.5em; }
+      line-height: 1.5em;
+      display: inline-block; }
       @media (max-width: 768px) {
         .container footer p {
-          font-size: 15px; } }
+          font-size: 15px;
+          display: block; } }
     .container footer a {
       margin-left: .8em; }
       .container footer a img {
