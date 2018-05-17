@@ -184,7 +184,7 @@ h1, p {
       margin-left: -20px;
       padding: 0 10px 0 25px; }
       @media (max-width: 768px) {
-        .container .suscripcion .form {
+        .container .suscripcion form {
           margin-left: 0; } }
       .container .suscripcion form .mail_wrapper {
         display: flex;
