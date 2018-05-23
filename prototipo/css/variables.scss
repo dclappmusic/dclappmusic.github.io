@@ -1,0 +1,143 @@
+/*********************  fonts *****************************/
+@font-face {
+  font-family: 'Gotham';
+  src: url('fonts/gotham_medium.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('fonts/gotham_light.ttf');
+  font-weight: 200;
+}
+
+/*********************** colores ***********************/
+
+$rojo: #FC5130;
+$azul_texto: #031927;
+
+
+/********************** resoluciones ********************/
+
+$Bigdesktop:"(min-width:1366px)";
+$mobile:"(max-width:768px)";
+
+/********************** mixines *************************/
+
+@mixin  typo($ffamily, $fsize, $fcolor){
+
+	   font-family:$ffamily;
+		      color:$fcolor;
+		   font-size:$fsize;		
+}
+
+@mixin box-sizing($box-model) {
+	-webkit-box-sizing:$box-model; 
+	   -moz-box-sizing:$box-model;
+		-ms-box-sizing:$box-model;
+		 -o-box-sizing:$box-model;
+			box-sizing:$box-model;
+}
+
+@mixin border-radius($radius){
+	-webkit-border-radius:$radius;
+	   -moz-border-radius:$radius;
+		-ms-border-radius:$radius;
+		 -o-border-radius:$radius;
+			border-radius:$radius;
+}
+
+@mixin opacity($opacity) {
+                   opacity: $opacity;
+         $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); 
+}
+
+@mixin box-shadow($top, $left, $blur, $color) {
+ -webkit-box-shadow:$top $left $blur $color;
+    -moz-box-shadow:$top $left $blur $color;
+         box-shadow:$top $left $blur $color;
+} 
+
+@mixin calc($key, $value) {
+  #{$key}: -webkit-calc(#{$value});
+     #{$key}: -moz-calc(#{$value});
+          #{$key}: calc(#{$value});
+}  
+
+/***transiciones **/
+          
+
+@mixin transition($transition) {
+ -webkit-transition: #{$transition};
+    -moz-transition: #{$transition};
+     -ms-transition: #{$transition};
+      -o-transition: #{$transition};
+         transition: #{$transition};
+}
+
+/** animaciones **/
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+
+
+
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+
+
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+ 
+/*// scale*/
+@mixin scale($scale) {
+	 @include transform(scale($scale));
+}
+@mixin scaleX($scaleX) {
+	 @include transform(scaleX($scaleX));
+}
+@mixin scaleY($scaleY) {
+	 @include transform(scaleY($scaleY));
+}   
+/*// translate*/
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+/*// skew*/
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+
+
+

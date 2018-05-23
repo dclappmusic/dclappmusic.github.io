@@ -1,0 +1,131 @@
+@import "variables";
+@import "main";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@font-face {
+	font-family: 'Changa';
+	src: url('fonts/changa-medium.ttf');
+	font-weight: medium;
+}
+
+$color_parr: #031927;
+$color_rojo: #FC5130;
+
+h1, p {
+	font-family: 'Roboto', sans-serif;
+}
+
+
+.container {
+	position: relative;
+	width: 98vw;
+	//max-width: 1200px;
+	height: 100%;
+	margin-top: 2vw;
+	margin-left: 1vw;
+	.hero {
+		background-image: url(../images/landing/hero.png);
+		background-size: cover;
+		height: 310px;
+		width: 100%;
+		.logo {
+			display: block;
+			position: relative;
+			width: 162px;
+			margin: 0 auto;
+			top: 83px;
+		}
+		h1 {
+			font-size: 41px;
+			font-weight: light;
+			color: white;
+			text-align: center;
+			margin: 105px auto 0;
+		}
+	}
+	.suscripcion {
+		margin-top: 62px;
+		margin-left: 8%;
+		p {
+			color: $color_parr;
+			font-weight: light;
+			font-size: 20px;
+		}
+		h3 {
+			color: $color_parr;
+			font-family: Changa;
+			font-size: 48px;
+			margin-top: 19px;
+			margin-bottom: 19px; 
+		}
+		form {
+			width: 255px;
+		    position: relative;
+		    background-color: rgba($color_parr, .05);
+		    border-radius: 30px;
+		    background-color: rgba($color_parr, .05);
+		    display: -webkit-box;
+		    display: -ms-flexbox;
+		    display: flex;
+		    -webkit-box-orient: horizontal;
+		    -webkit-box-direction: normal;
+		    -ms-flex-direction: row;
+		    flex-direction: row;
+		    -webkit-box-align: center;
+		    -ms-flex-align: center;
+		    align-items: center;
+		    margin: 40px 0 12px;
+		    margin-left: -20px;
+		    padding: 0 10px 0 25px;
+
+		    input {
+			    border: 0;
+			    -webkit-box-sizing: border-box;
+			    box-sizing: border-box;
+			    color: #aaa;
+			    height: 50px;
+			    outline: 0;
+			    font-size: 20px;
+			    background-color: transparent;
+			}
+			button {
+				border-radius: 20px;
+			    margin-left: 10px;
+			    width: 36px;
+			    height: 36px;
+			    background-color: $color_rojo;
+   				border-color: $color_rojo;
+   				margin-left: -25px;
+   				box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
+   				@include transition(box-shadow 0.5s ease);
+   				&:hover {
+   					box-shadow: none;
+   				}
+   				img {
+   					position: relative;
+   					top: 1px;
+   				}
+			}
+		}
+	}
+	footer {
+		width: 100%;
+		margin: 62px auto;
+		p {
+			text-align: center;
+			font-size: 20px;
+			color: #3688BD;
+		}
+		a {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+		}
+	}
+}
+
+
+
+
+	
+

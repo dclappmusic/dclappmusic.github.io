@@ -1,0 +1,60 @@
+
+
+/*************************************************** Elementos globales ************************************************/
+body {
+  font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  line-height: calc(1.3em + (1.5 - 1.3) * ((100vw - 21em)/(35 - 21)));
+}
+
+img {image-rendering: -webkit-optimize-contrast;}
+
+// ::selection {
+//   background: rgba(255, 119, 79,.5); /* WebKit/Blink Browsers */
+// }
+::-moz-selection { background: #4871D1; /* Gecko Browsers */}
+
+.br { line-height: 2.5em; } 
+
+
+/*************************************************** BASE MINIMA ************************************************/
+
+* html { font-size: 100%; line-height: inherit; }
+
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+body { position: relative; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+@media only screen and (max-width: 767px) { body { -webkit-text-size-adjust: none; -ms-text-size-adjust: none; width: 100%; min-width: 0; } }
+
+html, body { height: 100%; }
+
+body { background-color: white; overflow-x:hidden!important; margin: 0; padding: 0;}
+
+a {text-decoration: none!important; color: inherit; cursor: pointer;}
+
+//*********  RESET **********
+
+@charset "UTF-8";
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font: inherit; font-size: 100%; vertical-align: baseline; }
+
+html { line-height: 1; }
+
+ol, ul { list-style: none; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+caption, th, td { text-align: left; font-weight: normal; vertical-align: middle; }
+
+q, blockquote { quotes: none; }
+q:before, q:after, blockquote:before, blockquote:after { content: ""; content: none; }
+
+a img { border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+
+.pull_right { float: right; }
+
+.pull_left { float: left; }
+
+

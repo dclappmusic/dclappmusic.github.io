@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="dClapp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>dClapp</title>
+	<link rel="icon" type="image/jpg" href="images/icon.png">
+	<link rel="stylesheet" href="css/styles.css">
+	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
+
+</head>
+
+<body>
+	<div class="container">
+		<ul class="menu">
+			<li>
+				<img src="images/icon_clap.png" />
+				clapps
+			</li>
+			<li>
+				<img src="images/icon_calendar.png" />
+				salas
+			</li>
+			<li>
+				<img src="images/icon_map.png" />
+				mapa
+			</li>
+		</ul>
+		<div class="uno">
+			<img class="main_logo" src="images/logo_color.png">
+			<a class="boton">CLAPPEAR</a>
+		</div>
+
+		<div class="dos"></div>
+
+		<div class="tres">
+			<div class="musico_imagen">
+				<img src="images/foto.png">
+			</div>
+			<div class="musico_info">
+				<p>+1 clapp</p>
+				<a class="clapp" href="#">
+					<img src="images/clapp.png">
+				</a>
+			</div>
+		</div>
+		
+	</div>
+
+	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(".boton").click(function(){
+			$(".uno").hide();
+			$(".menu").hide();
+			$(".dos").show();
+			setTimeout(function(){
+				$(".dos").hide();
+				$(".tres").show();
+				$(".menu").show();
+			}, 2000);
+		});
+
+		$(".clapp").click(function() {
+			$("p").addClass("active");
+			$(".clapp img").attr("src", "images/clapp_2.png");
+			setTimeout(function(){
+				$("p").removeClass("active");
+				$(".clapp img").attr("src", "images/clapp.png");
+			}, 1000);
+		});
+	</script>
+	
+ </body>
+</html>
+
+
+
+
+
+
+
+
