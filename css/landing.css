@@ -150,9 +150,6 @@ h1, p {
   .container .suscripcion {
     margin-top: 50px;
     margin-left: 8%; }
-    @media (max-width: 768px) {
-        .container .suscripcion {
-          margin: 50px 15px 0; } }
     .container .suscripcion p {
       color: #031927;
       font-weight: light;
@@ -160,8 +157,7 @@ h1, p {
       line-height: 1.3em; }
     .container .suscripcion h3 {
       color: #031927;
-      font-family: Changa, helvetica, sans-serif;
-      font-weight: bold;
+      font-family: Changa;
       font-size: 48px;
       margin-top: 19px;
       margin-bottom: 19px; }
@@ -183,9 +179,6 @@ h1, p {
       margin: 40px 0 12px;
       margin-left: -20px;
       padding: 0 10px 0 25px; }
-      @media (max-width: 768px) {
-        .container .suscripcion form {
-          margin-left: 0; } }
       .container .suscripcion form .mail_wrapper {
         display: flex;
         width: 100%; }
@@ -205,7 +198,7 @@ h1, p {
         width: 36px;
         height: 36px;
         background-color: #FC5130;
-        border: none;
+        border-color: #FC5130;
         box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
         cursor: pointer;
         -webkit-transition: box-shadow 0.5s ease;
