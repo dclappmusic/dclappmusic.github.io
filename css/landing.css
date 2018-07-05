@@ -141,7 +141,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     height: 100%;
     margin-top: -3%;
     background: url(../images/landing/back.png) no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: right top; }
     .container .mockup img {
       position: absolute;
