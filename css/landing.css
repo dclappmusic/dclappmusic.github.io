@@ -107,8 +107,27 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @font-face {
   font-family: 'Changa';
-  src: url("fonts/changa-medium.ttf");
-  font-weight: medium; }
+  src: url("fonts/changa-Medium.ttf");
+  font-weight: 500; }
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/changa-Regular.ttf");
+  font-weight: regular; }
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/changa-ExtraLight.ttf");
+  font-weight: 200; }
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Regular.ttf"); }
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Light.ttf");
+  font-weight: 450; }
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Medium.ttf");
+  font-weight: 500; }
 .container {
   position: relative;
   width: 100vw;
@@ -142,7 +161,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
         font-family: "Changa", sans-serif;
         color: #FC5130;
         font-size: 1.8vw;
-        font-weight: light;
+        font-weight: 200;
         margin: 10px auto 0; }
       .container .intro .logo img {
         width: 12vw; }
@@ -157,7 +176,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
       font-family: "Roboto", sans-serif;
       color: #031927;
       font-size: 25px;
-      font-weight: medium;
+      font-weight: 500;
       line-height: 1.2em;
       width: 80%;
       margin: 1em 0; }
@@ -165,7 +184,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
       font-family: "Roboto", sans-serif;
       color: #031927;
       font-size: 20px;
-      font-weight: light;
+      font-weight: 450;
       line-height: 1.3em; }
     @media (max-width: 768px) {
       .container .intro {
@@ -177,7 +196,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     .container .suscripcion h2 {
       font-family: "Changa", sans-serif;
       color: #3688BD;
-      font-size: 35px; }
+      font-size: 35px;
+      font-weight: 500; }
     .container .suscripcion h3 {
       font-family: "Changa", sans-serif;
       color: #3688BD;
@@ -187,7 +207,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
       font-family: "Roboto", sans-serif;
       color: #3688BD;
       font-size: 20px;
-      font-weight: light;
+      font-weight: 450;
       line-height: 1.3em; }
     .container .suscripcion form {
       width: 255px;
@@ -240,7 +260,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
       font-family: "Roboto", sans-serif;
       color: #3688BD;
       font-size: 15px;
-      font-weight: light;
+      font-weight: 450;
       line-height: 1.3em; }
     @media (max-width: 768px) {
       .container .suscripcion {
