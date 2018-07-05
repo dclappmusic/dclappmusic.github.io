@@ -1,13 +1,9 @@
 /*********************  fonts *****************************/
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @font-face {
-  font-family: 'Gotham';
+  font-family: 'Roboto';
   src: url("fonts/gotham_medium.ttf");
   font-weight: normal; }
-@font-face {
-  font-family: 'Gotham';
-  src: url("fonts/gotham_light.ttf");
-  font-weight: 200; }
 /*********************** colores ***********************/
 /********************** resoluciones ********************/
 /********************** mixines *************************/
@@ -113,59 +109,91 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-family: 'Changa';
   src: url("fonts/changa-medium.ttf");
   font-weight: medium; }
-h1, p {
-  font-family: 'Roboto', sans-serif; }
-
 .container {
   position: relative;
-  width: 98vw;
+  width: 100vw;
   height: 100%;
-  margin-top: 1vw;
-  margin-left: 1vw; }
-  .container .hero {
-    position: relative;
-    background-image: url(../images/hero.png);
+  padding-left: 5%; }
+  .container .mockup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    margin-top: -3%;
+    background: url(../images/landing/back.png) no-repeat;
     background-size: cover;
-    height: 310px;
-    width: 100%; }
-    .container .hero .logo {
+    background-position: right top; }
+    .container .mockup img {
+      position: absolute;
+      right: 0;
+      top: 20%;
+      width: 70%; }
+    @media (max-width: 768px) {
+      .container .mockup {
+        display: none; } }
+  .container .intro {
+    width: 60%; }
+    .container .intro .logo {
       display: block;
       position: relative;
-      width: 162px;
-      margin: 0 auto;
-      top: 83px; }
-    .container .hero .mockup {
-      position: absolute;
-      bottom: 0;
-      left: -2vw; }
+      margin: 5% 0; }
+      .container .intro .logo .claim {
+        font-family: "Changa", sans-serif;
+        color: #FC5130;
+        font-size: 1.8vw;
+        font-weight: light;
+        margin: 10px auto 0; }
+      .container .intro .logo img {
+        width: 12vw; }
       @media (max-width: 768px) {
-        .container .hero .mockup {
-          display: none; } }
-    .container .hero h1 {
-      font-size: 41px;
-      font-weight: light;
-      color: white;
-      text-align: center;
-      margin: 105px auto 0; }
-  .container .suscripcion {
-    margin-top: 50px;
-    margin-left: 8%; }
-    .container .suscripcion p {
+        .container .intro .logo {
+          text-align: center; }
+          .container .intro .logo img {
+            width: 50%; }
+          .container .intro .logo .claim {
+            font-size: 1.6em; } }
+    .container .intro .main-parr {
+      font-family: "Roboto", sans-serif;
       color: #031927;
-      font-weight: light;
+      font-size: 25px;
+      font-weight: medium;
+      line-height: 1.2em;
+      width: 80%;
+      margin: 1em 0; }
+    .container .intro .parrafo {
+      font-family: "Roboto", sans-serif;
+      color: #031927;
       font-size: 20px;
+      font-weight: light;
       line-height: 1.3em; }
+    @media (max-width: 768px) {
+      .container .intro {
+        width: 100%;
+        padding: 0 15px 0 0; } }
+  .container .suscripcion {
+    margin-top: 5%;
+    width: 70%; }
+    .container .suscripcion h2 {
+      font-family: "Changa", sans-serif;
+      color: #3688BD;
+      font-size: 35px; }
     .container .suscripcion h3 {
-      color: #031927;
-      font-family: Changa;
-      font-size: 48px;
-      margin-top: 19px;
-      margin-bottom: 19px; }
+      font-family: "Changa", sans-serif;
+      color: #3688BD;
+      font-size: 23px;
+      margin: .8em 0 .5em; }
+    .container .suscripcion .parrafo {
+      font-family: "Roboto", sans-serif;
+      color: #3688BD;
+      font-size: 20px;
+      font-weight: light;
+      line-height: 1.3em; }
     .container .suscripcion form {
-      width: 16em;
+      width: 255px;
       position: relative;
       border-radius: 30px;
-      background-color: rgba(3, 25, 39, 0.05);
+      border: 2px solid #3688BD;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -177,30 +205,27 @@ h1, p {
       -ms-flex-align: center;
       align-items: center;
       margin: 40px 0 12px;
-      margin-left: -20px;
       padding: 0 10px 0 25px; }
-      .container .suscripcion form .mail_wrapper {
-        display: flex;
-        width: 100%; }
       .container .suscripcion form input {
-        width: 100%;
         border: 0;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        color: #333;
+        color: #3688BD;
         height: 50px;
         outline: 0;
         font-size: 20px;
-        padding-right: .5em;
         background-color: transparent; }
+      .container .suscripcion form ::-webkit-input-placeholder {
+        color: #3688BD; }
       .container .suscripcion form .button {
         border-radius: 20px;
+        margin-left: 10px;
         width: 36px;
         height: 36px;
         background-color: #FC5130;
         border-color: #FC5130;
+        margin-left: -25px;
         box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
-        cursor: pointer;
         -webkit-transition: box-shadow 0.5s ease;
         -moz-transition: box-shadow 0.5s ease;
         -ms-transition: box-shadow 0.5s ease;
@@ -211,23 +236,27 @@ h1, p {
         .container .suscripcion form .button img {
           position: relative;
           top: 1px; }
+    .container .suscripcion small {
+      font-family: "Roboto", sans-serif;
+      color: #3688BD;
+      font-size: 15px;
+      font-weight: light;
+      line-height: 1.3em; }
+    @media (max-width: 768px) {
+      .container .suscripcion {
+        width: 100%;
+        padding: 0 15px 0 0; } }
   .container footer {
     width: 100%;
-    margin: 30px auto;
-    text-align: center; }
+    margin: 30px auto; }
     .container footer p {
-      font-size: 20px;
+      font-family: "Roboto", sans-serif;
       color: #3688BD;
-      margin-bottom: .7em;
-      line-height: 1.5em;
-      display: inline-block; }
-      @media (max-width: 768px) {
-        .container footer p {
-          font-size: 15px;
-          display: block; } }
+      font-size: 20px; }
     .container footer a {
-      margin-left: .8em; }
+      display: inline-block;
+      margin: 0 .2em; }
       .container footer a img {
-        height: 25px; }
+        height: 20px; }
 
 /*# sourceMappingURL=landing.css.map */
