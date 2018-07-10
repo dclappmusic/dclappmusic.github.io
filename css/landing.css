@@ -145,9 +145,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     background-position: right top; }
     .container .mockup img {
       position: absolute;
-      right: 0;
+      right: -13%;
       top: 20%;
-      width: 70%; }
+      width: 85%; }
     @media (max-width: 768px) {
       .container .mockup {
         display: none; } }
