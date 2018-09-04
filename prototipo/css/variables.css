@@ -1,12 +1,4 @@
-/*********************  fonts *****************************/
-@font-face {
-  font-family: 'Gotham';
-  src: url("fonts/gotham_medium.ttf");
-  font-weight: normal; }
-@font-face {
-  font-family: 'Gotham';
-  src: url("fonts/gotham_light.ttf");
-  font-weight: 200; }
+@import url(/Users/robertomesejosalas/websites/dclappmusic.github.io/prototipo/css/fonts.css);
 /*********************** colores ***********************/
 /********************** resoluciones ********************/
 /********************** mixines *************************/
@@ -15,5 +7,4 @@
 /*// scale*/
 /*// translate*/
 /*// skew*/
-
 /*# sourceMappingURL=variables.css.map */

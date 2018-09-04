@@ -1,4 +1,4 @@
-
+@import "variables";
 
 /*************************************************** Elementos globales ************************************************/
 body {
@@ -8,11 +8,6 @@ body {
 }
 
 img {image-rendering: -webkit-optimize-contrast;}
-
-// ::selection {
-//   background: rgba(255, 119, 79,.5); /* WebKit/Blink Browsers */
-// }
-::-moz-selection { background: #4871D1; /* Gecko Browsers */}
 
 .br { line-height: 2.5em; } 
 

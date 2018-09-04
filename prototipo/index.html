@@ -14,65 +14,32 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container home">
+		<a class="boton pre_clapp" href="clapp.html">
+			<img src="images/icon_clapp.png" />
+		</a>
+		<div class="intro_clapp">
+			<h3>para clappear<br>pulsa el botón</h3>
+		</div>
+
 		<ul class="menu">
-			<li>
-				<img src="images/icon_clap.png" />
-				clapps
+			<li class="menu_item">
+				historial
 			</li>
-			<li>
-				<img src="images/icon_calendar.png" />
-				salas
+			<li class="menu_item active">
+				<a href="index.html">CLAPP</a>
 			</li>
-			<li>
-				<img src="images/icon_map.png" />
-				mapa
+			<li class="menu_item">
+				opciones
 			</li>
 		</ul>
-		<div class="uno">
-			<img class="main_logo" src="images/logo_color.png">
-			<a class="boton">CLAPPEAR</a>
-		</div>
-
-		<div class="dos"></div>
-
-		<div class="tres">
-			<div class="musico_imagen">
-				<img src="images/foto.png">
-			</div>
-			<div class="musico_info">
-				<p>+1 clapp</p>
-				<a class="clapp" href="#">
-					<img src="images/clapp.png">
-				</a>
-			</div>
-		</div>
-		
 	</div>
 
 	
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		$(".boton").click(function(){
-			$(".uno").hide();
-			$(".menu").hide();
-			$(".dos").show();
-			setTimeout(function(){
-				$(".dos").hide();
-				$(".tres").show();
-				$(".menu").show();
-			}, 2000);
-		});
-
-		$(".clapp").click(function() {
-			$("p").addClass("active");
-			$(".clapp img").attr("src", "images/clapp_2.png");
-			setTimeout(function(){
-				$("p").removeClass("active");
-				$(".clapp img").attr("src", "images/clapp.png");
-			}, 1000);
-		});
+		
 	</script>
 	
  </body>
