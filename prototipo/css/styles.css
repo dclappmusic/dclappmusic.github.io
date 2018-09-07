@@ -187,16 +187,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-align: center;
 }
 
-.clapp {
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(252, 81, 48, 0.8)), to(rgba(252, 81, 48, 0.8))), url(../images/perfil_markuser.jpg);
-  background: linear-gradient(0deg, rgba(252, 81, 48, 0.8), rgba(252, 81, 48, 0.8)), url(../images/perfil_markuser.jpg);
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: screen, normal;
-}
-
 .clapp .back {
   position: absolute;
+  z-index: 100;
   width: 24px;
   height: 24px;
   left: 15px;
@@ -206,6 +199,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .clapp .back svg {
   width: 100%;
   height: 100%;
+}
+
+.clapp .fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(252, 81, 48, 0.8)), to(rgba(252, 81, 48, 0.8)));
+  background: linear-gradient(0deg, rgba(252, 81, 48, 0.8), rgba(252, 81, 48, 0.8));
+}
+
+.clapp .fondo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.5;
 }
 
 .clapp .boton {
