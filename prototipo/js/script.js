@@ -66,7 +66,7 @@ var tryGeolocation = function() {
 
 
 
-var diferencia = 0.000500;
+var diferencia = 0.001000;
 
 var mese = {
     name: "Mese",
