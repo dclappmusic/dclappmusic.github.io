@@ -106,8 +106,8 @@ var maria = {
     imagen: "images/perfil_maria.png",
     latitud: 39.665170,
     longitud: 13.402605,
-    latmin: 39.665170 - diferencia,
-    latmax: 39.665170 + diferencia 
+    latmin: 39.664250 - diferencia,
+    latmax: 39.664250 + diferencia 
 }
 
 var quien = function() {
