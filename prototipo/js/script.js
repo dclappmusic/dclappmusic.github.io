@@ -22,7 +22,7 @@ var browserGeolocationSuccess = function(position) {
     latitud = position.coords.latitude;
     longitud = position.coords.longitude;
     console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
-    // latitud = 40.450149;
+    latitud = 39.665158;
     quien();
 };
 
@@ -103,7 +103,7 @@ var marco = {
 }
 var maria = {
     name: "Poni",
-    imagen: "images/perfil_rober.png",
+    imagen: "images/perfil_maria.png",
     latitud: 39.665170,
     longitud: 13.402605,
     latmin: 39.665170 - diferencia,
