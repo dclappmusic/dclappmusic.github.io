@@ -22,7 +22,7 @@ var browserGeolocationSuccess = function(position) {
     latitud = position.coords.latitude;
     longitud = position.coords.longitude;
     console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
-    latitud = 39.665158;
+    // latitud = 39.665158;
     quien();
 };
 
