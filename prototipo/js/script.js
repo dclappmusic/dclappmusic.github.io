@@ -79,10 +79,11 @@ var mese = {
 var pablo = {
     name: "Paul and the pauls",
     imagen: "images/perfil_pablo.jpeg",
-    latitud: 40.450249,
+    // latitud: 40.450249,
+    latitud: 41.643476,
     longitud: -3.695041,
-    latmin: 40.450249 - diferencia,
-    latmax: 40.450249 + diferencia 
+    latmin: 41.643476 - diferencia,
+    latmax: 41.643476 + diferencia 
 }
 var marina = {
     name: "Marina",
