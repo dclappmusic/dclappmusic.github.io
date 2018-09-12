@@ -88,6 +88,7 @@
             })
             .fail(function(err) {
                 console.log("API Geolocation error! \n\n"+err);
+                $(".act .name").html("API Geolocation error! \n\n"+err);
             });
         };
 
@@ -115,6 +116,7 @@
                 break;
                 case error.POSITION_UNAVAILABLE:
                     console.log("Browser geolocation error !\n\nPosition unavailable.");
+                    $(".act .name").html("Browser geolocation error !\n\nPosition unavailable");
                 break;
             }
         };
