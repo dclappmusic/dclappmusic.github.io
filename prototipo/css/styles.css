@@ -259,6 +259,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-weight: 900;
   line-height: normal;
   font-size: 40px;
+  text-transform: uppercase;
 }
 
 .perfil {

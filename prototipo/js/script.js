@@ -59,6 +59,15 @@
                 latitud: 40.433127,
                 longitud: -3.704691
             }
+        },
+        {
+            name: "HIGOMAN",
+            imagen: "images/perfil_luca.png",
+            ciudad: "tarragona",
+            posicion_show: {
+                latitud: 41.11516,
+                longitud: 1.252181
+            }
         }
     ];
 
@@ -86,8 +95,8 @@
             latitud = position.coords.latitude;
             longitud = position.coords.longitude;
             console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
-            // latitud = 40.433127;
-            // longitud = -3.704691;
+            // latitud = 41.11516;
+            // longitud = 1.252181;
             encontrar();
         };
 
