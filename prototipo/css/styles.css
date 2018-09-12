@@ -133,7 +133,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container {
   position: fixed;
-  left: calc(50% - 180px);
+  left: 0;
   width: 100vw;
   height: 100%;
   max-width: 360px;
@@ -143,12 +143,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container .menu {
   position: fixed;
-  height: 55px;
+  width: 100%;
+  height: 35px;
   bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   text-align: center;
+  color: #0C3847;
+  font-family: "Roboto", Arial, helvetica;
 }
 
 .container .menu .menu_item {
@@ -183,6 +186,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 80%;
   left: 10%;
   text-align: center;
+  color: #0C3847;
+  font-family: "Roboto", Arial, helvetica;
 }
 
 .clapp .back {
@@ -275,6 +280,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .historial {
   background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+}
+
+.historial.container .menu {
+  color: white;
 }
 
 .historial .cabecera {

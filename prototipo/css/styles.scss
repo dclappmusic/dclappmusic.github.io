@@ -14,7 +14,7 @@
 .container {
 	position: fixed;
 	// top: 10px;
-	left: calc(50% - 180px);
+	left: 0;
 	width: 100vw;
 	height: 100%;
 	max-width: 360px;
@@ -23,12 +23,14 @@
 	overflow-x: hidden;
 	.menu {
 		position: fixed;
-		// width: 100%;
-		height: 55px;
+		width: 100%;
+		height: 35px;
 		// left: calc(50% - 180px);
 		bottom: 0;
 		display: flex;
 		text-align: center;
+		color: $secundario;
+		font-family: $Roboto;
 		.menu_item {
 			width: calc(360px / 3);
 		}
@@ -57,6 +59,8 @@
 		width: 80%;
 		left: 10%;
 		text-align: center;
+		color: $secundario;
+		font-family: $Roboto;
 	}
 }
 
@@ -148,6 +152,9 @@
 
 .historial {
 	background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+	&.container .menu {
+		color: white;
+	}	
 	.cabecera {
 		width: 226px;
 		height: 46px;
