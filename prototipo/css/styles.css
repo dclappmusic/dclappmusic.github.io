@@ -133,7 +133,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container {
   position: fixed;
-  top: 10px;
   left: calc(50% - 180px);
   width: 100vw;
   height: 100%;
