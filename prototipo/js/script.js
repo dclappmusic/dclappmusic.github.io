@@ -31,21 +31,21 @@ var browserGeolocationFail = function(error) {
   switch (error.code) {
     case error.TIMEOUT:
       console.log("Browser geolocation error !\n\nTimeout.");
-      latitud = 43.21114;
-	  longitud = -8.23259;
+    //   latitud = 43.21114;
+	//   longitud = -8.23259;
       break;
     case error.PERMISSION_DENIED:
       if(error.message.indexOf("Only secure origins are allowed") == 0) {
         tryAPIGeolocation();
       } else {
-      	latitud = 43.21114;
-	    longitud = -8.23259;
+      	// latitud = 43.21114;
+	    // longitud = -8.23259;
       }
       break;
     case error.POSITION_UNAVAILABLE:
       console.log("Browser geolocation error !\n\nPosition unavailable.");
-      latitud = 43.21114;
-	  longitud = -8.23259;
+    //   latitud = 43.21114;
+	//   longitud = -8.23259;
       break;
   }
 };
@@ -135,26 +135,22 @@ function cerca (posicion1) {
 
 
 function encontrar() {
+    var musico_encontrado = false;
     console.log("encontrar");
     activos.forEach(function(element) {
-        // if ( (element.latitud < (latitud + diferencia)) && (element.latidud > (latitud - diferencia)) ) {
-        //     $(".clapp .fondo img").attr("src", element.imagen);
-        //     $(".act .name").html(element.name);
-        // } else {
-        //     $(".act .name").html("no music :'(");
-        // }
-
-         //otra manera
         console.log(element.name);
         if (cerca(element.posicion_show)) {
             $(".clapp .fondo img").attr("src", element.imagen);
             $(".act .name").html(element.name);
             console.log("está cerca");
+            musico_encontrado = true;
         } else {
-            $(".act .name").html("no music :'(");
             console.log("está lejos");
         }
     });
+    if (!musico_encontrado) {
+        $(".act .name").html("no music :'(");
+    }
 };
 
 
