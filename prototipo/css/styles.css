@@ -275,6 +275,60 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-size: 40px;
 }
 
+.historial {
+  background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+}
+
+.historial .cabecera {
+  width: 226px;
+  height: 46px;
+  width: 100%;
+  margin-top: 15px;
+  font-family: "Changa", Arial, helvetica;
+  font-size: 25px;
+  text-align: center;
+  color: white;
+}
+
+.historial .clapps {
+  width: 100%;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.historial .clapps .clappeado {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.historial .clapps .clappeado img {
+  width: 16%;
+  height: 85%;
+  margin-right: 10px;
+  border-radius: 87px;
+}
+
+.historial .clapps .clappeado .band {
+  width: 70%;
+  font-family: "Roboto", Arial, helvetica;
+  color: white;
+  font-size: 20px;
+}
+
+.historial .clapps .clappeado .clapps_dados {
+  font-family: "Roboto", Arial, helvetica;
+  color: white;
+  font-size: 20px;
+}
+
 .perfil {
   background: linear-gradient(110.65deg, #DE664F 3.41%, #972B1E 111.5%);
 }

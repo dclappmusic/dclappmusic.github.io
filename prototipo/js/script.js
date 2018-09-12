@@ -4,6 +4,20 @@
     var longitud;
     var distancia_max = 0.001000;
 
+
+    var usuario = {
+        historial_clapps: [
+            {
+                clappeado: "Markiño",
+                num_clapps: 5
+            },
+            {
+                clappeado: "Mese",
+                num_clapps: 2
+            }
+        ] 
+    }
+
     var bandas_activas = [
         //en el futuro sólo incluiría ID y posicion_show, lo de más lo traería de la base de datos a través del ID
         {
@@ -171,17 +185,37 @@
             $(".clapp .fondo img").attr("src", banda.imagen);
             $(".act .name").html("<b>" + banda.name + "</b>");
         }
+    
+    //ordenar los shows activos por distancia al clapp
 
 
     //accion de clappear
-    var clapps = 0;
-    $(".btn_clapp").click(function() {
-        if (clapps == 0) {
-            clapps += 1;
-            $(".num_clapps").html("+" + clapps + " clapp");
-        } else if (clapps < 50) { 
-            clapps += 1;
-            $(".num_clapps").html("+" + clapps + " clapps");
-        }
-        
-    });
+        var clapps = 0;
+        $(".btn_clapp").click(function() {
+            if (clapps == 0) {
+                clapps += 1;
+                $(".num_clapps").html("+" + clapps + " clapp");
+            } else if (clapps < 50) { 
+                clapps += 1;
+                $(".num_clapps").html("+" + clapps + " clapps");
+            }
+            //guardar a la banda en la lista de clapps del usuario
+
+        });
+    //sumarle los clapps a la banda en la bbdd
+
+    //cargar clapps en historial
+        var cargar_historial = function() {
+            console.log("cargar historial");
+            usuario.historial_clapps.forEach(function(element) {
+                console.log(element.clappeado);
+                var banda = bandas_activas.find(o => o.name === element.clappeado);
+                console.log(banda);
+                $(".clapps").append(
+                    '<li class="clappeado"><img src="' + banda.imagen + '"><p class="band">' + banda.name + '</p><p class="clapps_dados">' + element.num_clapps + '</p></li>'
+                );
+            });
+        };
+    
+ 
+

@@ -144,6 +144,58 @@
 	}
 }
 
+.historial {
+	background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+	.cabecera {
+		width: 226px;
+		height: 46px;
+		width: 100%;
+		margin-top: 15px;
+
+		font-family: $Changa;
+		font-size: 25px;
+		text-align: center;
+		color: white;
+	}
+	.clapps {
+		width: 100%;
+		margin-top: 50px;
+		padding: 20px;
+		.clappeado {
+			display: block;
+			position: relative;
+			height: 60px;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			img {
+				// position: absolute;
+				width: 16%;
+				height: 85%;
+				margin-right: 10px;
+				// left: 75px;
+				// top: 27px;
+				// background: url(../images/perfil_markuser.jpg);
+				// background-size: cover;
+				border-radius: 87px;
+			}
+			.band {
+				// display: inline-block;
+				width: 70%;
+				font-family: $Roboto;
+				color: white;
+				font-size: 20px;
+			}
+			.clapps_dados {
+				// display: inline-block;
+				font-family: $Roboto;
+				color: white;
+				font-size: 20px;
+			}
+		}
+	}
+}
+
 .perfil {
 	background: linear-gradient(110.65deg, #DE664F 3.41%, #972B1E 111.5%);
 	.back {
