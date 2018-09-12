@@ -23,7 +23,8 @@ var browserGeolocationSuccess = function(position) {
     longitud = position.coords.longitude;
     console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
     // latitud = 39.665158;
-    quien();
+    // quien();
+    encontrar();
 };
 
 var browserGeolocationFail = function(error) {
@@ -66,80 +67,94 @@ var tryGeolocation = function() {
 
 
 
+
+var activos = [
+    {
+        name: "Mese",
+        imagen: "images/perfil_rober.png",
+        ciudad: "Madrid",
+        posicion_show: {
+            latitud: 40.407063,
+            longitud: -3.703284
+        }
+    },
+    {
+        name: "Paul and the pauls",
+        imagen: "images/perfil_pablo.jpeg",
+        ciudad: "Valladolid",
+        posicion_show: {
+            latitud: 40.450249,
+            longitud: -3.695041
+        }
+    },
+    {
+        name: "Marina",
+        imagen: "images/perfil_marina.jpeg",
+        ciudad: "Berlin",
+        posicion_show: {
+            latitud: 52.516050,
+            longitud: 13.462634
+        }
+    },
+    {
+        name: "Markiño",
+        imagen: "images/perfil_markuser.jpg",
+        ciudad: "Berlin",
+        posicion_show: {
+            latitud: 52.490818,
+            longitud: 13.402605
+        }
+    },
+    {
+        name: "Poni",
+        imagen: "images/perfil_maria.png",
+        ciudad: "Intermundicia",
+        posicion_show: {
+            latitud: 40.423399,
+            longitud: -3.691778
+        }
+    }
+];
+
+
+
+// var posicion_clapp = {
+//     latitud: latitud,
+//     longitud: longitud
+// };
+
 var diferencia = 0.001000;
 
-var mese = {
-    name: "Mese",
-    imagen: "images/perfil_rober.png",
-    latitud: 40.407063,
-    longitud: -3.703284,
-    latmin: 40.407063 - diferencia,
-    latmax: 40.407063 + diferencia 
-}
-var pablo = {
-    name: "Paul and the pauls",
-    imagen: "images/perfil_pablo.jpeg",
-    // latitud: 40.450249,
-    latitud: 41.643476,
-    longitud: -3.695041,
-    latmin: 41.643476 - diferencia,
-    latmax: 41.643476 + diferencia 
-}
-var marina = {
-    name: "Marina",
-    imagen: "images/perfil_marina.jpeg",
-    latitud: 52.516050,
-    longitud: 13.462634,
-    latmin: 52.516050 - diferencia,
-    latmax: 52.516050 + diferencia 
-}
-var marco = {
-    name: "Markiño",
-    imagen: "images/perfil_markuser.jpg",
-    latitud: 52.490818,
-    longitud: 13.402605,
-    latmin: 52.490818 - diferencia,
-    latmax: 52.490818 + diferencia 
-}
-var maria = {
-    name: "Poni",
-    imagen: "images/perfil_maria.png",
-    latitud: 39.665170,
-    longitud: 13.402605,
-    latmin: 39.664250 - diferencia,
-    latmax: 39.664250 + diferencia 
-}
-
-var quien = function() {
+function cerca (posicion1) {
+    var distancia;
     // debugger;
-    console.log(latitud);
-    // latitud = 52.516000;
-    console.log(latitud);
-    console.log(marina.latitud);
-    if ((mese.latmin < latitud) && (latitud < mese.latmax)) {
-        console.log("MESE IS HERE");
-        $(".clapp .fondo img").attr("src", mese.imagen);
-        $(".act .name").html(mese.name);
-    } else if ((marina.latmin < latitud) && (latitud < marina.latmax)) {
-        console.log("MARINA IS HERE");
-        $(".clapp .fondo img").attr("src", marina.imagen);
-        $(".act .name").html(marina.name);
-    } else if ((marco.latmin < latitud) && (latitud < marco.latmax)) {
-        console.log("MARCO IS HERE");
-        $(".clapp .fondo img").attr("src", marco.imagen);
-        $(".act .name").html(marco.name);
-    } else if ((pablo.latmin < latitud) && (latitud < pablo.latmax)) {
-        console.log("PABLO IS HERE");
-        $(".clapp .fondo img").attr("src", pablo.imagen);
-        $(".act .name").html(pablo.name);
-    } else if ((maria.latmin < latitud) && (latitud < maria.latmax)) {
-        console.log("PONI IS HERE");
-        $(".clapp .fondo img").attr("src", maria.imagen);
-        $(".act .name").html(maria.name);
-    } else {
-        $(".act .name").html("no music :'(");
-    }
+    distancia = Math.pow((Math.pow(posicion1.latitud - latitud, 2) + Math.pow(posicion1.longitud - longitud,2)), 0.5);
+    console.log(distancia);
+    return distancia <= diferencia;
 }
 
+
+function encontrar() {
+    console.log("encontrar");
+    activos.forEach(function(element) {
+        // if ( (element.latitud < (latitud + diferencia)) && (element.latidud > (latitud - diferencia)) ) {
+        //     $(".clapp .fondo img").attr("src", element.imagen);
+        //     $(".act .name").html(element.name);
+        // } else {
+        //     $(".act .name").html("no music :'(");
+        // }
+
+         //otra manera
+        console.log(element.name);
+        if (cerca(element.posicion_show)) {
+            $(".clapp .fondo img").attr("src", element.imagen);
+            $(".act .name").html(element.name);
+            console.log("está cerca");
+        } else {
+            $(".act .name").html("no music :'(");
+            console.log("está lejos");
+        }
+    });
+};
 
 
