@@ -167,3 +167,17 @@
             $(".clapp .fondo img").attr("src", banda.imagen);
             $(".act .name").html(banda.name);
         }
+
+
+    //accion de clappear
+    var clapps = 0;
+    $(".btn_clapp").click(function() {
+        if (clapps == 0) {
+            clapps += 1;
+            $(".num_clapps").html("+" + clapps + " clapp");
+        } else if (clapps < 50) { 
+            clapps += 1;
+            $(".num_clapps").html("+" + clapps + " clapps");
+        }
+        
+    });

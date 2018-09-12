@@ -99,7 +99,7 @@
 		// }
 	}
 	.boton {
-		position: absolute;
+		position: relative;
 		top: 180px;
 		left: calc(50% - 90px);
 		width: 180px;
@@ -113,6 +113,14 @@
 			display: block;
 			margin: 0 auto;
 		}
+	}
+	.btn_clapp .num_clapps {
+		position: absolute;
+		top: -50px;
+		width: 100%;
+		font-family: $Roboto;
+		color: $secundario;
+		font-size: 35px;
 	}
 	.act {
 		position: absolute;

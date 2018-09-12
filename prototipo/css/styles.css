@@ -222,7 +222,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .clapp .boton {
-  position: absolute;
+  position: relative;
   top: 180px;
   left: calc(50% - 90px);
   width: 180px;
@@ -241,6 +241,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .clapp .boton img {
   display: block;
   margin: 0 auto;
+}
+
+.clapp .btn_clapp .num_clapps {
+  position: absolute;
+  top: -50px;
+  width: 100%;
+  font-family: "Roboto", Arial, helvetica;
+  color: #0C3847;
+  font-size: 35px;
 }
 
 .clapp .act {
