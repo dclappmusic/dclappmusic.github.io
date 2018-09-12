@@ -265,10 +265,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-family: "Roboto", Arial, helvetica;
   color: #0C3847;
   font-style: normal;
-  font-weight: 900;
   line-height: normal;
-  font-size: 40px;
+  font-size: 20px;
+}
+
+.clapp .act .name b {
   text-transform: uppercase;
+  font-weight: 900;
+  font-size: 40px;
 }
 
 .perfil {

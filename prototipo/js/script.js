@@ -109,6 +109,8 @@
                     if(error.message.indexOf("Only secure origins are allowed") == 0) {
                         tryAPIGeolocation();
                     } else {
+                        console.log("Permison denied");
+                        $(".act .name").html("No nos has dado permiso de acceder a tu ubicación");
                     }
                 break;
                 case error.POSITION_UNAVAILABLE:
@@ -165,7 +167,7 @@
     //sacar los datos de la banda encontrada
         function show_encontrado (banda) {
             $(".clapp .fondo img").attr("src", banda.imagen);
-            $(".act .name").html(banda.name);
+            $(".act .name").html("<b>" + banda.name + "</b>");
         }
 
 
