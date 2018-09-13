@@ -191,6 +191,7 @@
 
     //accion de clappear
         var clapps = 0;
+
         $(".btn_clapp").click(function() {
             if (clapps == 0) {
                 clapps += 1;
@@ -200,7 +201,6 @@
                 $(".num_clapps").html("+" + clapps + " clapps");
             }
             //guardar a la banda en la lista de clapps del usuario
-
         });
     //sumarle los clapps a la banda en la bbdd
 
@@ -217,5 +217,27 @@
             });
         };
     
+        var bandas_activasjson = {};
+        bandas_activasjson.getStrings = function() {
+			return $.getJSON('bandas_activas.js');
+        }
+        console.log(bandas_activasjson);
+        // var bandas_activasjson = function(){
+        //     $.getJSON('editor/strings.json');
+        // }
+        // $.getJSON( "ajax/test.json", function( data ) {
+        //     var bandas_activasjson = [];
+        //     $.each( data, function( key, val ) {
+              
+        //     });
+           
+        //     $( "<ul/>", {
+        //       "class": "my-new-list",
+        //       html: items.join( "" )
+        //     }).appendTo( "body" );
+        //   });
+        
+        //   var factory = {};
+		
  
 
