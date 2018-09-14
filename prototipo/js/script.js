@@ -3,6 +3,10 @@
     var latitud;
     var longitud;
     var distancia_max = 0.001000;
+    var test_coord_clapp = {
+        latitud: 40.409054,
+        longitud: -3.693103
+    };
 
 
     var usuario = {
@@ -17,79 +21,114 @@
             }
         ] 
     }
-
-    var bandas_activas = [
-        //en el futuro sólo incluiría ID y posicion_show, lo de más lo traería de la base de datos a través del ID
+    var bandas = [
         {
+            ID: "1",
             name: "Mese",
             imagen: "images/perfil_rober.png",
-            ciudad: "Madrid",
+            ciudad: "Madrid"
+        },
+        { 
+            ID: "2",
+            name: "Paul and the pauls",
+            imagen: "images/perfil_pablo.jpeg",
+            ciudad: "Valladolid"
+        },
+        {
+            ID: "3",
+            name: "Marina",
+            imagen: "images/perfil_marina.jpeg",
+            ciudad: "Berlin"
+        },
+        {
+            ID: "4",
+            name: "PORKI",
+            imagen: "images/perfil_markuser.jpg",
+            ciudad: "Berlin"
+        },
+        {
+            ID: "5",
+            name: "PIG",
+            imagen: "images/perfil_maria.png",
+            ciudad: "Intermundicia"
+        },
+        {
+            ID: "6",
+            name: "Bro",
+            imagen: "images/perfil_bro.png",
+            ciudad: "Mandril"
+        },
+        {
+            ID: "7",
+            name: "HIGOMAN",
+            imagen: "images/perfil_luca.png",
+            ciudad: "tarragona"
+        },
+        {
+            ID: "8",
+            name: "PATRÍFULA",
+            imagen: "images/perfil_patri.png",
+            ciudad: "double_you"
+        }
+    ];
+    
+
+    var shows_activos = [
+        //sólo incluye ID y posicion_show, lo de más lo trae de la base de datos a través del ID
+        {
+            ID: "1",
             posicion_show: {
                 latitud: 40.407063,
                 longitud: -3.703284
             }
         },
         {
-            name: "Paul and the pauls",
-            imagen: "images/perfil_pablo.jpeg",
-            ciudad: "Valladolid",
+            ID: "2",
             posicion_show: {
                 latitud: 40.450249,
                 longitud: -3.695041
             }
         },
         {
-            name: "Marina",
-            imagen: "images/perfil_marina.jpeg",
-            ciudad: "Berlin",
+            ID: "3",
             posicion_show: {
                 latitud: 52.516050,
                 longitud: 13.462634
             }
         },
         {
-            name: "Markiño",
-            imagen: "images/perfil_markuser.jpg",
-            ciudad: "Berlin",
+            ID: "4",
             posicion_show: {
                 latitud: 52.490818,
                 longitud: 13.402605
             }
         },
         {
-            name: "Poni",
-            imagen: "images/perfil_maria.png",
-            ciudad: "Intermundicia",
+            ID: "5",
             posicion_show: {
                 latitud: 40.423399,
                 longitud: -3.691778
             }
         },
         {
-            name: "Bro",
-            imagen: "images/perfil_bro.png",
-            ciudad: "Mandril",
+            ID: "6",
             posicion_show: {
                 latitud: 40.433127,
                 longitud: -3.704691
             }
         },
         {
-            name: "HIGOMAN",
-            imagen: "images/perfil_luca.png",
-            ciudad: "tarragona",
+            ID: "7",
             posicion_show: {
                 latitud: 41.11516,
                 longitud: 1.252181
             }
         },
         {
-            name: "PATRÍFULA",
-            imagen: "images/perfil_patri.png",
-            ciudad: "double_you",
+            ID: "8",
             posicion_show: {
-                latitud: 40.417564,
-                longitud: -3.707503
+                latitud: 40.409054,
+                longitud: -3.693103
             }
         }
     ];
@@ -119,8 +158,8 @@
             latitud = position.coords.latitude;
             longitud = position.coords.longitude;
             console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
-            // latitud = 40.417564;
-            // longitud = -3.707503;
+            // latitud = test_coord_clapp.latitud;
+            // longitud = test_coord_clapp.longitud;
             encontrar();
         };
 
@@ -164,7 +203,7 @@
             distancia = Math.pow((Math.pow(posicion1.latitud - posicion2.latitud, 2) + Math.pow(posicion1.longitud - posicion2.longitud,2)), 0.5);
             console.log(distancia);
             return distancia <= distancia_max;
-        }
+        };
 
     //traer banda que esté dentro del area
         function encontrar() {
@@ -174,11 +213,11 @@
                 longitud: longitud
             };
             console.log("encontrar en: " + posicion_clapp.latitud + "," + posicion_clapp.longitud);
-            bandas_activas.forEach(function(element) {
-                console.log(element.name);
-                if (cerca(element.posicion_show, posicion_clapp)) {
-                    show_encontrado(element);
+            shows_activos.forEach(function(Ishow_activo) {
+                console.log(Ishow_activo.ID);
+                if (cerca(Ishow_activo.posicion_show, posicion_clapp)) {
                     console.log("está cerca");
+                    show_encontrado(Ishow_activo);
                     musico_encontrado = true;
                 } else {
                     console.log("está lejos");
@@ -190,10 +229,14 @@
         };
 
     //sacar los datos de la banda encontrada
-        function show_encontrado (banda) {
-            $(".clapp .fondo img").attr("src", banda.imagen);
-            $(".act .name").html("<b>" + banda.name + "</b>");
-        }
+        function show_encontrado (Ibanda_encontrada) {
+            bandas.forEach(function(Ibandas) {
+                var banda_activa = bandas.find(o => o.ID === Ibanda_encontrada.ID);
+                console.log(banda_activa.name + ", perfil encontrado");
+                $(".clapp .fondo img").attr("src", banda_activa.imagen);
+                $(".act .name").html("<b>" + banda_activa.name + "</b>");
+            });
+        };
     
     //ordenar los shows activos por distancia al clapp
 
@@ -220,7 +263,7 @@
             console.log("cargar historial");
             usuario.historial_clapps.forEach(function(element) {
                 console.log(element.clappeado);
-                var banda = bandas_activas.find(o => o.name === element.clappeado);
+                var banda = shows_activos.find(o => o.name === element.clappeado);
                 console.log(banda);
                 $(".clapps").append(
                     '<li class="clappeado"><img src="' + banda.imagen + '"><p class="band">' + banda.name + '</p><p class="clapps_dados">' + element.num_clapps + '</p></li>'
@@ -228,11 +271,11 @@
             });
         };
     
-        var bandas_activasjson = {};
-        bandas_activasjson.getStrings = function() {
-			return $.getJSON('bandas_activas.js');
-        }
-        console.log(bandas_activasjson);
+        // var bandas_activasjson = {};
+        // bandas_activasjson.getStrings = function() {
+		// 	return $.getJSON('bandas_activas.js');
+        // }
+        // console.log(bandas_activasjson);
 
         // var bandas_activasjson = function(){
         //     $.getJSON('editor/strings.json');
