@@ -205,7 +205,7 @@
             return distancia <= distancia_max;
         };
 
-    //traer banda que esté dentro del area
+    //Buscar bandas dentro del área del clapp
         function encontrar() {
             var musico_encontrado = false;
             var posicion_clapp = {
@@ -228,7 +228,7 @@
             }
         };
 
-    //sacar los datos de la banda encontrada
+    //bajarse y colocar los datos de la banda encontrada
         function show_encontrado (Ibanda_encontrada) {
             bandas.forEach(function(Ibandas) {
                 var banda_activa = bandas.find(o => o.ID === Ibanda_encontrada.ID);
@@ -241,7 +241,7 @@
     //ordenar los shows activos por distancia al clapp
 
 
-    //accion de clappear
+    //sumar y guardar los clapps
         var clapps = 0;
 
         $(".btn_clapp").click(function() {
@@ -252,15 +252,18 @@
                 clapps += 1;
                 $(".num_clapps").html("+" + clapps + " clapps");
             }
-            //guardar a la banda en la lista de clapps del usuario
+            //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
         });
-    //sumarle los clapps a la banda en la bbdd
+    //BBDD sumarle los clapps a la banda
 
 
     
     //cargar clapps en historial
         var cargar_historial = function() {
             console.log("cargar historial");
+            //BBDD descargarse user_persona
+
+            
             usuario.historial_clapps.forEach(function(element) {
                 console.log(element.clappeado);
                 var banda = shows_activos.find(o => o.name === element.clappeado);
