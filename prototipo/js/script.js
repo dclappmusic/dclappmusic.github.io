@@ -82,6 +82,15 @@
                 latitud: 41.11516,
                 longitud: 1.252181
             }
+        },
+        {
+            name: "PATRÍFULA",
+            imagen: "images/perfil_patri.png",
+            ciudad: "double_you",
+            posicion_show: {
+                latitud: 40.417564,
+                longitud: -3.707503
+            }
         }
     ];
 
@@ -110,8 +119,8 @@
             latitud = position.coords.latitude;
             longitud = position.coords.longitude;
             console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
-            // latitud = 41.11516;
-            // longitud = 1.252181;
+            // latitud = 40.417564;
+            // longitud = -3.707503;
             encontrar();
         };
 
@@ -204,6 +213,8 @@
         });
     //sumarle los clapps a la banda en la bbdd
 
+
+    
     //cargar clapps en historial
         var cargar_historial = function() {
             console.log("cargar historial");
@@ -222,6 +233,7 @@
 			return $.getJSON('bandas_activas.js');
         }
         console.log(bandas_activasjson);
+
         // var bandas_activasjson = function(){
         //     $.getJSON('editor/strings.json');
         // }
