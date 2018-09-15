@@ -9,134 +9,11 @@
     };
 
 
-    var usuario = {
-        historial_clapps: [
-            {
-                clappeado: "Markiño",
-                num_clapps: 5
-            },
-            {
-                clappeado: "Mese",
-                num_clapps: 2
-            }
-        ] 
-    }
-    var bandas = [
-        {
-            ID: "1",
-            name: "Mese",
-            imagen: "images/perfil_rober.png",
-            ciudad: "Madrid"
-        },
-        { 
-            ID: "2",
-            name: "Paul and the pauls",
-            imagen: "images/perfil_pablo.jpeg",
-            ciudad: "Valladolid"
-        },
-        {
-            ID: "3",
-            name: "Marina",
-            imagen: "images/perfil_marina.jpeg",
-            ciudad: "Berlin"
-        },
-        {
-            ID: "4",
-            name: "PORKI",
-            imagen: "images/perfil_markuser.jpg",
-            ciudad: "Berlin"
-        },
-        {
-            ID: "5",
-            name: "PIG",
-            imagen: "images/perfil_maria.png",
-            ciudad: "Intermundicia"
-        },
-        {
-            ID: "6",
-            name: "Bro",
-            imagen: "images/perfil_bro.png",
-            ciudad: "Mandril"
-        },
-        {
-            ID: "7",
-            name: "HIGOMAN",
-            imagen: "images/perfil_luca.png",
-            ciudad: "tarragona"
-        },
-        {
-            ID: "8",
-            name: "PATRÍFULA",
-            imagen: "images/perfil_patri.png",
-            ciudad: "double_you"
-        }
-    ];
-    
-
-    var shows_activos = [
-        //sólo incluye ID y posicion_show, lo de más lo trae de la base de datos a través del ID
-        {
-            ID: "1",
-            posicion_show: {
-                latitud: 40.407063,
-                longitud: -3.703284
-            }
-        },
-        {
-            ID: "2",
-            posicion_show: {
-                latitud: 40.450249,
-                longitud: -3.695041
-            }
-        },
-        {
-            ID: "3",
-            posicion_show: {
-                latitud: 52.516050,
-                longitud: 13.462634
-            }
-        },
-        {
-            ID: "4",
-            posicion_show: {
-                latitud: 52.490818,
-                longitud: 13.402605
-            }
-        },
-        {
-            ID: "5",
-            posicion_show: {
-                latitud: 40.423399,
-                longitud: -3.691778
-            }
-        },
-        {
-            ID: "6",
-            posicion_show: {
-                latitud: 40.433127,
-                longitud: -3.704691
-            }
-        },
-        {
-            ID: "7",
-            posicion_show: {
-                latitud: 41.11516,
-                longitud: 1.252181
-            }
-        },
-        {
-            ID: "8",
-            posicion_show: {
-                latitud: 40.409054,
-                longitud: -3.693103
-            }
-        }
-    ];
-
 //-------------FUNCIONES
 
-    //geolocalizacion
+// --------------Clapp
 
+    //geolocalizacion
         var apiGeolocationSuccess = function(position) {
             latitud = position.coords.latitude;
             longitud = position.coords.longitude;
@@ -228,7 +105,7 @@
             }
         };
 
-    //bajarse y colocar los datos de la banda encontrada
+    //bajarse y mostrar los datos de la banda encontrada
         function show_encontrado (Ibanda_encontrada) {
             bandas.forEach(function(Ibandas) {
                 var banda_activa = bandas.find(o => o.ID === Ibanda_encontrada.ID);
@@ -257,45 +134,26 @@
     //BBDD sumarle los clapps a la banda
 
 
-    
+// --------------historial de clapps
+
     //cargar clapps en historial
-        var cargar_historial = function() {
+        function cargar_historial (I_id) {
             console.log("cargar historial");
+
+            //descargarse user_persona
+            usuario = usuarios.find(o => o.ID === I_id);
+            console.log(usuario.ID);
             //BBDD descargarse user_persona
 
             
-            usuario.historial_clapps.forEach(function(element) {
-                console.log(element.clappeado);
-                var banda = shows_activos.find(o => o.name === element.clappeado);
+            usuario.historial_clapps.forEach(function(I_userClapps) {
+                console.log(I_userClapps.clappeado);
+                var banda = bandas.find(o => o.name === I_userClapps.clappeado);
                 console.log(banda);
                 $(".clapps").append(
-                    '<li class="clappeado"><img src="' + banda.imagen + '"><p class="band">' + banda.name + '</p><p class="clapps_dados">' + element.num_clapps + '</p></li>'
+                    '<li class="clappeado"><img src="' + banda.imagen + '"><p class="band">' + banda.name + '</p><p class="clapps_dados">' + I_userClapps.num_clapps + '</p></li>'
                 );
             });
         };
-    
-        // var bandas_activasjson = {};
-        // bandas_activasjson.getStrings = function() {
-		// 	return $.getJSON('bandas_activas.js');
-        // }
-        // console.log(bandas_activasjson);
-
-        // var bandas_activasjson = function(){
-        //     $.getJSON('editor/strings.json');
-        // }
-        // $.getJSON( "ajax/test.json", function( data ) {
-        //     var bandas_activasjson = [];
-        //     $.each( data, function( key, val ) {
-              
-        //     });
-           
-        //     $( "<ul/>", {
-        //       "class": "my-new-list",
-        //       html: items.join( "" )
-        //     }).appendTo( "body" );
-        //   });
-        
-        //   var factory = {};
-		
  
 
