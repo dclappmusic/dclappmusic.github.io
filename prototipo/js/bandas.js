@@ -38,13 +38,13 @@ var bandas = [
     {
         ID: "7",
         name: "HIGOMAN",
-        imagen: "images/perfil_luca.png",
+        imagen: "images/perfil_luca.jpg",
         ciudad: "tarragona"
     },
     {
         ID: "8",
         name: "PATRÍFULA",
-        imagen: "images/perfil_patri.png",
+        imagen: "images/perfil_patri.jpg",
         ciudad: "double_you"
     }
 ];

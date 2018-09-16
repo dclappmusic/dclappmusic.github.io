@@ -52,8 +52,8 @@ var shows_activos = [
     {
         ID: "8",
         posicion_show: {
-            latitud: 40.409054,
-            longitud: -3.693103
+            latitud: 40.412299,
+            longitud: -3.685994
         }
     }
 ];
