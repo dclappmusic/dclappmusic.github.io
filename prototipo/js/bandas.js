@@ -4,25 +4,29 @@ var bandas = [
         ID: "1",
         name: "Mese",
         imagen: "images/perfil_rober.png",
-        ciudad: "Madrid"
+        ciudad: "Madrid",
+        descripcion: "Meeeese mese mese mese"
     },
     { 
         ID: "2",
         name: "Paul and the pauls",
         imagen: "images/perfil_pablo.jpeg",
-        ciudad: "Valladolid"
+        ciudad: "Valladolid",
+        descripcion: "Pablone Soboleone likes to use anglo and latin terms"
     },
     {
         ID: "3",
         name: "Marina",
         imagen: "images/perfil_marina.jpeg",
-        ciudad: "Berlin"
+        ciudad: "Berlin",
+        descripcion: "Hola Mariiina, a ti que te molan estas cosas me puedes pasar alguna descripción para ir poniendo aquí"
     },
     {
         ID: "4",
         name: "PORKI",
         imagen: "images/perfil_markuser.jpg",
-        ciudad: "Berlin"
+        ciudad: "Berlin",
+        descripcion: "Si veis esto es que os estais dejando la piel en Big Rep, VEEENGA QUE YA NO FALTA NA! PERO NADA DE NADA! (ni mucho ni poco...)"
     },
     {
         ID: "5",

@@ -119,16 +119,37 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   float: left;
 }
 
-@font-face {
-  font-family: 'Gotham';
-  src: url("fonts/gotham_medium.ttf");
-  font-weight: normal;
+.titulo {
+  font-family: "Roboto", Arial, helvetica;
+  font-size: 40px;
 }
 
-@font-face {
-  font-family: 'Gotham';
-  src: url("fonts/gotham_light.ttf");
+.display-med {
+  font-family: "Changa", Arial, helvetica;
+  font-size: 30px;
+}
+
+.menu-tit {
+  font-family: "Changa", Arial, helvetica;
+  font-size: 13px;
   font-weight: 200;
+}
+
+.menu-tit.active {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.parrafo {
+  font-family: "Roboto", Arial, helvetica;
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.boton-sm {
+  font-family: "Roboto", Arial, helvetica;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .container {
@@ -136,7 +157,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   left: 0;
   width: 100vw;
   height: 100%;
-  max-width: 360px;
+  max-width: 500px;
   max-height: 812px;
   background-color: #F1F1F1;
   overflow-x: hidden;
@@ -151,11 +172,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: -ms-flexbox;
   display: flex;
   text-align: center;
-  color: #0C3847;
-  font-family: "Roboto", Arial, helvetica;
 }
 
-.container .menu .menu_item {
+.container .menu .menu-tit {
+  color: #0C3847;
   width: calc(360px / 3);
 }
 
@@ -188,6 +208,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 0 auto;
 }
 
+.container .cambio_modo {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-family: "Roboto", Arial, helvetica;
+  font-weight: 400;
+  color: #FC5130;
+}
+
 .container .intro_clapp {
   position: absolute;
   bottom: 25%;
@@ -206,11 +235,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .home .intro_clapp {
   color: #0C3847;
-  font-family: "Roboto", Arial, helvetica;
 }
 
 .clapp .back {
-  position: absolute;
+  position: fixed;
   z-index: 100;
   width: 24px;
   height: 24px;
@@ -286,15 +314,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .clapp .act .name {
-  font-family: "Roboto", Arial, helvetica;
-  color: #0C3847;
-  font-style: normal;
-  line-height: normal;
   font-size: 20px;
+  color: #0C3847;
 }
 
 .clapp .act .name b {
   text-transform: uppercase;
+  text-decoration: underline;
   font-weight: 900;
   font-size: 40px;
 }
@@ -303,7 +329,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
 }
 
-.historial.container .menu {
+.historial .menu .menu-tit {
   color: white;
 }
 
@@ -362,7 +388,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .perfil .back {
-  position: absolute;
+  position: fixed;
   width: 24px;
   height: 24px;
   left: 15px;
@@ -375,7 +401,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .perfil .close {
-  position: absolute;
+  position: fixed;
   width: 24px;
   height: 24px;
   right: 15px;
@@ -390,12 +416,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   top: 107px;
 }
 
+.perfil .act .imagen {
+  position: relative;
+  display: block;
+  margin: 27px auto 20px;
+  width: 210px;
+  height: 208px;
+  background: url(../images/perfil_markuser.jpg);
+  background-size: cover;
+  border-radius: 87px;
+}
+
 .perfil .act .name {
-  position: absolute;
+  position: relative;
   width: 80%;
-  height: 47px;
-  left: 10%;
-  top: 260px;
+  margin: 0 auto;
   text-align: center;
   font-family: "Roboto", Arial, helvetica;
   color: white;
@@ -405,23 +440,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-size: 40px;
 }
 
-.perfil .act .imagen {
-  position: absolute;
-  width: 210px;
-  height: 208px;
-  left: 75px;
-  top: 27px;
-  background: url(../images/perfil_markuser.jpg);
-  background-size: cover;
-  border-radius: 87px;
-}
-
 .perfil .act .resumen {
-  position: absolute;
-  width: 254px;
-  height: 88px;
-  left: 53px;
-  top: 315px;
+  position: relative;
+  width: 80%;
+  margin: 20px auto 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -432,7 +454,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .perfil .act .resumen li {
   border: 1px solid white;
-  text-align: center;
   width: 74px;
   height: 63px;
   margin-left: 16px;
@@ -448,6 +469,32 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .perfil .act .resumen li p {
   width: 100%;
+}
+
+.perfil .act .siguiendo {
+  position: relative;
+  width: 100%;
+  height: 30px;
+}
+
+.perfil .act .siguiendo .boton-sm {
+  float: right;
+  margin-right: 15%;
+  padding: .5em .8em;
+  text-align: center;
+  background: #FFFFFF;
+  color: #0C3847;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.perfil .act .descripcion {
+  position: relative;
+  width: 100%;
+  margin: 100px auto;
+  padding: 0 15px;
+  color: white;
 }
 
 .showtime {
@@ -467,7 +514,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   color: white;
 }
 
-.showtime .menu {
+.showtime .menu .menu-tit {
   color: white;
 }
 /*# sourceMappingURL=styles.css.map */

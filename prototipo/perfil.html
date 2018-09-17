@@ -30,7 +30,7 @@
                 <ellipse cx="180" cy="206.5" rx="234" ry="206.5" fill="#0C3847"/>
             </svg>
             <div class="imagen"></div>
-            <h2 class="name">MARKUSER</h2>
+            <h2 class="titulo name">MARKUSER</h2>
             <ul class="resumen">
                 <li class="ciudad">
                     <p>Madrid</p>
@@ -42,8 +42,15 @@
                     <p>130</p>
                 </li>
             </ul>
-            <div>
-                <p>siguiendo</p>
+            
+            <div class="siguiendo">
+                <p class="boton-sm">siguiendo</p>
+            </div>
+            <div class="descripcion">
+                <p class="parrafo">
+                    Instrumental folk guitarist from France My first EP “Fragments of Soul“ .Check the news on Facebook, Youtube, Bandcamp and Soundcloud.
+                    I'm also looking for a video-music project. If you produce films, short films, documentaries etc 
+                </p>
             </div>
         </div>
 	</div>
@@ -79,9 +86,8 @@
             $(".act .imagen").css("background-image", "url(" + band.imagen + ")");
             $(".act .name").html(band.name);
             $(".act .resumen .ciudad p").html(band.ciudad);
+            $(".act .descripcion .parrafo").html(band.descripcion);
         });
-			
-		
 	</script>
 	
  </body>
