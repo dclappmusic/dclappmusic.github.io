@@ -18,20 +18,37 @@
         <a class="cambio_modo" href="index.html">volver a clapp</a>
         <div class="act">
             <div class="imagen"></div>
-            <h2 class="name">MARKUSER</h2>
-            <ul class="resumen">
-                <li class="ciudad">
-                    <p>Madrid</p>
-                </li>
-                <li class="clapps">
-                    <p>3k</p>
-                </li>
-                <li class="actuaciones">
-                    <p>130</p>
-                </li>
+            <h2 class="titulo name">MARKUSER</h2>
+            <ul class="tabs">
+                <li class="menu-tit active" data-tab="stats">STATS</li>
+                <li class="menu-tit" data-tab="info">INFO</li>
+                <li class="menu-tit" data-tab="shows">SHOWS</li>
             </ul>
-            <div>
-                <p>siguiendo</p>
+        </div>
+        <div class="secciones">
+            <div class="stats">
+                <ul class="resumen">
+                    <li class="ciudad">
+                        <p>Madrid</p>
+                    </li>
+                    <li class="clapps">
+                        <p>3k</p>
+                    </li>
+                    <li class="actuaciones">
+                        <p>130</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="info">
+                <div class="descripcion">
+                    <p class="parrafo">
+                        Instrumental folk guitarist from France My first EP “Fragments of Soul“ .Check the news on Facebook, Youtube, Bandcamp and Soundcloud.
+                        I'm also looking for a video-music project. If you produce films, short films, documentaries etc 
+                    </p>
+                </div>
+            </div>
+            <div class="shows">
+                shows
             </div>
         </div>
         <ul class="menu">
@@ -49,9 +66,26 @@
 
 	
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bandas.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
-		
+		var band = bandas.find(o => o.name === "KURT");
+        console.log(band);
+        $(".tabs li").click(function(){
+            var tab = $(this).data("tab");
+            console.log(tab);
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".secciones ." + tab).show().siblings().hide();
+        });
+
+
+        $(document).ready(function(){
+            $(".act .imagen").css("background-image", "url(" + band.imagen + ")");
+            $(".act .name").html(band.name);
+            $(".act .resumen .ciudad p").html(band.ciudad);
+            $(".act .descripcion .parrafo").html(band.descripcion);
+        });
 	</script>
 	
  </body>

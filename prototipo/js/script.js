@@ -4,8 +4,8 @@
     var longitud;
     var distancia_max = 0.001000;
     var test_coord_clapp = {
-        latitud: 40.409054,
-        longitud: -3.693103
+        latitud: 52.490818,
+        longitud: 13.402605
     };
 
 

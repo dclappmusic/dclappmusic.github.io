@@ -227,6 +227,30 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-family: "Roboto", Arial, helvetica;
 }
 
+.container .back {
+  position: fixed;
+  z-index: 100;
+  width: 24px;
+  height: 24px;
+  left: 15px;
+  top: 15px;
+  z-index: 100;
+}
+
+.container .back svg {
+  width: 100%;
+  height: 100%;
+}
+
+.container .close {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  right: 15px;
+  top: 15px;
+  z-index: 100;
+}
+
 .home .boton {
   background-color: #FC5130;
   -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
@@ -235,20 +259,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .home .intro_clapp {
   color: #0C3847;
-}
-
-.clapp .back {
-  position: fixed;
-  z-index: 100;
-  width: 24px;
-  height: 24px;
-  left: 15px;
-  top: 15px;
-}
-
-.clapp .back svg {
-  width: 100%;
-  height: 100%;
 }
 
 .clapp .fondo {
@@ -387,27 +397,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: linear-gradient(110.65deg, #DE664F 3.41%, #972B1E 111.5%);
 }
 
-.perfil .back {
-  position: fixed;
-  width: 24px;
-  height: 24px;
-  left: 15px;
-  top: 15px;
-}
-
-.perfil .back svg {
-  width: 100%;
-  height: 100%;
-}
-
-.perfil .close {
-  position: fixed;
-  width: 24px;
-  height: 24px;
-  right: 15px;
-  top: 15px;
-}
-
 .perfil .act .elipse {
   position: absolute;
   width: 140%;
@@ -422,7 +411,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 27px auto 20px;
   width: 210px;
   height: 208px;
-  background: url(../images/perfil_markuser.jpg);
+  background: black;
   background-size: cover;
   border-radius: 87px;
 }
@@ -516,5 +505,99 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .showtime .menu .menu-tit {
   color: white;
+}
+
+.show_perfil .act .imagen {
+  position: relative;
+  display: block;
+  margin: 27px auto 20px;
+  width: 210px;
+  height: 208px;
+  background: black;
+  background-size: cover;
+  border-radius: 87px;
+}
+
+.show_perfil .act .name {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Roboto", Arial, helvetica;
+  color: #0C3847;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  font-size: 40px;
+}
+
+.show_perfil .act .tabs {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.show_perfil .act .tabs li.menu-tit {
+  width: 33%;
+  font-size: 20px;
+  font-weight: 500;
+  color: #0C3847;
+}
+
+.show_perfil .act .tabs li.menu-tit.active {
+  text-decoration: underline;
+}
+
+.show_perfil .secciones > div {
+  display: none;
+}
+
+.show_perfil .secciones .stats {
+  display: block;
+}
+
+.show_perfil .secciones .stats .resumen {
+  position: relative;
+  width: 80%;
+  margin: 20px auto 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.show_perfil .secciones .stats .resumen li {
+  border: 1px solid #0C3847;
+  width: 74px;
+  height: 63px;
+  margin-left: 16px;
+  color: #0C3847;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.show_perfil .secciones .stats .resumen li p {
+  width: 100%;
+}
+
+.show_perfil .secciones .info .descripcion {
+  position: relative;
+  width: 100%;
+  margin: 100px auto;
+  padding: 0 15px;
+  color: #0C3847;
 }
 /*# sourceMappingURL=styles.css.map */

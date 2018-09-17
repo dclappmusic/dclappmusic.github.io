@@ -3,7 +3,7 @@ var usuarios = [
     {
         ID: "1",
         bands: [
-            "Mese"
+            "KURT"
         ],
         historial_clapps: [
             {

@@ -32,24 +32,35 @@ var bandas = [
         ID: "5",
         name: "PIG",
         imagen: "images/perfil_maria.png",
-        ciudad: "Intermundicia"
+        ciudad: "Intermundicia",
+        descripcion: "Hay que comprar leche (...)"
     },
     {
         ID: "6",
         name: "Bro",
         imagen: "images/perfil_bro.png",
-        ciudad: "Mandril"
+        ciudad: "Mandril",
+        descripcion: "Ei, ya cargo tu perfil de forma dinámica ;). Sólo me falta subirlo a la DB"
     },
     {
         ID: "7",
         name: "HIGOMAN",
         imagen: "images/perfil_luca.jpg",
-        ciudad: "tarragona"
+        ciudad: "tarragona",
+        descripcion: "También conocido como Luca el luca, debería desempolvar la guitarra de vez en cuando y tocarse alguna cancioncilla, aunque sea con el Guitar Pro, que es easy peasy"
     },
     {
         ID: "8",
         name: "PATRÍFULA",
         imagen: "images/perfil_patri.jpg",
-        ciudad: "double_you"
+        ciudad: "double_you",
+        descripcion: "Oli, mola pero da un poco de rollito esto de que tu perfil sepa que estas en double you...<br>¿qué más sabrá?<br>SAL A CORRER!"
+    },
+    {
+        ID: "9",
+        name: "KURT",
+        imagen: "images/perfil_kurt.png",
+        ciudad: "Seatle",
+        descripcion: "La descripción de kurt and the kurtiños"
     }
 ];
