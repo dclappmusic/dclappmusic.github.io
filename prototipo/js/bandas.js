@@ -1,4 +1,5 @@
 var bandas = [
+    //el ID es lo necesario para conectar con los shows. Lo demás son datos del perfil
     {
         ID: "1",
         name: "Mese",

@@ -37,7 +37,15 @@
             console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
             // latitud = test_coord_clapp.latitud;
             // longitud = test_coord_clapp.longitud;
-            encontrar();
+            if (window.location.pathname.indexOf("clapp.html") > -1) {
+                console.log("clapping");
+                encontrar();
+            } else if (window.location.pathname.indexOf("show.html") > -1) {
+                console.log("showtime");
+                $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
+            }
+            
+           
         };
 
         var browserGeolocationFail = function(error) {
@@ -72,8 +80,9 @@
             }
         };
 
+//----------------------------------------------------------
 
-    //comparar distancias
+    //comparar distancias dadas coordenadas del clapp y del show
         function cerca (posicion1, posicion2) {
             var distancia;
             // debugger;
@@ -82,7 +91,7 @@
             return distancia <= distancia_max;
         };
 
-    //Buscar bandas dentro del área del clapp
+    //Buscar bandas dentro del área del clapp midiendo distancia entre el clapp, y todos los shows
         function encontrar() {
             var musico_encontrado = false;
             var posicion_clapp = {
@@ -105,7 +114,7 @@
             }
         };
 
-    //bajarse y mostrar los datos de la banda encontrada
+    //Bajarse y mostrar los datos de la banda encontrada
         function show_encontrado (Ibanda_encontrada) {
             bandas.forEach(function(Ibandas) {
                 var banda_activa = bandas.find(o => o.ID === Ibanda_encontrada.ID);
@@ -136,16 +145,16 @@
 
 // --------------historial de clapps
 
-    //cargar clapps en historial
+    //cargar historial de clapps dado el identificador del perfil del usuario
         function cargar_historial (I_id) {
             console.log("cargar historial");
 
-            //descargarse user_persona
+            //descargarse user_persona (comparando el ID del usuario que metes, con todos los IDs de usuario en la base de datos)
             usuario = usuarios.find(o => o.ID === I_id);
             console.log(usuario.ID);
             //BBDD descargarse user_persona
 
-            
+            //Por cada clapp, mostrar sus datos añadiendolos a una lista
             usuario.historial_clapps.forEach(function(I_userClapps) {
                 console.log(I_userClapps.clappeado);
                 var banda = bandas.find(o => o.name === I_userClapps.clappeado);

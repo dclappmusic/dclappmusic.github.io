@@ -14,13 +14,16 @@
 </head>
 
 <body>
-	<div class="container home">
-		<a class="cambio_modo" href="showtime.html"></a>
-		<a class="boton showtime" href="clapp.html">
-			<img src="images/icon_clapp.png" />
+	<div class="container showtime">
+        <a class="cambio_modo" href="index.html">volver a clapp</a>
+		<a class="boton showtime" href="in_show.html">
+			SHOW<br/>TIME
 		</a>
 		<div class="intro_clapp">
-			<h3>para clappear<br>pulsa el botón</h3>
+			<h3>
+                para iniciar una actuación<br/>
+                pulsa el botón
+            </h3>
 		</div>
 
 		<ul class="menu">
@@ -28,10 +31,10 @@
 				<a href="historial.html">historial</a>
 			</li>
 			<li class="menu_item active" id="preclapp">
-				<a href="index.html">CLAPP</a>
+				<a href="index.html">SHOW</a>
 			</li>
 			<li class="menu_item">
-				opciones
+				<a href="show_perfil.html">perfil</a>
 			</li>
 		</ul>
 	</div>
@@ -39,21 +42,8 @@
 	
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/usuarios.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript">
-		var usuario = usuarios[0];
-		console.log(usuario);
-		console.log(usuario.bands.length);
-		if (usuario.bands.length > 0) {
-			console.log(usuario.bands);
-			$(".cambio_modo").html("showtime " + usuario.bands);
-		} else {
-			console.log("no bands");
-			$(".cambio_modo").hide();
-		}
-
-	</script>
+	
  </body>
 </html>
 

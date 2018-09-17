@@ -159,7 +159,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: calc(360px / 3);
 }
 
-.home .boton {
+.container .boton {
   position: absolute;
   top: 25%;
   left: calc(50% - 90px);
@@ -178,22 +178,33 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
           box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
 }
 
-.home .boton:hover {
+.container .boton:hover {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.home .boton img {
+.container .boton img {
   display: block;
   margin: 0 auto;
 }
 
-.home .intro_clapp {
+.container .intro_clapp {
   position: absolute;
   bottom: 25%;
   width: 80%;
   left: 10%;
   text-align: center;
+  color: #0C3847;
+  font-family: "Roboto", Arial, helvetica;
+}
+
+.home .boton {
+  background-color: #FC5130;
+  -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
+          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
+}
+
+.home .intro_clapp {
   color: #0C3847;
   font-family: "Roboto", Arial, helvetica;
 }
@@ -437,5 +448,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .perfil .act .resumen li p {
   width: 100%;
+}
+
+.showtime {
+  background-color: #0C3847;
+}
+
+.showtime .boton {
+  color: white;
+  text-align: center;
+  font-family: "Changa", Arial, helvetica;
+  font-weight: 600;
+  font-size: 40px;
+  padding-left: .8em;
+}
+
+.showtime .intro_clapp {
+  color: white;
+}
+
+.showtime .menu {
+  color: white;
 }
 /*# sourceMappingURL=styles.css.map */

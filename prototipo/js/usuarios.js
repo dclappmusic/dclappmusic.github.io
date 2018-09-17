@@ -1,6 +1,10 @@
 var usuarios = [
+    //podemos cambiar el ID por el email, o incluirlo aparte
     {
         ID: "1",
+        bands: [
+            "Mese"
+        ],
         historial_clapps: [
             {
                 clappeado: "PORKI",

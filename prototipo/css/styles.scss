@@ -35,8 +35,6 @@
 			width: calc(360px / 3);
 		}
 	}
-}
-.home {
 	.boton {
 		position: absolute;
 		top: 25%;
@@ -61,6 +59,16 @@
 		width: 80%;
 		left: 10%;
 		text-align: center;
+		color: $secundario;
+		font-family: $Roboto;
+	}
+}
+.home {
+	.boton {
+		background-color: $primario;
+		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
+	}
+	.intro_clapp {
 		color: $secundario;
 		font-family: $Roboto;
 	}
@@ -279,6 +287,24 @@
 				p {width: 100%;}
 			}
 		}
+	}
+}
+
+.showtime {
+	background-color: $secundario;
+	.boton {
+		color: white;
+		text-align: center;
+		font-family: $Changa;
+		font-weight: 600;
+		font-size: 40px;
+		padding-left: .8em;
+	}
+	.intro_clapp {
+		color: white;
+	}
+	.menu {
+		color: white;
 	}
 }
 
