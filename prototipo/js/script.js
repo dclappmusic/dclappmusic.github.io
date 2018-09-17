@@ -18,7 +18,13 @@
             latitud = position.coords.latitude;
             longitud = position.coords.longitude;
             console.log("API geolocation success!\n\nlat = " + latitud + "\nlng = " + longitud);
-            encontrar();
+            if (window.location.pathname.indexOf("clapp.html") > -1) {
+                console.log("clapping");
+                encontrar();
+            } else if (window.location.pathname.indexOf("show.html") > -1) {
+                console.log("showtime");
+                $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
+            }
         };
 
         var tryAPIGeolocation = function() {
@@ -44,8 +50,6 @@
                 console.log("showtime");
                 $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
             }
-            
-           
         };
 
         var browserGeolocationFail = function(error) {
