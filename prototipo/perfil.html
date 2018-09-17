@@ -30,7 +30,7 @@
                 <ellipse cx="180" cy="206.5" rx="234" ry="206.5" fill="#0C3847"/>
             </svg>
             <div class="imagen"></div>
-            <h2 class="name" href="perfil.html">MARKUSER</h2>
+            <h2 class="name">MARKUSER</h2>
             <ul class="resumen">
                 <li class="ciudad">
                     <p>Madrid</p>
@@ -50,8 +50,37 @@
 
 	
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bandas.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        var id = getUrlParameter("id");;
+        console.log(id);
+        var band = bandas.find(o => o.ID === id);
+        console.log(band);
+
+
+        $(document).ready(function(){
+            $(".act .imagen").css("background-image", "url(" + band.imagen + ")");
+            $(".act .name").html(band.name);
+            $(".act .resumen .ciudad p").html(band.ciudad);
+        });
+			
 		
 	</script>
 	

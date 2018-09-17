@@ -1,5 +1,4 @@
-// var usuarios = 
-[
+var usuarios = [
     //podemos cambiar el ID por el email, o incluirlo aparte
     {
         ID: "1",

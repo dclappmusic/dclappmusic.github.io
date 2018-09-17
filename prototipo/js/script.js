@@ -124,7 +124,7 @@
                 var banda_activa = bandas.find(o => o.ID === Ibanda_encontrada.ID);
                 console.log(banda_activa.name + ", perfil encontrado");
                 $(".clapp .fondo img").attr("src", banda_activa.imagen);
-                $(".act .name").html("<b>" + banda_activa.name + "</b>");
+                $(".act .name").html("<b>" + banda_activa.name + "</b>").attr("href", "perfil.html?id=" + banda_activa.ID);
             });
         };
     
