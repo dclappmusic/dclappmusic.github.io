@@ -142,7 +142,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .parrafo {
   font-family: "Roboto", Arial, helvetica;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.5em;
 }
 
@@ -413,6 +413,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   height: 208px;
   background: black;
   background-size: cover;
+  background-position: center;
   border-radius: 87px;
 }
 
