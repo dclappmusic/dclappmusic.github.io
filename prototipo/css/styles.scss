@@ -20,7 +20,7 @@
 }
 .parrafo {
 	font-family: $Roboto;
-	font-size: 12px;
+	font-size: 15px;
 	line-height: 1.5em;
 }
 .boton-sm {
@@ -269,6 +269,7 @@
 			height: 208px;
 			background: black;
 			background-size: cover;
+			background-position: center;
 			border-radius: 87px;
 		}
 		.name {
