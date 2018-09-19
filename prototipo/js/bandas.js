@@ -1,4 +1,4 @@
-var bandas = [
+    var bandas = [
     {
         ID: "1",
         name: "Mese",
@@ -46,5 +46,11 @@ var bandas = [
         name: "PATRÍFULA",
         imagen: "images/perfil_patri.jpg",
         ciudad: "double_you"
+    }
+    {
+        ID: "9",
+        name: "Robby Hood and Lady Mini",
+        imagen: "images/perfil_patri.jpg",
+        ciudad: "Madrid"
     }
 ];
