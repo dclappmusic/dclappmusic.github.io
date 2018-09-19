@@ -7,7 +7,11 @@
 }
 .display-med {
 	font-family: $Changa;
-	font-size: 30px;
+	font-size: 25px;
+}
+.display-sm {
+	font-family: $Changa;
+	font-size: 18px;
 }
 .menu-tit {
 	font-family: $Changa;
@@ -22,6 +26,15 @@
 	font-family: $Roboto;
 	font-size: 15px;
 	line-height: 1.5em;
+}
+.parrafo-sm {
+	font-family: $Roboto;
+	font-size: 10px;
+}
+.boton-med {
+	font-family: $Roboto;
+	font-size: 20px;
+	font-weight: bold;
 }
 .boton-sm {
 	font-family: $Roboto;
@@ -106,6 +119,40 @@
 		top: 15px;
 		z-index: 100;
 	}
+	.cabecera {
+		width: 226px;
+		height: 46px;
+		width: 100%;
+		margin: 15px auto 10%;
+		font-family: $Changa;
+		font-size: 28px;
+		text-align: center;
+	}
+	.form-label {
+		display: block;
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+		font-family: $Roboto;
+		font-size: 15px;
+		font-weight: 400;
+		text-transform: uppercase;
+	}
+	.form-input {
+		position: absolute;
+		top: 47%;
+		left: 10%;
+		width: 80%;
+		text-align: center;
+		background: transparent;
+		border: none;
+		border-bottom: 4px solid white;
+		font-family: $Changa;
+		font-size: 30px;
+		font-weight: 200;
+		color: white;
+		&::placeholder {opacity: .5; color: white;}
+	}
 }
 
 //PAGINAS INDIVIDUALES
@@ -135,6 +182,7 @@
 		top: 0;
 		left: 0;
 		background: linear-gradient(0deg, rgba(252, 81, 48, 0.8), rgba(252, 81, 48, 0.8));
+		background-blend-mode: screen, normal;
 		img {
 			width: 100%;
 			height: 100%;
@@ -198,20 +246,11 @@
 
 .historial {
 	background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+	.cabecera {color: white;}
 	.menu .menu-tit {
 		color: white;
 	}	
-	.cabecera {
-		width: 226px;
-		height: 46px;
-		width: 100%;
-		margin-top: 15px;
-
-		font-family: $Changa;
-		font-size: 25px;
-		text-align: center;
-		color: white;
-	}
+	
 	.clapps {
 		width: 100%;
 		margin-top: 50px;
@@ -300,22 +339,41 @@
 				display: flex;
 				align-items: center;
 				text-align: center;
-				p {width: 100%;}
+				p {
+					width: 100%;
+					span {display: block;}
+				}
+				&.clapps {
+					background: url(../images/clapp-rojo.png) no-repeat;
+					background-position: center;
+					background-size: 75%;
+					background-color: $primario;
+					border: none;
+					border-radius: 5px;
+				}
 			}
 		}
-		.siguiendo {
+		.seguir {
 			position: relative;
 			width: 100%;
 			height: 30px;
 			.boton-sm {
-				float: right;
-				margin-right: 15%;
-				padding: .5em .8em;
+				// float: right;
+				// margin-right: 18%;
+				width: 7em;
+				margin: 0 auto;
+				padding: .5em 1em .7em;
 				text-align: center;
+				border-radius: 12px;
 				background: #FFFFFF;
 				color: $secundario;
-				border-radius: 5px;
 				box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+				&.active {
+					border: 1px solid white;
+					background: transparent;
+					color: white;
+					box-shadow: none;
+				}	
 			}
 		}
 		.descripcion {
@@ -325,6 +383,30 @@
 			padding: 0 15px;
 			color: white;
 		}
+	}
+}
+.opciones {
+	.cabecera {color: $secundario};
+	.boton-med {
+		display: block;
+		width: 80%;
+		margin: 0 auto;
+		padding: .5em 1em .7em;
+		text-align: center;
+		border-radius: 12px;
+		background: $secundario;
+		color: white;
+		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+	}
+}
+.sign_band {
+	background-color: $secundario;
+	color: white;
+	.boton-sm {
+		position: absolute;
+		bottom: 5%;
+		width: 10%;
+		margin-left: 45%;
 	}
 }
 

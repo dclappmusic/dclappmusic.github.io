@@ -126,7 +126,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .display-med {
   font-family: "Changa", Arial, helvetica;
-  font-size: 30px;
+  font-size: 25px;
+}
+
+.display-sm {
+  font-family: "Changa", Arial, helvetica;
+  font-size: 18px;
 }
 
 .menu-tit {
@@ -144,6 +149,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-family: "Roboto", Arial, helvetica;
   font-size: 15px;
   line-height: 1.5em;
+}
+
+.parrafo-sm {
+  font-family: "Roboto", Arial, helvetica;
+  font-size: 10px;
+}
+
+.boton-med {
+  font-family: "Roboto", Arial, helvetica;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .boton-sm {
@@ -251,6 +267,62 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   z-index: 100;
 }
 
+.container .cabecera {
+  width: 226px;
+  height: 46px;
+  width: 100%;
+  margin: 15px auto 10%;
+  font-family: "Changa", Arial, helvetica;
+  font-size: 28px;
+  text-align: center;
+}
+
+.container .form-label {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Roboto", Arial, helvetica;
+  font-size: 15px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.container .form-input {
+  position: absolute;
+  top: 47%;
+  left: 10%;
+  width: 80%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-bottom: 4px solid white;
+  font-family: "Changa", Arial, helvetica;
+  font-size: 30px;
+  font-weight: 200;
+  color: white;
+}
+
+.container .form-input::-webkit-input-placeholder {
+  opacity: .5;
+  color: white;
+}
+
+.container .form-input:-ms-input-placeholder {
+  opacity: .5;
+  color: white;
+}
+
+.container .form-input::-ms-input-placeholder {
+  opacity: .5;
+  color: white;
+}
+
+.container .form-input::placeholder {
+  opacity: .5;
+  color: white;
+}
+
 .home .boton {
   background-color: #FC5130;
   -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
@@ -269,6 +341,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   left: 0;
   background: -webkit-gradient(linear, left bottom, left top, from(rgba(252, 81, 48, 0.8)), to(rgba(252, 81, 48, 0.8)));
   background: linear-gradient(0deg, rgba(252, 81, 48, 0.8), rgba(252, 81, 48, 0.8));
+  background-blend-mode: screen, normal;
 }
 
 .clapp .fondo img {
@@ -339,18 +412,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
 }
 
-.historial .menu .menu-tit {
+.historial .cabecera {
   color: white;
 }
 
-.historial .cabecera {
-  width: 226px;
-  height: 46px;
-  width: 100%;
-  margin-top: 15px;
-  font-family: "Changa", Arial, helvetica;
-  font-size: 25px;
-  text-align: center;
+.historial .menu .menu-tit {
   color: white;
 }
 
@@ -461,22 +527,43 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 100%;
 }
 
-.perfil .act .siguiendo {
+.perfil .act .resumen li p span {
+  display: block;
+}
+
+.perfil .act .resumen li.clapps {
+  background: url(../images/clapp-rojo.png) no-repeat;
+  background-position: center;
+  background-size: 75%;
+  background-color: #FC5130;
+  border: none;
+  border-radius: 5px;
+}
+
+.perfil .act .seguir {
   position: relative;
   width: 100%;
   height: 30px;
 }
 
-.perfil .act .siguiendo .boton-sm {
-  float: right;
-  margin-right: 15%;
-  padding: .5em .8em;
+.perfil .act .seguir .boton-sm {
+  width: 7em;
+  margin: 0 auto;
+  padding: .5em 1em .7em;
   text-align: center;
+  border-radius: 12px;
   background: #FFFFFF;
   color: #0C3847;
-  border-radius: 5px;
   -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.perfil .act .seguir .boton-sm.active {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .perfil .act .descripcion {
@@ -485,6 +572,35 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 100px auto;
   padding: 0 15px;
   color: white;
+}
+
+.opciones .cabecera {
+  color: #0C3847;
+}
+
+.opciones .boton-med {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  padding: .5em 1em .7em;
+  text-align: center;
+  border-radius: 12px;
+  background: #0C3847;
+  color: white;
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.sign_band {
+  background-color: #0C3847;
+  color: white;
+}
+
+.sign_band .boton-sm {
+  position: absolute;
+  bottom: 5%;
+  width: 10%;
+  margin-left: 45%;
 }
 
 .showtime {

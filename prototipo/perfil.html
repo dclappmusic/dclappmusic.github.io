@@ -33,18 +33,18 @@
             <h2 class="titulo name">MARKUSER</h2>
             <ul class="resumen">
                 <li class="ciudad">
-                    <p>Madrid</p>
+                    <p class="display-sm">Madrid</p>
                 </li>
                 <li class="clapps">
-                    <p>3k</p>
+                    <p class="display-med">3k</p>
                 </li>
                 <li class="actuaciones">
-                    <p>130</p>
+                    <p class="display-sm">130<span class="parrafo-sm">actuaciones</span></p>
                 </li>
             </ul>
             
-            <div class="siguiendo">
-                <p class="boton-sm">siguiendo</p>
+            <div class="seguir">
+                <p class="boton-sm">seguir</p>
             </div>
             <div class="descripcion">
                 <p class="parrafo">
@@ -87,6 +87,17 @@
             $(".act .name").html(band.name);
             $(".act .resumen .ciudad p").html(band.ciudad);
             $(".act .descripcion .parrafo").html(band.descripcion);
+        });
+
+
+        $(".seguir .boton-sm").click(function(){
+            $(this).toggleClass("active");
+            if ($(this).html() === "seguir") {
+                $(this).html("siguiendo");
+            } else {
+                $(this).html("seguir");
+            }
+            
         });
 	</script>
 	
