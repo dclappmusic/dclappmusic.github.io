@@ -63,4 +63,10 @@ var bandas = [
         ciudad: "Seatle",
         descripcion: "La descripción de kurt and the kurtiños"
     }
+    {
+        ID: "9",
+        name: "Robby Hood and Lady Mini",
+        imagen: "images/perfil_patri.jpg",
+        ciudad: "Madrid"
+    }
 ];
