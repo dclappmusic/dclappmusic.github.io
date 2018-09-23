@@ -62,5 +62,12 @@ var bandas = [
         imagen: "images/perfil_kurt.png",
         ciudad: "Seatle",
         descripcion: "La descripción de kurt and the kurtiños"
-    }
+    },
+    {
+        ID: "10", 
+        name: "Bisbi & Rosa",
+        imagen: "images/perfil_rosa.png",
+        ciudad: "Al sur",
+        descripcion: "Rosa y yo fuimos besties en OT1 y ahora cantamos juntos en fiestas y verbenas por toda España (incluso en Ceuta y Melilla!!!)"
+    },
 ];
