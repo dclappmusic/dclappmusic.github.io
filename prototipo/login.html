@@ -16,28 +16,45 @@
 	<div class="container login">
         <a class="close" href="index.html">
             <svg xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6953 14.0771L22.3037 24L24.3906 21.8447L14.7822 11.9224L23.4668 2.95361L21.3789 0.79834L12.6943 9.7666L3.81543 0.597168L1.72852 2.75244L10.6074 11.9219L0.804688 22.0459L2.8916 24.2012L12.6953 14.0771Z" fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6953 14.0771L22.3037 24L24.3906 21.8447L14.7822 11.9224L23.4668 2.95361L21.3789 0.79834L12.6943 9.7666L3.81543 0.597168L1.72852 2.75244L10.6074 11.9219L0.804688 22.0459L2.8916 24.2012L12.6953 14.0771Z" fill="#0C3847"/>
             </svg>    
         </a>
         <h1 class="cabecera"><img src="images/icon_completo.png"></h1>
         <div class="tabs">
-            <h3>LOG IN</h3>
+            <h3 class="login active">LOG IN</h3>
+            <h3 class="signup">SIGN UP</h3>
+            <h3 class="reset">RESET</h3>
         </div>
-        <!-- <form method="post"> -->
-            <div class="pag_login">
+        <form>
+            <div class="tab login active">
                 <label for="user-name" class="form-label">Email</label>
                 <input class="form-input" id="email" placeholder="email" type="text" name="user-name" value="">
+                <label for="user-password" class="form-label">Contraseña</label>
+                <input class="form-input" id="password" placeholder="contraseña" type="text" name="user-password" value="">
                 <button id="boton" class="boton-med" onclick="auth();">
                     entrar
                 </button>
             </div>
-        <!-- </form> -->
+            <div class="tab signup">
+                SIGNUP
+                <label for="user-name" class="form-label">Email</label>
+                <input class="form-input" id="email" placeholder="email" type="text" name="user-name" value="">
+                <label for="user-password" class="form-label">Contraseña</label>
+                <input class="form-input" id="password" placeholder="contraseña" type="text" name="user-password" value="">
+                <button id="boton" class="boton-med" onclick="auth();">
+                    entrar
+                </button>
+            </div>
+            <div class="tab reset">
+                RESET
+            </div>
+        </form>
 	</div>
 	
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script>
+    <!-- <script>
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyD-EROaaPSNIvswdhvD3FrbXPemQcTWn5o",
@@ -51,6 +68,14 @@
     </script>
 	<script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript">
+        $(".tabs h3").click(function(){
+            var tab = $(this).attr("class");
+            $(this).addClass("active").siblings().removeClass("active");
+            $("form .tab." + tab).addClass("active").siblings().removeClass("active");
+        });
+
+
+
         var email = document.getElementById('email');
         var boton = document.getElementById('boton');
 
@@ -60,11 +85,18 @@
             
             // Get a reference to the database service
             var firebaseRef = firebase.database().ref();
-           
-            firebaseRef.child("User").set(emailVal);
+
+            firebaseRef.child("usuarios/").set({
+                "email": emailVal
+            });
         }
+
+        var userId = firebase.database().ref('/usuarios/').once('value').then(function(snapshot) {
+        var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        // ...
+        });
         
-	</script>
+	</script> -->
  </body>
 </html>
 

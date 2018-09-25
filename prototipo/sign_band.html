@@ -22,19 +22,30 @@
         </a>
         <h1 class="cabecera">CREAR UNA BANDA</h1>
         <form method="post">
-            <div class="pag_nombre">
+            <div class="paso nombre active">
                 <label for="band-name" class="form-label">¿Cómo os llamais?</label>
-                <input class="form-input" placeholder="Kurt and the kurts" type="text" name="band-name" value="">
-            </div>
-            <!-- <div class="row">
-                <button type="submit" name="submit" class="push_eight two cols parrafo">
-                </button>
-    
-            </div> -->
+				<input class="form-input" placeholder="Kurt and the kurts" type="text" name="band-name" value="">
+				<p class="boton-sm sig">sig</p>
+			</div>
+			<div class="paso ciudad">
+				<label for="band-city" class="form-label">¿De qué ciudad sois band residents?</label>
+				<input class="form-input" placeholder="Berlín" type="text" name="band-city" value="">
+				<p class="boton-sm sig">sig</p>
+			</div>
+			<div class="paso imagen">
+				<!-- <label class="form-label">Imagen de perfil</label> -->
+				
+				
+				<label class="image_label">
+					<span>+</span>
+					<input class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">
+				</label>
+				
+				<!-- <button id="boton" class="boton-med">
+					listo
+				</button> -->
+			</div>
         </form>
-        <p class="boton-sm">sig</p>
-        
-		
 	</div>
 
 	
@@ -43,17 +54,24 @@
 	<script type="text/javascript" src="js/usuarios.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
-		var usuario = usuarios[0];
-		console.log(usuario);
-		console.log(usuario.bands.length);
-		if (usuario.bands.length > 0) {
-			console.log(usuario.bands);
-			$(".cambio_modo").html("showtime " + usuario.bands);
-		} else {
-			console.log("no bands");
-			$(".cambio_modo").hide();
-		}
 
+		$(".sig").click(function() {
+			$(this).parent().removeClass("active");
+			$(this).parent().next().addClass("active");
+		});
+		var input = $('.image-input');
+		var label = $('.image_label');
+		var labelVal = label.html();
+
+		input.on("change", function(e) {
+			var fileName = e.target.value.split( '\\' ).pop();
+
+			if( fileName ) {
+				label.find('span').html(fileName);
+			} else {
+				label.html(labelVal);
+			}		
+		})
 	</script>
  </body>
 </html>

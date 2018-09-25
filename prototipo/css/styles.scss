@@ -174,23 +174,43 @@
 	.tabs {
 		width:100%;
 		display: block;
-		margin: 5% auto;
+		margin: 5%;
+		cursor: pointer;
+		.active {
+			font-weight: 600;
+		}
+		h3 {
+			display: inline-block;
+			width: 30%;
+
+		}
 	}
-	.pag_login {
+	.tab {
+		display: none;
+		position: absolute;
+		width: 100%;
+		height: auto;
 		.form-input {
+			position: relative;
+			// margin-left: 10%;
 			background-color: rgba(0,0,0,.05);
 			border: none;
-			top: 40%;
+			margin: 5% auto;
+			// top: 40%;
 			color: $secundario;
 			&::placeholder {opacity: .5; color: black;}
+		}
+		&.active {
+			display: block;
 		}
 	}
 	button {
 		display: block;
-		position: absolute;
-		bottom: 20%;
+		// position: absolute;
+		// bottom: 20%;
 		width: 50%;
-		left: 25%;
+		margin: 10% 25%;
+		// left: 25%;
 		color: white;
 		padding: 2% 4%;
 		background-color: $primario;
@@ -435,6 +455,34 @@
 .sign_band {
 	background-color: $secundario;
 	color: white;
+	.paso {
+		display: none;
+		&.active {display: block;}
+		&.imagen {
+			.image_label {
+				display: block;
+				width: 50vw;
+				height: 50vw;
+				border: 4px solid white;
+				margin: 20% 25vw;
+				text-align: center;
+				padding-top: 12%;
+				font-size: 20vw;
+				cursor: pointer;
+				&:focus, &:hover {
+					background-color: rgba(255,255,255,.2);
+				}
+			}
+			.image-input {
+				width: 0.1px;
+				height: 0.1px;
+				opacity: 0;
+				overflow: hidden;
+				position: absolute;
+				z-index: -1;
+			}
+		}
+	}
 	.boton-sm {
 		position: absolute;
 		bottom: 5%;
