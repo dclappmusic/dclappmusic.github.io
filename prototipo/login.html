@@ -25,7 +25,7 @@
             <h3 class="signup">SIGN UP</h3>
             <h3 class="reset">RESET</h3>
         </div>
-        <form>
+        <div class="form">
             <div class="tab login active">
                 <label for="user-email" class="form-label">Email</label>
                 <input class="form-input" id="user-email" placeholder="email" type="text" name="user-email" value="">
@@ -41,18 +41,25 @@
                 <input class="form-input" id="email" placeholder="email" type="text" name="user-name" value="">
                 <label for="user-password" class="form-label">Contraseña</label>
                 <input class="form-input" id="password" placeholder="contraseña" type="text" name="user-password" value="">
-                <button id="boton" class="boton-med" onclick="auth();">
-                    entrar
+                <button id="boton" class="boton-med" onclick="signUp();">
+                    Sign UP
                 </button>
             </div>
             <div class="tab reset">
                 RESET
             </div>
-        </form>
+        </div>
+        <div class="logout">
+            <span class="welcome"></span>
+            <button class="boton-med logout_btn" onclick="logout();">
+                logout
+            </button>
+        </div>
+        
 	</div>
 	
     
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -68,10 +75,20 @@
     </script>
     <!-- <script type="text/javascript" src="js/script.js"></script> -->
     <script type="text/javascript">
+
         firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
-            window.alert("ya estas signeado");
+            console.log("ya estas signeado");
+            var user = firebase.auth().currentUser;
+            var name, email, password, historial;
+            if(user != null) {
+               email = user.email;
+               $(".tab").hide();
+               $(".logout").show();
+               $(".welcome").html("bienvenido: " + email);
+            }
+
         } else {
             // No user is signed in.
             console.log("no estás signeado");
@@ -91,37 +108,44 @@
             window.alert("error: " + errorMessage) ;
             });
         }
-    </script>
-    <!-- <script type="text/javascript">
-        $(".tabs h3").click(function(){
-            var tab = $(this).attr("class");
-            $(this).addClass("active").siblings().removeClass("active");
-            $("form .tab." + tab).addClass("active").siblings().removeClass("active");
-        });
 
-
-
-        var email = document.getElementById('email');
-        var boton = document.getElementById('boton');
-
-        var auth = function () {
-            var emailVal = email.value;
-            console.log(emailVal);
-            
-            // Get a reference to the database service
-            var firebaseRef = firebase.database().ref();
-
-            firebaseRef.child("usuarios/").set({
-                "email": emailVal
+        function logout() {
+            firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+                console.log("logout bien");
+                $(".login").show();
+                $(".logout").hide();
+            }).catch(function(error) {
+            // An error happened.
+                window.alert("error: " + error);
             });
         }
 
-        var userId = firebase.database().ref('/usuarios/').once('value').then(function(snapshot) {
-        var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-        // ...
+
+    </script>
+    <script type="text/javascript">
+        $(".tabs h3").click(function(){
+            var tab = $(this).attr("class");
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".form .tab." + tab).addClass("active").siblings().removeClass("active");
         });
         
-	</script> -->
+        var userRef = firebase.database().ref("usuarios");
+
+        function signUp() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            window.alert(email + " - " + password);
+
+            var newUserRef = userRef.push();
+            newUserRef.set({
+                email: email,
+                password: password
+            });
+        }
+
+        
+	</script>
  </body>
 </html>
 
