@@ -27,11 +27,11 @@
         </div>
         <form>
             <div class="tab login active">
-                <label for="user-name" class="form-label">Email</label>
-                <input class="form-input" id="email" placeholder="email" type="text" name="user-name" value="">
+                <label for="user-email" class="form-label">Email</label>
+                <input class="form-input" id="user-email" placeholder="email" type="text" name="user-email" value="">
                 <label for="user-password" class="form-label">Contraseña</label>
-                <input class="form-input" id="password" placeholder="contraseña" type="text" name="user-password" value="">
-                <button id="boton" class="boton-med" onclick="auth();">
+                <input class="form-input" id="user-password" placeholder="contraseña" type="text" name="user-password" value="">
+                <button id="boton" class="boton-med" onclick="login();">
                     entrar
                 </button>
             </div>
@@ -52,22 +52,47 @@
 	</div>
 	
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <!-- <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyD-EROaaPSNIvswdhvD3FrbXPemQcTWn5o",
-            authDomain: "dclapp-f24ad.firebaseapp.com",
-            databaseURL: "https://dclapp-f24ad.firebaseio.com",
-            projectId: "dclapp-f24ad",
-            storageBucket: "dclapp-f24ad.appspot.com",
-            messagingSenderId: "30216385663"
-        };
-        firebase.initializeApp(config);
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyD-EROaaPSNIvswdhvD3FrbXPemQcTWn5o",
+        authDomain: "dclapp-f24ad.firebaseapp.com",
+        databaseURL: "https://dclapp-f24ad.firebaseio.com",
+        projectId: "dclapp-f24ad",
+        storageBucket: "dclapp-f24ad.appspot.com",
+        messagingSenderId: "30216385663"
+      };
+      firebase.initializeApp(config);
     </script>
-	<script type="text/javascript" src="js/script.js"></script>
+    <!-- <script type="text/javascript" src="js/script.js"></script> -->
     <script type="text/javascript">
+        firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            window.alert("ya estas signeado");
+        } else {
+            // No user is signed in.
+            console.log("no estás signeado");
+        }
+        });
+
+
+        function login() {
+            var email = document.getElementById("user-email").value;
+            var password = document.getElementById("user-password").value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            
+            window.alert("error: " + errorMessage) ;
+            });
+        }
+    </script>
+    <!-- <script type="text/javascript">
         $(".tabs h3").click(function(){
             var tab = $(this).attr("class");
             $(this).addClass("active").siblings().removeClass("active");
