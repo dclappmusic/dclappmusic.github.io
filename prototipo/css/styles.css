@@ -708,6 +708,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   z-index: -1;
 }
 
+.sign_band .paso.subida {
+  display: none;
+}
+
+.sign_band .paso.subida p, .sign_band .paso.subida ul {
+  width: 100%;
+  margin-top: 20%;
+  text-align: center;
+}
+
+.sign_band .paso.subida .bandas_creadas li {
+  margin-bottom: 1em;
+}
+
 .sign_band .boton-sm {
   position: absolute;
   bottom: 5%;

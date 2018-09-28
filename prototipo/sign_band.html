@@ -42,6 +42,10 @@
 				</label>
 				<input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">				
 			</div> -->
+			<div class="paso subida">
+				<p class="parrafo">BANDA CREADA CORRECTAMENTE</p>
+				<ul class="parrado bandas_creadas"></ul>
+			</div>
         </div>
 	</div>
 
@@ -82,16 +86,25 @@
 			var ciudad = document.querySelector("#band-city").value;
 			// var imagen = document.querySelector("#band-image").value;
 
-            var newBandRef = bandRef.push();
-            newBandRef.set({
-                nombre: nombre,
-				ciudad: ciudad
-				// imagen: imagen
-            });
+			var newBandRef = bandRef.push();
+			
+			if (nombre && ciudad) {
+				newBandRef.set({
+					nombre: nombre,
+					ciudad: ciudad
+					// imagen: imagen
+				}).then(function(){
+					$(".paso").hide();
+					$(".subida").show();
+				});
+			}
 		}
 		bandRef.on("child_added", snap => {
 			bandas = snap.val();
 			console.log(bandas.nombre);
+			bandas = "<li>" + bandas.nombre + "</li>"
+			$(".bandas_creadas").append(bandas);
+
 		});
 		// bandas.on()
 		

@@ -486,6 +486,17 @@
 				z-index: -1;
 			}
 		}
+		&.subida {
+			display: none;
+			p, ul {
+				width: 100%;
+				margin-top: 20%;
+				text-align: center;
+			}
+			.bandas_creadas {
+				li {margin-bottom: 1em;}
+			}
+		}
 	}
 	.boton-sm {
 		position: absolute;
