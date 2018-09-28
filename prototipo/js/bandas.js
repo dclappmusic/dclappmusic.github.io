@@ -23,7 +23,7 @@ var bandas = [
     },
     {
         ID: "4",
-        name: "PORKI",
+        name: "Marcusser",
         imagen: "images/perfil_markuser.jpg",
         ciudad: "Berlin",
         descripcion: "Si veis esto es que os estais dejando la piel en Big Rep, VEEENGA QUE YA NO FALTA NA! PERO NADA DE NADA! (ni mucho ni poco...)"

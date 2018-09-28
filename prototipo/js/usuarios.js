@@ -8,7 +8,7 @@ var usuarios = [
         ],
         historial_clapps: [
             {
-                clappeado: "PORKI",
+                clappeado: "Marcusser",
                 num_clapps: 5
             },
             {
