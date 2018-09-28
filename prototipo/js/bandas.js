@@ -69,5 +69,12 @@ var bandas = [
         imagen: "images/perfil_rosa.png",
         ciudad: "Al sur",
         descripcion: "Rosa y yo fuimos besties en OT1 y ahora cantamos juntos en fiestas y verbenas por toda España (incluso en Ceuta y Melilla!!!)"
+    },
+    {
+        ID: "11", 
+        name: "Silvy Kanta",
+        imagen: "images/perfil_sil.png",
+        ciudad: "Cantaleji",
+        descripcion: "SIL! No estoy inspirado para escribirte nada ingenioso, pero bueno, esta sería la descripción de tu banda"
     }
 ];

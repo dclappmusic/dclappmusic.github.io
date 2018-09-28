@@ -63,5 +63,13 @@ var shows_activos = [
             latitud: 40.417601,
             longitud: -3.707471
         }
+    },
+    {
+        ID: "9",
+        bandId: "11",
+        posicion_show: {
+            latitud: 40.444865,
+            longitud: -3.703273
+        }
     }
 ];
