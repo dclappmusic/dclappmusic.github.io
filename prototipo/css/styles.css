@@ -357,14 +357,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 30%;
 }
 
-.login .tab {
-  display: none;
-  position: absolute;
-  width: 100%;
-  height: auto;
-}
-
-.login .tab .form-input {
+.login .form .form-input {
   position: relative;
   background-color: rgba(0, 0, 0, 0.05);
   border: none;
@@ -372,28 +365,39 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   color: #0C3847;
 }
 
-.login .tab .form-input::-webkit-input-placeholder {
+.login .form .form-input::-webkit-input-placeholder {
   opacity: .5;
   color: black;
 }
 
-.login .tab .form-input:-ms-input-placeholder {
+.login .form .form-input:-ms-input-placeholder {
   opacity: .5;
   color: black;
 }
 
-.login .tab .form-input::-ms-input-placeholder {
+.login .form .form-input::-ms-input-placeholder {
   opacity: .5;
   color: black;
 }
 
-.login .tab .form-input::placeholder {
+.login .form .form-input::placeholder {
   opacity: .5;
   color: black;
 }
 
-.login .tab.active {
+.login .form .tab {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.login .form .tab.active {
   display: block;
+}
+
+.login .logout {
+  display: none;
 }
 
 .login button {
@@ -709,6 +713,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   bottom: 5%;
   width: 10%;
   margin-left: 45%;
+}
+
+.sign_band .boton-med {
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 5%;
+  width: 75%;
+  text-align: center;
+  left: 12.5%;
+  background-color: white;
+  color: #0C3847;
+  border-radius: .5em;
+  padding: .4em .6em;
 }
 
 .showtime {

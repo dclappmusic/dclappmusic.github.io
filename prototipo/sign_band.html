@@ -17,52 +17,53 @@
 	<div class="container sign_band">
         <a class="close" href="index.html">
             <svg xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6953 14.0771L22.3037 24L24.3906 21.8447L14.7822 11.9224L23.4668 2.95361L21.3789 0.79834L12.6943 9.7666L3.81543 0.597168L1.72852 2.75244L10.6074 11.9219L0.804688 22.0459L2.8916 24.2012L12.6953 14.0771Z" fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6953 14.0771L22.3037 24L24.3906 21.8447L14.7822 11.9224L23.4668 2.95361L21.3789 0.79834L12.6943 9.7666L3.81543 0.597168L1.72852 2.75244L10.6074 11.9219L0.804688 22.0459L2.8916 24.2012L12.6953 14.0771Z" fill="white" />
             </svg>    
         </a>
         <h1 class="cabecera">CREAR UNA BANDA</h1>
-        <form method="post">
+        <div class="form">
             <div class="paso nombre active">
                 <label for="band-name" class="form-label">¿Cómo os llamais?</label>
-				<input class="form-input" placeholder="Kurt and the kurts" type="text" name="band-name" value="">
+				<input id="band-name" class="form-input" placeholder="Kurt and the kurts" type="text" name="band-name" value="">
 				<p class="boton-sm sig">sig</p>
 			</div>
 			<div class="paso ciudad">
 				<label for="band-city" class="form-label">¿De qué ciudad sois band residents?</label>
-				<input class="form-input" placeholder="Berlín" type="text" name="band-city" value="">
-				<p class="boton-sm sig">sig</p>
+				<input id="band-city" class="form-input" placeholder="Berlín" type="text" name="band-city" value="">
+				<!-- <p class="boton-sm sig">sig</p> -->
+				<button id="boton" class="boton-med" onclick="bandUp();">
+					listo
+				</button>
 			</div>
-			<div class="paso imagen">
-				<!-- <label class="form-label">Imagen de perfil</label> -->
-				
-				
+			<!-- <div class="paso imagen">
+				<p class="form-label">Imagen de perfil</p>
 				<label class="image_label" for="band-image">
 					<span>+</span>
 				</label>
-				<input class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">
-				
-				<!-- <button id="boton" class="boton-med">
-					listo
-				</button> -->
-			</div>
-        </form>
+				<input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">				
+			</div> -->
+        </div>
 	</div>
 
 	
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script type="text/javascript" src="js/firebase-config.js"></script>
 	<script type="text/javascript" src="js/usuarios.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
-
+		//avanzar paso
 		$(".sig").click(function() {
 			$(this).parent().removeClass("active");
 			$(this).parent().next().addClass("active");
 		});
+
+		//subir imagen de perfil
 		var input = $('.image-input');
 		var label = $('.image_label');
 		var labelVal = label.html();
-
+		//escribir en el label el nombre de la imagen subida
 		input.on("change", function(e) {
 			var fileName = e.target.value.split( '\\' ).pop();
 
@@ -72,6 +73,32 @@
 				label.html(labelVal);
 			}		
 		})
+		
+		//subir banda a DB
+		var bandRef = firebase.database().ref().child("bandas");
+		var bandas = bandRef.child("nombre");
+		function bandUp() {
+            var nombre = document.querySelector("#band-name").value;
+			var ciudad = document.querySelector("#band-city").value;
+			// var imagen = document.querySelector("#band-image").value;
+
+            var newBandRef = bandRef.push();
+            newBandRef.set({
+                nombre: nombre,
+				ciudad: ciudad
+				// imagen: imagen
+            });
+		}
+		bandRef.on("child_added", snap => {
+			bandas = snap.val();
+			console.log(bandas.nombre);
+		});
+		// bandas.on()
+		
+
+
+
+
 	</script>
  </body>
 </html>

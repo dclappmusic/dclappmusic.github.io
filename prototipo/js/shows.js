@@ -2,6 +2,7 @@ var shows_activos = [
     //sólo incluye ID y posicion_show, lo de más lo trae de la base de datos a través del ID
     {
         ID: "1",
+        bandId: "1",
         posicion_show: {
             latitud: 40.407063,
             longitud: -3.703284
@@ -9,6 +10,7 @@ var shows_activos = [
     },
     {
         ID: "2",
+        bandId: "2",
         posicion_show: {
             latitud: 40.450249,
             longitud: -3.695041
@@ -16,6 +18,7 @@ var shows_activos = [
     },
     {
         ID: "3",
+        bandId: "3",
         posicion_show: {
             latitud: 52.516050,
             longitud: 13.462634
@@ -23,6 +26,7 @@ var shows_activos = [
     },
     {
         ID: "4",
+        bandId: "4",
         posicion_show: {
             latitud: 52.490818,
             longitud: 13.402605
@@ -30,6 +34,7 @@ var shows_activos = [
     },
     {
         ID: "5",
+        bandId: "5",
         posicion_show: {
             latitud: 40.423399,
             longitud: -3.691778
@@ -37,6 +42,7 @@ var shows_activos = [
     },
     {
         ID: "6",
+        bandId: "6",
         posicion_show: {
             latitud: 40.433127,
             longitud: -3.704691
@@ -44,6 +50,7 @@ var shows_activos = [
     },
     {
         ID: "7",
+        bandId: "7",
         posicion_show: {
             latitud: 41.11516,
             longitud: 1.252187
@@ -51,6 +58,7 @@ var shows_activos = [
     },
     {
         ID: "8",
+        bandId: "8",
         posicion_show: {
             latitud: 40.417601,
             longitud: -3.707471

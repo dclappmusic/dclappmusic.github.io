@@ -185,11 +185,7 @@
 
 		}
 	}
-	.tab {
-		display: none;
-		position: absolute;
-		width: 100%;
-		height: auto;
+	.form {
 		.form-input {
 			position: relative;
 			// margin-left: 10%;
@@ -200,10 +196,18 @@
 			color: $secundario;
 			&::placeholder {opacity: .5; color: black;}
 		}
-		&.active {
-			display: block;
+		.tab {
+			display: none;
+			position: absolute;
+			width: 100%;
+			height: auto;
+			&.active {
+				display: block;
+			}
 		}
 	}
+	
+	.logout {display: none;}
 	button {
 		display: block;
 		// position: absolute;
@@ -488,6 +492,20 @@
 		bottom: 5%;
 		width: 10%;
 		margin-left: 45%;
+	}
+	.boton-med {
+		font-size: 20px;
+		font-weight: bold;
+		position: absolute;
+		bottom: 5%;
+		width: 75%;
+		text-align: center;
+		left: 12.5%;
+		background-color: white;
+		color: $secundario;
+		border-radius: .5em;
+		padding: .4em .6em;
+	
 	}
 }
 

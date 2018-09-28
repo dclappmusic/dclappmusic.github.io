@@ -120,8 +120,8 @@
 
     //Bajarse y mostrar los datos de la banda encontrada
         function show_encontrado (Ibanda_encontrada) {
-            bandas.forEach(function(Ibandas) {
-                var banda_activa = bandas.find(o => o.ID === Ibanda_encontrada.ID);
+            bandas.forEach(function() {
+                var banda_activa = bandas.find(o => o.ID === Ibanda_encontrada.bandId);
                 console.log(banda_activa.name + ", perfil encontrado");
                 $(".clapp .fondo img").attr("src", banda_activa.imagen);
                 $(".act .name").html("<b>" + banda_activa.name + "</b>").attr("href", "perfil.html?id=" + banda_activa.ID);
