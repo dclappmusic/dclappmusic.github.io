@@ -40,16 +40,19 @@
 	<script type="text/javascript" src="js/usuarios.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
-		var usuario = usuarios[0];
+		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
+		const usuario = getUrlParameter("user");
 		console.log(usuario);
-		console.log(usuario.bands.length);
-		if (usuario.bands.length > 0) {
-			console.log(usuario.bands);
-			$(".cambio_modo").html("showtime " + usuario.bands);
-		} else {
-			console.log("no bands");
-			$(".cambio_modo").hide();
-		}
+		
+		//añadir usuario al final de todos los links
+		$('a').each(function() {
+			var href = $(this).attr('href');
+
+			if (href) {
+				href += (href.match(/\?/) ? '&' : '?') + "user=" + usuario;
+				$(this).attr('href', href);
+			}
+		});
 
 	</script>
  </body>

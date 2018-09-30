@@ -43,7 +43,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
-		 tryGeolocation();
+		tryGeolocation();
+		const show;
+		const comienzo = Date.now();
+		//conseguir el id de la banda
+		const banda;
+		banda.id = "2";
+		//añadir datos a banda y a show
+		show.bandId = banda.id;
+		show.posicion_show.latitud = latitud;
+		show.posicion_show.longitud = longitud;
+		show.start = comienzo;
+		show.fin = Date.now();
+
+		//pushear los objetos a sus madres. show en shows y en banda.shows
+		banda.shows.push(show);
+		shows.push(show);
+
+		$(".end_show").click(function(){
+			//delete show de shows ordereando el bandId
+			shows(bandId).delete();
+			//añadir fin a banda.show
+			banda.shows(show).fin = Date.now();
+		});
+		 
 	</script>
 	
  </body>

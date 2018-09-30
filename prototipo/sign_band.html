@@ -44,7 +44,7 @@
 			</div> -->
 			<div class="paso subida">
 				<p class="parrafo">BANDA CREADA CORRECTAMENTE</p>
-				<ul class="parrado bandas_creadas"></ul>
+				<ul class="parrafo bandas_creadas"></ul>
 			</div>
         </div>
 	</div>
@@ -77,41 +77,91 @@
 				label.html(labelVal);
 			}		
 		})
-		
-		//subir banda a DB
-		var bandRef = firebase.database().ref().child("bandas");
-		var bandas = bandRef.child("nombre");
-		function bandUp() {
-            var nombre = document.querySelector("#band-name").value;
-			var ciudad = document.querySelector("#band-city").value;
-			// var imagen = document.querySelector("#band-image").value;
 
-			var newBandRef = bandRef.push();
+		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
+		const usuario = getUrlParameter("user");
+		console.log(usuario);
+
+		//subir banda a CLOUD FIRESTORE
+
+		const firestore = firebase.firestore();
+		const settings = {/* your settings... */ timestampsInSnapshots: true};
+  		firestore.settings(settings);
+
+		const bandRef = firestore.collection("bandas");
+		const userRef = firestore.collection("usuarios");
+
+		function bandUp() {
+			var nombre = document.querySelector("#band-name").value;
+			var ciudad = document.querySelector("#band-city").value;
 			
 			if (nombre && ciudad) {
-				newBandRef.set({
+				bandRef.add({
 					nombre: nombre,
-					ciudad: ciudad
-					// imagen: imagen
-				}).then(function(){
+					ciudad: ciudad,
+					uid: usuario
+				}).then(function(bandRef){
 					$(".paso").hide();
 					$(".subida").show();
+					userRef.doc(usuario).set({
+						band: bandRef.id,
+						is_musician: true
+					},{ merge: true });
+				}).catch(function(error){
+					console.log("error: " + error);
 				});
 			}
-		}
-		bandRef.on("child_added", snap => {
-			bandas = snap.val();
-			console.log(bandas.nombre);
-			bandas = "<li>" + bandas.nombre + "</li>"
-			$(".bandas_creadas").append(bandas);
-
+		};
+		//bajarse todas
+		bandRef.get().then((querySnapshot) => {
+			querySnapshot.forEach((band) => {
+				const banda = band.data();
+				console.log(banda);
+				const liBandas = "<li>" + banda.nombre + "</li>"
+				$(".bandas_creadas").append(liBandas);
+			});
 		});
-		// bandas.on()
 		
+		//bajarse todas en tiempo real
+		// getRealtimeUpdates = function() {
+		// 	bandRef.onSnapshot(snap => {
+		// 		const banda = snap.data();
+		// 		console.log(banda);
+		// 		// const liBandas = "<li>" + banda.nombre + "</li>"
+		// 		// $(".bandas_creadas").append(liBandas);
+		// 	});
+		// };
+		// getRealtimeUpdates();
 
+		
+		// //subir banda a REALTIME DATABASE
+		// var bandRef = firebase.database().ref().child("bandas");
+		// var bandas = bandRef.child("nombre");
+		// function bandUp() {
+        //     var nombre = document.querySelector("#band-name").value;
+		// 	var ciudad = document.querySelector("#band-city").value;
+		// 	// var imagen = document.querySelector("#band-image").value;
 
+		// 	var newBandRef = bandRef.push();
+			
+		// 	if (nombre && ciudad) {
+		// 		newBandRef.set({
+		// 			nombre: nombre,
+		// 			ciudad: ciudad
+		// 			// imagen: imagen
+		// 		}).then(function(){
+		// 			$(".paso").hide();
+		// 			$(".subida").show();
+		// 		});
+		// 	}
+		// }
+		// bandRef.on("child_added", snap => {
+		// 	bandas = snap.val();
+		// 	console.log(bandas.nombre);
+		// 	bandas = "<li>" + bandas.nombre + "</li>"
+		// 	$(".bandas_creadas").append(bandas);
 
-
+		// });
 	</script>
  </body>
 </html>

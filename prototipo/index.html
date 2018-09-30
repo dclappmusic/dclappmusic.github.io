@@ -20,7 +20,7 @@
 			<img src="images/icon_clapp.png" />
 		</a>
 		<div class="intro_clapp">
-			<h3 class="display-med">para clappear<br>pulsa el botón</h3>
+		<a href="login.html">	<h3 class="display-med">para clappear<br>pulsa el botón</h3></a>
 		</div>
 
 		<ul class="menu">
@@ -39,19 +39,55 @@
 	
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/usuarios.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script type="text/javascript" src="js/firebase-config.js"></script>
+	<!-- <script type="text/javascript" src="js/usuarios.js"></script> -->
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
-		var usuario = usuarios[0];
+		const firestore = firebase.firestore();
+		const settings = {/* your settings... */ timestampsInSnapshots: true};
+		  firestore.settings(settings);
+		  
+		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
+		const usuario = getUrlParameter("user");
 		console.log(usuario);
-		console.log(usuario.bands.length);
-		if (usuario.bands.length > 0) {
-			console.log(usuario.bands);
-			$(".cambio_modo").html("showtime " + usuario.bands);
-		} else {
-			console.log("no bands");
-			$(".cambio_modo").hide();
-		}
+		// console.log(usuario.bands.length);
+		
+		//añadir usuario al final de todos los links
+		$('a').each(function() {
+			var href = $(this).attr('href');
+
+			if (href) {
+				href += (href.match(/\?/) ? '&' : '?') + "user=" + usuario;
+				$(this).attr('href', href);
+			}
+		});
+
+
+
+
+
+		const userRef = firestore.collection("usuarios").doc(usuario);
+		userRef.get().then(function(doc) {
+			if (doc.exists) {
+				console.log("Document data:", doc.data());
+			} else {
+				// doc.data() will be undefined in this case
+				console.log("No such document!");
+			}
+		}).catch(function(error) {
+			console.log("Error getting document:", error);
+		});
+		
+
+
+		// if (usuario.bands.length > 0) {
+		// 	console.log(usuario.bands);
+		// 	$(".cambio_modo").html("showtime " + usuario.bands);
+		// } else {
+		// 	console.log("no bands");
+		// 	$(".cambio_modo").hide();
+		// }
 
 	</script>
  </body>

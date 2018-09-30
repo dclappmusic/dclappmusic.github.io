@@ -65,7 +65,7 @@
         $(".tabs h3").click(function(){
             var tab = $(this).attr("class");
             $(this).addClass("active").siblings().removeClass("active");
-            $(".form .tab." + tab).addClass("active").siblings().removeClass("active");
+            $(".form .tab." + tab).show().addClass("active").siblings().removeClass("active");
         });
 
 
@@ -78,19 +78,24 @@
         function login() {
             const email = user_email.value;
             const password = user_password.value;
-
-            auth.signInWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
             
-            window.alert("error: " + errorMessage) ;
+            //autenticar el login
+            auth.signInWithEmailAndPassword(email, password).then(function(){
+                 //redirigir a index
+                    var user = auth.currentUser;
+                    window.location.href = "index.html?user=" + user.uid;
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                window.alert("error: " + errorMessage) ;
             });
+           
         }
 
         function logout() {
             auth.signOut().catch(function(error) {
-            // An error happened.
+                // An error happened.
                 window.alert("error: " + error);
             });
         }
@@ -99,14 +104,40 @@
             const email = user_email.value;
             const password = user_password.value;
             
-            auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            
-            window.alert("error: " + errorMessage) ;
+            //crear login de usuario
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(function(){
+                    //añadir el usuario a la DB
+                    const firestore = firebase.firestore();
+                    const settings = {/* your settings... */ timestampsInSnapshots: true};
+  		            firestore.settings(settings);
+                    const userRef = firestore.collection("usuarios");
+                    var user = auth.currentUser;
+                    
+                    userRef.doc(user.uid).set({
+                        uid: user.uid,
+                        email: email,
+                        password: password
+                    }).then(function(){
+                        window.location.href = "index.html?user=" + user.uid;
+                    });
+
+
+                    // userRef.add({
+                    //     uid: user.uid,
+                    //     email: email,
+                    //     password: password
+                    // }).catch(function(error){
+                    //     console.log("error: " + error);
+                    // }); 
+                   
+                })
+                .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                window.alert("error: " + errorMessage) ;
             });
-            
         }
         
 
@@ -115,8 +146,11 @@
             if (user) {
                 // User is signed in.
                 console.log("ya estas signeado");
+                console.log(user);
                 var user = auth.currentUser;
-                var name, email, password, historial;
+                var name, email, password;
+                console.log(user);
+                
                 if(user != null) {
                     email = user.email;
                     $(".inputs_comunes").hide();
@@ -125,7 +159,6 @@
                     $(".logout").show();
                     $(".welcome").html("bienvenido: " + email);
                 }
-
             } else {
                 // No user is signed in.
                 $(".tabs").show();
@@ -134,6 +167,7 @@
                 $(".inputs_comunes").show();
                 $(".welcome").html("");
                 $(".logout").hide();
+                $(".tab.signup").hide();
                 console.log("no estás signeado");
             }
         });
