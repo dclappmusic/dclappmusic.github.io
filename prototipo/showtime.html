@@ -43,7 +43,19 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-	
+	<script type="text/javascript">
+		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
+		var banda = getUrlParameter("band");
+
+		$('a').each(function() {
+			var href = $(this).attr('href');
+
+			if (href) {
+				href += (href.match(/\?/) ? '&' : '?') + "band=" + banda;
+				$(this).attr('href', href);
+			}
+		});
+	</script>
  </body>
 </html>
 

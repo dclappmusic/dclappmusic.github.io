@@ -54,7 +54,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
     <script type="text/javascript" src="js/firebase-config.js"></script>
-	<script type="text/javascript" src="js/usuarios.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
 		//avanzar paso
@@ -100,13 +99,13 @@
 					nombre: nombre,
 					ciudad: ciudad,
 					uid: usuario
-				}).then(function(bandRef){
+				}).then((bandRef) => {
 					$(".paso").hide();
 					$(".subida").show();
-					userRef.doc(usuario).set({
-						band: bandRef.id,
+					userRef.doc(usuario).update({
+						band: firebase.firestore.FieldValue.arrayUnion(bandRef.id),
 						is_musician: true
-					},{ merge: true });
+					});
 				}).catch(function(error){
 					console.log("error: " + error);
 				});
@@ -121,6 +120,8 @@
 				$(".bandas_creadas").append(liBandas);
 			});
 		});
+		
+
 		
 		//bajarse todas en tiempo real
 		// getRealtimeUpdates = function() {

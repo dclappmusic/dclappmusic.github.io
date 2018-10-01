@@ -15,7 +15,7 @@
 
 <body>
 	<div class="container home">
-		<a class="cambio_modo" href="showtime.html"></a>
+		<ul class="cambio_modo"></ul>
 		<a class="boton showtime" href="clapp.html">
 			<img src="images/icon_clapp.png" />
 		</a>
@@ -41,7 +41,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
     <script type="text/javascript" src="js/firebase-config.js"></script>
-	<!-- <script type="text/javascript" src="js/usuarios.js"></script> -->
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
 		const firestore = firebase.firestore();
@@ -50,8 +49,9 @@
 		  
 		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
 		const usuario = getUrlParameter("user");
+		var user;
 		console.log(usuario);
-		// console.log(usuario.bands.length);
+		
 		
 		//añadir usuario al final de todos los links
 		$('a').each(function() {
@@ -65,12 +65,32 @@
 
 
 
-
-
+		//cargar el usuario de la DB
 		const userRef = firestore.collection("usuarios").doc(usuario);
+		const bandsRef = firestore.collection("bandas");
+		var bandRef;
 		userRef.get().then(function(doc) {
 			if (doc.exists) {
 				console.log("Document data:", doc.data());
+				user = doc.data();
+				console.log("bandas del user: " + user.band);
+
+				//si tiene bandas, añadir al menu
+				if (user.band.length > 0) {
+					console.log(user.band);
+					user.band.forEach((banda) => {
+						const bandRef = bandsRef.doc(banda);
+						bandRef.get().then((doc) => {
+							const db_banda = doc.data();
+							console.log(db_banda);
+							const liBandas = "<li><a href='showtime.html?band=" + banda + "'>" + db_banda.nombre + "</a></li>"
+							$(".cambio_modo").append(liBandas);
+						});
+					});
+				} else {
+					console.log("no bands");
+					$(".cambio_modo").hide();
+				}
 			} else {
 				// doc.data() will be undefined in this case
 				console.log("No such document!");
@@ -78,17 +98,6 @@
 		}).catch(function(error) {
 			console.log("Error getting document:", error);
 		});
-		
-
-
-		// if (usuario.bands.length > 0) {
-		// 	console.log(usuario.bands);
-		// 	$(".cambio_modo").html("showtime " + usuario.bands);
-		// } else {
-		// 	console.log("no bands");
-		// 	$(".cambio_modo").hide();
-		// }
-
 	</script>
  </body>
 </html>

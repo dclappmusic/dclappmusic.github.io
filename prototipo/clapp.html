@@ -36,11 +36,45 @@
 	
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/shows.js"></script>
-	<script type="text/javascript" src="js/bandas.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script type="text/javascript" src="js/firebase-config.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
-		 tryGeolocation();
+		
+		const firestore = firebase.firestore();
+		const settings = {/* your settings... */ timestampsInSnapshots: true};
+		  firestore.settings(settings);
+		  
+		//crear objeto user con el usuario de la DB
+		const usuario = getUrlParameter("user");
+		// console.log(usuario);
+		var user;
+		const userRef = firestore.collection("usuarios").doc(usuario);
+		userRef.get().then((doc) => {
+			// console.log("Document data:", doc.data());
+			user = doc.data();
+		});
+
+		//crear array de shows activos en la DB
+		var shows = [];
+		const showRef = firestore.collection("shows");
+		showRef.where("active", "==", true).get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					shows.push(doc.data());
+					console.log(shows);
+				});
+			})
+			.catch(function(error) {
+				console.log("Error getting documents: ", error);
+			});
+		const bandRef = firestore.collection("bandas");
+		tryGeolocation();
+
+		
+
+		
+
 	</script>
 	
  </body>

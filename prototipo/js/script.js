@@ -22,8 +22,9 @@
                 console.log("clapping");
                 encontrar();
             } else if (window.location.pathname.indexOf("show.html") > -1) {
-                console.log("showtime");
+                console.log("showtime1");
                 $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
+                showtime();
             }
         };
 
@@ -47,8 +48,9 @@
                 console.log("clapping");
                 encontrar();
             } else if (window.location.pathname.indexOf("show.html") > -1) {
-                console.log("showtime");
+                console.log("showtime1");
                 $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
+                showtime();
             }
         };
 
@@ -105,8 +107,8 @@
 
     //comparar distancias dadas coordenadas del clapp y del show
         function cerca (posicion1, posicion2) {
-            var distancia;
             // debugger;
+            var distancia;
             distancia = Math.pow((Math.pow(posicion1.latitud - posicion2.latitud, 2) + Math.pow(posicion1.longitud - posicion2.longitud,2)), 0.5);
             console.log(distancia);
             return distancia <= distancia_max;
@@ -114,15 +116,17 @@
 
     //Buscar bandas dentro del área del clapp midiendo distancia entre el clapp, y todos los shows
         function encontrar() {
+            // debugger;
             var musico_encontrado = false;
             var posicion_clapp = {
                 latitud: latitud,
                 longitud: longitud
             };
             console.log("encontrar en: " + posicion_clapp.latitud + "," + posicion_clapp.longitud);
-            shows_activos.forEach(function(Ishow_activo) {
-                console.log(Ishow_activo.ID);
-                if (cerca(Ishow_activo.posicion_show, posicion_clapp)) {
+            console.log(shows);
+            shows.forEach((Ishow_activo) => {
+                console.log(Ishow_activo.banda);
+                if (cerca(Ishow_activo.posicion, posicion_clapp)) {
                     console.log("está cerca");
                     show_encontrado(Ishow_activo);
                     musico_encontrado = true;
@@ -137,11 +141,13 @@
 
     //Bajarse y mostrar los datos de la banda encontrada
         function show_encontrado (Ibanda_encontrada) {
-            bandas.forEach(function() {
-                var banda_activa = bandas.find(o => o.ID === Ibanda_encontrada.bandId);
-                console.log(banda_activa.name + ", perfil encontrado");
-                $(".clapp .fondo img").attr("src", banda_activa.imagen);
-                $(".act .name").html("<b>" + banda_activa.name + "</b>").attr("href", "perfil.html?id=" + banda_activa.ID);
+            console.log("banda encontrada:");
+            console.log(Ibanda_encontrada);
+            bandRef.doc(Ibanda_encontrada.banda).get().then((doc) => {
+                var banda_activa = doc.data();
+                console.log(banda_activa.nombre + ", perfil encontrado");
+                // $(".clapp .fondo img").attr("src", banda_activa.imagen);
+                $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + doc.id);
             });
         };
     
