@@ -11,6 +11,23 @@
 
 //-------------FUNCIONES
 
+
+    //ver si hay algun usuario logeado, y coger su user ID
+        const auth = firebase.auth();
+        var userId;
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in.
+                console.log("ya estas logueado");
+                var user = auth.currentUser;
+                userId = user.uid;
+                console.log(userId);
+            } else {
+                // No user is signed in.
+                console.log("no estás logueado");
+            }
+        });
+
 // --------------Clapp
 
     //geolocalizacion
@@ -128,6 +145,8 @@
                 console.log(Ishow_activo.banda);
                 if (cerca(Ishow_activo.posicion, posicion_clapp)) {
                     console.log("está cerca");
+                    console.log("show id: " + Ishow_activo.showId);
+                    show_encontrado_id = Ishow_activo.showId;
                     show_encontrado(Ishow_activo);
                     musico_encontrado = true;
                 } else {
@@ -176,30 +195,14 @@
                 //cada clapp, suma un elemento al array de clapps con el id del clapper
                 clapps: firebase.firestore.FieldValue.arrayUnion(usuario)
             });
+            showRef.doc(show_encontrado_id).update({
+                //cada clapp, suma un elemento al array de clapps con el id del clapper
+                clapps: firebase.firestore.FieldValue.arrayUnion(usuario)
+            });
         });
     //BBDD sumarle los clapps a la banda
 
 
-// --------------historial de clapps
 
-    //cargar historial de clapps dado el identificador del perfil del usuario
-        function cargar_historial (I_id) {
-            console.log("cargar historial");
-
-            //descargarse user_persona (comparando el ID del usuario que metes, con todos los IDs de usuario en la base de datos)
-            usuario = usuarios.find(o => o.ID === I_id);
-            console.log(usuario.ID);
-            //BBDD descargarse user_persona
-
-            //Por cada clapp, mostrar sus datos añadiendolos a una lista
-            usuario.historial_clapps.forEach(function(I_userClapps) {
-                console.log(I_userClapps.clappeado);
-                var banda = bandas.find(o => o.name === I_userClapps.clappeado);
-                console.log(banda);
-                $(".clapps").append(
-                    '<li class="clappeado"><img src="' + banda.imagen + '"><p class="band">' + banda.name + '</p><p class="clapps_dados">' + I_userClapps.num_clapps + '</p></li>'
-                );
-            });
-        };
  
 

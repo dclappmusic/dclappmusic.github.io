@@ -58,24 +58,22 @@
 		//crear array de shows activos en la DB
 		var shows = [];
 		const showRef = firestore.collection("shows");
+		var banda_activa;
+		var banda_activa_id;
+		var show_encontrado_id;
+		const bandRef = firestore.collection("bandas");
+
 		showRef.where("active", "==", true).get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					shows.push(doc.data());
 					console.log(shows);
 				});
+				tryGeolocation();
 			})
 			.catch(function(error) {
 				console.log("Error getting documents: ", error);
 			});
-		var banda_activa;
-		var banda_activa_id;
-		const bandRef = firestore.collection("bandas");
-		tryGeolocation();
-
-		
-
-		
 
 	</script>
 	

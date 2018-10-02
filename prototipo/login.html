@@ -148,6 +148,9 @@
                     $(".tabs").hide();
                     $(".logout").show();
                     $(".welcome").html("bienvenido: " + email);
+                    var href = $(".close").attr("href");
+                    href += "?user=" + user.uid;
+				    $(".close").attr('href', href);
                 }
             } else {
                 // No user is signed in.

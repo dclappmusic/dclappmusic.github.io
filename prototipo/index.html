@@ -69,7 +69,7 @@
 		const userRef = firestore.collection("usuarios").doc(usuario);
 		const bandsRef = firestore.collection("bandas");
 		var bandRef;
-		userRef.get().then(function(doc) {
+		userRef.get().then((doc) => {
 			if (doc.exists) {
 				console.log("Document data:", doc.data());
 				user = doc.data();
@@ -83,7 +83,7 @@
 						bandRef.get().then((doc) => {
 							const db_banda = doc.data();
 							console.log(db_banda);
-							const liBandas = "<li><a href='showtime.html?band=" + banda + "'>" + db_banda.nombre + "</a></li>"
+							const liBandas = "<li><a href='showtime.html?user=" + usuario + "&band=" + banda + "'>" + db_banda.nombre + "</a></li>"
 							$(".cambio_modo").append(liBandas);
 						});
 					});

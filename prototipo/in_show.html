@@ -71,12 +71,13 @@
 
 			//subir show a shows
 			showRef.add(show)
-				.then((showRef) => {
+				.then((show) => {
 					//subir shows a banda
-					showId = showRef;
+					showId = show.id;
+					console.log(showId);
+					showRef.doc(showId).update({showId: showId});
 					bandRef.update({
-						// show: showId
-						last_show: show
+						shows: firebase.firestore.FieldValue.arrayUnion(showId)
 					});
 				}).catch(function(error){
 					console.log("error: " + error);
@@ -85,14 +86,14 @@
 		}
 		
 		function end_show() {
-			showId = showId._key.path.segments[1];
+			// showId = showId._key.path.segments[1];
 			const showRef = firestore.collection("shows");
 			const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 			showRef.doc(showId).update({
 				active: false,
 				final: timestamp
 			}).then(function() {
-				window.location.href = "showtime.html?band=" + URL_banda;
+				window.history.back();
 			});
 		};
 		 

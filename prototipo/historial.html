@@ -38,11 +38,59 @@
 	
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/usuarios.js"></script>
-	<script type="text/javascript" src="js/bandas.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script type="text/javascript" src="js/firebase-config.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
-		cargar_historial("1");
+		const firestore = firebase.firestore();
+		const settings = {/* your settings... */ timestampsInSnapshots: true};
+		firestore.settings(settings);
+		
+
+	// --------------historial de clapps
+		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
+		const userId = getUrlParameter("user");
+		var user; 
+
+		//cargar historial de clapps dado el identificador del perfil del usuario
+		function cargar_historial (I_id) {
+			console.log("cargar historial");
+
+			//descargarse user_persona 
+			const userRef = firestore.collection("usuarios").doc(userId);
+			const bandsRef = firestore.collection("bandas");
+			userRef.get().then((doc) => {
+				// console.log("Document data:", doc.data());
+				user = doc.data();
+				//Por cada clapp, mostrar sus datos añadiendolos a una lista
+				if (user.clapps.length > 0) {
+					console.log("num total de clapps: " + user.clapps.length);
+					user.clapps.forEach((I_banda) => {
+						const bandRef = bandsRef.doc(I_banda);
+						bandRef.get().then((doc) => {
+							const db_banda = doc.data();
+							const liBandas = "<li><a href='perfil.html?user=" + userId + "&band=" + doc.id + "'><img /><p class='band'>" + db_banda.nombre + "</p></a></li>"
+							$(".clapps").append(liBandas);
+						});
+					});
+				} else {
+					console.log("no bands");
+					$(".cambio_modo").hide();
+				}
+			});
+
+			//Por cada clapp, mostrar sus datos añadiendolos a una lista
+			
+			// usuario.historial_clapps.forEach(function(I_userClapps) {
+			// 	console.log(I_userClapps.clappeado);
+			// 	var banda = bandas.find(o => o.name === I_userClapps.clappeado);
+			// 	console.log(banda);
+			// 	$(".clapps").append(
+			// 		'<li class="clappeado"><img src="' + banda.imagen + '"><p class="band">' + banda.name + '</p><p class="clapps_dados">' + I_userClapps.num_clapps + '</p></li>'
+			// 	);
+			// });
+		};
+		cargar_historial(userId);
 	</script>
 	
  </body>
