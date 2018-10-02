@@ -45,17 +45,17 @@
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
 		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
-		var banda = getUrlParameter("band");
-		var user = getUrlParameter("user");
+		var bandaId = getUrlParameter("band");
+		var userId = getUrlParameter("user");
 		
 		$('a').each(function() {
 			var href = $(this).attr('href');
 			
 			if (href = "index.html") {
-				href += (href.match(/\?/) ? '&' : '?') + "user=" + user;
+				href += (href.match(/\?/) ? '&' : '?') + "user=" + userId;
 				$(this).attr('href', href);
 			} else if (href) {
-				href += (href.match(/\?/) ? '&' : '?') + "band=" + banda;
+				href += (href.match(/\?/) ? '&' : '?') + "band=" + bandaId;
 				$(this).attr('href', href);
 			}
 		});

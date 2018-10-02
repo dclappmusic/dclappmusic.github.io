@@ -108,9 +108,6 @@
             auth.createUserWithEmailAndPassword(email, password)
                 .then(function(){
                     //añadir el usuario a la DB
-                    const firestore = firebase.firestore();
-                    const settings = {/* your settings... */ timestampsInSnapshots: true};
-  		            firestore.settings(settings);
                     const userRef = firestore.collection("usuarios");
                     var user = auth.currentUser;
                     

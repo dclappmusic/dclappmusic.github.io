@@ -78,14 +78,10 @@
 		})
 
 		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
-		const usuario = getUrlParameter("user");
-		console.log(usuario);
+		const userId = getUrlParameter("user");
+		console.log(userId);
 
 		//subir banda a CLOUD FIRESTORE
-
-		const firestore = firebase.firestore();
-		const settings = {/* your settings... */ timestampsInSnapshots: true};
-  		firestore.settings(settings);
 
 		const bandRef = firestore.collection("bandas");
 		const userRef = firestore.collection("usuarios");
@@ -98,11 +94,11 @@
 				bandRef.add({
 					nombre: nombre,
 					ciudad: ciudad,
-					uid: usuario
+					uid: userId
 				}).then((bandRef) => {
 					$(".paso").hide();
 					$(".subida").show();
-					userRef.doc(usuario).update({
+					userRef.doc(userId).update({
 						band: firebase.firestore.FieldValue.arrayUnion(bandRef.id),
 						is_musician: true
 					});

@@ -40,15 +40,15 @@
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
 		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
-		const usuario = getUrlParameter("user");
-		console.log(usuario);
+		const userId = getUrlParameter("user");
+		console.log(userId);
 		
 		//añadir usuario al final de todos los links
 		$('a').each(function() {
 			var href = $(this).attr('href');
 
 			if (href) {
-				href += (href.match(/\?/) ? '&' : '?') + "user=" + usuario;
+				href += (href.match(/\?/) ? '&' : '?') + "user=" + userId;
 				$(this).attr('href', href);
 			}
 		});
