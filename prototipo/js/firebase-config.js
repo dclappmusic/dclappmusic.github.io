@@ -4,7 +4,7 @@ var config = {
   authDomain: "dclapp-49969.firebaseapp.com",
   databaseURL: "https://dclapp-49969.firebaseio.com",
   projectId: "dclapp-49969",
-  storageBucket: "",
+  storageBucket: "dclapp-49969.appspot.com",
   messagingSenderId: "346881274485"
 };
 firebase.initializeApp(config);
