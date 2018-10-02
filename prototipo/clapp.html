@@ -68,6 +68,8 @@
 			.catch(function(error) {
 				console.log("Error getting documents: ", error);
 			});
+		var banda_activa;
+		var banda_activa_id;
 		const bandRef = firestore.collection("bandas");
 		tryGeolocation();
 

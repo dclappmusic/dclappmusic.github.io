@@ -144,10 +144,11 @@
             console.log("banda encontrada:");
             console.log(Ibanda_encontrada);
             bandRef.doc(Ibanda_encontrada.banda).get().then((doc) => {
-                var banda_activa = doc.data();
+                banda_activa = doc.data();
+                banda_activa_id = doc.id;
                 console.log(banda_activa.nombre + ", perfil encontrado");
                 // $(".clapp .fondo img").attr("src", banda_activa.imagen);
-                $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + doc.id);
+                $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
             });
         };
     
@@ -166,6 +167,15 @@
                 $(".num_clapps").html("+" + clapps + " clapps");
             }
             //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
+            console.log("Clapp de " + usuario + " a " + banda_activa_id);
+            
+            userRef.update({
+                clapps: firebase.firestore.FieldValue.arrayUnion(banda_activa_id)
+            });
+            bandRef.doc(banda_activa_id).update({
+                //cada clapp, suma un elemento al array de clapps con el id del clapper
+                clapps: firebase.firestore.FieldValue.arrayUnion(usuario)
+            });
         });
     //BBDD sumarle los clapps a la banda
 
