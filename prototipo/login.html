@@ -29,7 +29,7 @@
             <div class="inputs_comunes">
                 <label for="user-email" class="form-label">Email</label>
                 <input class="form-input" id="user-email" placeholder="email" type="text" name="user-email" value="">
-                <label for="user-password" class="form-label">Contraseña</label>
+                <label for="user-password" type="password" class="form-label">Contraseña</label>
                 <input class="form-input" id="user-password" placeholder="contraseña" type="text" name="user-password" value="">
             </div>
             <div class="tab login active">
@@ -113,8 +113,7 @@
                     
                     userRef.doc(user.uid).set({
                         uid: user.uid,
-                        email: email,
-                        password: password
+                        email: email
                     }).then(function(){
                         window.location.href = "index.html";
                     });
