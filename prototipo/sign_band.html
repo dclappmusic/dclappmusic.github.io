@@ -82,28 +82,7 @@
 		const bandRef = firestore.collection("bandas");
 		const userRef = firestore.collection("usuarios");
 
-		function bandUp() {
-			var nombre = document.querySelector("#band-name").value;
-			var ciudad = document.querySelector("#band-city").value;
-			
-			if (nombre && ciudad) {
-				bandRef.add({
-					nombre: nombre,
-					ciudad: ciudad,
-					uid: userId
-				}).then((bandRef) => {
-					$(".paso").hide();
-					$(".subida").show();
-					userRef.doc(userId).update({
-						band: firebase.firestore.FieldValue.arrayUnion(bandRef.id),
-						is_musician: true
-					});
-					window.location.href = "showtime.html?band=" + bandRef.id;
-				}).catch(function(error){
-					console.log("error: " + error);
-				});
-			}
-		};
+		
 		//bajarse todas
 		bandRef.get().then((querySnapshot) => {
 			querySnapshot.forEach((band) => {
@@ -114,6 +93,28 @@
 			});
 		});
 	}
+	function bandUp() {
+		var nombre = document.querySelector("#band-name").value;
+		var ciudad = document.querySelector("#band-city").value;
+		
+		if (nombre && ciudad) {
+			bandRef.add({
+				nombre: nombre,
+				ciudad: ciudad,
+				uid: userId
+			}).then((bandRef) => {
+				$(".paso").hide();
+				$(".subida").show();
+				userRef.doc(userId).update({
+					band: firebase.firestore.FieldValue.arrayUnion(bandRef.id),
+					is_musician: true
+				});
+				window.location.href = "showtime.html?band=" + bandRef.id;
+			}).catch(function(error){
+				console.log("error: " + error);
+			});
+		}
+	};
 		
 
 		
