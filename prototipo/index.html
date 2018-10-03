@@ -64,7 +64,7 @@
 						bandRef.get().then((doc) => {
 							const db_banda = doc.data();
 							console.log(db_banda);
-							const liBandas = "<li><a href='showtime.html?user=" + userId + "&band=" + banda + "'>" + db_banda.nombre + "</a></li>"
+							const liBandas = "<li><a href='showtime.html?band=" + banda + "'>" + db_banda.nombre + "</a></li>"
 							$(".cambio_modo").append(liBandas);
 						});
 					});

@@ -98,6 +98,7 @@
 						band: firebase.firestore.FieldValue.arrayUnion(bandRef.id),
 						is_musician: true
 					});
+					window.location.href = "showtime.html?band=" + bandRef.id;
 				}).catch(function(error){
 					console.log("error: " + error);
 				});
