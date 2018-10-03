@@ -83,7 +83,7 @@
             auth.signInWithEmailAndPassword(email, password).then(function(){
                  //redirigir a index
                     var user = auth.currentUser;
-                    window.location.href = "index.html?user=" + user.uid;
+                    window.location.href = "index.html";
             }).catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;
@@ -116,7 +116,7 @@
                         email: email,
                         password: password
                     }).then(function(){
-                        window.location.href = "index.html?user=" + user.uid;
+                        window.location.href = "index.html";
                     });
                 })
                 .catch(function(error) {

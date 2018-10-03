@@ -50,13 +50,6 @@
 	const bandRef = firestore.collection("bandas");
 
 	function funcion_user () {
-		
-		const userRef = firestore.collection("usuarios").doc(userId);
-		userRef.get().then((doc) => {
-			// console.log("Document data:", doc.data());
-			user = doc.data();
-		});
-
 		//crear array de shows activos en la DB
 		showRef.where("active", "==", true).get()
 			.then((querySnapshot) => {

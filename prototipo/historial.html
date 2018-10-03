@@ -84,7 +84,12 @@
 			// 	);
 			// });
 		};
-		cargar_historial(userId);
+		if (login) {
+			cargar_historial(userId);
+		} else {
+			window.location.href = "login.html";
+		}
+		
 	}
 </script>	
 </body>

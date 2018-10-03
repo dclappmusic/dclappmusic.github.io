@@ -6,6 +6,7 @@
         latitud: 40.444865,
         longitud: -3.703273
     };
+    var login = false;
 
 
 //-------------FUNCIONES
@@ -21,10 +22,12 @@
                 var user = auth.currentUser;
                 userId = user.uid;
                 console.log(userId);
+                login = true;
                 funcion_user();
             } else {
                 // No user is signed in.
                 console.log("no estás logueado");
+                funcion_user();
             }
         });
 
