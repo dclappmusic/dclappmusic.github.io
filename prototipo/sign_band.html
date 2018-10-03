@@ -77,22 +77,13 @@
 			}		
 		})
 	function funcion_user () {
-		//subir banda a CLOUD FIRESTORE
-
-		const bandRef = firestore.collection("bandas");
-		const userRef = firestore.collection("usuarios");
-
 		
-		//bajarse todas
-		bandRef.get().then((querySnapshot) => {
-			querySnapshot.forEach((band) => {
-				const banda = band.data();
-				console.log(banda);
-				const liBandas = "<li>" + banda.nombre + "</li>"
-				$(".bandas_creadas").append(liBandas);
-			});
-		});
 	}
+	//subir banda a CLOUD FIRESTORE
+
+	const bandRef = firestore.collection("bandas");
+	const userRef = firestore.collection("usuarios");
+
 	function bandUp() {
 		var nombre = document.querySelector("#band-name").value;
 		var ciudad = document.querySelector("#band-city").value;
@@ -115,6 +106,15 @@
 			});
 		}
 	};
+	//bajarse todas
+	bandRef.get().then((querySnapshot) => {
+		querySnapshot.forEach((band) => {
+			const banda = band.data();
+			console.log(banda);
+			const liBandas = "<li>" + banda.nombre + "</li>"
+			$(".bandas_creadas").append(liBandas);
+		});
+	});
 		
 
 		
