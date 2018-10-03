@@ -57,11 +57,12 @@
 
 	
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script type="text/javascript" src="js/firebase-config.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	function funcion_user () {
         //coge el ID de la banda mandado por URL parameter desde la pantalla del clapp
         var bandId = getUrlParameter("band");
         console.log(bandId);
@@ -91,9 +92,9 @@
                 $(this).html("seguir");
             }
         });
-	</script>
-	
- </body>
+    }
+</script>
+</body>
 </html>
 
 

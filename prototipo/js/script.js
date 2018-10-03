@@ -11,21 +11,22 @@
 //-------------FUNCIONES
 
 
-    // //ver si hay algun usuario logeado, y coger su user ID
-    //     const auth = firebase.auth();
-    //     var userId;
-    //     auth.onAuthStateChanged(user => {
-    //         if (user) {
-    //             // User is signed in.
-    //             console.log("ya estas logueado");
-    //             var user = auth.currentUser;
-    //             userId = user.uid;
-    //             console.log(userId);
-    //         } else {
-    //             // No user is signed in.
-    //             console.log("no estás logueado");
-    //         }
-    //     });
+    //ver si hay algun usuario logeado, y coger su user ID
+        const auth = firebase.auth();
+        var userId;
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in.
+                console.log("ya estas logueado");
+                var user = auth.currentUser;
+                userId = user.uid;
+                console.log(userId);
+                funcion_user();
+            } else {
+                // No user is signed in.
+                console.log("no estás logueado");
+            }
+        });
 
 // --------------Clapp
 

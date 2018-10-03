@@ -51,11 +51,11 @@
 
 	
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script type="text/javascript" src="js/firebase-config.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
 		//avanzar paso
 		$(".sig").click(function() {
 			$(this).parent().removeClass("active");
@@ -76,11 +76,7 @@
 				label.html(labelVal);
 			}		
 		})
-
-		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
-		const userId = getUrlParameter("user");
-		console.log(userId);
-
+	function funcion_user () {
 		//subir banda a CLOUD FIRESTORE
 
 		const bandRef = firestore.collection("bandas");
@@ -116,6 +112,7 @@
 				$(".bandas_creadas").append(liBandas);
 			});
 		});
+	}
 		
 
 		
@@ -159,8 +156,8 @@
 		// 	$(".bandas_creadas").append(bandas);
 
 		// });
-	</script>
- </body>
+</script>
+</body>
 </html>
 
 

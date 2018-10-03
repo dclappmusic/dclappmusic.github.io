@@ -20,6 +20,7 @@ var distancia_max = 0.001000;
                 longitud: longitud
             };
             console.log("encontrar en: " + posicion_clapp.latitud + "," + posicion_clapp.longitud);
+            console.log("shows:");
             console.log(shows);
             shows.forEach((Ishow_activo) => {
                 console.log(Ishow_activo.banda);

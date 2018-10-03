@@ -35,17 +35,22 @@
 
 	
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script type="text/javascript" src="js/firebase-config.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="js/clapp.js"></script>
-	<script type="text/javascript">
-		  
-		//crear objeto user con el usuario de la DB
-		const userId = getUrlParameter("user");
-		// console.log(usuario);
-		var user;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/clapp.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	var user;
+	var shows = [];
+	var banda_activa;
+	var banda_activa_id;
+	var show_encontrado_id;
+	const showRef = firestore.collection("shows");	
+	const bandRef = firestore.collection("bandas");
+
+	function funcion_user () {
+		
 		const userRef = firestore.collection("usuarios").doc(userId);
 		userRef.get().then((doc) => {
 			// console.log("Document data:", doc.data());
@@ -53,17 +58,11 @@
 		});
 
 		//crear array de shows activos en la DB
-		var shows = [];
-		const showRef = firestore.collection("shows");
-		var banda_activa;
-		var banda_activa_id;
-		var show_encontrado_id;
-		const bandRef = firestore.collection("bandas");
-
 		showRef.where("active", "==", true).get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					shows.push(doc.data());
+					console.log("shows:");
 					console.log(shows);
 				});
 				tryGeolocation();
@@ -71,10 +70,9 @@
 			.catch(function(error) {
 				console.log("Error getting documents: ", error);
 			});
-
-	</script>
-	
- </body>
+	};
+</script>
+</body>
 </html>
 
 

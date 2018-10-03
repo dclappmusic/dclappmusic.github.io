@@ -28,74 +28,73 @@
 
 	
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script type="text/javascript" src="js/firebase-config.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript">
-		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
-		var bandId = getUrlParameter("band");
-		var banda;
-		var showId;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
+	var bandId = getUrlParameter("band");
+	var banda;
+	var showId;
 
-		//traer banda de base de datos
-		const bandRef = firestore.collection("bandas").doc(bandId);
-		bandRef.get().then((doc) => {
-			banda = doc.data();
-			console.log("banda: " + banda.nombre);
-		})
-		
-		//guardar show en shows
-		tryGeolocation();
-		
-		function showtime() {
-			console.log("showtime2");
-			
-			const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-			const showRef = firestore.collection("shows");
-
-			//guardar objeto del show
-			var show = {};
-			show.banda = bandId;
-			show.posicion = {}
-			show.posicion.latitud = latitud;
-			show.posicion.longitud = longitud;
-			show.comienzo = timestamp;
-			show.active = true;
-
-			//subir show a shows
-			showRef.add(show)
-				.then((show) => {
-					//subir shows a banda
-					showId = show.id;
-					console.log(showId);
-					showRef.doc(showId).update({showId: showId});
-					bandRef.update({
-						shows: firebase.firestore.FieldValue.arrayUnion(showId)
-					});
-				}).catch(function(error){
-					console.log("error: " + error);
-				}
-			);
-		}
-		
-		function end_show() {
-			// showId = showId._key.path.segments[1];
-			const showRef = firestore.collection("shows");
-			const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-			showRef.doc(showId).update({
-				active: false,
-				final: timestamp
-			}).then(function() {
-				window.history.back();
-			});
-
-			//acabar el show cuando pase x tiempo
-		};
-		 
-	</script>
+	//traer banda de base de datos
+	const bandRef = firestore.collection("bandas").doc(bandId);
+	bandRef.get().then((doc) => {
+		banda = doc.data();
+		console.log("banda: " + banda.nombre);
+	})
 	
- </body>
+	//guardar show en shows
+	tryGeolocation();
+	
+	function showtime() {
+		console.log("showtime2");
+		
+		const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+		const showRef = firestore.collection("shows");
+
+		//guardar objeto del show
+		var show = {};
+		show.banda = bandId;
+		show.posicion = {}
+		show.posicion.latitud = latitud;
+		show.posicion.longitud = longitud;
+		show.comienzo = timestamp;
+		show.active = true;
+
+		//subir show a shows
+		showRef.add(show)
+			.then((show) => {
+				//subir shows a banda
+				showId = show.id;
+				console.log(showId);
+				showRef.doc(showId).update({showId: showId});
+				bandRef.update({
+					shows: firebase.firestore.FieldValue.arrayUnion(showId)
+				});
+			}).catch(function(error){
+				console.log("error: " + error);
+			}
+		);
+	}
+	
+	function end_show() {
+		// showId = showId._key.path.segments[1];
+		const showRef = firestore.collection("shows");
+		const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+		showRef.doc(showId).update({
+			active: false,
+			final: timestamp
+		}).then(function() {
+			window.history.back();
+		});
+
+		//acabar el show cuando pase x tiempo
+	};
+		 
+</script>
+</body>
 </html>
 
 

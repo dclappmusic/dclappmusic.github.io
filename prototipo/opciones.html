@@ -36,25 +36,16 @@
 
 	
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript">
-		//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
-		const userId = getUrlParameter("user");
-		console.log(userId);
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	function funcion_user () {
 		
-		//añadir usuario al final de todos los links
-		$('a').each(function() {
-			var href = $(this).attr('href');
-
-			if (href) {
-				href += (href.match(/\?/) ? '&' : '?') + "user=" + userId;
-				$(this).attr('href', href);
-			}
-		});
-
-	</script>
- </body>
+	}
+</script>
+</body>
 </html>
 
 
