@@ -511,6 +511,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   position: relative;
   height: 60px;
   width: 100%;
+}
+
+.historial .clapps .clappeado a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -519,21 +522,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
           justify-content: center;
 }
 
-.historial .clapps .clappeado img {
+.historial .clapps .clappeado a img {
   width: 16%;
   height: 85%;
   margin-right: 10px;
   border-radius: 87px;
 }
 
-.historial .clapps .clappeado .band {
+.historial .clapps .clappeado a .band {
   width: 70%;
   font-family: "Roboto", Arial, helvetica;
   color: white;
   font-size: 20px;
 }
 
-.historial .clapps .clappeado .clapps_dados {
+.historial .clapps .clappeado a .clapps_dados {
   font-family: "Roboto", Arial, helvetica;
   color: white;
   font-size: 20px;

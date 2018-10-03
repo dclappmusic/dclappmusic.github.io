@@ -319,32 +319,34 @@
 			position: relative;
 			height: 60px;
 			width: 100%;
-			display: flex;
-			justify-content: center;
-			img {
-				// position: absolute;
-				width: 16%;
-				height: 85%;
-				margin-right: 10px;
-				// left: 75px;
-				// top: 27px;
-				// background: url(../images/perfil_markuser.jpg);
-				// background-size: cover;
-				border-radius: 87px;
-			}
-			.band {
-				// display: inline-block;
-				width: 70%;
-				font-family: $Roboto;
-				color: white;
-				font-size: 20px;
-			}
-			.clapps_dados {
-				// display: inline-block;
-				font-family: $Roboto;
-				color: white;
-				font-size: 20px;
-			}
+			a {
+				display: flex;
+				justify-content: center;
+				img {
+					// position: absolute;
+					width: 16%;
+					height: 85%;
+					margin-right: 10px;
+					// left: 75px;
+					// top: 27px;
+					// background: url(../images/perfil_markuser.jpg);
+					// background-size: cover;
+					border-radius: 87px;
+				}
+				.band {
+					// display: inline-block;
+					width: 70%;
+					font-family: $Roboto;
+					color: white;
+					font-size: 20px;
+				}
+				.clapps_dados {
+					// display: inline-block;
+					font-family: $Roboto;
+					color: white;
+					font-size: 20px;
+				}
+			}	
 		}
 	}
 }

@@ -63,7 +63,7 @@
 						const bandRef = bandsRef.doc(I_banda);
 						bandRef.get().then((doc) => {
 							const db_banda = doc.data();
-							const liBandas = "<li><a href='perfil.html?user=" + userId + "&band=" + doc.id + "'><img /><p class='band'>" + db_banda.nombre + "</p></a></li>"
+							const liBandas = "<li class='clappeado'><a href='perfil.html?band=" + doc.id + "'><img src='images/perfil_kurt.png' /><p class='band'>" + db_banda.nombre + "</p></a></li>"
 							$(".clapps").append(liBandas);
 						});
 					});
