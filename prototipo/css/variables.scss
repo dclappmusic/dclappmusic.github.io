@@ -132,5 +132,15 @@ $mobile:"(max-width:768px)";
 }
 
 
+@function makelongshadow($color) {
+  $val: 0px 0px $color;
+  @for $i from 1 through 200 {
+    $val: #{$val}, #{$i * 3}px #{$i}px #{$color};
+  }
+  @return $val;
+}
 
+@mixin longshadow($color) {
+  box-shadow: makelongshadow($color);
+}
 

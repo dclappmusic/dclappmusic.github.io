@@ -43,7 +43,9 @@
                 </button>
             </div>
             <div class="tab reset">
-                RESET
+                <button id="boton" class="boton-med" onclick="">
+                    Reset
+                </button>
             </div>
         </div>
         <div class="logout">
@@ -52,9 +54,7 @@
                 logout
             </button>
         </div>
-        
-	</div>
-	
+    </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
@@ -140,9 +140,8 @@
                 
                 if(user != null) {
                     email = user.email;
-                    $(".inputs_comunes").hide();
-                    $(".tab").hide();
                     $(".tabs").hide();
+                    $(".form").hide();
                     $(".logout").show();
                     $(".welcome").html("bienvenido: " + email);
                     var href = $(".close").attr("href");
@@ -152,12 +151,9 @@
             } else {
                 // No user is signed in.
                 $(".tabs").show();
-                $(".tab").show();
-                $(".login").addClass("active").siblings().removeClass("active");
-                $(".inputs_comunes").show();
-                $(".welcome").html("");
+                $(".form").show();
                 $(".logout").hide();
-                $(".tab.signup").hide();
+                $(".welcome").html("");
                 console.log("no estás signeado");
             }
         });

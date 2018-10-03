@@ -159,7 +159,8 @@
 .home {
 	.boton {
 		background-color: $primario;
-		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
+		// box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
+		@include longshadow(#DFDFDF);
 	}
 	.intro_clapp {
 		color: $secundario;
@@ -218,6 +219,7 @@
 		color: white;
 		padding: 2% 4%;
 		background-color: $primario;
+		border: none;
 		box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3), 0px 0px 15px rgba(252, 81, 48, 0.4);
 		border-radius: 11px;
 	}
@@ -461,6 +463,9 @@
 	color: white;
 	.paso {
 		display: none;
+		.form-input {
+			@include longshadow(darken($secundario, 3%));
+		}
 		&.active {display: block;}
 		&.imagen {
 			.image_label {
@@ -529,6 +534,7 @@
 		font-weight: 600;
 		font-size: 40px;
 		padding-left: .8em;
+		@include longshadow(darken($secundario, 3%));
 	}
 	.intro_clapp {
 		color: white;
