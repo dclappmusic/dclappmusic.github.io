@@ -538,8 +538,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .historial .clapps .clappeado a img {
-  width: 16%;
-  height: 85%;
+  width: 15vw;
+  height: 15vw;
   margin-right: 10px;
   border-radius: 87px;
 }

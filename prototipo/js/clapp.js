@@ -60,32 +60,42 @@ var distancia_max = 0.001000;
 
         $(".btn_clapp").click(function() {
             if (login) {
-                if (clapps == 0) {
-                    clapps += 1;
-                    $(".num_clapps").html("+" + clapps + " clapp");
-                } else if (clapps < 50) { 
-                    clapps += 1;
-                    $(".num_clapps").html("+" + clapps + " clapps");
+                if (banda_activa) {
+                    $(this).addClass("active");
+
+                    if (clapps == 0) {
+                        clapps += 1;
+                        $(".num_clapps").html("+" + clapps + " clapp");
+                    } else if (clapps < 50) { 
+                        clapps += 1;
+                        $(".num_clapps").html("+" + clapps + " clapps");
+                    }
+                    //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
+                    console.log("Clapp de " + userId + " a " + banda_activa_id);
+
+                    const userRef = firestore.collection("usuarios").doc(userId);
+                    const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+
+                    userRef.get().then((doc) => {
+                        user = doc.data();
+                    });
+                    
+                    var clapp = {};
+                    clapp.band = banda_activa_id;
+                    clapp.show = show_encontrado_id;
+                    clapp.time = timestamp;
+                    clapp.coords = {}
+                    clapp.coords.latitud = latitud;
+                    clapp.coords.longitud = longitud;
+                    clapp.user = userId;
+
+                    userRef.collection("clapps").doc(show_encontrado_id).set(clapp);
+                    bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp);
+                    showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp);
+                } else {
+                
                 }
-                //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
-                console.log("Clapp de " + userId + " a " + banda_activa_id);
                 
-                const userRef = firestore.collection("usuarios").doc(userId);
-                userRef.get().then((doc) => {
-                    user = doc.data();
-                });
-                
-                userRef.update({
-                    clapps: firebase.firestore.FieldValue.arrayUnion(banda_activa_id)
-                });
-                bandRef.doc(banda_activa_id).update({
-                    //cada clapp, suma un elemento al array de clapps con el id del clapper
-                    clapps: firebase.firestore.FieldValue.arrayUnion(userId)
-                });
-                showRef.doc(show_encontrado_id).update({
-                    //cada clapp, suma un elemento al array de clapps con el id del clapper
-                    clapps: firebase.firestore.FieldValue.arrayUnion(userId)
-                });
             } else {
                 window.location.href = "login.html";
             } 

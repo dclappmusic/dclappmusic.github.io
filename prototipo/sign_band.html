@@ -85,6 +85,7 @@
 	const bandRef = firestore.collection("bandas");
 	const userRef = firestore.collection("usuarios");
 	const storageRef = firebase.storage().ref();
+	const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
 	function bandUp() {
 		
@@ -97,7 +98,9 @@
 			bandRef.add({
 				nombre: nombre,
 				ciudad: ciudad,
-				uid: userId
+				uid: userId,
+				creada: timestamp
+				
 			}).then((band) => {
 				bandId = band.id;
 				$(".paso").hide();
@@ -121,7 +124,7 @@
 					.catch(console.error);
 
 				//redirigir a showtime
-				window.location.href = "showtime.html?band=" + bandID.id;
+				window.location.href = "showtime.html?band=" + bandId;
 			}).catch(function(error){
 				console.log("error: " + error);
 			});

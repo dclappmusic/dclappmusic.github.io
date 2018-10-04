@@ -41,7 +41,7 @@
             if (window.location.pathname.indexOf("clapp.html") > -1) {
                 console.log("clapping");
                 encontrar();
-            } else if (window.location.pathname.indexOf("show.html") > -1) {
+            } else if (window.location.pathname.indexOf("showtime.html") > -1) {
                 console.log("showtime1");
                 $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
                 showtime();
@@ -78,6 +78,7 @@
             switch (error.code) {
                 case error.TIMEOUT:
                     console.log("Browser geolocation error !\n\nTimeout.");
+                    $(".act .name").html("Hay problemas con el acceso a tu ubicación");
                 break;
                 case error.PERMISSION_DENIED:
                     if(error.message.indexOf("Only secure origins are allowed") == 0) {
@@ -85,6 +86,7 @@
                     } else {
                         console.log("Permison denied");
                         $(".act .name").html("No nos has dado permiso de acceder a tu ubicación");
+                        $(".intro_clapp h3").html("No nos has dado permiso de acceder a tu ubicación");
                     }
                 break;
                 case error.POSITION_UNAVAILABLE:
@@ -103,6 +105,7 @@
                 );
             } else {
                 console.log("Navigator geolocation unavailable.");
+                $(".act .name").html("Hay problemas con el acceso a tu ubicación");
             }
         };
 
