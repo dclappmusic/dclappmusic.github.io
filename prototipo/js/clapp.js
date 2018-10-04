@@ -47,7 +47,7 @@ var distancia_max = 0.001000;
                 banda_activa = doc.data();
                 banda_activa_id = doc.id;
                 console.log(banda_activa.nombre + ", perfil encontrado");
-                // $(".clapp .fondo img").attr("src", banda_activa.imagen);
+                $(".clapp .fondo img").attr("src", banda_activa.imagen);
                 $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
             });
         };

@@ -413,6 +413,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border-radius: 11px;
 }
 
+.login .social_login {
+  position: fixed;
+  width: 50%;
+  margin-left: 25%;
+  bottom: 5%;
+  z-index: 100;
+}
+
+.login .social_login .fb_login {
+  width: 4em;
+  height: 4em;
+  background: url("../images/facebook.svg") no-repeat;
+  background-size: contain;
+}
+
 .clapp .fondo {
   position: absolute;
   width: 100%;

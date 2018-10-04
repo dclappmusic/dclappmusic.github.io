@@ -30,18 +30,19 @@
 			<div class="paso ciudad">
 				<label for="band-city" class="form-label">¿En qué ciudad reside tu banda?</label>
 				<input id="band-city" class="form-input" placeholder="Berlín" type="text" name="band-city" value="">
-				<!-- <p class="boton-sm sig">sig</p> -->
-				<button id="boton" class="boton-med" onclick="bandUp();">
-					listo
-				</button>
+				<p class="boton-sm sig">sig</p>
+				
 			</div>
-			<!-- <div class="paso imagen">
+			<div class="paso imagen">
 				<p class="form-label">Imagen de perfil</p>
 				<label class="image_label" for="band-image">
 					<span>+</span>
 				</label>
-				<input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">				
-			</div> -->
+				<input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">	
+				<button id="boton" class="boton-med" onclick="bandUp();">
+					listo
+				</button>			
+			</div>
 			<div class="paso subida">
 				<p class="parrafo">BANDA CREADA CORRECTAMENTE</p>
 				<ul class="parrafo bandas_creadas"></ul>
@@ -83,24 +84,44 @@
 
 	const bandRef = firestore.collection("bandas");
 	const userRef = firestore.collection("usuarios");
+	const storageRef = firebase.storage().ref();
 
 	function bandUp() {
+		
 		var nombre = document.querySelector("#band-name").value;
 		var ciudad = document.querySelector("#band-city").value;
+		var imagen = document.querySelector("#band-image").files[0];
+		var bandId;
 		
-		if (nombre && ciudad) {
+		if (nombre && ciudad && imagen) {
 			bandRef.add({
 				nombre: nombre,
 				ciudad: ciudad,
 				uid: userId
-			}).then((bandRef) => {
+			}).then((band) => {
+				bandId = band.id;
 				$(".paso").hide();
 				$(".subida").show();
 				userRef.doc(userId).update({
-					band: firebase.firestore.FieldValue.arrayUnion(bandRef.id),
+					band: firebase.firestore.FieldValue.arrayUnion(bandId),
 					is_musician: true
 				});
-				window.location.href = "showtime.html?band=" + bandRef.id;
+				const fotoId = bandId;
+				console.log(imagen);
+				console.log(imagen.name);
+				console.log(fotoId);
+				const upload = storageRef.child(fotoId).put(imagen);
+				upload
+					.then(snapshot => snapshot.ref.getDownloadURL())
+					.then((url) => {
+						console.log(url);
+						bandRef.doc(bandId).update({imagen: url});
+						// document.querySelector('#someImageTagID').src = url;
+					})
+					.catch(console.error);
+
+				//redirigir a showtime
+				// window.location.href = "showtime.html?band=" + bandID.id;
 			}).catch(function(error){
 				console.log("error: " + error);
 			});

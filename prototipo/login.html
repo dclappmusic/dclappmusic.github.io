@@ -29,7 +29,7 @@
             <div class="inputs_comunes">
                 <label for="user-email" class="form-label">Email</label>
                 <input class="form-input" id="user-email" placeholder="email" type="text" name="user-email" value="">
-                <label for="user-password" type="password" class="form-label">Contraseña</label>
+                <label for="user-password" type="password" class="form-label password">Contraseña</label>
                 <input class="form-input" id="user-password" placeholder="contraseña" type="text" name="user-password" value="">
             </div>
             <div class="tab login active">
@@ -38,22 +38,28 @@
                 </button>
             </div>
             <div class="tab signup">
+                    <label for="user-city" type="text" class="form-label">Ciudad</label>
+                    <input class="form-input" id="user-city" placeholder="Madrid" type="text" name="user-city" value="">
                 <button id="boton" class="boton-med" onclick="signUp();">
                     Sign UP
                 </button>
             </div>
             <div class="tab reset">
-                <button id="boton" class="boton-med" onclick="">
+                <button id="boton" class="boton-med" onclick="reset();">
                     Reset
                 </button>
             </div>
         </div>
         <div class="logout">
             <span class="welcome"></span>
-            <button class="boton-med logout_btn" onclick="logout();">
+            <div class="boton-med logout_btn" onclick="logout();">
                 logout
-            </button>
+            </div>
         </div>
+        <!-- <div class="social_login">
+            <button class="fb_login" onclick="sign_up_fb();"></button>
+
+        </div> -->
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -66,6 +72,14 @@
             var tab = $(this).attr("class");
             $(this).addClass("active").siblings().removeClass("active");
             $(".form .tab." + tab).show().addClass("active").siblings().removeClass("active");
+
+            if (tab === "reset") {
+                $("#user-password").hide();
+                $("label.password").hide();
+            } else {
+                $("#user-password").show();
+                $("label.password").show();
+            }
         });
 
 
@@ -74,6 +88,7 @@
 
         const user_email = document.getElementById("user-email");
         const user_password = document.getElementById("user-password");
+        const user_city = document.getElementById("user-city");
 
         function login() {
             const email = user_email.value;
@@ -103,6 +118,7 @@
         function signUp() {
             const email = user_email.value;
             const password = user_password.value;
+            const ciudad = user_city.value;
             
             //crear login de usuario
             auth.createUserWithEmailAndPassword(email, password)
@@ -113,7 +129,8 @@
                     
                     userRef.doc(user.uid).set({
                         uid: user.uid,
-                        email: email
+                        email: email,
+                        ciudad: ciudad
                     }).then(function(){
                         window.location.href = "index.html";
                     });
@@ -124,6 +141,39 @@
                 var errorMessage = error.message;
                 window.alert("error: " + errorMessage) ;
             });
+        }
+        function reset() {
+            const email = user_email.value;
+            auth.sendPasswordResetEmail(email).then(function() {
+            // Email sent.
+            }).catch(function(error) {
+            // An error happened.
+            });
+        }
+
+        function sign_up_fb() {
+            var provider = new firebase.auth.FacebookAuthProvider();
+            provider.addScope('email');
+            provider.addScope('user_age_range');
+            provider.addScope('user_location');
+            firebase.auth().useDeviceLanguage();
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                // ...
+                }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+            
         }
         
 

@@ -223,6 +223,19 @@
 		box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3), 0px 0px 15px rgba(252, 81, 48, 0.4);
 		border-radius: 11px;
 	}
+	.social_login {
+		position: fixed;
+		width: 50%;
+		margin-left: 25%;
+		bottom: 5%;
+		z-index: 100;
+		.fb_login {
+			width: 4em;
+			height: 4em;
+			background: url("../images/facebook.svg") no-repeat;
+			background-size: contain;
+		}
+	}
 }
 
 .clapp {	
