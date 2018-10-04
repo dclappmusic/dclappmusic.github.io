@@ -66,29 +66,50 @@
 
 	
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bandas.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript">
-		var band = bandas.find(o => o.name === "KURT");
-        console.log(band);
-        $(".tabs li").click(function(){
-            var tab = $(this).data("tab");
-            console.log(tab);
-            $(this).addClass("active").siblings().removeClass("active");
-            $(".secciones ." + tab).show().siblings().hide();
-        });
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
 
+    $(".tabs li").click(function(){
+        var tab = $(this).data("tab");
+        console.log(tab);
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".secciones ." + tab).show().siblings().hide();
+    });
 
-        $(document).ready(function(){
-            $(".act .imagen").css("background-image", "url(" + band.imagen + ")");
-            $(".act .name").html(band.name);
-            $(".act .resumen .ciudad p").html(band.ciudad);
-            $(".act .descripcion .parrafo").html(band.descripcion);
+    function funcion_user () {
+		var bandId = getUrlParameter("band");
+		
+		$('a').each(function() {
+			var href = $(this).attr('href');
+			if (href && (href != "index.html")) {
+				href += (href.match(/\?/) ? '&' : '?') + "band=" + bandId;
+				$(this).attr('href', href);
+			}
         });
-	</script>
-	
- </body>
+        //encuentra la banda seguún el ID
+        var banda;
+        //traer banda de base de datos
+		const bandRef = firestore.collection("bandas").doc(bandId);
+		bandRef.get().then((doc) => {
+			banda = doc.data();
+            console.log("banda: " + banda.nombre);
+
+        //diplay en pantalla de datos de la banda
+            $(".act .name").html(banda.nombre);
+            $(".act .resumen .ciudad p").html(banda.ciudad);
+            if (banda.imagen) {
+                $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
+            } else {
+                $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
+            }
+            // $(".act .descripcion .parrafo").html(band.descripcion);
+		});
+	};    
+</script>
+</body>
 </html>
 
 

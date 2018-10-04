@@ -71,7 +71,8 @@
         $(".tabs h3").click(function(){
             var tab = $(this).attr("class");
             $(this).addClass("active").siblings().removeClass("active");
-            $(".form .tab." + tab).show().addClass("active").siblings().removeClass("active");
+
+            $(".form .tab." + tab).addClass("active").siblings().removeClass("active");
 
             if (tab === "reset") {
                 $("#user-password").hide();

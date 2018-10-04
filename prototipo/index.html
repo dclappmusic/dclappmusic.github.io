@@ -24,7 +24,7 @@
 		</div>
 
 		<ul class="menu">
-			<li class="menu-tit">
+			<li class="menu-tit historial">
 				<a href="historial.html">historial</a>
 			</li>
 			<li class="menu-tit active" id="preclapp">
@@ -44,8 +44,11 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
 	function funcion_user () {
+		if (!login) {
+			$(".menu .historial a").attr("href", "login.html");
+		} 
 		var user;
-
+		
 		//cargar el usuario de la DB
 		const userRef = firestore.collection("usuarios").doc(userId);
 		const bandsRef = firestore.collection("bandas");

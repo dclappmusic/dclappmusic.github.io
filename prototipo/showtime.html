@@ -51,8 +51,7 @@
 		
 		$('a').each(function() {
 			var href = $(this).attr('href');
-			
-			if (href) {
+			if (href && (href != "index.html")) {
 				href += (href.match(/\?/) ? '&' : '?') + "band=" + bandaId;
 				$(this).attr('href', href);
 			}

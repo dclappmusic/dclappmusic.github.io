@@ -36,7 +36,7 @@
 			<div class="paso imagen">
 				<p class="form-label">Imagen de perfil</p>
 				<label class="image_label" for="band-image">
-					<span>+</span>
+					<span class="empty">+</span>
 				</label>
 				<input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">	
 				<button id="boton" class="boton-med" onclick="bandUp();">
@@ -44,7 +44,7 @@
 				</button>			
 			</div>
 			<div class="paso subida">
-				<p class="parrafo">BANDA CREADA CORRECTAMENTE</p>
+				<a class="parrafo" href="">BIENVENIDO</a>
 				<ul class="parrafo bandas_creadas"></ul>
 			</div>
         </div>
@@ -57,26 +57,27 @@
 <script type="text/javascript" src="js/firebase-config.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
-		//avanzar paso
-		$(".sig").click(function() {
-			$(this).parent().removeClass("active");
-			$(this).parent().next().addClass("active");
-		});
+	//avanzar paso
+	$(".sig").click(function() {
+		$(this).parent().removeClass("active");
+		$(this).parent().next().addClass("active");
+	});
 
-		//subir imagen de perfil
-		var input = $('.image-input');
-		var label = $('.image_label');
-		var labelVal = label.html();
-		//escribir en el label el nombre de la imagen subida
-		input.on("change", function(e) {
-			var fileName = e.target.value.split( '\\' ).pop();
+	//cargar imagen de perfil
+	var image_input = $('.image-input');
+	var image_label = $('.image_label');
+	var image_labelVal = image_label.html();
+	//escribir en el label el nombre de la imagen subida
+	image_input.on("change", function(e) {
+		var fileName = e.target.value.split( '\\' ).pop();
 
-			if( fileName ) {
-				label.find('span').html(fileName);
-			} else {
-				label.html(labelVal);
-			}		
-		})
+		if( fileName ) {
+			image_label.find('span').removeClass("empty").html(fileName);
+			// imageUp();
+		} else {
+			image_label.html(image_labelVal);
+		}		
+	})
 	function funcion_user () {
 		
 	}
@@ -86,50 +87,74 @@
 	const userRef = firestore.collection("usuarios");
 	const storageRef = firebase.storage().ref();
 	const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+	var bandId;
 
 	function bandUp() {
 		
 		var nombre = document.querySelector("#band-name").value;
 		var ciudad = document.querySelector("#band-city").value;
-		var imagen = document.querySelector("#band-image").files[0];
-		var bandId;
 		
-		if (nombre && ciudad && imagen) {
+		
+		if (nombre && ciudad) {
 			bandRef.add({
 				nombre: nombre,
 				ciudad: ciudad,
 				uid: userId,
 				creada: timestamp
-				
 			}).then((band) => {
 				bandId = band.id;
-				$(".paso").hide();
-				$(".subida").show();
+				// $(".paso").hide();
+				// $(".subida").show();
 				userRef.doc(userId).update({
 					band: firebase.firestore.FieldValue.arrayUnion(bandId),
 					is_musician: true
 				});
-				const fotoId = bandId;
-				console.log(imagen);
-				console.log(imagen.name);
-				console.log(fotoId);
-				const upload = storageRef.child(fotoId).put(imagen);
-				upload
-					.then(snapshot => snapshot.ref.getDownloadURL())
-					.then((url) => {
-						console.log(url);
-						bandRef.doc(bandId).update({imagen: url});
-						// document.querySelector('#someImageTagID').src = url;
-					})
-					.catch(console.error);
-
+				imageUp();
+				// upload
+				// 	.then(snapshot => snapshot.ref.getDownloadURL())
+				// 	.then((url) => {
+				// 		console.log(url);
+				// 		bandRef.doc(bandId).update({imagen: url});
+				// 	})
+				// 	.catch(console.error);
+				
+				$(".paso").hide();
+				$(".subida").show();
+				$(".subida a").attr("href", "showtime.html?band=" + bandId).html("BIENVENIDO <br>" + nombre);
 				//redirigir a showtime
-				window.location.href = "showtime.html?band=" + bandId;
+				// window.location.href = "showtime.html?band=" + bandId;
 			}).catch(function(error){
 				console.log("error: " + error);
 			});
 		}
 	};
+
+	function imageUp() {
+		var imagen = document.querySelector("#band-image").files[0];
+		const fotoId = bandId;
+		console.log(imagen);
+		console.log(imagen.name);
+		console.log(fotoId);
+		const upload = storageRef.child(fotoId).put(imagen);
+
+		upload.on('state_changed', function(snapshot) {
+			// Observe state change events such as progress, pause, and resume
+			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+			var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+			console.log('Upload is ' + progress + '% done');
+			image_label.find('span').removeClass("empty").html(progress + "%");
+		}, function(error) {
+			// Handle unsuccessful uploads
+		}, function() {
+			// Handle successful uploads on complete
+			// For instance, get the download URL: https://firebasestorage.googleapis.com/...
+			upload.snapshot.ref.getDownloadURL().then((url) => {
+				console.log("imagen guardada en: " + url);
+				bandRef.doc(bandId).update({imagen: url});
+			});
+		});
+	}
+
 	//bajarse todas
 	bandRef.get().then((querySnapshot) => {
 		querySnapshot.forEach((band) => {

@@ -76,10 +76,13 @@
             console.log("banda: " + banda.nombre);
 
         //diplay en pantalla de datos de la banda
-            $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
-            $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
             $(".act .name").html(banda.nombre);
             $(".act .resumen .ciudad p").html(banda.ciudad);
+            if (banda.imagen) {
+                $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
+            } else {
+                $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
+            }
             // $(".act .descripcion .parrafo").html(band.descripcion);
 		});
 
