@@ -21,9 +21,9 @@
         </a>
         <h1 class="cabecera"><img src="images/icon_completo.png"></h1>
         <div class="tabs">
-            <h3 class="login menu-tit active">LOG IN</h3>
-            <h3 class="signup menu-tit">SIGN UP</h3>
-            <h3 class="reset menu-tit">RESET</h3>
+            <h3 class="login menu-tit active" data-href="login">LOG IN</h3>
+            <h3 class="signup menu-tit" data-href="signup">SIGN UP</h3>
+            <h3 class="reset menu-tit" data-href="reset">RESET</h3>
         </div>
         <div class="form">
             <div class="inputs_comunes">
@@ -69,7 +69,7 @@
     <script type="text/javascript">
     //Change tabs log-sign-forgot
         $(".tabs h3").click(function(){
-            var tab = $(this).attr("class");
+            var tab = $(this).attr("data-href");
             $(this).addClass("active").siblings().removeClass("active");
 
             $(".form .tab." + tab).addClass("active").siblings().removeClass("active");

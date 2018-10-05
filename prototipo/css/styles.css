@@ -134,13 +134,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-size: 18px;
 }
 
-.menu-tit {
+.menu-tit, .container.login .tabs h3 {
   font-family: "Changa", Arial, helvetica;
   font-size: 13px;
   font-weight: 200;
 }
 
-.menu-tit.active {
+.menu-tit.active, .container.login .tabs h3.active {
   font-size: 20px;
   font-weight: 500;
 }
@@ -190,7 +190,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-align: center;
 }
 
-.container .menu .menu-tit {
+.container .menu .menu-tit, .container.login .menu .tabs h3, .container.login .tabs .menu h3 {
   color: #0C3847;
   width: calc(360px / 3);
 }
@@ -348,11 +348,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   cursor: pointer;
 }
 
-.container.login .tabs .menu-tit {
+.container.login .tabs h3 {
   display: inline-block;
-  width: 30%;
+  width: 20%;
+  font-size: 20px;
   text-align: center;
   color: #0C3847;
+}
+
+.container.login .tabs h3.reset {
+  width: 42%;
+  text-align: right;
 }
 
 .container.login .form .form-input {
@@ -361,6 +367,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border: none;
   margin: 3% auto 7%;
   color: #0C3847;
+}
+
+.container.login .form .form-input.active {
+  text-decoration: underline;
 }
 
 .container.login .form .form-input::-webkit-input-placeholder {
@@ -513,7 +523,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   color: white;
 }
 
-.container.historial .menu .menu-tit {
+.container.historial .menu .menu-tit, .container.historial .menu .container.login .tabs h3, .container.login .tabs .container.historial .menu h3 {
   color: white;
 }
 
@@ -790,7 +800,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   color: white;
 }
 
-.container.showtime .menu .menu-tit {
+.container.showtime .menu .menu-tit, .container.showtime .menu .container.login .tabs h3, .container.login .tabs .container.showtime .menu h3 {
   color: white;
 }
 

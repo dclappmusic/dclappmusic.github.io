@@ -178,11 +178,17 @@
 		display: block;
 		margin: 5% 5% 10%;
 		cursor: pointer;
-		.menu-tit {
+		h3 {
+			@extend .menu-tit;
 			display: inline-block;
-			width: 30%;
+			width: 20%;
+			font-size: 20px;
 			text-align: center;
 			color: $secundario;
+			&.reset {
+				width: 42%;
+				text-align: right;
+			}
 		}
 	}
 	.form {
@@ -194,6 +200,7 @@
 			margin: 3% auto 7%;
 			// top: 40%;
 			color: $secundario;
+			&.active {text-decoration: underline;}
 			&::placeholder {opacity: .5; color: black;}
 		}
 		.form-label {color: $secundario;}
