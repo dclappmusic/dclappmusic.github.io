@@ -16,7 +16,7 @@ $mobile:"(max-width:768px)";
 
 /********************** mixines *************************/
 
-@mixin  typo($ffamily, $fsize, $fcolor){
+@mixin typo($ffamily, $fsize, $fcolor){
 
 	   font-family:$ffamily;
 		      color:$fcolor;

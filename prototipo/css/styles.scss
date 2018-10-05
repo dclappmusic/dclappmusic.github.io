@@ -148,10 +148,11 @@
 		border: none;
 		border-bottom: 4px solid white;
 		font-family: $Changa;
-		font-size: 30px;
+		font-size: 20px;
 		font-weight: 200;
 		color: white;
 		&::placeholder {opacity: .5; color: white;}
+		
 	}
 }
 
@@ -175,15 +176,13 @@
 	.tabs {
 		width:100%;
 		display: block;
-		margin: 5%;
+		margin: 5% 5% 10%;
 		cursor: pointer;
-		.active {
-			font-weight: 600;
-		}
-		h3 {
+		.menu-tit {
 			display: inline-block;
 			width: 30%;
-
+			text-align: center;
+			color: $secundario;
 		}
 	}
 	.form {
@@ -192,11 +191,12 @@
 			// margin-left: 10%;
 			background-color: rgba(0,0,0,.05);
 			border: none;
-			margin: 5% auto;
+			margin: 3% auto 7%;
 			// top: 40%;
 			color: $secundario;
 			&::placeholder {opacity: .5; color: black;}
 		}
+		.form-label {color: $secundario;}
 		.tab {
 			display: none;
 			position: absolute;

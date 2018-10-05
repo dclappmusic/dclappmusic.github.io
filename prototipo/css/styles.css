@@ -298,7 +298,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border: none;
   border-bottom: 4px solid white;
   font-family: "Changa", Arial, helvetica;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 200;
   color: white;
 }
@@ -344,24 +344,22 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .container.login .tabs {
   width: 100%;
   display: block;
-  margin: 5%;
+  margin: 5% 5% 10%;
   cursor: pointer;
 }
 
-.container.login .tabs .active {
-  font-weight: 600;
-}
-
-.container.login .tabs h3 {
+.container.login .tabs .menu-tit {
   display: inline-block;
   width: 30%;
+  text-align: center;
+  color: #0C3847;
 }
 
 .container.login .form .form-input {
   position: relative;
   background-color: rgba(0, 0, 0, 0.05);
   border: none;
-  margin: 5% auto;
+  margin: 3% auto 7%;
   color: #0C3847;
 }
 
@@ -383,6 +381,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .container.login .form .form-input::placeholder {
   opacity: .5;
   color: black;
+}
+
+.container.login .form .form-label {
+  color: #0C3847;
 }
 
 .container.login .form .tab {
