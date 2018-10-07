@@ -1,4 +1,52 @@
-@import "fonts.css";
+
+/*********************  fonts *****************************/
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Regular.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Light.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Medium.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-Medium.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-Light.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-SemiBold.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-Bold.ttf");
+  font-weight: 600;
+}
+
 
 $Roboto: "Roboto", Arial, helvetica;
 $Changa: "Changa", Arial, helvetica;
@@ -13,6 +61,7 @@ $fondo: #F1F1F1;
 
 $Bigdesktop:"(min-width:1366px)";
 $mobile:"(max-width:768px)";
+
 
 /********************** mixines *************************/
 

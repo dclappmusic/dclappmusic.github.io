@@ -1,4 +1,51 @@
-@import url(/Users/robertomesejosalas/websites/dclappmusic.github.io/prototipo/css/fonts.css);
+/*********************  fonts *****************************/
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Regular.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Light.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Medium.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-Medium.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-Light.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-SemiBold.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Changa';
+  src: url("fonts/Changa-Bold.ttf");
+  font-weight: 600;
+}
+
 /*********************** colores ***********************/
 /********************** resoluciones ********************/
 /********************** mixines *************************/
@@ -515,6 +562,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-size: 40px;
 }
 
+.container.clapp .act .show_cercano {
+  color: #0C3847;
+}
+
 .container.historial {
   background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
 }
@@ -815,6 +866,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border-radius: 87px;
 }
 
+.container.show_perfil .act .image-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
 .container.show_perfil .act .name {
   position: relative;
   width: 80%;
@@ -826,6 +886,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-weight: 900;
   line-height: normal;
   font-size: 40px;
+  background: none;
+  border: none;
+  display: block;
 }
 
 .container.show_perfil .act .tabs {

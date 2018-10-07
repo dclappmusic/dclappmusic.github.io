@@ -42,7 +42,9 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
 	function funcion_user () {
-		
+		if (!login) {
+			$(".crear_banda a").attr("href", "login.html");
+		} 
 	}
 </script>
 </body>

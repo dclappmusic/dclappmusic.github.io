@@ -320,6 +320,9 @@
 				font-size: 40px;
 			}
 		}
+		.show_cercano {
+			color: $secundario;
+		}
 	}
 }
 
@@ -585,6 +588,14 @@
 			background-size: cover;
 			border-radius: 87px;
 		}
+		.image-input {
+			width: 0.1px;
+			height: 0.1px;
+			opacity: 0;
+			overflow: hidden;
+			position: absolute;
+			z-index: -1;
+		}
 		.name {
 			position: relative;
 			width: 80%;
@@ -596,6 +607,9 @@
 			font-weight: 900;
 			line-height: normal;
 			font-size: 40px;
+			background: none;
+			border: none;
+			display: block;
 		}
 		.tabs {
 			position: relative;

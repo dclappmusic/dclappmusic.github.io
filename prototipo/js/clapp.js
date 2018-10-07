@@ -1,11 +1,10 @@
 var distancia_max = 0.001000;
 
 //----------------------------------------------------------
-
+var distancia;
     //comparar distancias dadas coordenadas del clapp y del show
         function cerca (posicion1, posicion2) {
             // debugger;
-            var distancia;
             distancia = Math.pow((Math.pow(posicion1.latitud - posicion2.latitud, 2) + Math.pow(posicion1.longitud - posicion2.longitud,2)), 0.5);
             console.log(distancia);
             return distancia <= distancia_max;
@@ -19,6 +18,7 @@ var distancia_max = 0.001000;
                 latitud: latitud,
                 longitud: longitud
             };
+            var show_lejos = {};
             console.log("encontrar en: " + posicion_clapp.latitud + "," + posicion_clapp.longitud);
             console.log("shows:");
             console.log(shows);
@@ -31,11 +31,21 @@ var distancia_max = 0.001000;
                     show_encontrado(Ishow_activo);
                     musico_encontrado = true;
                 } else {
+                    //ordenarlos por distancia, y publicar el mas cercano
+                    show_lejos[Ishow_activo.banda] = distancia;
                     console.log("está lejos");
                 }
             });
             if (!musico_encontrado) {
-                $(".act .name").html("no music :'(");
+                // $(".act .name").html("no music :'(");
+                console.log(show_lejos);
+                var keysSorted = Object.keys(show_lejos).sort(function(a,b){return show_lejos[a]-show_lejos[b]});
+                console.log(keysSorted.map(key => show_lejos[key]));
+                show_lejos_id = Object.keys(show_lejos);
+                console.log(show_lejos_id[0]);
+                show_cercano(show_lejos_id[0]);
+                $(".show_cercano").html("No tienes ningún show cerca<br>Éste es el más cercano que hemos encontrado =)");
+                // $(".show_cerca").html("este es el show más cercano, a: " + keysSorted[show_lejos_id[0]] + "grados");
             }
         };
 
@@ -52,7 +62,19 @@ var distancia_max = 0.001000;
             });
         };
     
-    //ordenar los shows activos por distancia al clapp
+    //bajarse el show más cercano cd no hay ninguno clappeable
+    function show_cercano (Ibanda_encontrada) {
+        console.log("banda lejana más cercana:");
+        console.log(Ibanda_encontrada);
+        bandRef.doc(Ibanda_encontrada).get().then((doc) => {
+            banda_activa = doc.data();
+            banda_activa_id = doc.id;
+            console.log(banda_activa.nombre + ", perfil encontrado");
+            $(".btn_clapp").hide();
+            $(".clapp .fondo img").attr("src", banda_activa.imagen);
+            $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
+        });
+    };
 
 
     //sumar y guardar los clapps
