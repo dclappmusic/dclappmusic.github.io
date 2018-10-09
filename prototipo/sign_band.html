@@ -30,23 +30,35 @@
 			<div class="paso ciudad">
 				<label for="band-city" class="form-label">¿En qué ciudad reside tu banda?</label>
 				<input id="band-city" class="form-input" placeholder="Berlín" type="text" name="band-city" value="">
-				<p class="boton-sm sig">sig</p>
-				
+				<!-- <p class="boton-sm sig">sig</p> -->
+				<button id="boton" class="boton-med" onclick="bandUp();">
+					listo
+				</button>
 			</div>
 			<div class="paso imagen">
+				<p class="form-label">Banda subida correctamente, ahora completa tu perfil con:</p>
 				<p class="form-label">Imagen de perfil</p>
 				<label class="image_label" for="band-image">
 					<span class="empty">+</span>
 				</label>
 				<input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">	
-				<button id="boton" class="boton-med" onclick="bandUp();">
+				<!-- <button id="boton" class="boton-med" onclick="bandUp();">
 					listo
-				</button>			
+				</button>			 -->
+				<p class="boton-sm sig" onclick="imageUp();">sig</p>
 			</div>
-			<div class="paso subida">
+			<div class="paso descripcion">
+				<label for="band-desc" class="form-label">Breve descripción de tu banda</label>
+				<input id="band-desc" class="form-input" placeholder="Somos..." type="text" name="band-desc" value="">
+				<!-- <p class="boton-sm sig">sig</p> -->
+				<button id="boton" class="boton-med" onclick="descUp();">
+					listo
+				</button>
+			</div>
+			<!-- <div class="paso subida">
 				<a class="parrafo" href="">BIENVENIDO</a>
 				<ul class="parrafo bandas_creadas"></ul>
-			</div>
+			</div> -->
         </div>
 	</div>
 
@@ -94,12 +106,12 @@
 		var nombre = document.querySelector("#band-name").value;
 		var ciudad = document.querySelector("#band-city").value;
 		
-		
 		if (nombre && ciudad) {
 			bandRef.add({
 				nombre: nombre,
 				ciudad: ciudad,
 				uid: userId,
+				num_clapps: 0,
 				creada: timestamp
 			}).then((band) => {
 				bandId = band.id;
@@ -109,7 +121,7 @@
 					band: firebase.firestore.FieldValue.arrayUnion(bandId),
 					is_musician: true
 				});
-				imageUp();
+				// imageUp();
 				// upload
 				// 	.then(snapshot => snapshot.ref.getDownloadURL())
 				// 	.then((url) => {
@@ -118,11 +130,14 @@
 				// 	})
 				// 	.catch(console.error);
 				
-				$(".paso").hide();
-				$(".subida").show();
-				$(".subida a").attr("href", "showtime.html?band=" + bandId).html("BIENVENIDO <br>" + nombre);
-				//redirigir a showtime
-				window.location.href = "showtime.html?band=" + bandId;
+				// $(".paso").hide();
+				// $(".subida").show();
+				// $(".subida a").attr("href", "showtime.html?band=" + bandId).html("BIENVENIDO <br>" + nombre);
+				// //redirigir a showtime
+				// window.location.href = "showtime.html?band=" + bandId;
+				console.log("banda creada");
+				$(".paso.ciudad").removeClass("active");
+				$(".paso.imagen").addClass("active");
 			}).catch(function(error){
 				console.log("error: " + error);
 			});
@@ -140,30 +155,46 @@
 		upload.on('state_changed', function(snapshot) {
 			// Observe state change events such as progress, pause, and resume
 			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+			$(".paso.imagen .sig").hide();
 			var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 			console.log('Upload is ' + progress + '% done');
 			image_label.find('span').removeClass("empty").html(progress + "%");
 		}, function(error) {
 			// Handle unsuccessful uploads
+			console.log("error: " + error);
 		}, function() {
 			// Handle successful uploads on complete
 			// For instance, get the download URL: https://firebasestorage.googleapis.com/...
 			upload.snapshot.ref.getDownloadURL().then((url) => {
 				console.log("imagen guardada en: " + url);
-				bandRef.doc(bandId).update({imagen: url});
+				bandRef.doc(bandId).update({imagen: url}).then(function(){
+					$(".paso.imagen .sig").show();
+				});
 			});
 		});
 	}
+	function descUp() {
+		var desc = document.querySelector("#band-desc").value;
+		if (desc) {
+			bandRef.doc(bandId).update({
+				descripcion: desc
+			}).then(function() {
+				window.location.href = "showtime.html?band=" + bandId;
+			});
+		} else {
+			window.location.href = "showtime.html?band=" + bandId;
+		}
+	}
 
 	//bajarse todas
-	bandRef.get().then((querySnapshot) => {
-		querySnapshot.forEach((band) => {
-			const banda = band.data();
-			console.log(banda);
-			const liBandas = "<li>" + banda.nombre + "</li>"
-			$(".bandas_creadas").append(liBandas);
-		});
-	});
+	// bandRef.get().then((querySnapshot) => {
+	// 	querySnapshot.forEach((band) => {
+	// 		const banda = band.data();
+	// 		console.log(banda);
+	// 		const liBandas = "<li>" + banda.nombre + "</li>"
+	// 		$(".bandas_creadas").append(liBandas);
+	// 	});
+	// });
 		
 
 		

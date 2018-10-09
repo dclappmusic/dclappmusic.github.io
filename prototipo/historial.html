@@ -49,40 +49,39 @@
 		//cargar historial de clapps dado el identificador del perfil del usuario
 		function cargar_historial (I_id) {
 			console.log("cargar historial");
+			var clapp;
 
 			//descargarse user_persona 
-			const userRef = firestore.collection("usuarios").doc(userId);
+			const userRef = firestore.collection("usuarios").doc(userId).collection("clapps");
 			const bandsRef = firestore.collection("bandas");
-			userRef.get().then((doc) => {
-				// console.log("Document data:", doc.data());
-				user = doc.data();
+			userRef.get().then((querySnapshot) => {
 				//Por cada clapp, mostrar sus datos añadiendolos a una lista
-				if (user.clapps.length > 0) {
-					console.log("num total de clapps: " + user.clapps.length);
-					user.clapps.forEach((I_banda) => {
-						const bandRef = bandsRef.doc(I_banda);
-						bandRef.get().then((doc) => {
-							const db_banda = doc.data();
-							const liBandas = "<li class='clappeado'><a href='perfil.html?band=" + doc.id + "'><img src='" + db_banda.imagen + "' /><p class='band'>" + db_banda.nombre + "</p></a></li>"
-							$(".clapps").append(liBandas);
-						});
+				querySnapshot.forEach(function(doc) {
+					console.log(doc.id, " => ", doc.data());
+					clapp = doc.data();
+					const bandRef = bandsRef.doc(clapp.band);
+					bandRef.get().then((doc) => {
+						const db_banda = doc.data();
+						const liBandas = "<li class='clappeado'><a href='perfil.html?band=" + doc.id + "'><img src='" + db_banda.imagen + "' /><p class='band'>" + db_banda.nombre + "</p></a></li>"
+						$(".clapps").append(liBandas);
 					});
-				} else {
-					console.log("no bands");
-					$(".cambio_modo").hide();
-				}
+				});
+				
+				// if (user.clapps.length > 0) {
+				// 	console.log("num total de clapps: " + user.clapps.length);
+				// 	user.clapps.forEach((I_banda) => {
+				// 		const bandRef = bandsRef.doc(I_banda);
+				// 		bandRef.get().then((doc) => {
+				// 			const db_banda = doc.data();
+				// 			const liBandas = "<li class='clappeado'><a href='perfil.html?band=" + doc.id + "'><img src='" + db_banda.imagen + "' /><p class='band'>" + db_banda.nombre + "</p></a></li>"
+				// 			$(".clapps").append(liBandas);
+				// 		});
+				// 	});
+				// } else {
+				// 	console.log("no bands");
+				// 	$(".cambio_modo").hide();
+				// }
 			});
-
-			//Por cada clapp, mostrar sus datos añadiendolos a una lista
-			
-			// usuario.historial_clapps.forEach(function(I_userClapps) {
-			// 	console.log(I_userClapps.clappeado);
-			// 	var banda = bandas.find(o => o.name === I_userClapps.clappeado);
-			// 	console.log(banda);
-			// 	$(".clapps").append(
-			// 		'<li class="clappeado"><img src="' + banda.imagen + '"><p class="band">' + banda.name + '</p><p class="clapps_dados">' + I_userClapps.num_clapps + '</p></li>'
-			// 	);
-			// });
 		};
 		if (login) {
 			cargar_historial(userId);
