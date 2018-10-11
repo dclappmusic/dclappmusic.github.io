@@ -152,10 +152,10 @@
 		border: none;
 		border-bottom: 4px solid white;
 		font-family: $Changa;
-		font-size: 20px;
-		font-weight: 200;
+		font-size: 25px;
+		font-weight: 600;
 		color: white;
-		&::placeholder {opacity: .5; color: white;}
+		&::placeholder {opacity: .5; color: white; font-weight: 200;}
 		
 	}
 }

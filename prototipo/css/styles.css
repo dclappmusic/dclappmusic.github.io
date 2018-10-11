@@ -350,29 +350,33 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border: none;
   border-bottom: 4px solid white;
   font-family: "Changa", Arial, helvetica;
-  font-size: 20px;
-  font-weight: 200;
+  font-size: 25px;
+  font-weight: 600;
   color: white;
 }
 
 .container .form-input::-webkit-input-placeholder {
   opacity: .5;
   color: white;
+  font-weight: 200;
 }
 
 .container .form-input:-ms-input-placeholder {
   opacity: .5;
   color: white;
+  font-weight: 200;
 }
 
 .container .form-input::-ms-input-placeholder {
   opacity: .5;
   color: white;
+  font-weight: 200;
 }
 
 .container .form-input::placeholder {
   opacity: .5;
   color: white;
+  font-weight: 200;
 }
 
 .container.home .boton {
