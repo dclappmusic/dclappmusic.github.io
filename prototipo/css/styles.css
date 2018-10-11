@@ -171,6 +171,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-size: 40px;
 }
 
+.display-big {
+  font-family: "Changa", Arial, helvetica;
+  font-size: 35px;
+}
+
 .display-med {
   font-family: "Changa", Arial, helvetica;
   font-size: 25px;
@@ -318,9 +323,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 226px;
   height: 46px;
   width: 100%;
-  margin: 15px auto 10%;
+  margin: 30px auto 20%;
   font-family: "Changa", Arial, helvetica;
-  font-size: 28px;
+  font-size: 35px;
   text-align: center;
 }
 
@@ -757,6 +762,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   color: white;
 }
 
+.container.sign_band .close .skip {
+  display: none;
+  margin-left: -2vw;
+}
+
+.container.sign_band .cabecera {
+  padding: 0 25%;
+}
+
 .container.sign_band .paso {
   display: none;
 }
@@ -769,16 +783,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
   width: 50vw;
   height: 50vw;
-  border: 4px solid white;
-  margin: 20% 25vw;
+  border: .2em solid white;
+  margin: 10% 25vw;
   text-align: center;
   font-size: 35px;
-  padding-top: 20%;
+  padding-top: 6%;
   cursor: pointer;
 }
 
 .container.sign_band .paso.imagen .image_label .empty {
-  font-size: 20vw;
+  font-size: 3em;
 }
 
 .container.sign_band .paso.imagen .image_label:focus, .container.sign_band .paso.imagen .image_label:hover {
@@ -834,6 +848,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.showtime {
   background-color: #0C3847;
+}
+
+.container.showtime .band_name {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  top: 13%;
+  text-align: center;
+  color: white;
 }
 
 .container.showtime .boton {

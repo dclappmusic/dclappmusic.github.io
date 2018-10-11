@@ -5,6 +5,10 @@
 	font-family: $Roboto;
 	font-size: 40px;
 }
+.display-big {
+	font-family: $Changa;
+	font-size: 35px;
+}
 .display-med {
 	font-family: $Changa;
 	font-size: 25px;
@@ -123,9 +127,9 @@
 		width: 226px;
 		height: 46px;
 		width: 100%;
-		margin: 15px auto 10%;
+		margin: 30px auto 20%;
 		font-family: $Changa;
-		font-size: 28px;
+		font-size: 35px;
 		text-align: center;
 	}
 	.form-label {
@@ -486,6 +490,8 @@
 .container.sign_band {
 	background-color: $secundario;
 	color: white;
+	.close .skip {display: none; margin-left: -2vw;} 
+	.cabecera {padding: 0 25%;}
 	.paso {
 		display: none;
 		.form-input {
@@ -499,13 +505,13 @@
 				display: block;
 				width: 50vw;
 				height: 50vw;
-				border: 4px solid white;
-				margin: 20% 25vw;
+				border: .2em solid white;
+				margin: 10% 25vw;
 				text-align: center;
 				font-size: 35px;
-				padding-top: 20%;
+				padding-top: 6%;
 				.empty {
-					font-size: 20vw;
+					font-size: 3em;
 				}
 				cursor: pointer;
 				&:focus, &:hover {
@@ -560,6 +566,14 @@
 
 .container.showtime {
 	background-color: $secundario;
+	.band_name {
+		position: absolute;
+		width: 80%;
+		left: 10%;
+		top: 13%;
+		text-align: center;
+		color: white;
+	}
 	.boton {
 		color: white;
 		text-align: center;
