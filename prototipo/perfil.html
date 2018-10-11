@@ -78,6 +78,8 @@
         //diplay en pantalla de datos de la banda
             $(".act .name").html(banda.nombre);
             $(".act .resumen .ciudad p").html(banda.ciudad);
+            $(".act .clapps p").html(banda.num_clapps);
+            $(".act .actuaciones p").html(banda.shows.length);
             if (banda.imagen) {
                 $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
             } else {
