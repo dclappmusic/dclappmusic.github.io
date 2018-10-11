@@ -51,25 +51,21 @@
 		
 		//cargar el usuario de la DB
 		const userRef = firestore.collection("usuarios").doc(userId);
-		const bandsRef = firestore.collection("bandas");
-		var bandRef;
 		userRef.get().then((doc) => {
 			if (doc.exists) {
 				console.log("Document data:", doc.data());
 				user = doc.data();
-				console.log("bandas del user: " + user.band);
+				console.log("bandas del user: ");
+				console.log(user.band);
 
 				//si tiene bandas, añadir al menu
 				if (user.band.length > 0) {
 					console.log(user.band);
 					user.band.forEach((banda) => {
-						const bandRef = bandsRef.doc(banda);
-						bandRef.get().then((doc) => {
-							const db_banda = doc.data();
-							console.log(db_banda);
-							const liBandas = "<li><a href='showtime.html?band=" + banda + "'>" + db_banda.nombre + "</a></li>"
-							$(".cambio_modo").append(liBandas);
-						});
+						const db_banda = banda.band_name;
+						console.log(db_banda);
+						const liBandas = "<li><a href='showtime.html?band=" + banda.band_id + "'>" + db_banda + "</a></li>"
+						$(".cambio_modo").append(liBandas);
 					});
 				} else {
 					console.log("no bands");

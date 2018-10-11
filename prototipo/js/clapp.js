@@ -2,6 +2,7 @@ var distancia_max = 0.001000;
 
 //----------------------------------------------------------
 var distancia;
+var preclapps;
     //comparar distancias dadas coordenadas del clapp y del show
         function cerca (posicion1, posicion2) {
             // debugger;
@@ -56,6 +57,8 @@ var distancia;
             bandRef.doc(Ibanda_encontrada.banda).get().then((doc) => {
                 banda_activa = doc.data();
                 banda_activa_id = doc.id;
+                preclapps = banda_activa.num_clapps;
+                console.log(banda_activa.num_clapps);
                 console.log(banda_activa.nombre + ", perfil encontrado");
                 $(".clapp .fondo img").attr("src", banda_activa.imagen);
                 $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
@@ -77,53 +80,92 @@ var distancia;
     };
 
 
+
+
+    
     //sumar y guardar los clapps
-        var clapps = 0;
+ 
+    var clapHold;
+    var clapps = 0;
 
-        $(".btn_clapp").click(function() {
-            if (login) {
-                if (banda_activa) {
-                    $(this).addClass("active");
+    //coger los clapps que ya les has dado al show
+    function cogerClapps() {
+        const userRef = firestore.collection("usuarios").doc(userId);
 
-                    if (clapps == 0) {
-                        clapps += 1;
-                        $(".num_clapps").html("+" + clapps + " clapp");
-                    } else if (clapps < 50) { 
-                        clapps += 1;
-                        $(".num_clapps").html("+" + clapps + " clapps");
-                    }
-                    //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
-                    console.log("Clapp de " + userId + " a " + banda_activa_id);
+        if (userRef.collection("clapps").doc(show_encontrado_id)) {
+            userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
+                var show = doc.data();
+                clapps = show.number;
+                console.log("clapps ya dados: " + clapps);
+                $(".num_clapps").html("+" + clapps + " clapp");
+            });
+        } else {clapps = 0};
+    }
 
-                    const userRef = firestore.collection("usuarios").doc(userId);
-                    const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+    $(".btn_clapp").mousedown(function() {
+        if (login) {
+            setInterval(clapping(), 400);
+        } else {
+            window.location.href = "login.html";
+        }
+    });
+    $(".btn_clapp").mouseup(function() {
+        clearInterval(clapHold);
+    });
 
-                    userRef.get().then((doc) => {
-                        user = doc.data();
-                    });
-                    
-                    var clapp = {};
-                    clapp.band = banda_activa_id;
-                    clapp.show = show_encontrado_id;
-                    clapp.time = timestamp;
-                    clapp.coords = {}
-                    clapp.coords.latitud = latitud;
-                    clapp.coords.longitud = longitud;
-                    clapp.user = userId;
+    // $(".btn_clapp").click(function() {
+    //     if (login) {
+    //         clapping();
+    //     } else {
+    //         window.location.href = "login.html";
+    //     } 
+    // });
 
-                    userRef.collection("clapps").doc(show_encontrado_id).set(clapp);
-                    bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp);
-                    showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp);
-                } else {
-                
+    function clapping() {
+        if (banda_activa) {
+            $(this).addClass("active");
+
+            if (clapps == 0) {
+                    clapps ++;
+                    $(".num_clapps").html("+" + clapps + " clapp");
+                } else if (clapps < 50) { 
+                    clapps ++;
+                    $(".num_clapps").html("+" + clapps + " clapps");
                 }
-                
-            } else {
-                window.location.href = "login.html";
-            } 
-        });
-    //BBDD sumarle los clapps a la banda
+            $(".num_clapps").html("+" + clapps + " clapps");
+            setTimeout(subirClapps, 2500);
+        }
+    }
 
+        
+    //BBDD sumarle los clapps a la banda
+    function subirClapps () {
+        //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
+        var posclapps = preclapps + clapps;
+        const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        console.log("pre: " + preclapps + ", pos: " + posclapps);
+
+        var clapp = {};
+        clapp.band = banda_activa_id;
+        clapp.show = show_encontrado_id;
+        clapp.time = timestamp;
+        clapp.coords = {}
+        clapp.coords.latitud = latitud;
+        clapp.coords.longitud = longitud;
+        clapp.user = userId;
+        clapp.number = clapps;
+
+        console.log("Clapp de " + userId + " a " + banda_activa_id);
+        const userRef = firestore.collection("usuarios").doc(userId);
+
+        userRef.collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
+        bandRef.doc(banda_activa_id).update({num_clapps: posclapps}).then(function() {
+            preclapps = posclapps;
+        });
+        bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
+        showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true });
+    }
+            
 
 
  

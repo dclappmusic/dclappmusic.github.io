@@ -47,6 +47,9 @@
 	
 	//guardar show en shows
 	tryGeolocation();
+
+	//if band.show_active es true, no crear show, entrar en el activo
+	//else showtime 
 	
 	function showtime() {
 		console.log("showtime2");
@@ -71,7 +74,8 @@
 				console.log(showId);
 				showRef.doc(showId).update({showId: showId});
 				bandRef.update({
-					shows: firebase.firestore.FieldValue.arrayUnion(showId)
+					shows: firebase.firestore.FieldValue.arrayUnion(showId),
+					show_active: true
 				});
 			}).catch(function(error){
 				console.log("error: " + error);
@@ -80,7 +84,6 @@
 	}
 	
 	function end_show() {
-		// showId = showId._key.path.segments[1];
 		const showRef = firestore.collection("shows");
 		const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 		showRef.doc(showId).update({

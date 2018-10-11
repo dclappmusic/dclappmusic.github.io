@@ -52,6 +52,7 @@
 	const bandRef = firestore.collection("bandas");
 
 	function funcion_user () {
+		
 		//crear array de shows activos en la DB
 		showRef.where("active", "==", true).get()
 			.then((querySnapshot) => {

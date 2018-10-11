@@ -45,7 +45,7 @@
 				<!-- <button id="boton" class="boton-med" onclick="bandUp();">
 					listo
 				</button>			 -->
-				<p class="boton-sm sig" onclick="imageUp();">sig</p>
+				<p class="boton-sm sig">sig</p>
 			</div>
 			<div class="paso descripcion">
 				<label for="band-desc" class="form-label">Breve descripción de tu banda</label>
@@ -85,7 +85,7 @@
 
 		if( fileName ) {
 			image_label.find('span').removeClass("empty").html(fileName);
-			// imageUp();
+			imageUp();
 		} else {
 			image_label.html(image_labelVal);
 		}		
@@ -118,8 +118,8 @@
 				// $(".paso").hide();
 				// $(".subida").show();
 				userRef.doc(userId).update({
-					band: firebase.firestore.FieldValue.arrayUnion(bandId),
-					is_musician: true
+					band: firebase.firestore.FieldValue.arrayUnion({band_id: bandId,band_name: nombre}),
+					is_musician: true,
 				});
 				// imageUp();
 				// upload

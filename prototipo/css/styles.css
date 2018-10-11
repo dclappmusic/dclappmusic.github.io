@@ -772,8 +772,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border: 4px solid white;
   margin: 20% 25vw;
   text-align: center;
-  font-size: 12px;
-  padding-top: 12%;
+  font-size: 35px;
+  padding-top: 20%;
   cursor: pointer;
 }
 
