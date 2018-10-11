@@ -17,8 +17,11 @@
 	<div class="container show_perfil">
         <a class="cambio_modo" href="index.html">volver a clapp</a>
         <div class="act">
-            <div class="imagen"></div>
-            <h2 class="titulo name">MARKUSER</h2>
+            <label class="imagen" for="band-image"></label>
+            <input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">
+            <!-- <div class="imagen"></div> -->
+            <input id="band-name" class="titulo name" type="text" name="band-name" value="">
+            <h2 class="titulo name"></h2>
             <ul class="tabs">
                 <li class="menu-tit active" data-tab="stats">STATS</li>
                 <li class="menu-tit" data-tab="info">INFO</li>
@@ -41,10 +44,11 @@
             </div>
             <div class="info">
                 <div class="descripcion">
-                    <p class="parrafo">
+                    <!-- <p class="parrafo">
                         Instrumental folk guitarist from France My first EP “Fragments of Soul“ .Check the news on Facebook, Youtube, Bandcamp and Soundcloud.
                         I'm also looking for a video-music project. If you produce films, short films, documentaries etc 
-                    </p>
+                    </p> -->
+                    <textarea id="band-descripcion" class="titulo name" type="text" name="band-name" value=""></textarea>
                 </div>
             </div>
             <div class="shows">
@@ -98,15 +102,36 @@
             console.log("banda: " + banda.nombre);
 
         //diplay en pantalla de datos de la banda
-            $(".act .name").html(banda.nombre);
-            $(".act .resumen .ciudad p").html(banda.ciudad);
+            $("#band-name").attr("value", banda.nombre);
+            $(".resumen .ciudad p").html(banda.ciudad);
+            $(".resumen .clapps p").html(banda.num_clapps);
+            $(".resumen .actuaciones p").html(banda.shows.length);
             if (banda.imagen) {
                 $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
             } else {
                 $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
             }
             // $(".act .descripcion .parrafo").html(band.descripcion);
-		});
+        });
+        
+        //si cambia el nombre, coger el nuevo y guardarlo en una variable
+        var nombre;
+        var imagen;
+        $("#band-name").change(function() {
+            nombre = document.querySelector("#band-name").value;
+        });
+        $("#band-image").change(function() {
+            imagen = document.querySelector("#band-image").files[0];
+        });
+
+        //actualizar el perfil de la banda en la DB
+        var actualizar_perfil = function(){
+            bandRef.update({
+                "nombre": nombre,
+                descripcion: descripcion,
+                imagen: imagenURL
+            });
+        }
 	};    
 </script>
 </body>
