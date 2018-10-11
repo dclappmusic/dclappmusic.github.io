@@ -55,6 +55,7 @@ var preclapps;
             console.log("banda encontrada:");
             console.log(Ibanda_encontrada);
             bandRef.doc(Ibanda_encontrada.banda).get().then((doc) => {
+                cogerClapps();
                 banda_activa = doc.data();
                 banda_activa_id = doc.id;
                 preclapps = banda_activa.num_clapps;
@@ -86,6 +87,7 @@ var preclapps;
     //sumar y guardar los clapps
  
     var clapHold;
+    var user_preclapps;
     var clapps = 0;
 
     //coger los clapps que ya les has dado al show
@@ -93,9 +95,10 @@ var preclapps;
         const userRef = firestore.collection("usuarios").doc(userId);
 
         if (userRef.collection("clapps").doc(show_encontrado_id)) {
-            userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
+            userRef.collection("clapps").doc(show_encontrado_id).get().then((doc) => {
                 var show = doc.data();
-                clapps = show.number;
+                user_preclapps = show.number;
+                clapps = user_preclapps;
                 console.log("clapps ya dados: " + clapps);
                 $(".num_clapps").html("+" + clapps + " clapp");
             });
@@ -126,14 +129,19 @@ var preclapps;
             $(this).addClass("active");
 
             if (clapps == 0) {
-                    clapps ++;
-                    $(".num_clapps").html("+" + clapps + " clapp");
-                } else if (clapps < 50) { 
-                    clapps ++;
-                    $(".num_clapps").html("+" + clapps + " clapps");
-                }
+                clapps ++;
+                $(".num_clapps").html("+" + clapps + " clapp");
+            } else if (clapps < 50) { 
+                clapps ++;
+                $(".num_clapps").html("+" + clapps + " clapps");
+            }
+            if (clapps < 50) {
+                setTimeout(subirClapps, 1000);
+            } else {
+                console.log("MAX NUM CLAPPS");
+            }
             $(".num_clapps").html("+" + clapps + " clapps");
-            setTimeout(subirClapps, 2500);
+            
         }
     }
 
@@ -141,7 +149,7 @@ var preclapps;
     //BBDD sumarle los clapps a la banda
     function subirClapps () {
         //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
-        var posclapps = preclapps + clapps;
+        var posclapps = preclapps + clapps - user_preclapps;
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         console.log("pre: " + preclapps + ", pos: " + posclapps);
 
