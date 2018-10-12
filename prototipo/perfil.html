@@ -71,7 +71,7 @@
         var banda;
         //traer banda de base de datos
 		const bandRef = firestore.collection("bandas").doc(bandId);
-		bandRef.get().then((doc) => {
+		bandRef.onSnapshot((doc) => {
 			banda = doc.data();
             console.log("banda: " + banda.nombre);
 
