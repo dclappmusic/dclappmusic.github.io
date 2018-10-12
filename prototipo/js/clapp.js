@@ -3,6 +3,7 @@ var distancia_max = 0.001000;
 //----------------------------------------------------------
 var distancia;
 var band_preclapps = 0;
+var show_preclapps = 0;
     //comparar distancias dadas coordenadas del clapp y del show
         function cerca (posicion1, posicion2) {
             // debugger;
@@ -44,9 +45,14 @@ var band_preclapps = 0;
                 console.log(keysSorted.map(key => show_lejos[key]));
                 show_lejos_id = Object.keys(show_lejos);
                 console.log(show_lejos_id[0]);
-                show_cercano(show_lejos_id[0]);
+                if (show_lejos_id[0]) {
+                    show_cercano(show_lejos_id[0]);
                 $(".show_cercano").html("No tienes ningún show cerca<br>Éste es el más cercano que hemos encontrado =)");
                 // $(".show_cerca").html("este es el show más cercano, a: " + keysSorted[show_lejos_id[0]] + "grados");
+                } else {
+                    $(".act .name").html("no music :'(");
+                }
+                
             }
         };
 
@@ -92,7 +98,7 @@ var band_preclapps = 0;
         userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
             if (doc.exists) {
                 var show = doc.data();
-                user_preclapps = show.number;
+                user_preclapps = show.show_clapps;
                 clapps = user_preclapps;
                 console.log("clapps ya dados: " + clapps);
                 $(".num_clapps").html("+" + clapps + " clapp");
@@ -101,6 +107,18 @@ var band_preclapps = 0;
                 console.log("no se han dado clapps, aún");
             }
         });
+
+        //ver cuantos clapps lleva
+        
+        showRef.doc(show_encontrado_id).onSnapshot((doc) => {
+            var snap = doc.data();
+            console.log(snap);
+            console.log("snap: " + snap.num_clapps);
+            show_preclapps = snap.num_clapps;
+            console.log("show preclapps: " + show_preclapps);
+        });
+
+
         // if (este_show) {
         //     userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
         //         var show = doc.data();
@@ -161,23 +179,16 @@ var band_preclapps = 0;
     function subirClapps () {
         //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
         console.log("clapps: " + clapps);
-        console.log("preclapps: " + band_preclapps);
-        console.log("posclapps: " + user_preclapps);
+        console.log("band preclapps: " + band_preclapps);
+        console.log("user preclapps: " + user_preclapps);
         var band_posclapps = band_preclapps + clapps - user_preclapps;
+        var show_posclapps = show_preclapps + clapps - user_preclapps;
+        
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         console.log("pre: " + band_preclapps + ", pos: " + band_posclapps);
 
-        //ver cuantos clapps lleva
-        var show_preclapps = 0;
-        showRef.doc(show_encontrado_id).onSnapshot((doc) => {
-            var snap_show = doc.data();
-            // console.log(snap_show);
-            show_preclapps = snap_show.num_clapps;
-        });
-        
-        var show_posclapps = show_preclapps + clapps - user_preclapps;
         console.log("show posclapps: " + show_posclapps);
-
+        
         var clapp = {};
         clapp.band = banda_activa_id;
         clapp.show = show_encontrado_id;
@@ -186,7 +197,7 @@ var band_preclapps = 0;
         clapp.coords.latitud = latitud;
         clapp.coords.longitud = longitud;
         clapp.user = userId;
-        clapp.number = clapps;
+        clapp.show_clapps = clapps;
 
         console.log("Clapp de " + userId + " a " + banda_activa_id);
         const userRef = firestore.collection("usuarios").doc(userId);
@@ -194,7 +205,7 @@ var band_preclapps = 0;
         userRef.collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
         bandRef.doc(banda_activa_id).update({"num_clapps": band_posclapps});
         bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
-        showRef.doc(show_encontrado_id).update({"num_clapps": show_posclapps});
+        showRef.doc(show_encontrado_id).update({num_clapps: show_posclapps});
         showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true });
     }
             
