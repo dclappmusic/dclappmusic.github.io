@@ -41,7 +41,7 @@
             if (window.location.pathname.indexOf("clapp.html") > -1) {
                 console.log("clapping");
                 encontrar();
-            } else if (window.location.pathname.indexOf("showtime.html") > -1) {
+            } else if (window.location.pathname.indexOf("in_show.html") > -1) {
                 console.log("showtime1");
                 $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
                 showtime();
@@ -67,7 +67,7 @@
             if (window.location.pathname.indexOf("clapp.html") > -1) {
                 console.log("clapping");
                 encontrar();
-            } else if (window.location.pathname.indexOf("show.html") > -1) {
+            } else if (window.location.pathname.indexOf("in_show.html") > -1) {
                 console.log("showtime1");
                 $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
                 showtime();

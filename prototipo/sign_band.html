@@ -25,12 +25,12 @@
         <div class="form">
             <div class="paso nombre active">
                 <label for="band-name" class="form-label">¿Cómo os llamais?</label>
-				<input id="band-name" class="form-input" placeholder="Kurt and the kurts" type="text" name="band-name" value="">
+				<input id="band-name" class="form-input" placeholder="" type="text" name="band-name" value="">
 				<p class="boton-sm sig">sig</p>
 			</div>
 			<div class="paso ciudad">
 				<label for="band-city" class="form-label">¿En qué ciudad reside tu banda?</label>
-				<input id="band-city" class="form-input" placeholder="Berlín" type="text" name="band-city" value="">
+				<input id="band-city" class="form-input" placeholder="Berlín" type="text" name="band-city" value="" autocomplete="on">
 				<!-- <p class="boton-sm sig">sig</p> -->
 				<button id="boton" class="boton-med" onclick="bandUp();">
 					listo
@@ -70,6 +70,15 @@
 <script type="text/javascript" src="js/firebase-config.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
+
+	//placeholder de nombre de band es banda random
+	var placeholder_bands = ["ZAZ", "Vetusta Morla", "U2", "The Beatles", "Frank Turner", "Jamie T"];
+	var placeholder_band = placeholder_bands[Math.floor(Math.random()*placeholder_bands.length)];
+	$(document).ready(function() {
+		$("#band-name").attr("placeholder", placeholder_band);
+	});
+	
+
 	//avanzar paso
 	$(".sig").click(function() {
 		$(this).parent().removeClass("active");

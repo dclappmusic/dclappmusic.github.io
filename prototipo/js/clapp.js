@@ -2,7 +2,7 @@ var distancia_max = 0.001000;
 
 //----------------------------------------------------------
 var distancia;
-var preclapps;
+var band_preclapps = 0;
     //comparar distancias dadas coordenadas del clapp y del show
         function cerca (posicion1, posicion2) {
             // debugger;
@@ -54,12 +54,12 @@ var preclapps;
         function show_encontrado (Ibanda_encontrada) {
             console.log("banda encontrada:");
             console.log(Ibanda_encontrada);
-            bandRef.doc(Ibanda_encontrada.banda).get().then((doc) => {
+            bandRef.doc(Ibanda_encontrada.banda).onSnapshot((doc) => {
                 cogerClapps();
                 banda_activa = doc.data();
                 banda_activa_id = doc.id;
-                preclapps = banda_activa.num_clapps;
-                console.log(banda_activa.num_clapps);
+                band_preclapps = banda_activa.num_clapps;
+                console.log("preclapps: " + band_preclapps);
                 console.log(banda_activa.nombre + ", perfil encontrado");
                 $(".clapp .fondo img").attr("src", banda_activa.imagen);
                 $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
@@ -79,30 +79,40 @@ var preclapps;
             $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
         });
     };
-
-
-
-
     
     //sumar y guardar los clapps
  
     var clapHold;
-    var user_preclapps;
+    var user_preclapps = 0;
     var clapps = 0;
 
     //coger los clapps que ya les has dado al show
     function cogerClapps() {
         const userRef = firestore.collection("usuarios").doc(userId);
-
-        if (userRef.collection("clapps").doc(show_encontrado_id)) {
-            userRef.collection("clapps").doc(show_encontrado_id).get().then((doc) => {
+        userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
+            if (doc.exists) {
                 var show = doc.data();
                 user_preclapps = show.number;
                 clapps = user_preclapps;
                 console.log("clapps ya dados: " + clapps);
                 $(".num_clapps").html("+" + clapps + " clapp");
-            });
-        } else {clapps = 0};
+            } else {
+                clapps = 0;
+                console.log("no se han dado clapps, aún");
+            }
+        });
+        // if (este_show) {
+        //     userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
+        //         var show = doc.data();
+        //         user_preclapps = show.number;
+        //         clapps = user_preclapps;
+        //         console.log("clapps ya dados: " + clapps);
+        //         $(".num_clapps").html("+" + clapps + " clapp");
+        //     });
+        // } else {
+        //     clapps = 0;
+        //     console.log("no se han dado clapps, aún");
+        // };
     }
 
     $(".btn_clapp").mousedown(function() {
@@ -138,7 +148,8 @@ var preclapps;
             if (clapps < 50) {
                 setTimeout(subirClapps, 1000);
             } else {
-                console.log("MAX NUM CLAPPS");
+                console.log("suficientes clapps, ahora atiende al show");
+                $(".num_clapps").html("suficientes clapps, ahora atiende al show");
             }
             $(".num_clapps").html("+" + clapps + " clapps");
             
@@ -149,9 +160,23 @@ var preclapps;
     //BBDD sumarle los clapps a la banda
     function subirClapps () {
         //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
-        var posclapps = preclapps + clapps - user_preclapps;
+        console.log("clapps: " + clapps);
+        console.log("preclapps: " + band_preclapps);
+        console.log("posclapps: " + user_preclapps);
+        var band_posclapps = band_preclapps + clapps - user_preclapps;
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-        console.log("pre: " + preclapps + ", pos: " + posclapps);
+        console.log("pre: " + band_preclapps + ", pos: " + band_posclapps);
+
+        //ver cuantos clapps lleva
+        var show_preclapps = 0;
+        showRef.doc(show_encontrado_id).onSnapshot((doc) => {
+            var snap_show = doc.data();
+            // console.log(snap_show);
+            show_preclapps = snap_show.num_clapps;
+        });
+        
+        var show_posclapps = show_preclapps + clapps - user_preclapps;
+        console.log("show posclapps: " + show_posclapps);
 
         var clapp = {};
         clapp.band = banda_activa_id;
@@ -167,10 +192,9 @@ var preclapps;
         const userRef = firestore.collection("usuarios").doc(userId);
 
         userRef.collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
-        bandRef.doc(banda_activa_id).update({num_clapps: posclapps}).then(function() {
-            preclapps = posclapps;
-        });
+        bandRef.doc(banda_activa_id).update({"num_clapps": band_posclapps});
         bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
+        showRef.doc(show_encontrado_id).update({"num_clapps": show_posclapps});
         showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true });
     }
             

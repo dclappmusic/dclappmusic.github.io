@@ -882,6 +882,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   color: white;
 }
 
+.container.show_perfil .editar {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  right: 15px;
+  top: 15px;
+  z-index: 100;
+}
+
+.container.show_perfil .editar img {
+  width: 24px;
+}
+
+.container.show_perfil .editar .save {
+  display: none;
+}
+
 .container.show_perfil .act .imagen {
   position: relative;
   display: block;
@@ -982,9 +999,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.show_perfil .secciones .info .descripcion {
   position: relative;
-  width: 100%;
-  margin: 100px auto;
-  padding: 0 15px;
+  width: 90%;
+  margin: .5em 5%;
+  padding: 10px 15px;
   color: #0C3847;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
 }
 /*# sourceMappingURL=styles.css.map */
