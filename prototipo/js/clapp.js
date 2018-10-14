@@ -94,20 +94,24 @@ var show_preclapps = 0;
 
     //coger los clapps que ya les has dado al show
     function cogerClapps() {
-        const userRef = firestore.collection("usuarios").doc(userId);
-        userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
-            if (doc.exists) {
-                var show = doc.data();
-                user_preclapps = show.show_clapps;
-                clapps = user_preclapps;
-                console.log("clapps ya dados: " + clapps);
-                $(".num_clapps").html("+" + clapps + " clapp");
-            } else {
-                clapps = 0;
-                console.log("no se han dado clapps, aún");
-            }
-        });
-
+        if (user) {
+            const userRef = firestore.collection("usuarios").doc(userId);
+            userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
+                if (doc.exists) {
+                    var show = doc.data();
+                    user_preclapps = show.show_clapps;
+                    clapps = user_preclapps;
+                    console.log("clapps ya dados: " + clapps);
+                    $(".num_clapps").html("+" + clapps + " clapp");
+                } else {
+                    clapps = 0;
+                    console.log("no se han dado clapps, aún");
+                }
+            });
+        } else {
+            console.log("no log, no clapp");
+        }
+        
         //ver cuantos clapps lleva
         
         showRef.doc(show_encontrado_id).onSnapshot((doc) => {
