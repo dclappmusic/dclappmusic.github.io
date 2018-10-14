@@ -129,7 +129,7 @@
         } else {
             console.log("no descripcion");
             $("#band-descripcion").html("Todavía no sabemos quién es " + banda.nombre);
-            console.log($("#band-descripcion").value());
+            // console.log($("#band-descripcion").value());
         }
         // $(".act .descripcion .parrafo").html(band.descripcion);
     });
@@ -140,7 +140,8 @@
         cambios.nombre = document.querySelector("#band-name").value;
     });
     $("#band-image").change(function() {
-        cambios.imagen = document.querySelector("#band-image").files[0];
+        imageUp();
+        // cambios.imagen = document.querySelector("#band-image").files[0];
     });
     $("#band-descripcion").change(function() {
         cambios.descripcion = document.querySelector("#band-descripcion").value;
@@ -151,6 +152,28 @@
     function actualizar_perfil() {
         bandRef.update(cambios);
     }
+    const storageRef = firebase.storage().ref();
+
+    function imageUp() {
+		var imagen = document.querySelector("#band-image").files[0];
+		const fotoId = bandId;
+		const upload = storageRef.child(fotoId).put(imagen);
+
+		upload.on('state_changed', function(snapshot) {
+			// Observe state change events such as progress, pause, and resume
+			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+			var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+			$(".imagen").html(progress + "%");
+		}, function(error) {
+			// Handle unsuccessful uploads
+			console.log("error: " + error);
+		}, function() {
+			// Handle successful uploads on complete
+			upload.snapshot.ref.getDownloadURL().then((url) => {
+				cambios.imagen = url;
+			});
+		});
+	}
 </script>
 </body>
 </html>
