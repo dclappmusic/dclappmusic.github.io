@@ -247,6 +247,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: calc(360px / 3);
 }
 
+.container .menu .menu-tit.active, .container.login .menu .tabs h3.active, .container.login .tabs .menu h3.active {
+  background-color: white;
+  border-radius: 100%;
+  height: 6em;
+  padding-top: 40px;
+  position: relative;
+  top: -2em;
+}
+
 .container .boton {
   position: absolute;
   top: 25%;
@@ -485,14 +494,22 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   position: fixed;
   width: 50%;
   margin-left: 25%;
-  bottom: 5%;
+  bottom: 4%;
   z-index: 100;
+  text-align: center;
 }
 
 .container.login .social_login .fb_login {
   width: 4em;
   height: 4em;
   background: url("../images/facebook.svg") no-repeat;
+  background-size: contain;
+}
+
+.container.login .social_login .goo_login {
+  width: 4em;
+  height: 4em;
+  background: url("../images/google.svg") no-repeat;
   background-size: contain;
 }
 
@@ -566,7 +583,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.clapp .act .name b {
   text-transform: uppercase;
-  text-decoration: underline;
   font-weight: 900;
   font-size: 40px;
 }
@@ -647,7 +663,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 27px auto 20px;
   width: 210px;
   height: 208px;
-  background: black;
+  background: black no-repeat;
   background-size: cover;
   background-position: center;
   border-radius: 87px;

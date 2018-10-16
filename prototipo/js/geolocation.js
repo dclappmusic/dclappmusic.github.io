@@ -18,7 +18,7 @@
             );
         } else {
             console.log("Navigator geolocation unavailable.");
-            $(".act .name").html("Hay problemas con el acceso a tu ubicación");
+            $(".act .name").html("No se puede acceder a la ubicación en tu móvil :'(").addClass("error");
         }
     };
 

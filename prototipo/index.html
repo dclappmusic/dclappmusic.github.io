@@ -10,7 +10,6 @@
 	<link rel="icon" type="image/jpg" href="images/favicon.png">
 	<link rel="stylesheet" href="css/styles.css">
 	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
-
 </head>
 
 <body>
@@ -20,7 +19,7 @@
 			<img src="images/icon_clapp.png" />
 		</a>
 		<div class="intro_clapp">
-		<a href="login.html">	<h3 class="display-med">aplaude<br>el talento</h3></a>
+			<a href="login.html"><h3 class="display-med">aplaude<br>el talento</h3></a>
 		</div>
 
 		<ul class="menu">
@@ -44,6 +43,16 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
 	function funcion_user () {
+
+		//si viene del login, ponerle un CTA para crear banda
+		var from = getUrlParameter("from");
+		console.log(from);
+		if (from === "login") {
+			console.log("viene de login");
+			$(".intro_clapp h3").html("Crea un perfil para tu <b>banda</b>");
+			$(".intro_clapp a").attr("href", "sign_band.html");
+		}
+		
 		if (!login) {
 			$(".menu .historial a").attr("href", "login.html");
 		} 

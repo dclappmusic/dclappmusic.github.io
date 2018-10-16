@@ -68,6 +68,14 @@
 		.menu-tit {
 			color: $secundario;
 			width: calc(360px / 3);
+			&.active {
+				background-color: white;
+				border-radius: 100%;
+				height: 6em;
+				padding-top: 40px;
+				position: relative;
+				top: -2em;
+			}
 		}
 	}
 	.boton {
@@ -238,12 +246,19 @@
 		position: fixed;
 		width: 50%;
 		margin-left: 25%;
-		bottom: 5%;
+		bottom: 4%;
 		z-index: 100;
+		text-align: center;
 		.fb_login {
 			width: 4em;
 			height: 4em;
 			background: url("../images/facebook.svg") no-repeat;
+			background-size: contain;
+		}
+		.goo_login {
+			width: 4em;
+			height: 4em;
+			background: url("../images/google.svg") no-repeat;
 			background-size: contain;
 		}
 	}
@@ -319,7 +334,7 @@
 			color: $secundario;
 			b {
 				text-transform: uppercase;
-				text-decoration: underline;
+				// text-decoration: underline;
 				font-weight: 900;
 				font-size: 40px;
 			}
@@ -394,7 +409,7 @@
 			margin: 27px auto 20px;
 			width: 210px;
 			height: 208px;
-			background: black;
+			background: black no-repeat;
 			background-size: cover;
 			background-position: center;
 			border-radius: 87px;
