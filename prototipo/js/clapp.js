@@ -62,7 +62,7 @@ var show_preclapps = 0;
         console.log("banda encontrada:");
         console.log(Ibanda_encontrada);
         bandRef.doc(Ibanda_encontrada.banda).onSnapshot((doc) => {
-            get_cogerClapps();
+            get_clapps();
             banda_activa = doc.data();
             banda_activa_id = doc.id;
             band_preclapps = banda_activa.num_clapps;
@@ -94,7 +94,7 @@ var show_preclapps = 0;
     var clapps = 0;
 
 //coger user_preclapps y show_preclapps
-    function get_cogerClapps() {
+    function get_clapps() {
         if (userId) {
             const userRef = firestore.collection("usuarios").doc(userId);
             userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
@@ -103,7 +103,11 @@ var show_preclapps = 0;
                     user_preclapps = show.show_clapps;
                     clapps = user_preclapps;
                     console.log("clapps ya dados: " + clapps);
-                    $(".num_clapps").html("+" + clapps + " clapp");
+                    if (clapps == 1) {
+                        $(".num_clapps").html("+" + clapps + " clapp");
+                    } else {
+                        $(".num_clapps").html("+" + clapps + " clapps");
+                    }    
                 } else {
                     clapps = 0;
                     console.log("no se han dado clapps, aún");
@@ -142,7 +146,7 @@ var show_preclapps = 0;
         if (banda_activa) {
             $(this).addClass("active");
 
-            if (clapps == 0) {
+            if (clapps === 0) {
                 clapps ++;
                 $(".num_clapps").html("+" + clapps + " clapp");
             } else if (clapps < 50) { 

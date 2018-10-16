@@ -169,7 +169,7 @@
 			// Observe state change events such as progress, pause, and resume
 			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
 			$(".paso.imagen .sig").hide();
-			var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+			var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 			console.log('Upload is ' + progress + '% done');
 			image_label.find('span').removeClass("empty").html(progress + "%");
 		}, function(error) {

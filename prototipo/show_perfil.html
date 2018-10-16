@@ -36,13 +36,13 @@
             <div class="stats">
                 <ul class="resumen">
                     <li class="ciudad">
-                        <p>Madrid</p>
+                        <p>...</p>
                     </li>
                     <li class="clapps">
-                        <p>3k</p>
+                        <p>...</p>
                     </li>
                     <li class="actuaciones">
-                        <p>130</p>
+                        <p>...</p>
                     </li>
                 </ul>
             </div>
@@ -162,7 +162,7 @@
 		upload.on('state_changed', function(snapshot) {
 			// Observe state change events such as progress, pause, and resume
 			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-			var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+			var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 			$(".imagen").html(progress + "%");
 		}, function(error) {
 			// Handle unsuccessful uploads
