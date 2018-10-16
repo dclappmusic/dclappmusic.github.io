@@ -1,19 +1,19 @@
-var distancia_max = 0.001000;
-
+//DECLARACIONES DE FUNCIONES RELACIONADAS CON EL CLAPP
 //----------------------------------------------------------
 var distancia;
+var distancia_max = 0.001000;
 var band_preclapps = 0;
 var show_preclapps = 0;
     //comparar distancias dadas coordenadas del clapp y del show
-        function cerca (posicion1, posicion2) {
+        function is_cerca(posicion1, posicion2) {
             // debugger;
             distancia = Math.pow((Math.pow(posicion1.latitud - posicion2.latitud, 2) + Math.pow(posicion1.longitud - posicion2.longitud,2)), 0.5);
             console.log(distancia);
             return distancia <= distancia_max;
         };
 
-    //Buscar bandas dentro del área del clapp midiendo distancia entre el clapp, y todos los shows
-        function encontrar() {
+    //Buscar shows dentro del área del clapp midiendo distancia entre el clapp, y todos los shows
+        function encontrar_shows() {
             // debugger;
             var musico_encontrado = false;
             var posicion_clapp = {
@@ -26,7 +26,7 @@ var show_preclapps = 0;
             console.log(shows);
             shows.forEach((Ishow_activo) => {
                 console.log(Ishow_activo.banda);
-                if (cerca(Ishow_activo.posicion, posicion_clapp)) {
+                if (is_cerca(Ishow_activo.posicion, posicion_clapp)) {
                     console.log("está cerca");
                     console.log("show id: " + Ishow_activo.showId);
                     show_encontrado_id = Ishow_activo.showId;
@@ -94,7 +94,8 @@ var show_preclapps = 0;
 
     //coger los clapps que ya les has dado al show
     function cogerClapps() {
-        if (user) {
+        debugger;
+        if (userId) {
             const userRef = firestore.collection("usuarios").doc(userId);
             userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
                 if (doc.exists) {
@@ -136,25 +137,6 @@ var show_preclapps = 0;
         //     console.log("no se han dado clapps, aún");
         // };
     }
-
-    $(".btn_clapp").mousedown(function() {
-        if (login) {
-            setInterval(clapping(), 400);
-        } else {
-            window.location.href = "login.html";
-        }
-    });
-    $(".btn_clapp").mouseup(function() {
-        clearInterval(clapHold);
-    });
-
-    // $(".btn_clapp").click(function() {
-    //     if (login) {
-    //         clapping();
-    //     } else {
-    //         window.location.href = "login.html";
-    //     } 
-    // });
 
     function clapping() {
         if (banda_activa) {

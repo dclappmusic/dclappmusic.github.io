@@ -32,6 +32,7 @@
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script type="text/javascript" src="js/firebase-config.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/geolocation.js"></script>
 <script type="text/javascript">
 	//coge el ID de la usuario mandado por URL parameter desde la pantalla del login
 	var bandId = getUrlParameter("band");
@@ -53,10 +54,6 @@
 			tryGeolocation();
 		}
 	})
-
-	
-	
-	
 
 	//if band.show_active es true, no crear show, entrar en el activo
 	//else showtime 

@@ -41,6 +41,7 @@
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script type="text/javascript" src="js/firebase-config.js"></script>
 <script type="text/javascript" src="js/clapp.js"></script>
+<script type="text/javascript" src="js/geolocation.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
 	var user;
@@ -51,7 +52,7 @@
 	const showRef = firestore.collection("shows");	
 	const bandRef = firestore.collection("bandas");
 
-	function funcion_user () {
+	function funcion_user() {
 		
 		//crear array de shows activos en la DB
 		showRef.where("active", "==", true).get()
@@ -67,6 +68,28 @@
 				console.log("Error getting documents: ", error);
 			});
 	};
+
+//EVENT HANDLERS
+	$(".btn_clapp").mousedown(function() {
+        if (login) {
+            setInterval(clapping(), 400);
+        } else {
+            window.location.href = "login.html";
+        }
+    });
+    $(".btn_clapp").mouseup(function() {
+        clearInterval(clapHold);
+	});
+	
+
+
+    // $(".btn_clapp").click(function() {
+    //     if (login) {
+    //         clapping();
+    //     } else {
+    //         window.location.href = "login.html";
+    //     } 
+    // });
 </script>
 </body>
 </html>
