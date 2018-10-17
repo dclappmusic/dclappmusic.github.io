@@ -14,6 +14,14 @@
 
 <body>
 	<div class="container home">
+		<div class="icon-esquina options">
+			<svg width="8" height="34" viewBox="0 0 8 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="4" cy="4" r="4" fill="#0C3847"/>
+				<circle cx="4" cy="17" r="4" fill="#0C3847"/>
+				<circle cx="4" cy="30" r="4" fill="#0C3847"/>
+			</svg>
+			<a class="boton-sm options_login" href="login.html">login</a>
+		</div>
 		<ul class="cambio_modo"></ul>
 		<a class="boton showtime" href="clapp.html">
 			<img src="images/icon_clapp.png" />
@@ -43,6 +51,10 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
 	function funcion_user () {
+		//desplegable del botón de menú
+		$(".options").click(function(){
+			$(".options_login").toggleClass("active");
+		});
 
 		//si viene del login, ponerle un CTA para crear banda
 		var from = getUrlParameter("from");
@@ -55,7 +67,9 @@
 		
 		if (!login) {
 			$(".menu .historial a").attr("href", "login.html");
-		} 
+		} else {
+			$(".options_login").html("logout");
+		}
 		var user;
 		
 		//cargar el usuario de la DB

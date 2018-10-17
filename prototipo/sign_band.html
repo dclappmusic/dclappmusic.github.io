@@ -15,7 +15,7 @@
 
 <body>
 	<div class="container sign_band">
-        <a class="close" href="index.html">
+        <a class="icon-esquina close" href="index.html">
             <svg xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6953 14.0771L22.3037 24L24.3906 21.8447L14.7822 11.9224L23.4668 2.95361L21.3789 0.79834L12.6943 9.7666L3.81543 0.597168L1.72852 2.75244L10.6074 11.9219L0.804688 22.0459L2.8916 24.2012L12.6953 14.0771Z" fill="white" />
 			</svg>
@@ -71,41 +71,44 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
 
-	//placeholder de nombre de band es banda random
+//placeholder de nombre de band es banda random
 	var placeholder_bands = ["ZAZ", "Vetusta Morla", "U2", "The Beatles", "Frank Turner", "Jamie T"];
 	var placeholder_band = placeholder_bands[Math.floor(Math.random()*placeholder_bands.length)];
 	$(document).ready(function() {
 		$("#band-name").attr("placeholder", placeholder_band);
 	});
 	
-	//avanzar paso
+//avanzar paso
 	$(".sig").click(function() {
 		$(this).parent().removeClass("active");
 		$(this).parent().next().addClass("active");
 	});
 
-	//cargar imagen de perfil
+//si no ha cargado el usuario, no dejar subir banda
+	function funcion_user () {
+		if (login) {
+			$(".ciudad .bandup").show();
+		} 
+	};
+
+//cargar imagen de perfil
 	var image_input = $('.image-input');
 	var image_label = $('.image_label');
 	var image_labelVal = image_label.html();
+
 	//escribir en el label el nombre de la imagen subida
 	image_input.on("change", function(e) {
 		var fileName = e.target.value.split( '\\' ).pop();
 
-		if( fileName ) {
+		if(fileName) {
 			image_label.find('span').removeClass("empty").html(fileName);
 			imageUp();
 		} else {
 			image_label.html(image_labelVal);
 		}		
-	})
-	function funcion_user () {
-		if (!login) {
-			$(".ciudad .bandup").hide();
-		} 
-	}
-	//subir banda a CLOUD FIRESTORE
+	});
 
+//subir banda a DB
 	const bandRef = firestore.collection("bandas");
 	const userRef = firestore.collection("usuarios");
 	const storageRef = firebase.storage().ref();
@@ -186,7 +189,7 @@
 				});
 			});
 		});
-	}
+	};
 	function descUp() {
 		var desc = document.querySelector("#band-desc").value;
 		if (desc) {
@@ -198,7 +201,7 @@
 		} else {
 			window.location.href = "showtime.html?band=" + bandId;
 		}
-	}
+	};
 
 	//bajarse todas
 	// bandRef.get().then((querySnapshot) => {
