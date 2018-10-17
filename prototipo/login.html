@@ -62,215 +62,210 @@
         </div> -->
     </div>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script type="text/javascript" src="js/firebase-config.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
 
-    <script type="text/javascript">
-    //Change tabs log-sign-forgot
-        $(".tabs h3").click(function(){
-            var tab = $(this).attr("data-href");
-            $(this).addClass("active").siblings().removeClass("active");
+<script type="text/javascript">
+//Change tabs log-sign-forgot
+    $(".tabs h3").click(function(){
+        var tab = $(this).attr("data-href");
+        $(this).addClass("active").siblings().removeClass("active");
 
-            $(".form .tab." + tab).addClass("active").siblings().removeClass("active");
+        $(".form .tab." + tab).addClass("active").siblings().removeClass("active");
 
-            if (tab === "reset") {
-                $("#user-password").hide();
-                $("label.password").hide();
-            } else {
-                $("#user-password").show();
-                $("label.password").show();
-            }
-        });
-
-
-    //autentication    
-        const auth = firebase.auth();
-
-        const user_email = document.getElementById("user-email");
-        const user_password = document.getElementById("user-password");
-        const user_city = document.getElementById("user-city");
-
-        function login() {
-            const email = user_email.value;
-            const password = user_password.value;
-            
-            //autenticar el login
-            auth.signInWithEmailAndPassword(email, password).then(function(){
-                 //redirigir a index
-                    var user = auth.currentUser;
-                    window.location.href = "index.html";
-            }).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                window.alert("error: " + errorMessage) ;
-            });
-           
+        if (tab === "reset") {
+            $("#user-password").hide();
+            $("label.password").hide();
+        } else {
+            $("#user-password").show();
+            $("label.password").show();
         }
+    });
 
-        function logout() {
-            auth.signOut().catch(function(error) {
-                // An error happened.
-                window.alert("error: " + error);
-            });
-        }
 
-        function signUp() {
-            const email = user_email.value;
-            const password = user_password.value;
-            const ciudad = user_city.value;
-            
-            //crear login de usuario
-            auth.createUserWithEmailAndPassword(email, password)
-                .then(function(){
-                    //añadir el usuario a la DB
-                    const userRef = firestore.collection("usuarios");
-                    var user = auth.currentUser;
-                    
-                    userRef.doc(user.uid).set({
-                        uid: user.uid,
-                        email: email,
-                        ciudad: ciudad
-                    }).then(function(){
-                        window.location.href = "index.html?from=login";
-                    });
-                })
-                .catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                window.alert("error: " + errorMessage) ;
-            });
-        }
-        function reset() {
-            const email = user_email.value;
-            auth.sendPasswordResetEmail(email).then(function() {
-            // Email sent.
-            }).catch(function(error) {
-            // An error happened.
-            });
-        }
+//autentication    
+    const auth = firebase.auth();
 
-        function sign_up_fb() {
-            var provider = new firebase.auth.FacebookAuthProvider();
-            provider.addScope('email');
-            provider.addScope('user_age_range');
-            provider.addScope('user_location');
-            firebase.auth().useDeviceLanguage();
-            firebase.auth().signInWithPopup(provider).then(function(result) {
-                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-                var token = result.credential.accessToken;
-                // The signed-in user info.
-                var user = result.user;
-                // ...
-                }).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                // ...
-            });
-        }
+    const user_email = document.getElementById("user-email");
+    const user_password = document.getElementById("user-password");
+    const user_city = document.getElementById("user-city");
 
-        function sign_up_google() {
-            // Sign in Firebase using popup auth and Google as the identity provider.
-            var provider = new firebase.auth.GoogleAuthProvider();
-            // firebase.auth().signInWithPopup(provider);
-            firebase.auth().signInWithRedirect(provider)
-                .then((result) => { 
-                    console.log("ya está!!!!");
-                    console.log(result);
-                }).catch(e => {
-                    console.log("error: " + e);
-                });
-        }
-
-        function sign_up_email() {
-            const email = user_email.value;
-            var actionCodeSettings = {
-                // URL you want to redirect back to. The domain (www.example.com) for this
-                // URL must be whitelisted in the Firebase Console.
-                url: 'https://www.example.com/finishSignUp?cartId=1234',
-                // This must be true.
-                handleCodeInApp: true,
-                iOS: {
-                    bundleId: 'com.example.ios'
-                },
-                android: {
-                    packageName: 'com.example.android',
-                    installApp: true,
-                    minimumVersion: '12'
-                }
-            };
-            firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
-                .then(function() {
-                    // The link was successfully sent. Inform the user.
-                    // Save the email locally so you don't need to ask the user for it again
-                    // if they open the link on the same device.
-                    window.localStorage.setItem('emailForSignIn', email);
-                })
-                .catch(function(error) {
-                    // Some error occurred, you can inspect the code: error.code
-                });
-        }
+    function login() {
+        const email = user_email.value;
+        const password = user_password.value;
         
-
-        //Chekear si hay user logeado
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                // User is signed in.
-                console.log("ya estas signeado");
-                console.log(user);
+        //autenticar el login
+        auth.signInWithEmailAndPassword(email, password).then(function(){
+                //redirigir a index
                 var user = auth.currentUser;
-                var name, email, password;
-                console.log(user);
-                
-                if(user != null) {
-                    email = user.email;
-                    $(".tabs").hide();
-                    $(".form").hide();
-                    $(".logout").show();
-                    $(".welcome").html("bienvenido: " + email);
-                    var href = $(".close").attr("href");
-                    href += "?user=" + user.uid;
-				    $(".close").attr('href', href);
-                }
-            } else {
-                // No user is signed in.
-                $(".tabs").show();
-                $(".form").show();
-                $(".logout").hide();
-                $(".welcome").html("");
-                console.log("no estás signeado");
-            }
+                window.location.href = "index.html";
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            window.alert("error: " + errorMessage) ;
         });
+    }
 
+    function logout() {
+        auth.signOut().catch(function(error) {
+            // An error happened.
+            window.alert("error: " + error);
+        });
+    }
 
-
-
-
-
-        //subir persona a la live database
-        // var userRef = firebase.database().ref("usuarios");
-
-        // function signUp() {
-        //     var email = document.getElementById("email").value;
-        //     var password = document.getElementById("password").value;
-
-        //     var newUserRef = userRef.push();
-        //     newUserRef.set({
-        //         email: email,
-        //         password: password
-        //     });
-        // }
-
+    function signUp() {
+        const email = user_email.value;
+        const password = user_password.value;
+        const ciudad = user_city.value;
         
-	</script>
- </body>
+        //crear login de usuario
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(function(){
+                //añadir el usuario a la DB
+                const userRef = firestore.collection("usuarios");
+                var user = auth.currentUser;
+                
+                userRef.doc(user.uid).set({
+                    uid: user.uid,
+                    email: email,
+                    ciudad: ciudad
+                }).then(function(){
+                    window.location.href = "index.html?from=login";
+                });
+            })
+            .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            window.alert("error: " + errorMessage) ;
+        });
+    }
+    function reset() {
+        const email = user_email.value;
+        auth.sendPasswordResetEmail(email).then(function() {
+        // Email sent.
+        }).catch(function(error) {
+        // An error happened.
+        });
+    }
+
+    function sign_up_fb() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('email');
+        provider.addScope('user_age_range');
+        provider.addScope('user_location');
+        firebase.auth().useDeviceLanguage();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+            }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
+
+    function sign_up_google() {
+        // Sign in Firebase using popup auth and Google as the identity provider.
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+            console.log("error: " + error);
+        });
+        // firebase.auth().signInWithRedirect(provider)
+        //     .then((result) => { 
+        //         console.log("ya está!!!!");
+        //         console.log(result);
+        //     }).catch(e => {
+        //         console.log("error: " + e);
+        //     });
+    }
+
+    function sign_up_email() {
+        const email = user_email.value;
+        var actionCodeSettings = {
+            // URL you want to redirect back to. The domain (www.example.com) for this
+            // URL must be whitelisted in the Firebase Console.
+            url: 'https://www.example.com/finishSignUp?cartId=1234',
+            // This must be true.
+            handleCodeInApp: true,
+            iOS: {
+                bundleId: 'com.example.ios'
+            },
+            android: {
+                packageName: 'com.example.android',
+                installApp: true,
+                minimumVersion: '12'
+            }
+        };
+        firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+            .then(function() {
+                // The link was successfully sent. Inform the user.
+                // Save the email locally so you don't need to ask the user for it again
+                // if they open the link on the same device.
+                window.localStorage.setItem('emailForSignIn', email);
+            })
+            .catch(function(error) {
+                // Some error occurred, you can inspect the code: error.code
+            });
+    }
+    
+
+    //Chekear si hay user logeado
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            // User is signed in.
+            console.log("ya estas signeado");
+            console.log(user);
+            var user = auth.currentUser;
+            var name, email, password;
+            console.log(user);
+            
+            if(user != null) {
+                email = user.email;
+                $(".tabs").hide();
+                $(".form").hide();
+                $(".logout").show();
+                $(".welcome").html("bienvenido: " + email);
+                var href = $(".close").attr("href");
+                href += "?user=" + user.uid;
+                $(".close").attr('href', href);
+            }
+        } else {
+            // No user is signed in.
+            $(".tabs").show();
+            $(".form").show();
+            $(".logout").hide();
+            $(".welcome").html("");
+            console.log("no estás signeado");
+        }
+    });
+    
+</script>
+</body>
 </html>
 
 

@@ -32,7 +32,7 @@
 				<label for="band-city" class="form-label">¿En qué ciudad reside tu banda?</label>
 				<input id="band-city" class="form-input" placeholder="Berlín" type="text" name="band-city" value="" autocomplete="on">
 				<!-- <p class="boton-sm sig">sig</p> -->
-				<button id="boton" class="boton-med" onclick="bandUp();">
+				<button id="boton" class="boton-med bandup" onclick="bandUp();">
 					listo
 				</button>
 			</div>
@@ -78,7 +78,6 @@
 		$("#band-name").attr("placeholder", placeholder_band);
 	});
 	
-
 	//avanzar paso
 	$(".sig").click(function() {
 		$(this).parent().removeClass("active");
@@ -101,7 +100,9 @@
 		}		
 	})
 	function funcion_user () {
-		
+		if (!login) {
+			$(".ciudad .bandup").hide();
+		} 
 	}
 	//subir banda a CLOUD FIRESTORE
 
