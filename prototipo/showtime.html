@@ -63,6 +63,12 @@
 			var banda = doc.data();
 			console.log(banda);
 			$(".band_name").html(banda.nombre);
+			if (banda.show_active) {
+				$(".intro_clapp h3").html("Tienes un show activo");
+				$(".boton.showtime").html("in show");
+			} else {
+
+			}
 		}).catch(function(error) {
 			console.log("Error getting document:", error);
 		});

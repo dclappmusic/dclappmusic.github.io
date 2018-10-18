@@ -67,14 +67,14 @@
 		text-align: center;
 		.menu-tit {
 			color: $secundario;
-			width: calc(360px / 3);
+			width: 33%;
 			&.active {
-				// background-color: white;
-				// border-radius: 100%;
-				// height: 6em;
-				// padding-top: 40px;
-				// position: relative;
-				// top: -2em;
+				background-color: white;
+				border-radius: 100%;
+				height: 6em;
+				padding-top: 40px;
+				position: relative;
+				top: -2em;
 			}
 		}
 	}
@@ -363,6 +363,9 @@
 	.cabecera {color: white;}
 	.menu .menu-tit {
 		color: white;
+		&.active {
+			color: $primario;
+		}
 	}	
 	
 	.clapps {
@@ -523,6 +526,7 @@
 	.paso {
 		display: none;
 		.form-input {
+			top: 47vh;
 			// position: relative;
 			
 			// @include longshadow(darken($secundario, 3%));
@@ -612,14 +616,18 @@
 		font-family: $Changa;
 		font-weight: 600;
 		font-size: 40px;
-		padding-left: .8em;
-		@include longshadow(darken($secundario, 3%));
+		display: block;
+    	padding-top: 17%;
+		// @include longshadow(darken($secundario, 3%));
 	}
 	.intro_clapp {
 		color: white;
 	}
 	.menu .menu-tit {
 		color: white;
+		&.active {
+			color: $secundario;
+		}
 	}
 }
 .container.show_perfil {

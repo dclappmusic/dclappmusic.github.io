@@ -21,7 +21,7 @@
 		</button>
 		<div class="intro_clapp">
 			<h3>
-                The party started
+                conectando
             </h3>
 		</div>
 	</div>
@@ -85,6 +85,7 @@
 					shows: firebase.firestore.FieldValue.arrayUnion(showId),
 					show_active: true
 				});
+				$(".intro_clapp h3").html("The party started");
 			}).catch(function(error){
 				console.log("error: " + error);
 			}
