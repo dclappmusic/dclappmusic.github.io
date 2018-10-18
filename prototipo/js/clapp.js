@@ -154,7 +154,7 @@ var show_preclapps = 0;
                 $(".num_clapps").html("+" + clapps + " clapps");
             }
             if (clapps < 50) {
-                setTimeout(set_subirClapps, 500);
+                setTimeout(set_subirClapps, 300);
             } else {
                 console.log("suficientes clapps, ahora atiende al show");
                 $(".num_clapps").html("suficientes clapps, ahora atiende al show");

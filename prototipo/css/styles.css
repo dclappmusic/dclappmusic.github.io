@@ -235,7 +235,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   position: fixed;
   width: 100%;
   height: 35px;
-  bottom: 0;
+  top: calc(100% - 35px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -862,7 +862,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-left: 45%;
 }
 
-.container.sign_band .bandup {
+.container.sign_band .boton-med {
   font-size: 20px;
   font-weight: bold;
   position: absolute;

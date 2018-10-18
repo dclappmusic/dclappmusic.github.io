@@ -51,6 +51,7 @@
             </div>
             <div class="shows">
                 shows
+                <p class="boton-sm" onclick="deleteBand();">delete band</p>
             </div>
         </div>
         <ul class="menu">
@@ -94,7 +95,7 @@
 
 
     function funcion_user () {
-	
+	    userRef = firestore.collection("usuarios").doc(userId);
     };    
     
     var bandId = getUrlParameter("band");
@@ -110,6 +111,8 @@
     var banda;
     //traer banda de base de datos
     const bandRef = firestore.collection("bandas").doc(bandId);
+    var userRef;
+
     bandRef.onSnapshot((doc) => {
         banda = doc.data();
         console.log("banda: " + banda.nombre);
@@ -173,7 +176,43 @@
 				cambios.imagen = url;
 			});
 		});
-	}
+    };
+    
+
+    //borrar banda
+    function deleteBand() {
+        var confirmar = confirm("¿Seguro que quieres borrar tu banda");
+        var newBand = [];
+        userRef.get().then(doc => {
+            user = doc.data();
+            newBand = user.band;
+            newBand = newBand.filter(band => band.band_id !== bandId);
+        });
+        if (confirmar == true) {
+            userRef.update({
+                band: newBand
+            }).then(function() {
+                console.log("borrada con exito de user");
+                bandRef.delete().then(function() {
+                    console.log("borrada con exito de bandas");
+                    storageRef.child(bandId).delete().then(function() {
+                        console.log("borrada con exito de imagenes");
+                        window.location.href = "index.html";
+                    }).catch((error) => {
+                        console.error("Error removing de bandas: ", error);
+                    });
+                }).catch((error) => {
+                    console.error("Error removing de bandas: ", error);
+                });
+            }).catch((error) => {
+                console.error("Error removing de user: ", error);
+            });
+        } else {
+            console.log("abortado");
+        }
+    };
+
+
 </script>
 </body>
 </html>

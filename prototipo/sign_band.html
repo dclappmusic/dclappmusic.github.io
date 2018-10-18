@@ -33,7 +33,7 @@
 				<input id="band-city" class="form-input" placeholder="Berlín" type="text" name="band-city" value="" autocomplete="on">
 				<!-- <p class="boton-sm sig">sig</p> -->
 				<button id="boton" class="boton-med bandup" onclick="bandUp();">
-					listo
+					crear
 				</button>
 			</div>
 			<div class="paso imagen">
@@ -52,8 +52,8 @@
 				<label for="band-desc" class="form-label">Y una descripción</label>
 				<input id="band-desc" class="form-input" placeholder="Somos..." type="text" name="band-desc" value="">
 				<!-- <p class="boton-sm sig">sig</p> -->
-				<button id="boton" class="boton-med" onclick="descUp();">
-					listo
+				<button id="boton" class="boton-med descup" onclick="descUp();">
+					perfecto
 				</button>
 			</div>
 			<!-- <div class="paso subida">
@@ -116,7 +116,8 @@
 	var bandId;
 
 	function bandUp() {
-		
+		$(".bandup").attr("onclick", " ").html("subiéndola");
+
 		var nombre = document.querySelector("#band-name").value;
 		var ciudad = document.querySelector("#band-city").value;
 		
