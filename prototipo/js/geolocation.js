@@ -33,7 +33,7 @@
             encontrar_shows();
         } else if (window.location.pathname.indexOf("in_show.html") > -1) {
             console.log("showtime1");
-            $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
+            // $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
             showtime();
         }
     };
@@ -78,7 +78,7 @@
             encontrar_shows();
         } else if (window.location.pathname.indexOf("in_show.html") > -1) {
             console.log("showtime1");
-            $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
+            // $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
             showtime();
         }
     };
