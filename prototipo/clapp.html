@@ -53,12 +53,12 @@
 
 	function funcion_user() {
 		
-		//crear array de shows activos en la DB
+		//crear array de shows activos en la DB, los mete en shows
 		showRef.where("active", "==", true).get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					shows.push(doc.data());
-					console.log("shows:");
+					console.log("shows activos:");
 					console.log(shows);
 				});
 				tryGeolocation();

@@ -21,35 +21,86 @@ var show_preclapps = 0;
             latitud: latitud,
             longitud: longitud
         };
+        var shows_cerca = {};
+        var show_cerca_id;
+        var num_shows_cerca = 0;
         var show_lejos = {};
+        var show_lejos_id;
+
+//*juntar en una sóla función
+        //ordena un array de shows por distancia
+        function ordenarShows_cerca() {
+            // debugger;
+            var keysSorted = Object.keys(shows_cerca).sort(function(a,b){return shows_cerca[a]-shows_cerca[b]});
+            console.log(keysSorted.map(key => shows_cerca[key]));
+            show_cerca_id = keysSorted[0];
+            console.log("show más cerca: " + show_cerca_id);
+        }
+        
         console.log("encontrar en: " + posicion_clapp.latitud + "," + posicion_clapp.longitud);
         console.log("shows:");
         console.log(shows);
+        
         shows.forEach((Ishow_activo) => {
             console.log(Ishow_activo.banda);
             if (is_cerca(Ishow_activo.posicion, posicion_clapp)) {
                 console.log("está cerca");
                 console.log("show id: " + Ishow_activo.showId);
-                show_encontrado_id = Ishow_activo.showId;
-                get_show_encontrado(Ishow_activo);
+                // show_encontrado_id = Ishow_activo.showId;
                 musico_encontrado = true;
+                shows_cerca[Ishow_activo.showId] = distancia;
+                num_shows_cerca++;
+                // get_show_encontrado(Ishow_activo);
             } else {
                 //ordenarlos por distancia, y publicar el mas cercano
-                show_lejos[Ishow_activo.banda] = distancia;
+                show_lejos[Ishow_activo.showId] = distancia;
                 console.log("está lejos");
             }
         });
+        if (musico_encontrado) {
+            console.log("show encontrado");
+            console.log(shows_cerca);
+            console.log("numero de shows: " + num_shows_cerca);
+            if (num_shows_cerca > 1) {
+                console.log("hay más de un show cerca");
+                ordenarShows_cerca();
+                show_encontrado_id = show_cerca_id;
+                shows.forEach((Ishow_cerca) => {
+                    if (Ishow_cerca.showId === show_encontrado_id) {
+                        get_show_encontrado(Ishow_cerca.banda);
+                    }
+                })
+                
+            } else {
+                var unico_show_id = Object.keys(shows_cerca)[0];
+                console.log("sólo hay 1 show cerca");
+                console.log(unico_show_id);
+                show_encontrado_id = unico_show_id;
+                shows.forEach((Ishow_cerca) => {
+                    if (Ishow_cerca.showId === show_encontrado_id) {
+                        // console.log(Ishow_cerca.banda);
+                        get_show_encontrado(Ishow_cerca.banda);
+                    }
+                })
+            }
+        }
+
         if (!musico_encontrado) {
             // $(".act .name").html("no music :'(");
             console.log(show_lejos);
+            
             var keysSorted = Object.keys(show_lejos).sort(function(a,b){return show_lejos[a]-show_lejos[b]});
             console.log(keysSorted.map(key => show_lejos[key]));
-            show_lejos_id = Object.keys(show_lejos);
-            console.log(show_lejos_id[0]);
-            if (show_lejos_id[0]) {
-                get_show_cercano(show_lejos_id[0]);
-            $(".show_cercano").html("No tienes ningún show cerca<br>Éste es el más cercano que hemos encontrado =)");
-            // $(".show_cerca").html("este es el show más cercano, a: " + keysSorted[show_lejos_id[0]] + "grados");
+            show_lejos_id = keysSorted[0];
+            console.log(show_lejos_id);
+            if (show_lejos_id) {
+                shows.forEach((Ishow_lejos) => {
+                    if (Ishow_lejos.showId === show_lejos_id) {
+                        get_show_cercano(Ishow_lejos.banda);
+                    }
+                })
+                $(".show_cercano").html("No tienes ningún show cerca<br>Éste es el más cercano que hemos encontrado =)");
+                // $(".show_cerca").html("este es el show más cercano, a: " + keysSorted[show_lejos_id[0]] + "grados");
             } else {
                 $(".act .name").html("no music :'(");
             }
@@ -58,10 +109,10 @@ var show_preclapps = 0;
     };
 
 //Bajarse y mostrar los datos de la banda encontrada
-    function get_show_encontrado (Ibanda_encontrada) {
+    function get_show_encontrado(Ibanda_encontrada) {
         console.log("banda encontrada:");
         console.log(Ibanda_encontrada);
-        bandRef.doc(Ibanda_encontrada.banda).onSnapshot((doc) => {
+        bandRef.doc(Ibanda_encontrada).onSnapshot((doc) => {
             get_clapps();
             banda_activa = doc.data();
             banda_activa_id = doc.id;
@@ -95,6 +146,7 @@ var show_preclapps = 0;
 
 //coger user_preclapps y show_preclapps
     function get_clapps() {
+        // debugger;
         if (userId) {
             const userRef = firestore.collection("usuarios").doc(userId);
             userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
