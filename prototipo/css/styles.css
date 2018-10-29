@@ -1052,4 +1052,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: rgba(0, 0, 0, 0.05);
   border: none;
 }
+
+.container.historial_shows .proximamente {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  margin-top: 40vh;
+  color: white;
+}
+
+.container.historial_shows img {
+  width: 100%;
+  height: 100%;
+}
+
+.container.historial_shows .menu .menu-tit, .container.historial_shows .menu .container.login .tabs h3, .container.login .tabs .container.historial_shows .menu h3 {
+  color: white;
+}
+
+.container.historial_shows .menu .menu-tit.active, .container.historial_shows .menu .container.login .tabs h3.active, .container.login .tabs .container.historial_shows .menu h3.active {
+  color: #0C3847;
+}
 /*# sourceMappingURL=styles.css.map */
