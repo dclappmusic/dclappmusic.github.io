@@ -818,6 +818,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   top: 47vh;
 }
 
+.container.sign_band .paso .form-input:focus {
+  top: 65%;
+}
+
 .container.sign_band .paso.active {
   display: block;
 }

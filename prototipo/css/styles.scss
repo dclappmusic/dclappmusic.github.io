@@ -527,6 +527,9 @@
 		display: none;
 		.form-input {
 			top: 47vh;
+			&:focus {
+				top: 65%;
+			}
 			// position: relative;
 			
 			// @include longshadow(darken($secundario, 3%));
