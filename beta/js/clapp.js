@@ -1,9 +1,10 @@
 //DECLARACIONES DE FUNCIONES RELACIONADAS CON EL CLAPP
 //----------------------------------------------------------
 var distancia;
-var distancia_max = 0.001000;
+var distancia_max = 0.009000;
 var band_preclapps = 0;
 var show_preclapps = 0;
+var clapps_subidos = 0;
 
 //comparar distancias dadas coordenadas del clapp y del show
     function is_cerca(posicion1, posicion2) {
@@ -218,6 +219,8 @@ var show_preclapps = 0;
         
 //BBDD sumarle los clapps a la banda
     function set_subirClapps () {
+        clapps = clapps - clapps_subidos;
+
         //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
         console.log("clapps: " + clapps);
         console.log("band preclapps: " + band_preclapps);
@@ -249,6 +252,8 @@ var show_preclapps = 0;
         bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
         // showRef.doc(show_encontrado_id).update({num_clapps: show_posclapps});
         showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true });
+        
+        clapps_subidos = clapps;
     }
             
 

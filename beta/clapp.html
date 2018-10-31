@@ -53,7 +53,9 @@
 
 
 	function funcion_user() {
-		userId = "anonimo_test1_buho" + firebase.firestore.FieldValue.serverTimestamp();
+		var time = Math.round(new Date().getTime()/1000);
+		console.log(time);
+		userId = "anonimo_test1_buho" + time;
 		//crear array de shows activos en la DB, los mete en shows
 		showRef.where("active", "==", true).get()
 			.then((querySnapshot) => {
