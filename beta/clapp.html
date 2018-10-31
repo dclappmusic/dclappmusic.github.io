@@ -51,8 +51,9 @@
 	const showRef = firestore.collection("shows");	
 	const bandRef = firestore.collection("bandas");
 
+
 	function funcion_user() {
-		
+		userId = "anonimo_test1_buho" + firebase.firestore.FieldValue.serverTimestamp();
 		//crear array de shows activos en la DB, los mete en shows
 		showRef.where("active", "==", true).get()
 			.then((querySnapshot) => {
@@ -70,15 +71,18 @@
 
 //EVENT HANDLERS
 	$(".btn_clapp").mousedown(function() {
-        if (login) {
-            setInterval(clapping(), 500);
-        } else {
-            window.location.href = "login.html";
-        }
+		setInterval(clapping(), 800);
+		// if (login) {
+        //     setInterval(clapping(), 500);
+        // } else {
+        //     window.location.href = "login.html";
+        // }
     });
     $(".btn_clapp").mouseup(function() {
-        clearInterval(clapHold);
+		clearInterval(clapHold);
+		setTimeout(set_subirClapps, 3000);
 	});
+
 	
     // $(".btn_clapp").click(function() {
     //     if (login) {
