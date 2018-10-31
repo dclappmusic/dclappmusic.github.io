@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="dClapp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>dClapp</title>
+	<link rel="icon" type="image/jpg" href="images/favicon.png">
+	<link rel="stylesheet" href="css/styles.css">
+	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
+</head>
+
+<body>
+	<div class="container clapp">
+        <span class="back" onclick="window.history.back();">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.939341 10.9393C0.353554 11.5251 0.353554 12.4749 0.939341 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97919 12.6066 1.3934C12.0208 0.807611 11.0711 0.807611 10.4853 1.3934L0.939341 10.9393ZM26 10.5L2 10.5V13.5L26 13.5V10.5Z" fill="white"/>
+            </svg>     
+		</span>
+		<div class="fondo">
+			<div class="overlay"></div>
+			<img>
+		</div>
+		<div class="boton btn_clapp">
+			<span class="num_clapps"></span>
+			<img src="images/icon_clapp.png" />
+		</div>
+		
+        <div class="act">
+			<p class="show_cercano display-med"></p>
+            <a class="titulo name" href="#">asegúrate de tener activada la ubicación</a>
+        </div>
+	</div>
+
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/clapp.js"></script>
+<script type="text/javascript" src="js/geolocation.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	var user;
+	var shows = [];
+	var banda_activa;
+	var banda_activa_id;
+	var show_encontrado_id;
+	const showRef = firestore.collection("shows");	
+	const bandRef = firestore.collection("bandas");
+
+	function funcion_user() {
+		
+		//crear array de shows activos en la DB, los mete en shows
+		showRef.where("active", "==", true).get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					shows.push(doc.data());
+					console.log("shows activos:");
+					console.log(shows);
+				});
+				tryGeolocation();
+			})
+			.catch(function(error) {
+				console.log("Error getting documents: ", error);
+			});
+	};
+
+//EVENT HANDLERS
+	$(".btn_clapp").mousedown(function() {
+        if (login) {
+            setInterval(clapping(), 500);
+        } else {
+            window.location.href = "login.html";
+        }
+    });
+    $(".btn_clapp").mouseup(function() {
+        clearInterval(clapHold);
+	});
+	
+    // $(".btn_clapp").click(function() {
+    //     if (login) {
+    //         clapping();
+    //     } else {
+    //         window.location.href = "login.html";
+    //     } 
+    // });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

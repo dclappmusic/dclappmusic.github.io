@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="dClapp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>dClapp</title>
+	<link rel="icon" type="image/jpg" href="images/favicon.png">
+	<link rel="stylesheet" href="css/styles.css">
+	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
+
+</head>
+
+<body>
+	<div class="container showtime">
+		<a class="cambio_modo" href="index.html">volver a clapp</a>
+		<h1 class="band_name display-big"></h1>
+		<a class="boton showtime" href="in_show.html">
+			SHOW<br/>TIME
+		</a>
+		<div class="intro_clapp">
+			<h3 class="display-med">
+               	READY TO FUCKING ROCK<br/>
+                THE SHIT OUT
+            </h3>
+		</div>
+
+		<ul class="menu">
+			<li class="menu-tit">
+				<a href="historial_shows.html">historial</a>
+			</li>
+			<li class="menu-tit active" id="preclapp">
+				<a href="#">SHOW</a>
+			</li>
+			<li class="menu-tit">
+				<a href="show_perfil.html">perfil</a>
+			</li>
+		</ul>
+	</div>
+
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	function funcion_user () {
+		var bandaId = getUrlParameter("band");
+		
+		$('a').each(function() {
+			var href = $(this).attr('href');
+			if (href && (href != "index.html")) {
+				href += (href.match(/\?/) ? '&' : '?') + "band=" + bandaId;
+				$(this).attr('href', href);
+			}
+		});
+
+		const bandRef = firestore.collection("bandas").doc(bandaId);
+		bandRef.get().then((doc) => {
+			var banda = doc.data();
+			console.log(banda);
+			$(".band_name").html(banda.nombre);
+			if (banda.show_active) {
+				$(".intro_clapp h3").html("Tienes un show activo");
+				$(".boton.showtime").html("in show");
+			} else {
+
+			}
+		}).catch(function(error) {
+			console.log("Error getting document:", error);
+		});
+	};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

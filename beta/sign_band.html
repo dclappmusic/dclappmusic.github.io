@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="dClapp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>dClapp</title>
+	<link rel="icon" type="image/jpg" href="images/favicon.png">
+	<link rel="stylesheet" href="css/styles.css">
+	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
+
+</head>
+
+<body>
+	<div class="container sign_band">
+        <a class="icon-esquina close" href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6953 14.0771L22.3037 24L24.3906 21.8447L14.7822 11.9224L23.4668 2.95361L21.3789 0.79834L12.6943 9.7666L3.81543 0.597168L1.72852 2.75244L10.6074 11.9219L0.804688 22.0459L2.8916 24.2012L12.6953 14.0771Z" fill="white" />
+			</svg>
+			<span class="skip">SKIP</span>
+        </a>
+        <h1 class="cabecera">CREAR UNA BANDA</h1>
+        <div class="form">
+            <div class="paso nombre active">
+                <label for="band-name" class="form-label">¿Cómo os llamais?</label>
+				<input id="band-name" class="form-input" placeholder="" type="text" name="band-name" value="">
+				<p class="boton-sm sig">sig</p>
+			</div>
+			<div class="paso ciudad">
+				<label for="band-city" class="form-label">¿En qué ciudad reside tu banda?</label>
+				<input id="band-city" class="form-input" placeholder="Berlín" type="text" name="band-city" value="" autocomplete="on">
+				<!-- <p class="boton-sm sig">sig</p> -->
+				<button id="boton" class="boton-med bandup" onclick="bandUp();">
+					crear
+				</button>
+			</div>
+			<div class="paso imagen">
+				<!-- <p class="form-label">Banda subida correctamente, ahora completa tu perfil con:</p> -->
+				<p class="form-label">Completa tu perfil con una imagen</p>
+				<label class="image_label" for="band-image">
+					<span class="empty">+</span>
+				</label>
+				<input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image">	
+				<!-- <button id="boton" class="boton-med" onclick="bandUp();">
+					listo
+				</button>			 -->
+				<p class="boton-sm sig">sig</p>
+			</div>
+			<div class="paso descripcion">
+				<label for="band-desc" class="form-label">Y una descripción</label>
+				<input id="band-desc" class="form-input" placeholder="Somos..." type="text" name="band-desc" value="">
+				<!-- <p class="boton-sm sig">sig</p> -->
+				<button id="boton" class="boton-med descup" onclick="descUp();">
+					perfecto
+				</button>
+			</div>
+			<!-- <div class="paso subida">
+				<a class="parrafo" href="">BIENVENIDO</a>
+				<ul class="parrafo bandas_creadas"></ul>
+			</div> -->
+        </div>
+	</div>
+
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+
+//placeholder de nombre de band es banda random
+	var placeholder_bands = ["ZAZ", "Vetusta Morla", "U2", "The Beatles", "Frank Turner", "Jamie T"];
+	var placeholder_band = placeholder_bands[Math.floor(Math.random()*placeholder_bands.length)];
+	$(document).ready(function() {
+		$("#band-name").attr("placeholder", placeholder_band);
+	});
+	
+//avanzar paso
+	$(".sig").click(function() {
+		$(this).parent().removeClass("active");
+		$(this).parent().next().addClass("active");
+	});
+
+//si no ha cargado el usuario, no dejar subir banda
+	function funcion_user () {
+		if (login) {
+			$(".ciudad .bandup").show();
+		} 
+	};
+
+//cargar imagen de perfil
+	var image_input = $('.image-input');
+	var image_label = $('.image_label');
+	var image_labelVal = image_label.html();
+
+	//escribir en el label el nombre de la imagen subida
+	image_input.on("change", function(e) {
+		var fileName = e.target.value.split( '\\' ).pop();
+
+		if(fileName) {
+			image_label.find('span').removeClass("empty").html(fileName);
+			imageUp();
+		} else {
+			image_label.html(image_labelVal);
+		}		
+	});
+
+//subir banda a DB
+	const bandRef = firestore.collection("bandas");
+	const userRef = firestore.collection("usuarios");
+	const storageRef = firebase.storage().ref();
+	const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+	var bandId;
+
+	function bandUp() {
+		$(".bandup").attr("onclick", " ").html("subiéndola");
+
+		var nombre = document.querySelector("#band-name").value;
+		var ciudad = document.querySelector("#band-city").value;
+		
+		if (nombre && ciudad) {
+			bandRef.add({
+				nombre: nombre,
+				ciudad: ciudad,
+				uid: userId,
+				num_clapps: 0,
+				creada: timestamp
+			}).then((band) => {
+				bandId = band.id;
+				// $(".paso").hide();
+				// $(".subida").show();
+				userRef.doc(userId).update({
+					band: firebase.firestore.FieldValue.arrayUnion({band_id: bandId,band_name: nombre}),
+					is_musician: true,
+				});
+				// imageUp();
+				// upload
+				// 	.then(snapshot => snapshot.ref.getDownloadURL())
+				// 	.then((url) => {
+				// 		console.log(url);
+				// 		bandRef.doc(bandId).update({imagen: url});
+				// 	})
+				// 	.catch(console.error);
+				
+				// $(".paso").hide();
+				// $(".subida").show();
+				// $(".subida a").attr("href", "showtime.html?band=" + bandId).html("BIENVENIDO <br>" + nombre);
+				// //redirigir a showtime
+				// window.location.href = "showtime.html?band=" + bandId;
+				console.log("banda creada");
+				$(".cabecera").html("BANDA CREADA");
+				$(".close").attr("href", "showtime.html?band=" + bandId);
+				$(".close svg").hide().siblings().show();
+				$(".paso.ciudad").removeClass("active");
+				$(".paso.imagen").addClass("active");
+			}).catch(function(error){
+				console.log("error: " + error);
+			});
+		}
+	};
+
+	function imageUp() {
+		var imagen = document.querySelector("#band-image").files[0];
+		const fotoId = bandId;
+		console.log(imagen);
+		console.log(imagen.name);
+		console.log(fotoId);
+		const upload = storageRef.child(fotoId).put(imagen);
+
+		upload.on('state_changed', function(snapshot) {
+			// Observe state change events such as progress, pause, and resume
+			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+			$(".paso.imagen .sig").hide();
+			var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+			console.log('Upload is ' + progress + '% done');
+			image_label.find('span').removeClass("empty").html(progress + "%");
+		}, function(error) {
+			// Handle unsuccessful uploads
+			console.log("error: " + error);
+		}, function() {
+			// Handle successful uploads on complete
+			// For instance, get the download URL: https://firebasestorage.googleapis.com/...
+			upload.snapshot.ref.getDownloadURL().then((url) => {
+				console.log("imagen guardada en: " + url);
+				bandRef.doc(bandId).update({imagen: url}).then(function(){
+					$(".paso.imagen .sig").show();
+				});
+			});
+		});
+	};
+	function descUp() {
+		var desc = document.querySelector("#band-desc").value;
+		if (desc) {
+			bandRef.doc(bandId).update({
+				descripcion: desc
+			}).then(function() {
+				window.location.href = "showtime.html?band=" + bandId;
+			});
+		} else {
+			window.location.href = "showtime.html?band=" + bandId;
+		}
+	};
+
+	//bajarse todas
+	// bandRef.get().then((querySnapshot) => {
+	// 	querySnapshot.forEach((band) => {
+	// 		const banda = band.data();
+	// 		console.log(banda);
+	// 		const liBandas = "<li>" + banda.nombre + "</li>"
+	// 		$(".bandas_creadas").append(liBandas);
+	// 	});
+	// });
+		
+
+		
+		//bajarse todas en tiempo real
+		// getRealtimeUpdates = function() {
+		// 	bandRef.onSnapshot(snap => {
+		// 		const banda = snap.data();
+		// 		console.log(banda);
+		// 		// const liBandas = "<li>" + banda.nombre + "</li>"
+		// 		// $(".bandas_creadas").append(liBandas);
+		// 	});
+		// };
+		// getRealtimeUpdates();
+
+		
+		// //subir banda a REALTIME DATABASE
+		// var bandRef = firebase.database().ref().child("bandas");
+		// var bandas = bandRef.child("nombre");
+		// function bandUp() {
+        //     var nombre = document.querySelector("#band-name").value;
+		// 	var ciudad = document.querySelector("#band-city").value;
+		// 	// var imagen = document.querySelector("#band-image").value;
+
+		// 	var newBandRef = bandRef.push();
+			
+		// 	if (nombre && ciudad) {
+		// 		newBandRef.set({
+		// 			nombre: nombre,
+		// 			ciudad: ciudad
+		// 			// imagen: imagen
+		// 		}).then(function(){
+		// 			$(".paso").hide();
+		// 			$(".subida").show();
+		// 		});
+		// 	}
+		// }
+		// bandRef.on("child_added", snap => {
+		// 	bandas = snap.val();
+		// 	console.log(bandas.nombre);
+		// 	bandas = "<li>" + bandas.nombre + "</li>"
+		// 	$(".bandas_creadas").append(bandas);
+
+		// });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

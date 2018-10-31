@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="dClapp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>dClapp</title>
+	<link rel="icon" type="image/jpg" href="images/favicon.png">
+	<link rel="stylesheet" href="css/styles.css">
+	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
+
+</head>
+
+<body>
+	<div class="container perfil">
+        <span class="back" onclick="window.history.back();">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.939341 10.9393C0.353554 11.5251 0.353554 12.4749 0.939341 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97919 12.6066 1.3934C12.0208 0.807611 11.0711 0.807611 10.4853 1.3934L0.939341 10.9393ZM26 10.5L2 10.5V13.5L26 13.5V10.5Z" fill="white"/>
+            </svg>     
+        </span>
+        <a class="icon-esquina close" href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6953 14.0771L22.3037 24L24.3906 21.8447L14.7822 11.9224L23.4668 2.95361L21.3789 0.79834L12.6943 9.7666L3.81543 0.597168L1.72852 2.75244L10.6074 11.9219L0.804688 22.0459L2.8916 24.2012L12.6953 14.0771Z" fill="white"/>
+            </svg>    
+        </a>
+        <div class="act">
+            <svg class="elipse" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="180" cy="206.5" rx="234" ry="206.5" fill="#0C3847"/>
+            </svg>
+            <div class="imagen"></div>
+            <h2 class="titulo name">...</h2>
+            <ul class="resumen">
+                <li class="ciudad">
+                    <p class="display-sm">...</p>
+                </li>
+                <li class="clapps">
+                    <p class="display-med">...</p>
+                </li>
+                <li class="actuaciones">
+                    <p class="display-sm">...</p>
+                </li>
+            </ul>
+            
+            <div class="seguir">
+                <p class="boton-sm active">seguir</p>
+            </div>
+            <div class="descripcion">
+                <p class="parrafo">
+                </p>
+            </div>
+        </div>
+	</div>
+
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	function funcion_user () {
+        //coge el ID de la banda mandado por URL parameter desde la pantalla del clapp
+        var bandId = getUrlParameter("band");
+        console.log(bandId);
+
+        //encuentra la banda seguún el ID
+        var banda;
+        //traer banda de base de datos
+		const bandRef = firestore.collection("bandas").doc(bandId);
+		bandRef.onSnapshot((doc) => {
+			banda = doc.data();
+            console.log("banda: " + banda.nombre);
+
+        //diplay en pantalla de datos de la banda
+            $(".act .name").html(banda.nombre);
+            $(".act .resumen .ciudad p").html(banda.ciudad);
+            $(".act .clapps p").html(banda.num_clapps);
+            $(".act .actuaciones p").html(banda.shows.length + "<span class='parrafo-sm'>actuaciones</span>");
+            if (banda.imagen) {
+                $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
+            } else {
+                $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
+            }
+            $(".act .descripcion .parrafo").html(banda.descripcion);
+		});
+
+
+        //toggle del botón de seguir
+        $(".seguir .boton-sm").click(function(){
+            $(this).toggleClass("active");
+            if ($(this).html() === "seguir") {
+                $(this).html("siguiendo");
+            } else {
+                $(this).html("seguir");
+            }
+        });
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
