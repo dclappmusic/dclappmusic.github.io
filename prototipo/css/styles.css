@@ -814,10 +814,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: none;
 }
 
-.container.sign_band .paso .form-input {
-  top: 47vh;
-}
-
 .container.sign_band .paso .form-input:focus {
   top: 65%;
 }

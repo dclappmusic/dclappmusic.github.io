@@ -113,7 +113,7 @@ var show_preclapps = 0;
         console.log("banda encontrada:");
         console.log(Ibanda_encontrada);
         bandRef.doc(Ibanda_encontrada).onSnapshot((doc) => {
-            get_clapps();
+            get_user_clapps();
             banda_activa = doc.data();
             banda_activa_id = doc.id;
             band_preclapps = banda_activa.num_clapps;
@@ -140,16 +140,15 @@ var show_preclapps = 0;
     
 //sumar y guardar los clapps
  
-    var clapHold;
     var user_preclapps = 0;
     var clapps = 0;
 
-//coger user_preclapps y show_preclapps
-    function get_clapps() {
+//coger user_preclapps
+    function get_user_clapps() {
         // debugger;
         if (userId) {
             const userRef = firestore.collection("usuarios").doc(userId);
-            userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
+            userRef.collection("clapps").doc(show_encontrado_id).get().then((doc) => {
                 if (doc.exists) {
                     var show = doc.data();
                     user_preclapps = show.show_clapps;
@@ -168,8 +167,33 @@ var show_preclapps = 0;
         } else {
             console.log("no log, no clapp");
         }
+    }
+
+//lo que ocurre al apretar el botón de clapp
+    function clapping() {
+        clapped = true;
+        clearTimeout(timeout);
+        $(this).addClass("active");
+
+        if (clapps === 0) {
+            clapps ++;
+            $(".num_clapps").html("+" + clapps + " clapp");
+        } else { 
+            clapps ++;
+            $(".num_clapps").html("+" + clapps + " clapps");
+        }
+        timeout = setTimeout(set_subirClapps, 3000);
+        if (clapps > 50) {
+            console.log("suficientes clapps, ahora atiende al show");
+            $(".num_clapps").html("suficientes clapps, ahora atiende al show");
+        } 
+        $(".num_clapps").html("+" + clapps + " clapps");
+    }
+
         
-        //ver cuantos clapps lleva    
+//BBDD sumarle los clapps a la banda
+    function set_subirClapps () {
+        //coger los clapps de la banda
         showRef.doc(show_encontrado_id).onSnapshot((doc) => {
             var snap = doc.data();
             console.log(snap);
@@ -178,46 +202,6 @@ var show_preclapps = 0;
             console.log("show preclapps: " + show_preclapps);
         });
 
-
-        // if (este_show) {
-        //     userRef.collection("clapps").doc(show_encontrado_id).onSnapshot((doc) => {
-        //         var show = doc.data();
-        //         user_preclapps = show.number;
-        //         clapps = user_preclapps;
-        //         console.log("clapps ya dados: " + clapps);
-        //         $(".num_clapps").html("+" + clapps + " clapp");
-        //     });
-        // } else {
-        //     clapps = 0;
-        //     console.log("no se han dado clapps, aún");
-        // };
-    }
-
-//lo que ocurre al apretar el botón de clapp
-    function clapping() {
-        if (banda_activa) {
-            $(this).addClass("active");
-
-            if (clapps === 0) {
-                clapps ++;
-                $(".num_clapps").html("+" + clapps + " clapp");
-            } else if (clapps < 50) { 
-                clapps ++;
-                $(".num_clapps").html("+" + clapps + " clapps");
-            }
-            if (clapps < 50) {
-                setTimeout(set_subirClapps, 300);
-            } else {
-                console.log("suficientes clapps, ahora atiende al show");
-                $(".num_clapps").html("suficientes clapps, ahora atiende al show");
-            }
-            $(".num_clapps").html("+" + clapps + " clapps"); 
-        }
-    }
-
-        
-//BBDD sumarle los clapps a la banda
-    function set_subirClapps () {
         //BBDD guardar a la banda y los clapps en el historial de clapps del usuario
         console.log("clapps: " + clapps);
         console.log("band preclapps: " + band_preclapps);
@@ -243,11 +227,19 @@ var show_preclapps = 0;
         console.log("Clapp de " + userId + " a " + banda_activa_id);
         const userRef = firestore.collection("usuarios").doc(userId);
 
-        userRef.collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
-        bandRef.doc(banda_activa_id).update({"num_clapps": band_posclapps});
-        bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true });
-        showRef.doc(show_encontrado_id).update({num_clapps: show_posclapps});
-        showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true });
+        userRef.collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true }).then(function() {
+            bandRef.doc(banda_activa_id).update({"num_clapps": band_posclapps}).then(function() {
+                bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true }).then(function() {
+                    showRef.doc(show_encontrado_id).update({num_clapps: show_posclapps}).then(function() {
+                        showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true }).then(function() {
+                            debugger;
+                            // $(".act .name").click();
+                            window.location.href = "perfil.html?band=" + banda_activa_id;
+                        });
+                    });
+                });
+            });
+        });
     }
             
 

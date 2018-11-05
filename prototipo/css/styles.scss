@@ -525,14 +525,8 @@
 	.cabecera {padding: 0 25%;}
 	.paso {
 		display: none;
-		.form-input {
-			top: 47vh;
-			&:focus {
-				top: 65%;
-			}
-			// position: relative;
-			
-			// @include longshadow(darken($secundario, 3%));
+		.form-input:focus {
+			top: 65%;
 		}
 		&.active {display: block;}
 		&.ciudad {
