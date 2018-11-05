@@ -113,8 +113,8 @@
     const bandRef = firestore.collection("bandas").doc(bandId);
     var userRef;
 
-    bandRef.onSnapshot((doc) => {
-        banda = doc.data();
+    bandRef.onSnapshot((snap) => {
+        banda = snap.data();
         console.log("banda: " + banda.nombre);
 
     //diplay en pantalla de datos de la banda

@@ -48,14 +48,15 @@
 	var banda_activa;
 	var banda_activa_id;
 	var show_encontrado_id;
+	var clapped = false;
+	let timeout;
+	let clapHold;
+	// var delay = window.setTimeout(function(){console.log("ok")}, 5000);
 	const showRef = firestore.collection("shows");	
 	const bandRef = firestore.collection("bandas");
 
-
 	function funcion_user() {
-		var time = Math.round(new Date().getTime()/1000);
-		console.log(time);
-		userId = "anonimo_test1_buho" + time;
+		
 		//crear array de shows activos en la DB, los mete en shows
 		showRef.where("active", "==", true).get()
 			.then((querySnapshot) => {
@@ -73,18 +74,43 @@
 
 //EVENT HANDLERS
 	$(".btn_clapp").mousedown(function() {
-		setInterval(clapping(), 800);
-		// if (login) {
-        //     setInterval(clapping(), 500);
-        // } else {
-        //     window.location.href = "login.html";
-        // }
+        if (login && banda_activa && (clapps < 51)) {
+            clapHold = setInterval(clapping(), 500);
+        } else {
+            window.location.href = "login.html";
+        }
     });
     $(".btn_clapp").mouseup(function() {
-		clearInterval(clapHold);
-		setTimeout(set_subirClapps, 3000);
+        clearInterval(clapHold);
 	});
 
+	// $(window).unload(function() {
+	// 	console.log("unloading");
+	// 	debugger;
+	// 	set_subirClapps();
+	// });
+	// $(window).bind('beforeunload', function() {
+	// 	console.log("unloading");
+	// 	debugger;
+	// 	set_subirClapps();
+	// });
+
+	window.addEventListener("beforeunload", function (e) {
+		console.log("unloading");
+		if (clapped) {
+			window.setTimeout(function(){console.log("ok")}, 5000);
+			set_subirClapps();
+			delay();
+		}
+	});
+
+	// $(".act .name").click(e =>{
+	// 	var href = $(this).attr("href"); 
+	// 	e.preventDefault;
+	// 	set_subirClapps();
+
+	// 	window.location.href = href;
+	// });
 	
     // $(".btn_clapp").click(function() {
     //     if (login) {
