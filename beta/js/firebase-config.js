@@ -1,6 +1,6 @@
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyB-XrsVnfHLPLNU5lNXo2-3x_IjV94Iph8",
+  apiKey: "AIzaSyDG0-qVAOkxpGbJaLuctrJE3xTSVR2QDMk",
   authDomain: "dclapp-49969.firebaseapp.com",
   databaseURL: "https://dclapp-49969.firebaseio.com",
   projectId: "dclapp-49969",
