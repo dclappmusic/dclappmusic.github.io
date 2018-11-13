@@ -16,10 +16,7 @@
 <body>
 	<div class="container show_perfil">
         <a class="cambio_modo" href="index.html">volver a clapp</a>
-        <span class="editar">
-            <img class="edit" src="images/icon-edit.svg" />
-            <img class="save" src="images/icon-save.svg" />
-        </span>
+        
         <div class="act">
             <label class="imagen" for="band-image"></label>
             <input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image" disabled>
@@ -47,6 +44,10 @@
                 </ul>
             </div>
             <div class="info">
+                <span class="editar">
+                    <img class="edit" src="images/icon-edit.svg" />
+                    <img class="save" src="images/icon-save.svg" />
+                </span>
                 <textarea id="band-descripcion" class="parrafo descripcion" type="text" name="band-descripcion" value="" disabled></textarea>
             </div>
             <div class="shows">
@@ -84,12 +85,18 @@
 
     //hacer editables los inputs
     $(".edit").click(function() {
+        $(".show_perfil").css("background-color", "rgba(12, 56, 71, 0.2)");
         $(this).hide().siblings().show();
-        $("input, textarea").prop('disabled', false);
+        $("input, textarea").prop('disabled', false).addClass("able");
+        $(".editar").addClass("able");
+        $(".imagen").addClass("able");
     });
     $(".save").click(function() {
+        $(".show_perfil").css("background-color", "#F1F1F1");
         $(this).hide().siblings().show();
-        $("input, textarea").prop('disabled', true);
+        $("input, textarea").prop('disabled', true).removeClass("able");
+        $(".imagen").removeClass("able");
+        $(".editar").removeClass("able");
         actualizar_perfil();
     });
 
@@ -113,8 +120,8 @@
     const bandRef = firestore.collection("bandas").doc(bandId);
     var userRef;
 
-    bandRef.onSnapshot((doc) => {
-        banda = doc.data();
+    bandRef.onSnapshot((snap) => {
+        banda = snap.data();
         console.log("banda: " + banda.nombre);
 
     //diplay en pantalla de datos de la banda
@@ -128,7 +135,7 @@
             $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
         }
         if (banda.descripcion) {
-            $("#band-descripcion").attr("value", banda.descripcion);
+            $("#band-descripcion").html(banda.descripcion);
         } else {
             console.log("no descripcion");
             $("#band-descripcion").html("Todavía no sabemos quién es " + banda.nombre);

@@ -892,7 +892,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .container.sign_band .paso .form-input:focus {
-  top: 65%;
+  top: 70%;
 }
 
 .container.sign_band .paso.active {
@@ -1007,11 +1007,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.show_perfil .editar {
   position: fixed;
-  width: 24px;
-  height: 24px;
-  right: 15px;
-  top: 15px;
+  background: white;
+  padding: 15px;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  top: 0;
   z-index: 100;
+  border-bottom-left-radius: 5px;
+  -webkit-box-shadow: 0px 0px 15.5263px rgba(0, 0, 0, 0.27);
+          box-shadow: 0px 0px 15.5263px rgba(0, 0, 0, 0.27);
 }
 
 .container.show_perfil .editar img {
@@ -1020,6 +1025,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.show_perfil .editar .save {
   display: none;
+}
+
+.container.show_perfil .editar.able {
+  background: #666666;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.container.show_perfil input.able, .container.show_perfil textarea.able {
+  background: white !important;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 1px;
 }
 
 .container.show_perfil .act .imagen {
@@ -1031,6 +1049,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: black;
   background-size: cover;
   border-radius: 87px;
+}
+
+.container.show_perfil .act .imagen.able {
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
 .container.show_perfil .act .image-input {
