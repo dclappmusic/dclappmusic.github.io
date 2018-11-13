@@ -95,6 +95,8 @@ var show_preclapps = 0;
 
         //si no hay ningun show cerca, ordena los activos lejanos, y trae el más cercano
         if (!musico_encontrado) {
+            $(".act").hide();
+            $(".no_show").show();
             console.log("lista de shows lejanos, sin ordenar:");
             console.log(show_lejos);
             
@@ -109,10 +111,9 @@ var show_preclapps = 0;
                         get_show_cercano(Ishow_lejos.banda);
                     }
                 })
-                $(".show_cercano").html("No tienes ningún show cerca<br>Éste es el más cercano que hemos encontrado =)");
-                // $(".show_cerca").html("este es el show más cercano, a: " + keysSorted[show_lejos_id[0]] + "grados");
+                // $(".show_cercano").html("No hemos encontrado ningún show clappeable");
             } else {
-                $(".act .name").html("no music :'(");
+                console.log("No hay ningún show activo");
             }
             
         }
@@ -143,8 +144,9 @@ var show_preclapps = 0;
             banda_activa_id = doc.id;
             console.log(banda_activa.nombre + ", perfil encontrado");
             $(".btn_clapp").hide();
-            $(".clapp .fondo img").attr("src", banda_activa.imagen);
-            $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
+            // $(".show_cerca").html("este es el show más cercano, a: " + keysSorted[show_lejos_id[0]] + "grados");
+            $(".fondo img").attr("src", banda_activa.imagen);
+            $(".show_cercano .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
         });
     };
     

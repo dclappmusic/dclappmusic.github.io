@@ -29,9 +29,23 @@
 		</div>
 		
         <div class="act">
-			<p class="show_cercano display-med"></p>
-            <a class="titulo name" href="#">asegúrate de tener activada la ubicación</a>
-        </div>
+			<a class="titulo name" href="#">asegúrate de tener activada la ubicación</a>
+		</div>
+		<div class="no_show">
+			<p class="display-med">No hemos encontrado ningún show clappeable</p>
+			<p class="display-med link_registrar">Si estás viendo uno, ayúdanos a registrar al artista para poder clappearle</p>
+			<p class="parrafo link_show_cercano">si no, puedes ver dónde está el show más cercano</p>
+		</div>
+		<div class="registrar_act">
+			<h1 class="parrafo">Ayudanos a registrar a un artista</h1>
+			<p class="display-med">sólo tiene que <b>escanear este QR</b></p>
+			<img id="qr_registrar" alt="qr" title="qr" />
+		</div>
+		<div class="show_cercano">
+			<h1 class="parrafo">No hay ningún show clappeable</h1>
+			<p class="show_cerca display-med"></p>
+			<a class="titulo name" href="#">asegúrate de tener activada la ubicación</a>
+		</div>
 	</div>
 
 	
@@ -70,6 +84,10 @@
 			.catch(function(error) {
 				console.log("Error getting documents: ", error);
 			});
+
+	//ayuda a registrar
+		var qr = "https://api.qrserver.com/v1/create-qr-code/?data=https://www.dclappmusic.com/beta/login.html%3Ffrom%3Dclapp" + "%26thanksto%3D" + userId;
+		$("#qr_registrar").attr("src", qr);
 	};
 
 //EVENT HANDLERS
@@ -83,6 +101,23 @@
     $(".btn_clapp").mouseup(function() {
         clearInterval(clapHold);
 	});
+
+	$(".link_registrar").click(function() {
+		$(".no_show").hide();
+		$(".registrar_act").show();
+	});
+
+	$(".link_show_cercano").click(function() {
+		$(".no_show").hide();
+		$(".show_cercano").show();
+	});
+
+	$(".act .name").click(event =>{
+		event.preventDefault;
+		var href = $(this).attr("href"); 
+		set_subirClapps();
+	});
+
 
 	// $(window).unload(function() {
 	// 	console.log("unloading");
@@ -104,19 +139,6 @@
 	// 	}
 	// });
 
-	$(".act .name").click(event =>{
-		event.preventDefault;
-		var href = $(this).attr("href"); 
-		set_subirClapps();
-	});
-	
-    // $(".btn_clapp").click(function() {
-    //     if (login) {
-    //         clapping();
-    //     } else {
-    //         window.location.href = "login.html";
-    //     } 
-    // });
 </script>
 </body>
 </html>
