@@ -5,7 +5,11 @@ var distancia_max = 0.001000;
 var band_preclapps = 0;
 var show_preclapps = 0;
 
-//comparar distancias dadas coordenadas del clapp y del show
+
+
+//--------GESTION DE SHOWS
+
+    //comparar distancias dadas coordenadas del clapp y del show
     function is_cerca(posicion1, posicion2) {
         // debugger;
         distancia = Math.pow((Math.pow(posicion1.latitud - posicion2.latitud, 2) + Math.pow(posicion1.longitud - posicion2.longitud,2)), 0.5);
@@ -13,7 +17,7 @@ var show_preclapps = 0;
         return distancia <= distancia_max;
     };
 
-//Buscar shows dentro del área del clapp midiendo distancia entre el clapp, y todos los shows
+    //Buscar shows dentro del área del clapp midiendo distancia entre el clapp, y todos los shows
     function encontrar_shows() {
         // debugger;
         var musico_encontrado = false;
@@ -27,36 +31,41 @@ var show_preclapps = 0;
         var show_lejos = {};
         var show_lejos_id;
 
-//*juntar en una sóla función
+//*juntar ordenar shows cerca y lejos en una sóla función
         //ordena un array de shows por distancia
         function ordenarShows_cerca() {
-            // debugger;
+            console.log("lista de shows cercanos, sin ordenar:");
+            console.log(shows_cerca);
             var keysSorted = Object.keys(shows_cerca).sort(function(a,b){return shows_cerca[a]-shows_cerca[b]});
+            console.log("lista de shows ordenados por lejanía:");
             console.log(keysSorted.map(key => shows_cerca[key]));
             show_cerca_id = keysSorted[0];
-            console.log("show más cerca: " + show_cerca_id);
+            console.log("ID del show más cercano: " + show_cerca_id);
         }
         
         console.log("encontrar en: " + posicion_clapp.latitud + "," + posicion_clapp.longitud);
         console.log("shows:");
         console.log(shows);
         
+        //compara la distancia de cada show activo con el clapp
         shows.forEach((Ishow_activo) => {
             console.log(Ishow_activo.banda);
             if (is_cerca(Ishow_activo.posicion, posicion_clapp)) {
+                //si hay algún show cerca, lo mete en array de shows cerca, k después será ordenado por distancia
+
                 console.log("está cerca");
                 console.log("show id: " + Ishow_activo.showId);
-                // show_encontrado_id = Ishow_activo.showId;
                 musico_encontrado = true;
                 shows_cerca[Ishow_activo.showId] = distancia;
                 num_shows_cerca++;
-                // get_show_encontrado(Ishow_activo);
             } else {
                 //ordenarlos por distancia, y publicar el mas cercano
                 show_lejos[Ishow_activo.showId] = distancia;
                 console.log("está lejos");
             }
         });
+
+        //si hay show cerca: si más de 1 los ordena y coge el más cercano. 
         if (musico_encontrado) {
             console.log("show encontrado");
             console.log(shows_cerca);
@@ -69,8 +78,7 @@ var show_preclapps = 0;
                     if (Ishow_cerca.showId === show_encontrado_id) {
                         get_show_encontrado(Ishow_cerca.banda);
                     }
-                })
-                
+                })   
             } else {
                 var unico_show_id = Object.keys(shows_cerca)[0];
                 console.log("sólo hay 1 show cerca");
@@ -85,14 +93,16 @@ var show_preclapps = 0;
             }
         }
 
+        //si no hay ningun show cerca, ordena los activos lejanos, y trae el más cercano
         if (!musico_encontrado) {
-            // $(".act .name").html("no music :'(");
+            console.log("lista de shows lejanos, sin ordenar:");
             console.log(show_lejos);
             
             var keysSorted = Object.keys(show_lejos).sort(function(a,b){return show_lejos[a]-show_lejos[b]});
+            console.log("lista de shows ordenados por lejanía:");
             console.log(keysSorted.map(key => show_lejos[key]));
             show_lejos_id = keysSorted[0];
-            console.log(show_lejos_id);
+            console.log("ID del show más cercano" + show_lejos_id);
             if (show_lejos_id) {
                 shows.forEach((Ishow_lejos) => {
                     if (Ishow_lejos.showId === show_lejos_id) {
@@ -108,7 +118,7 @@ var show_preclapps = 0;
         }
     };
 
-//Bajarse y mostrar los datos de la banda encontrada
+    //Bajarse y mostrar los datos de la banda encontrada
     function get_show_encontrado(Ibanda_encontrada) {
         console.log("banda encontrada:");
         console.log(Ibanda_encontrada);
@@ -124,7 +134,7 @@ var show_preclapps = 0;
         });
     };
     
-//bajarse el show más cercano cd no hay ninguno clappeable
+    //bajarse el show más cercano cd no hay ninguno clappeable
     function get_show_cercano (Ibanda_encontrada) {
         console.log("banda lejana más cercana:");
         console.log(Ibanda_encontrada);
@@ -138,12 +148,12 @@ var show_preclapps = 0;
         });
     };
     
-//sumar y guardar los clapps
- 
+
+//-------------------GESTION DE CLAPPS
     var user_preclapps = 0;
     var clapps = 0;
 
-//coger user_preclapps
+    //coger user_preclapps y sacarlos por pantalla
     function get_user_clapps() {
         // debugger;
         if (userId) {
@@ -169,7 +179,7 @@ var show_preclapps = 0;
         }
     }
 
-//lo que ocurre al apretar el botón de clapp
+    //lo que ocurre al apretar el botón de clapp
     function clapping() {
         clapped = true;
         clearTimeout(timeout);
@@ -191,7 +201,7 @@ var show_preclapps = 0;
     }
 
         
-//BBDD sumarle los clapps a la banda
+    //BBDD sumarle los clapps a la banda
     function set_subirClapps () {
         //coger los clapps de la banda
         showRef.doc(show_encontrado_id).onSnapshot((doc) => {
@@ -208,7 +218,7 @@ var show_preclapps = 0;
         console.log("user preclapps: " + user_preclapps);
         var band_posclapps = band_preclapps + clapps - user_preclapps;
         var show_posclapps = show_preclapps + clapps - user_preclapps;
-        
+    
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         console.log("pre: " + band_preclapps + ", pos: " + band_posclapps);
 
@@ -232,17 +242,29 @@ var show_preclapps = 0;
                 bandRef.doc(banda_activa_id).collection("clapps").doc(show_encontrado_id).set(clapp, { merge: true }).then(function() {
                     showRef.doc(show_encontrado_id).update({num_clapps: show_posclapps}).then(function() {
                         showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true }).then(function() {
-                            debugger;
-                            // $(".act .name").click();
-                            window.location.href = "perfil.html?band=" + banda_activa_id;
+                            //POSTCLAPP1 - redirigir a perfil de la banda
+                            postclapp("profile");
                         });
                     });
                 });
             });
         });
     }
-            
 
+
+    //POSTCLAPP - según el parametro escogido por la banda, hará una u otra acción
+    function postclapp(Iaccion) {
+        switch (Iaccion) {
+            case "profile":
+                window.location.href = "perfil.html?band=" + banda_activa_id;
+                break;
+            case "survey":
+            // window.location.href = "URL";
+                break;
+            case "tickets":
+
+        }
+    }
 
  
 

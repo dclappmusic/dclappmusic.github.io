@@ -95,22 +95,20 @@
 	// 	set_subirClapps();
 	// });
 
-	window.addEventListener("beforeunload", function (e) {
-		console.log("unloading");
-		if (clapped) {
-			window.setTimeout(function(){console.log("ok")}, 5000);
-			set_subirClapps();
-			delay();
-		}
-	});
-
-	// $(".act .name").click(e =>{
-	// 	var href = $(this).attr("href"); 
-	// 	e.preventDefault;
-	// 	set_subirClapps();
-
-	// 	window.location.href = href;
+	// window.addEventListener("beforeunload", function (e) {
+	// 	console.log("unloading");
+	// 	if (clapped) {
+	// 		window.setTimeout(function(){console.log("ok")}, 5000);
+	// 		set_subirClapps();
+	// 		delay();
+	// 	}
 	// });
+
+	$(".act .name").click(event =>{
+		event.preventDefault;
+		var href = $(this).attr("href"); 
+		set_subirClapps();
+	});
 	
     // $(".btn_clapp").click(function() {
     //     if (login) {
