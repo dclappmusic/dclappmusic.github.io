@@ -24,6 +24,7 @@
 	&.active {
 		font-size: 20px;
 		font-weight: 500;
+		text-decoration: underline;
 	}
 }
 .parrafo {
@@ -428,7 +429,55 @@
 		}
 	}
 }
-
+.container.bandas {
+	background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+	.cabecera {color: white; margin-bottom: 5%;}
+	.menu .menu-tit {
+		color: white;
+		&.active {
+			color: $primario;
+		}
+	}	
+	.bands {
+		width: 100%;
+		padding: 20px;
+		.banda {
+			display: block;
+			position: relative;
+			height: 60px;
+			width: 100%;
+			margin-bottom: 2%;
+			a {
+				display: flex;
+				justify-content: center;
+				img {
+					// position: absolute;
+					width: 15vw;
+					height: 15vw;
+					margin-right: 10px;
+					// left: 75px;
+					// top: 27px;
+					// background: url(../images/perfil_markuser.jpg);
+					// background-size: cover;
+					border-radius: 87px;
+				}
+				.band {
+					// display: inline-block;
+					width: 70%;
+					font-family: $Roboto;
+					color: white;
+					font-size: 20px;
+				}
+				.clapps_dados {
+					// display: inline-block;
+					font-family: $Roboto;
+					color: white;
+					font-size: 20px;
+				}
+			}	
+		}
+	}
+}
 .container.historial {
 	background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
 	.cabecera {color: white;}

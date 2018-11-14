@@ -195,6 +195,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .menu-tit.active, .container.login .tabs h3.active {
   font-size: 20px;
   font-weight: 500;
+  text-decoration: underline;
 }
 
 .parrafo {
@@ -681,6 +682,65 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 90%;
   text-align: center;
   margin: 15% 5%;
+}
+
+.container.bandas {
+  background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+}
+
+.container.bandas .cabecera {
+  color: white;
+  margin-bottom: 5%;
+}
+
+.container.bandas .menu .menu-tit, .container.bandas .menu .container.login .tabs h3, .container.login .tabs .container.bandas .menu h3 {
+  color: white;
+}
+
+.container.bandas .menu .menu-tit.active, .container.bandas .menu .container.login .tabs h3.active, .container.login .tabs .container.bandas .menu h3.active {
+  color: #FC5130;
+}
+
+.container.bandas .bands {
+  width: 100%;
+  padding: 20px;
+}
+
+.container.bandas .bands .banda {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.container.bandas .bands .banda a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container.bandas .bands .banda a img {
+  width: 15vw;
+  height: 15vw;
+  margin-right: 10px;
+  border-radius: 87px;
+}
+
+.container.bandas .bands .banda a .band {
+  width: 70%;
+  font-family: "Roboto", Arial, helvetica;
+  color: white;
+  font-size: 20px;
+}
+
+.container.bandas .bands .banda a .clapps_dados {
+  font-family: "Roboto", Arial, helvetica;
+  color: white;
+  font-size: 20px;
 }
 
 .container.historial {
