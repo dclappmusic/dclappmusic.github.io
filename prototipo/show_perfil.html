@@ -102,9 +102,11 @@
 
     //hide menu on input focus
     $("input, textarea").on('focus', function() {
+        document.body.scrollTop = $(this).offset().top;
         $(".menu").hide()
     });
     $("input, textarea").on('blur', function() {
+        document.body.scrollTop = 0;
         $(".menu").show();
     });
 
