@@ -52,7 +52,7 @@
             </div>
             <div class="shows">
                 shows
-                <!-- <p class="boton-sm" onclick="deleteBand();">delete band</p> -->
+                <p class="boton-sm" onclick="deleteBand();">delete band</p>
             </div>
         </div>
         <ul class="menu">
@@ -100,6 +100,14 @@
         actualizar_perfil();
     });
 
+    //hide menu on input focus
+    $("input, textarea").on('focus', function() {
+        $(".menu").hide()
+    });
+    $("input, textarea").on('blur', function() {
+        $(".menu").show();
+    });
+
 
     function funcion_user () {
 	    userRef = firestore.collection("usuarios").doc(userId);
@@ -119,6 +127,7 @@
     //traer banda de base de datos
     const bandRef = firestore.collection("bandas").doc(bandId);
     var userRef;
+    var tiene_foto = false;
 
     bandRef.onSnapshot((snap) => {
         banda = snap.data();
@@ -134,6 +143,7 @@
             $(".resumen .actuaciones p").html("0");
         }
         if (banda.imagen) {
+            tiene_foto = true;
             $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
         } else {
             $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
@@ -194,30 +204,41 @@
     function deleteBand() {
         var confirmar = confirm("¿Seguro que quieres borrar tu banda");
         var newBand = [];
-        userRef.get().then(doc => {
-            user = doc.data();
-            newBand = user.band;
-            newBand = newBand.filter(band => band.band_id !== bandId);
-        });
         if (confirmar == true) {
-            userRef.update({
-                band: newBand
-            }).then(function() {
-                console.log("borrada con exito de user");
-                bandRef.delete().then(function() {
-                    console.log("borrada con exito de bandas");
-                    storageRef.child(bandId).delete().then(function() {
-                        console.log("borrada con exito de imagenes");
-                        window.location.href = "index.html";
+            debugger;
+            userRef.get().then(doc => {
+                user = doc.data();
+                const user_bands = user.band;
+                console.log(user_bands);
+                newBand = user_bands.filter(band => band.band_id !== bandId);
+                console.log(newBand);
+                userRef.update({
+                    band: newBand
+                }).then(function() {
+                    debugger;
+                    console.log("borrada con exito de user");
+                    bandRef.delete().then(function() {
+                        console.log("borrada con exito de bandas");
+                        if (tiene_foto) {
+                            storageRef.child(bandId).delete().then(function() {
+                                console.log("borrada con exito de imagenes");
+                                debugger;
+                                window.location.href = "index.html";
+                            }).catch((error) => {
+                                console.error("Error removing de bandas: ", error);
+                            });
+                        } else {
+                            debugger;
+                            window.location.href = "index.html";
+                        }
                     }).catch((error) => {
                         console.error("Error removing de bandas: ", error);
                     });
                 }).catch((error) => {
-                    console.error("Error removing de bandas: ", error);
+                    console.error("Error removing de user: ", error);
                 });
-            }).catch((error) => {
-                console.error("Error removing de user: ", error);
             });
+            
         } else {
             console.log("abortado");
         }
