@@ -84,6 +84,21 @@
 			.catch(function(error) {
 				console.log("Error getting documents: ", error);
 			});
+		
+	//EVENT HANDLERS
+		//iniciar proceso de sumar clapps
+		$(".btn_clapp").mousedown(function() {
+			clearTimeout(timeout);
+			if (!login) {
+				window.location.href = "login.html";
+			} else if (login && banda_activa && (clapps < 51)) {
+				clapHold = setInterval(clapping(), 500);
+			} else {
+				console.log("suficientes clapps, ahora atiende al show");
+				$(".num_clapps").html("suficientes clapps, ahora atiende al show");
+			}
+				
+		});
 
 	//ayuda a registrar
 		var qr = "https://api.qrserver.com/v1/create-qr-code/?data=https://www.dclappmusic.com/beta/login.html%3Ffrom%3Dclapp" + "%26thanksto%3D" + userId;
@@ -92,11 +107,16 @@
 
 //EVENT HANDLERS
 	$(".btn_clapp").mousedown(function() {
-        if (login && banda_activa && (clapps < 51)) {
+		clearTimeout(timeout);
+		if (!login) {
+            window.location.href = "login.html";
+        } else if (login && banda_activa && (clapps < 51)) {
             clapHold = setInterval(clapping(), 500);
         } else {
-            window.location.href = "login.html";
-        }
+			console.log("suficientes clapps, ahora atiende al show");
+			$(".num_clapps").html("suficientes clapps, ahora atiende al show");
+		}
+            
     });
     $(".btn_clapp").mouseup(function() {
         clearInterval(clapHold);
