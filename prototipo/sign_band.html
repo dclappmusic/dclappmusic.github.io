@@ -77,7 +77,7 @@
 <script type="text/javascript">
 
 //placeholder de nombre de band es banda random
-	var placeholder_bands = ["ZAZ", "Vetusta Morla", "U2", "The Beatles", "Frank Turner", "Jamie T"];
+	var placeholder_bands = ["ZAZ", "Glen Hansard", "Damien Rice", "Vetusta Morla", "U2", "The Beatles", "Frank Turner", "Jamie T"];
 	var placeholder_band = placeholder_bands[Math.floor(Math.random()*placeholder_bands.length)];
 	$(document).ready(function() {
 		$("#band-name").attr("placeholder", placeholder_band);
@@ -186,8 +186,8 @@
 
 	function linkUp() {
 		var link = document.querySelector("#band-link").value;
-		if (!link.includes("http://")) {
-			link = "http://" + link;
+		if ((!link.includes("http://")) || (!link.includes("https://"))) {
+			link = "https://" + link;
 		}
 		var rrss = {};
 		if (link.includes("facebook")) {
