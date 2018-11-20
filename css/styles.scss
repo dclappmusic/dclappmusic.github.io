@@ -4,6 +4,11 @@
 /*********************  fonts *****************************/
 @font-face {
 	font-family: 'Changa';
+	src: url("fonts/Changa-Bold.ttf");
+	font-weight: bold;
+}
+@font-face {
+	font-family: 'Changa';
 	src: url('fonts/changa-Medium.ttf');
 	font-weight: 500;
 }
@@ -54,63 +59,85 @@ $mobile:"(max-width:768px)";
 
 //LANDING PAGE
 
-body {background: linear-gradient(128.24deg, #D65238 4.12%, #7D352B 48.9%, #17225C 99.23%);}
+
 .container {
 	position: absolute;
 	display: block;
 	width: 100vw;
 	height: 100%;
-	background: url("../images/landing_fondo.jpg") no-repeat;
-	background-size: cover;
-	background-position: center;
+	z-index: 10;
+	background: linear-gradient(128.24deg, #D65238 4.12%, #7D352B 48.9%, #17225C 99.23%);
+	@media #{$mobile} {
+		position: relative;
+		height: auto;
+	}
+	.fondo {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: .25;
+		z-index: 0;
+	}
+	&>div {z-index: 10;position: relative;}
 	.logo {
 		display: block;
 		position: absolute;
-		margin: 2%;
+		top: 2%;
+		left: 2%;
 		.claim {
-			@include typo($Changa, 1.5vw, $color-parr);
+			@include typo($Changa, 1.2vw, $color-parr);
 			font-weight: 200;
-			margin: 10px auto 0;
+			// margin: 10px auto 0;
 		}
-		img {position: relative; left: 1vw; width: 10vw;}
+		img {position: relative; left: 1vw; width: 8vw;}
 		@media #{$mobile} {
 			width: 100%;
 			position: relative;
 			text-align: center;
-			margin: 2% auto;
-			margin-top: 15px;
-			img {width: 30%;left: 0;}
-			.claim {font-size: 1.3em;}
+			top: 15px;
+			img {width: 25%; left: 0;}
+			.claim {font-size: 1.1em;}
 		}
 	}
 	.intro {
-		width: 60%;
-		margin-left: 20%;
-		margin-top: 7vh;
-		padding: 5%;
 		text-align: center;
-		b {font-weight: 500;}
-		
 		.main-parr {
-			@include typo($Roboto, 3vw, $color_parr);
-			font-weight: 450;
-			line-height: 1.2em;
-			margin: 1em 0;
+			width: 75%;
+			margin-left: 12.5%;
+			margin-top: 22vh;
+			@include typo($Changa, 5vw, $color_parr);
+			font-weight: bold;
+			line-height: 1.1em;
+			// margin: 1em 0;
 		}
 		.parrafo {
 			@include typo($Roboto, 2vw, $color_parr);
 			font-weight: 450;
-			line-height: 1.3em;
+			line-height: 1.4em;
 			margin: 1em 0;
+			width: 40%;
+			float: left;
+			margin-left: 10%;
+			text-align: left;
+			b {font-weight: 500;}
+			&.tu {margin-left: 5%;}
 		}
 		@media #{$mobile} {
 			width: calc(100% - 10px);
 			margin: 5% 5px;
+			br {display: none;}
 			.main-parr {
-				font-size: 21px;
+				font-size: 40px;
+				margin-top: 10%;
 			}
 			.parrafo {
-				font-size: 18px;
+				font-size: 23px;
+				width: 100%;
+				float: none;
+				margin-left: 5px!important;
 			}
 		}
 	}
@@ -118,7 +145,7 @@ body {background: linear-gradient(128.24deg, #D65238 4.12%, #7D352B 48.9%, #1722
 		background-color: rgba(51,51,51,.8);
 		position: absolute;
 		bottom: 0;
-		padding: 3%;
+		padding: 1.5% 2%;
 		width: 100%;
 		.izda {
 			width: 70%;
@@ -231,6 +258,7 @@ body {background: linear-gradient(128.24deg, #D65238 4.12%, #7D352B 48.9%, #1722
 		}
 		@media #{$mobile} {
 			position: relative;
+			padding: 5% 10px;
 			.izda {
 				width: 100%;
 				margin-right: 0;
@@ -248,7 +276,7 @@ body {background: linear-gradient(128.24deg, #D65238 4.12%, #7D352B 48.9%, #1722
 	.rrss {
 		position: absolute;
 		top: 5%;
-		right: 5%;
+		right: 2%;
 		a {
 			display: inline-block;
 			margin: 0 .8vw;
