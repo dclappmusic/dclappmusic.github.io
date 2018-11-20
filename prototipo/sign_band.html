@@ -185,8 +185,9 @@
 	};
 
 	function linkUp() {
+		debugger;
 		var link = document.querySelector("#band-link").value;
-		if ((!link.includes("http://")) || (!link.includes("https://"))) {
+		if ((!link.includes("http://")) && (!link.includes("https://"))) {
 			link = "https://" + link;
 		}
 		var rrss = {};
