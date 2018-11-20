@@ -15,7 +15,7 @@
 
 <body>
 	<div class="container show_perfil">
-        <a class="cambio_modo" href="index.html">volver a clapp</a>
+        <a class="hide cambio_modo" href="index.html">volver a clapp</a>
         
         <div class="act">
             <label class="imagen" for="band-image"></label>
@@ -55,7 +55,7 @@
                 <p class="boton-sm" onclick="deleteBand();">delete band</p>
             </div>
         </div>
-        <ul class="menu">
+        <ul class="hide menu">
             <li class="menu-tit">
                 <a href="#">historial</a>
             </li>
@@ -90,6 +90,7 @@
         $("input, textarea").prop('disabled', false).addClass("able");
         $(".editar").addClass("able");
         $(".imagen").addClass("able");
+        $(".hide").hide();
     });
     $(".save").click(function() {
         $(".show_perfil").css("background-color", "#F1F1F1");
@@ -97,6 +98,7 @@
         $("input, textarea").prop('disabled', true).removeClass("able");
         $(".imagen").removeClass("able");
         $(".editar").removeClass("able");
+        $(".hide").show();
         actualizar_perfil();
     });
 

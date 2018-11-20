@@ -221,6 +221,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-weight: 400;
 }
 
+b {
+  font-weight: bold;
+}
+
 .container {
   position: fixed;
   left: 0;
@@ -884,11 +888,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.perfil .act .seguir {
   position: relative;
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
   height: 30px;
 }
 
+.container.perfil .act .seguir .rrss {
+  float: left;
+}
+
+.container.perfil .act .seguir .rrss a {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .container.perfil .act .seguir .boton-sm {
+  float: right;
   width: 7em;
   margin: 0 auto;
   padding: .5em 1em .7em;

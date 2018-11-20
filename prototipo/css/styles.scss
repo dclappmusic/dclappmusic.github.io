@@ -46,6 +46,7 @@
 	font-size: 15px;
 	font-weight: 400;
 }
+b {font-weight: bold;}
 
 //ELEMENTOS COMUNES
 .container {
@@ -594,10 +595,21 @@
 		}
 		.seguir {
 			position: relative;
-			width: 100%;
+			width: 70%;
+			margin: 0 auto;
 			height: 30px;
+			.rrss {
+				float: left;
+				a {
+					display: inline-block;
+					width: 2em;
+					height: 2em;
+					background-size: contain;
+					background-repeat: no-repeat;  
+				}
+			}
 			.boton-sm {
-				// float: right;
+				float: right;
 				// margin-right: 18%;
 				width: 7em;
 				margin: 0 auto;
