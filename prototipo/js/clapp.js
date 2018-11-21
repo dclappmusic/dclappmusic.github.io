@@ -244,7 +244,7 @@ var show_preclapps = 0;
                     showRef.doc(show_encontrado_id).update({num_clapps: show_posclapps}).then(function() {
                         showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true }).then(function() {
                             //POSTCLAPP1 - redirigir a perfil de la banda
-                            postclapp("profile");
+                            postclapp("survey");
                         });
                     });
                 });
@@ -260,7 +260,8 @@ var show_preclapps = 0;
                 window.location.href = "perfil.html?band=" + banda_activa_id;
                 break;
             case "survey":
-            // window.location.href = "URL";
+                // $(".postclapp-survey").show();
+                window.location.href = "https://dclapp.typeform.com/to/VBSQXo";
                 break;
             case "tickets":
 
