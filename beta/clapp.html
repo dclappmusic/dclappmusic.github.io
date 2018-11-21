@@ -75,10 +75,10 @@
 
 	function funcion_user() {
 //LOGIN OUT
-		if (!login) { 
-			login = true;
-			userId = "anonimo_test2_buho" + firebase.firestore.FieldValue.serverTimestamp();
-		}
+		// if (!login) { 
+		// 	login = true;
+		// 	userId = "anonimo_test2_buho" + firebase.firestore.FieldValue.serverTimestamp();
+		// }
 //
 		//crear array de shows activos en la DB, los mete en shows
 		showRef.where("active", "==", true).get()

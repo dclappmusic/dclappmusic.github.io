@@ -124,7 +124,7 @@ var show_preclapps = 0;
         console.log("banda encontrada:");
         console.log(Ibanda_encontrada);
         bandRef.doc(Ibanda_encontrada).onSnapshot((doc) => {
-            // get_user_clapps();
+            get_user_clapps();
             debugger;
             banda_activa = doc.data();
             banda_activa_id = doc.id;
@@ -248,7 +248,7 @@ var show_preclapps = 0;
                             if (Ipostclapp) {
                                 postclapp(Ipostclapp);
                             } else {
-                                postclapp("survey");
+                                postclapp("profile");
                             }
                         });
                     });
