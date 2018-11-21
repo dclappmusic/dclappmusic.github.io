@@ -203,7 +203,7 @@ var show_preclapps = 0;
 
         
     //BBDD sumarle los clapps a la banda
-    function set_subirClapps () {
+    function set_subirClapps(Ipostclapp) {
         //coger los clapps de la banda
         showRef.doc(show_encontrado_id).onSnapshot((doc) => {
             var snap = doc.data();
@@ -244,7 +244,11 @@ var show_preclapps = 0;
                     showRef.doc(show_encontrado_id).update({num_clapps: show_posclapps}).then(function() {
                         showRef.doc(show_encontrado_id).collection("clapps").doc(userId).set(clapp, { merge: true }).then(function() {
                             //POSTCLAPP1 - redirigir a perfil de la banda
-                            postclapp("survey");
+                            if (Ipostclapp) {
+                                postclapp(Ipostclapp);
+                            } else {
+                                postclapp("survey");
+                            }
                         });
                     });
                 });

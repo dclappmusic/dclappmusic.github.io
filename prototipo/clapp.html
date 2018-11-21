@@ -19,6 +19,9 @@
                 <path d="M0.939341 10.9393C0.353554 11.5251 0.353554 12.4749 0.939341 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97919 12.6066 1.3934C12.0208 0.807611 11.0711 0.807611 10.4853 1.3934L0.939341 10.9393ZM26 10.5L2 10.5V13.5L26 13.5V10.5Z" fill="white"/>
             </svg>     
 		</span>
+		<div class="postclapp-survey">
+			<div class="typeform-widget" data-url="https://dclapp.typeform.com/to/VBSQXo" style="width: 90%; height: 90%;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script> <div style="font-family: Sans-Serif;font-size: 12px;color: #999;opacity: 0.5; padding-top: 5px;"> powered by <a href="https://admin.typeform.com/signup?utm_campaign=VBSQXo&utm_source=typeform.com-12943108-Basic&utm_medium=typeform&utm_content=typeform-embedded-poweredbytypeform&utm_term=ES" style="color: #999" target="_blank">Typeform</a> </div>
+		</div>
 		<div class="fondo">
 			<div class="overlay"></div>
 			<img>
@@ -122,12 +125,23 @@
 		$(".show_cercano").show();
 	});
 
-	$(".act .name").click(event =>{
-		event.preventDefault;
-		var href = $(this).attr("href"); 
-		set_subirClapps();
+	$(".act .name").click(function(event) {
+		const link = $(this).attr("href");
+		event.preventDefault();
+		debugger;
+		console.log(link); 
+		if (clapped) {
+			set_subirClapps("profile");
+		} else {
+			window.location = link;
+		}
 	});
 
+
+	// var cerrar_form = document.querySelectorAll("[data-qa='close-button-mobile']");
+	// cerrar_form.click(function() {
+	// 	$(".postclapp-survey").hide();
+	// });
 
 	// $(window).unload(function() {
 	// 	console.log("unloading");
