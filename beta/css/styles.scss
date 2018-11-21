@@ -24,6 +24,7 @@
 	&.active {
 		font-size: 20px;
 		font-weight: 500;
+		text-decoration: underline;
 	}
 }
 .parrafo {
@@ -45,6 +46,7 @@
 	font-size: 15px;
 	font-weight: 400;
 }
+b {font-weight: bold;}
 
 //ELEMENTOS COMUNES
 .container {
@@ -292,7 +294,7 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-		background: linear-gradient(0deg, rgba(252, 81, 48, 0.8), rgba(252, 81, 48, 0.8));
+		background: linear-gradient(150.64deg, rgba(252, 81, 48, 0.78) 0%, rgba(252, 81, 48, 0.893016) 51.37%, #FC5130 100%);
 		background-blend-mode: screen, normal;
 		img {
 			width: 100%;
@@ -352,12 +354,145 @@
 				font-size: 40px;
 			}
 		}
-		.show_cercano {
+	}
+	.no_show {
+		display: none;
+		position: absolute;
+		width: 100vw;
+		height: 80%;
+		top: 20%;
+		padding: 0 1.5em;
+		.display-med {
 			color: $secundario;
+			text-align: center;
+		}
+		.link_registrar {
+			color: white;
+			text-align: center;
+			border: 2px solid white;
+			border-radius: 10px;
+			padding: .3em .2em;
+			margin: 15% auto 5%;
+			cursor: pointer;
+		}
+		.link_show_cercano {
+			color: $secundario;
+			text-decoration: underline;
+			text-align: center;
+			.show_cercano {
+
+			}
+		}
+	}
+	.registrar_act {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100%;
+		background: $secundario;
+		.parrafo {
+			color: white;
+			width: 100%;
+			text-align: center;
+			margin: 5% 0;
+		}
+		.display-med {
+			color: white;
+			width: 90%;
+			text-align: center;
+			margin: 15% 5%;
+		}
+		img {
+			width: 80%;
+   			margin: 5% 10%;
+		}
+	}
+	.show_cercano {
+		display: none;
+		position: absolute;
+		width: 100vw;
+		height: 80%;
+		top: 20%;
+		padding: 0 1.5em;
+		.parrafo {
+			color: $secundario;
+			width: 100%;
+			text-align: center;
+			margin: 5% 0;
+		}
+		.titulo {
+			color: $secundario;
+			width: 90%;
+			text-align: center;
+			margin: 15% 5%;
+		}
+	}
+	.postclapp-survey {
+		display: none;
+		top: 5%;
+		left: 0;
+		height: 100%;
+		z-index: 400;
+		width: 100%;
+		position: fixed;
+		.typeform-widget {
+			margin-left: 5%;
+			margin-top: 5%;
+			box-shadow: 0 0 20px rgba(0,0,0,.2);
 		}
 	}
 }
-
+.container.bandas {
+	background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+	.cabecera {color: white; margin-bottom: 5%;}
+	.menu .menu-tit {
+		color: white;
+		&.active {
+			color: $primario;
+		}
+	}	
+	.bands {
+		width: 100%;
+		padding: 20px;
+		.banda {
+			display: block;
+			position: relative;
+			height: 60px;
+			width: 100%;
+			margin-bottom: 2%;
+			a {
+				display: flex;
+				justify-content: center;
+				img {
+					// position: absolute;
+					width: 15vw;
+					height: 15vw;
+					margin-right: 10px;
+					// left: 75px;
+					// top: 27px;
+					// background: url(../images/perfil_markuser.jpg);
+					// background-size: cover;
+					border-radius: 87px;
+				}
+				.band {
+					// display: inline-block;
+					width: 70%;
+					font-family: $Roboto;
+					color: white;
+					font-size: 20px;
+				}
+				.clapps_dados {
+					// display: inline-block;
+					font-family: $Roboto;
+					color: white;
+					font-size: 20px;
+				}
+			}	
+		}
+	}
+}
 .container.historial {
 	background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
 	.cabecera {color: white;}
@@ -474,10 +609,21 @@
 		}
 		.seguir {
 			position: relative;
-			width: 100%;
+			width: 70%;
+			margin: 0 auto;
 			height: 30px;
+			.rrss {
+				float: left;
+				a {
+					display: inline-block;
+					width: 2em;
+					height: 2em;
+					background-size: contain;
+					background-repeat: no-repeat;  
+				}
+			}
 			.boton-sm {
-				// float: right;
+				float: right;
 				// margin-right: 18%;
 				width: 7em;
 				margin: 0 auto;
@@ -523,10 +669,11 @@
 	color: white;
 	.close .skip {display: none; margin-left: -2vw;} 
 	.cabecera {padding: 0 25%;}
+
 	.paso {
 		display: none;
 		.form-input:focus {
-			top: 65%;
+			top: 70%;
 		}
 		&.active {display: block;}
 		&.ciudad {
@@ -630,13 +777,28 @@
 .container.show_perfil {
 	.editar {
 		position: fixed;
-		width: 24px;
-		height: 24px;
-		right: 15px;
-		top: 15px;
+		background: white;
+		padding: 15px;
+		width: 50px;
+		height: 50px;
+		right: 0;
+		top: 0;
 		z-index: 100;
+		border-bottom-left-radius: 5px;
+		box-shadow: 0px 0px 15.5263px rgba(0, 0, 0, 0.27);
 		img {width: 24px;}
 		.save {display: none;}
+		&.able {
+			background: #666666;
+			box-shadow: none;
+		}
+	}
+	input, textarea {
+		&.able {
+			background: white!important;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			border-radius: 1px;
+		}
 	}
 	.act {	
 		.imagen {
@@ -648,6 +810,9 @@
 			background: black;
 			background-size: cover;
 			border-radius: 87px;
+			&.able {
+				box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+			}
 		}
 		.image-input {
 			width: 0.1px;
@@ -690,6 +855,7 @@
 			
 		}
 	}
+	
 	.secciones {
 		&>div {
 			display: none;

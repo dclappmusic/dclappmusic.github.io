@@ -44,6 +44,9 @@
             </ul>
             
             <div class="seguir">
+                <div class="rrss">
+                    <a class="link_rrss"></a>
+                </div>
                 <p class="boton-sm active">seguir</p>
             </div>
             <div class="descripcion">
@@ -77,11 +80,40 @@
             $(".act .name").html(banda.nombre);
             $(".act .resumen .ciudad p").html(banda.ciudad);
             $(".act .clapps p").html(banda.num_clapps);
-            $(".act .actuaciones p").html(banda.shows.length + "<span class='parrafo-sm'>actuaciones</span>");
+            if (banda.shows) {
+                $(".act .actuaciones p").html(banda.shows.length + "<span class='parrafo-sm'>shows</span>");
+            } else {
+                $(".act .actuaciones p").html("0<span class='parrafo-sm'>shows</span>");
+            }
+            
             if (banda.imagen) {
                 $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
             } else {
                 $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
+            }
+            if (banda.rrss) {
+                var rrss = banda.rrss;
+                console.log(rrss);
+                if (rrss.facebook) {
+                    $(".seguir .rrss a").attr("href", rrss.facebook);
+                    $(".seguir .rrss a").css("background-image", "url(images/icon_rrss_facebook.svg)");
+                } else if (rrss.instagram) {
+                    $(".seguir .rrss a").attr("href", rrss.instagram);
+                    $(".seguir .rrss a").css("background-image", "url(images/icon_rrss_instagram.svg)");
+                } else if (rrss.soundcloud) {
+                    $(".seguir .rrss a").attr("href", rrss.soundcloud);
+                    $(".seguir .rrss a").css("background-image", "url(images/icon_rrss_soundcloud.svg)");
+                } else if (rrss.youtube) {
+                    $(".seguir .rrss a").attr("href", rrss.youtube);
+                    $(".seguir .rrss a").css("background-image", "url(images/icon_rrss_youtube.svg)");
+                } else if (rrss.spotify) {
+                    $(".seguir .rrss a").attr("href", rrss.spotify);
+                    $(".seguir .rrss a").css("background-image", "url(images/icon_rrss_spotify.svg)");
+                } else if (rrss.link) {
+                    $(".seguir .rrss a").attr("href", rrss.link);
+                    $(".seguir .rrss a").css("background-image", "url(images/icon_rrss_link.svg)");
+                }
+                
             }
             $(".act .descripcion .parrafo").html(banda.descripcion);
 		});

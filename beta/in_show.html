@@ -106,7 +106,7 @@
 //*acabar el show cuando pase x tiempo
 	
 	function end_show() {
-		debugger;
+		// debugger;
 		const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 		var show_preclapps;
 		var show_posclapps;
@@ -142,7 +142,7 @@
 					active: false,
 					final: timestamp
 				}).then(function() {
-					debugger;
+					// debugger;
 					window.history.back();
 				});
 			});

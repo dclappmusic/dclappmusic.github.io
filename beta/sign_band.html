@@ -48,6 +48,11 @@
 				</button>			 -->
 				<p class="boton-sm sig">sig</p>
 			</div>
+			<div class="paso enlace">
+				<label for="band-link" class="form-label">¿cual es tu web principal?</label>
+				<input id="band-link" class="form-input" placeholder="facebook.com/dclapp" type="text" name="band-link" value="" autocomplete="on">
+				<p class="boton-sm sig" onclick="linkUp();">sig</p>
+			</div>
 			<div class="paso descripcion">
 				<label for="band-desc" class="form-label">Y una descripción</label>
 				<input id="band-desc" class="form-input" placeholder="Somos..." type="text" name="band-desc" value="">
@@ -72,7 +77,7 @@
 <script type="text/javascript">
 
 //placeholder de nombre de band es banda random
-	var placeholder_bands = ["ZAZ", "Vetusta Morla", "U2", "The Beatles", "Frank Turner", "Jamie T"];
+	var placeholder_bands = ["ZAZ", "Glen Hansard", "Damien Rice", "Vetusta Morla", "U2", "The Beatles", "Frank Turner", "Jamie T"];
 	var placeholder_band = placeholder_bands[Math.floor(Math.random()*placeholder_bands.length)];
 	$(document).ready(function() {
 		$("#band-name").attr("placeholder", placeholder_band);
@@ -136,20 +141,7 @@
 					band: firebase.firestore.FieldValue.arrayUnion({band_id: bandId,band_name: nombre}),
 					is_musician: true,
 				});
-				// imageUp();
-				// upload
-				// 	.then(snapshot => snapshot.ref.getDownloadURL())
-				// 	.then((url) => {
-				// 		console.log(url);
-				// 		bandRef.doc(bandId).update({imagen: url});
-				// 	})
-				// 	.catch(console.error);
 				
-				// $(".paso").hide();
-				// $(".subida").show();
-				// $(".subida a").attr("href", "showtime.html?band=" + bandId).html("BIENVENIDO <br>" + nombre);
-				// //redirigir a showtime
-				// window.location.href = "showtime.html?band=" + bandId;
 				console.log("banda creada");
 				$(".cabecera").html("BANDA CREADA");
 				$(".close").attr("href", "showtime.html?band=" + bandId);
@@ -191,6 +183,40 @@
 			});
 		});
 	};
+
+	function linkUp() {
+		debugger;
+		var link = document.querySelector("#band-link").value;
+		if ((!link.includes("http://")) && (!link.includes("https://"))) {
+			link = "https://" + link;
+		}
+		var rrss = {};
+		if (link.includes("facebook")) {
+			rrss.facebook = link;
+		} else if (link.includes("instagram")) {
+			rrss.instagram = link;
+		} else if (link.includes("youtube")) {
+			rrss.youtube = link;
+		} else if (link.includes("soundcloud")) {
+			rrss.soundcloud = link;
+		} else if (link.includes("spotify")) {
+			rrss.spotify = link;
+		} else {
+			rrss.link = link;
+		}
+
+		if (link) {
+			bandRef.doc(bandId).update({
+				rrss: rrss
+			}).then(function() {
+				console.log("link subido ok: " + link);
+				// window.location.href = "showtime.html?band=" + bandId;
+			});
+		} else {
+			// window.location.href = "showtime.html?band=" + bandId;
+		}
+	};
+
 	function descUp() {
 		var desc = document.querySelector("#band-desc").value;
 		if (desc) {
@@ -203,59 +229,7 @@
 			window.location.href = "showtime.html?band=" + bandId;
 		}
 	};
-
-	//bajarse todas
-	// bandRef.get().then((querySnapshot) => {
-	// 	querySnapshot.forEach((band) => {
-	// 		const banda = band.data();
-	// 		console.log(banda);
-	// 		const liBandas = "<li>" + banda.nombre + "</li>"
-	// 		$(".bandas_creadas").append(liBandas);
-	// 	});
-	// });
-		
-
-		
-		//bajarse todas en tiempo real
-		// getRealtimeUpdates = function() {
-		// 	bandRef.onSnapshot(snap => {
-		// 		const banda = snap.data();
-		// 		console.log(banda);
-		// 		// const liBandas = "<li>" + banda.nombre + "</li>"
-		// 		// $(".bandas_creadas").append(liBandas);
-		// 	});
-		// };
-		// getRealtimeUpdates();
-
-		
-		// //subir banda a REALTIME DATABASE
-		// var bandRef = firebase.database().ref().child("bandas");
-		// var bandas = bandRef.child("nombre");
-		// function bandUp() {
-        //     var nombre = document.querySelector("#band-name").value;
-		// 	var ciudad = document.querySelector("#band-city").value;
-		// 	// var imagen = document.querySelector("#band-image").value;
-
-		// 	var newBandRef = bandRef.push();
-			
-		// 	if (nombre && ciudad) {
-		// 		newBandRef.set({
-		// 			nombre: nombre,
-		// 			ciudad: ciudad
-		// 			// imagen: imagen
-		// 		}).then(function(){
-		// 			$(".paso").hide();
-		// 			$(".subida").show();
-		// 		});
-		// 	}
-		// }
-		// bandRef.on("child_added", snap => {
-		// 	bandas = snap.val();
-		// 	console.log(bandas.nombre);
-		// 	bandas = "<li>" + bandas.nombre + "</li>"
-		// 	$(".bandas_creadas").append(bandas);
-
-		// });
+	
 </script>
 </body>
 </html>

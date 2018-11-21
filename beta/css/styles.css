@@ -195,6 +195,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .menu-tit.active, .container.login .tabs h3.active {
   font-size: 20px;
   font-weight: 500;
+  text-decoration: underline;
 }
 
 .parrafo {
@@ -218,6 +219,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-family: "Roboto", Arial, helvetica;
   font-size: 15px;
   font-weight: 400;
+}
+
+b {
+  font-weight: bold;
 }
 
 .container {
@@ -534,8 +539,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   height: 100%;
   top: 0;
   left: 0;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(252, 81, 48, 0.8)), to(rgba(252, 81, 48, 0.8)));
-  background: linear-gradient(0deg, rgba(252, 81, 48, 0.8), rgba(252, 81, 48, 0.8));
+  background: linear-gradient(150.64deg, rgba(252, 81, 48, 0.78) 0%, rgba(252, 81, 48, 0.893016) 51.37%, #FC5130 100%);
   background-blend-mode: screen, normal;
 }
 
@@ -602,8 +606,162 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-size: 40px;
 }
 
-.container.clapp .act .show_cercano {
+.container.clapp .no_show {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 80%;
+  top: 20%;
+  padding: 0 1.5em;
+}
+
+.container.clapp .no_show .display-med {
   color: #0C3847;
+  text-align: center;
+}
+
+.container.clapp .no_show .link_registrar {
+  color: white;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: .3em .2em;
+  margin: 15% auto 5%;
+  cursor: pointer;
+}
+
+.container.clapp .no_show .link_show_cercano {
+  color: #0C3847;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.container.clapp .registrar_act {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: #0C3847;
+}
+
+.container.clapp .registrar_act .parrafo {
+  color: white;
+  width: 100%;
+  text-align: center;
+  margin: 5% 0;
+}
+
+.container.clapp .registrar_act .display-med {
+  color: white;
+  width: 90%;
+  text-align: center;
+  margin: 15% 5%;
+}
+
+.container.clapp .registrar_act img {
+  width: 80%;
+  margin: 5% 10%;
+}
+
+.container.clapp .show_cercano {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 80%;
+  top: 20%;
+  padding: 0 1.5em;
+}
+
+.container.clapp .show_cercano .parrafo {
+  color: #0C3847;
+  width: 100%;
+  text-align: center;
+  margin: 5% 0;
+}
+
+.container.clapp .show_cercano .titulo {
+  color: #0C3847;
+  width: 90%;
+  text-align: center;
+  margin: 15% 5%;
+}
+
+.container.clapp .postclapp-survey {
+  display: none;
+  top: 5%;
+  left: 0;
+  height: 100%;
+  z-index: 400;
+  width: 100%;
+  position: fixed;
+}
+
+.container.clapp .postclapp-survey .typeform-widget {
+  margin-left: 5%;
+  margin-top: 5%;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.container.bandas {
+  background: linear-gradient(117.2deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+}
+
+.container.bandas .cabecera {
+  color: white;
+  margin-bottom: 5%;
+}
+
+.container.bandas .menu .menu-tit, .container.bandas .menu .container.login .tabs h3, .container.login .tabs .container.bandas .menu h3 {
+  color: white;
+}
+
+.container.bandas .menu .menu-tit.active, .container.bandas .menu .container.login .tabs h3.active, .container.login .tabs .container.bandas .menu h3.active {
+  color: #FC5130;
+}
+
+.container.bandas .bands {
+  width: 100%;
+  padding: 20px;
+}
+
+.container.bandas .bands .banda {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.container.bandas .bands .banda a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container.bandas .bands .banda a img {
+  width: 15vw;
+  height: 15vw;
+  margin-right: 10px;
+  border-radius: 87px;
+}
+
+.container.bandas .bands .banda a .band {
+  width: 70%;
+  font-family: "Roboto", Arial, helvetica;
+  color: white;
+  font-size: 20px;
+}
+
+.container.bandas .bands .banda a .clapps_dados {
+  font-family: "Roboto", Arial, helvetica;
+  color: white;
+  font-size: 20px;
 }
 
 .container.historial {
@@ -747,11 +905,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.perfil .act .seguir {
   position: relative;
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
   height: 30px;
 }
 
+.container.perfil .act .seguir .rrss {
+  float: left;
+}
+
+.container.perfil .act .seguir .rrss a {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .container.perfil .act .seguir .boton-sm {
+  float: right;
   width: 7em;
   margin: 0 auto;
   padding: .5em 1em .7em;
@@ -815,7 +987,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .container.sign_band .paso .form-input:focus {
-  top: 65%;
+  top: 70%;
 }
 
 .container.sign_band .paso.active {
@@ -930,11 +1102,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.show_perfil .editar {
   position: fixed;
-  width: 24px;
-  height: 24px;
-  right: 15px;
-  top: 15px;
+  background: white;
+  padding: 15px;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  top: 0;
   z-index: 100;
+  border-bottom-left-radius: 5px;
+  -webkit-box-shadow: 0px 0px 15.5263px rgba(0, 0, 0, 0.27);
+          box-shadow: 0px 0px 15.5263px rgba(0, 0, 0, 0.27);
 }
 
 .container.show_perfil .editar img {
@@ -943,6 +1120,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container.show_perfil .editar .save {
   display: none;
+}
+
+.container.show_perfil .editar.able {
+  background: #666666;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.container.show_perfil input.able, .container.show_perfil textarea.able {
+  background: white !important;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 1px;
 }
 
 .container.show_perfil .act .imagen {
@@ -954,6 +1144,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: black;
   background-size: cover;
   border-radius: 87px;
+}
+
+.container.show_perfil .act .imagen.able {
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
 .container.show_perfil .act .image-input {

@@ -23,7 +23,7 @@
         <div class="tabs">
             <h3 class="login menu-tit active" data-href="login">LOG IN</h3>
             <h3 class="signup menu-tit" data-href="signup">SIGN UP</h3>
-            <h3 class="reset menu-tit" data-href="reset">RESET</h3>
+            <!-- <h3 class="reset menu-tit" data-href="reset">RESET</h3> -->
         </div>
         <div class="form">
             <div class="inputs_comunes">
@@ -40,7 +40,7 @@
             <div class="tab signup">
                     <label for="user-city" type="text" class="form-label">Ciudad</label>
                     <input class="form-input" id="user-city" placeholder="Mad..." type="text" name="user-city" value="" autocomplete="on">
-                <button id="boton" class="boton-med" onclick="signUp();">
+                <button id="boton" class="boton-med" onclick="sign_up_google();">
                     Sign UP
                 </button>
             </div>
@@ -178,12 +178,16 @@
     function sign_up_google() {
         // Sign in Firebase using popup auth and Google as the identity provider.
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
+        firebase.auth().useDeviceLanguage();
+        firebase.auth().getRedirectResult().then(function(result) {
+            if (result.credential) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                window.location.href = "index.html?from=login";
+                // ...
+            }
             // The signed-in user info.
             var user = result.user;
-            // ...
         }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -195,6 +199,26 @@
             // ...
             console.log("error: " + error);
         });
+
+
+
+        // firebase.auth().signInWithPopup(provider).then(function(result) {
+        //     // This gives you a Google Access Token. You can use it to access the Google API.
+        //     var token = result.credential.accessToken;
+        //     // The signed-in user info.
+        //     var user = result.user;
+        //     // ...
+        // }).catch(function(error) {
+        //     // Handle Errors here.
+        //     var errorCode = error.code;
+        //     var errorMessage = error.message;
+        //     // The email of the user's account used.
+        //     var email = error.email;
+        //     // The firebase.auth.AuthCredential type that was used.
+        //     var credential = error.credential;
+        //     // ...
+        //     console.log("error: " + error);
+        // });
         // firebase.auth().signInWithRedirect(provider)
         //     .then((result) => { 
         //         console.log("ya está!!!!");
