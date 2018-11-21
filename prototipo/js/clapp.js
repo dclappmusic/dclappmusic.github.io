@@ -193,7 +193,7 @@ var show_preclapps = 0;
             clapps ++;
             $(".num_clapps").html("+" + clapps + " clapps");
         }
-        $(".num_clapps").html("+" + clapps + " clapps");
+        // $(".num_clapps").html("+" + clapps + " clapps");
         timeout = setTimeout(set_subirClapps, 3000);
         // if (clapps > 50) {
         //     console.log("suficientes clapps, ahora atiende al show");

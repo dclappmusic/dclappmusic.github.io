@@ -86,7 +86,7 @@
 				console.log("Error getting documents: ", error);
 			});
 		
-	//EVENT HANDLERS
+	//EVENT HANDLERS USER
 		//iniciar proceso de sumar clapps
 		$(".btn_clapp").mousedown(function() {
 			clearTimeout(timeout);
@@ -107,18 +107,7 @@
 	};
 
 //EVENT HANDLERS
-	$(".btn_clapp").mousedown(function() {
-		clearTimeout(timeout);
-		if (!login) {
-            window.location.href = "login.html";
-        } else if (login && banda_activa && (clapps < 51)) {
-            clapHold = setInterval(clapping(), 500);
-        } else {
-			console.log("suficientes clapps, ahora atiende al show");
-			$(".num_clapps").html("suficientes clapps, ahora atiende al show");
-		}
-            
-    });
+	
     $(".btn_clapp").mouseup(function() {
         clearInterval(clapHold);
 	});
