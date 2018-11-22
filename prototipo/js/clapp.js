@@ -247,7 +247,7 @@ var show_preclapps = 0;
                             if (Ipostclapp) {
                                 postclapp(Ipostclapp);
                             } else {
-                                postclapp("survey");
+                                postclapp("profile");
                             }
                         });
                     });
