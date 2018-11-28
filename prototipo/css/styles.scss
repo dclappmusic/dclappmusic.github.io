@@ -188,7 +188,7 @@ b {font-weight: bold;}
 	.boton {
 		background-color: $primario;
 		// box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
-		@include longshadow(#DFDFDF);
+		// @include longshadow(#DFDFDF);
 	}
 	.intro_clapp {
 		color: $secundario;
@@ -427,6 +427,20 @@ b {font-weight: bold;}
 			width: 90%;
 			text-align: center;
 			margin: 15% 5%;
+		}
+	}
+	.postclapp-survey {
+		display: none;
+		top: 5%;
+		left: 0;
+		height: 100%;
+		z-index: 400;
+		width: 100%;
+		position: fixed;
+		.typeform-widget {
+			margin-left: 5%;
+			margin-top: 5%;
+			box-shadow: 0 0 20px rgba(0,0,0,.2);
 		}
 	}
 }
