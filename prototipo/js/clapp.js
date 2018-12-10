@@ -42,6 +42,23 @@ var show_preclapps = 0;
             show_cerca_id = keysSorted[0];
             console.log("ID del show más cercano: " + show_cerca_id);
         }
+        function ordenarShows_lejos() {
+            var keysSorted = Object.keys(show_lejos).sort(function(a,b){return show_lejos[a]-show_lejos[b]});
+            console.log("lista de shows ordenados por lejanía:");
+            console.log(keysSorted.map(key => show_lejos[key]));
+            show_lejos_id = keysSorted[0];
+            console.log("ID del show más cercano" + show_lejos_id);
+            if (show_lejos_id) {
+                shows.forEach((Ishow_lejos) => {
+                    if (Ishow_lejos.showId === show_lejos_id) {
+                        get_show_cercano(Ishow_lejos.banda);
+                    }
+                })
+                // $(".show_cercano").html("No hemos encontrado ningún show clappeable");
+            } else {
+                console.log("No hay ningún show activo");
+            }
+        }
         
         console.log("encontrar en: " + posicion_clapp.latitud + "," + posicion_clapp.longitud);
         console.log("shows:");
@@ -81,7 +98,7 @@ var show_preclapps = 0;
                 })   
             } else {
                 var unico_show_id = Object.keys(shows_cerca)[0];
-                console.log("sólo hay 1 show cerca");
+                console.log("sólo hay 1 show cerca. ID del show:");
                 console.log(unico_show_id);
                 show_encontrado_id = unico_show_id;
                 shows.forEach((Ishow_cerca) => {
@@ -99,23 +116,8 @@ var show_preclapps = 0;
             $(".no_show").show();
             console.log("lista de shows lejanos, sin ordenar:");
             console.log(show_lejos);
-            
-            var keysSorted = Object.keys(show_lejos).sort(function(a,b){return show_lejos[a]-show_lejos[b]});
-            console.log("lista de shows ordenados por lejanía:");
-            console.log(keysSorted.map(key => show_lejos[key]));
-            show_lejos_id = keysSorted[0];
-            console.log("ID del show más cercano" + show_lejos_id);
-            if (show_lejos_id) {
-                shows.forEach((Ishow_lejos) => {
-                    if (Ishow_lejos.showId === show_lejos_id) {
-                        get_show_cercano(Ishow_lejos.banda);
-                    }
-                })
-                // $(".show_cercano").html("No hemos encontrado ningún show clappeable");
-            } else {
-                console.log("No hay ningún show activo");
-            }
-            
+            ordenarShows_lejos();
+            $(".fondo img").hide();
         }
     };
 
