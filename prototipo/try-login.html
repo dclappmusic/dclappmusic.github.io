@@ -87,6 +87,10 @@
 //autentication    
     const auth = firebase.auth();
 
+    firebase.auth().onAuthStateChanged(function(user) {
+        window.user = user; // user is undefined if no user signed in
+    });
+
     const user_email = document.getElementById("user-email");
     const user_password = document.getElementById("user-password");
     const user_city = document.getElementById("user-city");
@@ -176,15 +180,18 @@
     }
 
     function sign_up_google() {
-        initApp();
+        // initApp();
        // [START createprovider]
        var provider = new firebase.auth.GoogleAuthProvider();
         // [END createprovider]
         // [START addscopes]
-        provider.addScope('https://www.googleapis.com/auth/plus.login');
+        // provider.addScope('https://www.googleapis.com/auth/plus.login');
+        provider.addScope("https://www.googleapis.com/auth/plus.me");
+        provider.addScope("email");
         // [END addscopes]
         // [START signin]
-        firebase.auth().signInWithRedirect(provider);
+        firebase.auth().signInWithPopup(provider);
+        // firebase.auth().signInWithRedirect(provider);
         // [END signin]
         
     }
@@ -227,6 +234,7 @@
       // [END getidptoken]
      
     }
+    
 
     function sign_up_email() {
         const email = user_email.value;
