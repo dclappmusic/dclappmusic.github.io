@@ -27,7 +27,7 @@
 			<img src="images/icon_clapp.png" />
 		</a>
 		<div class="intro_clapp">
-			<a href="login.html"><h3 class="display-med">aplaude<br>el talento</h3></a>
+			<a href="sign_band.html"><h3 class="display-med">aplaude<br>el talento</h3></a>
 		</div>
 
 		<ul class="menu">
@@ -38,25 +38,31 @@
 				<a href="index.html">CLAPP</a>
 			</li>
 			<li class="menu-tit">
-				<a href="opciones.html">bandas</a>
+				<a href="bandas.html">bandas</a>
 			</li>
 		</ul>
 	</div>
 
 	
-
+<!-- codigo externo -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+
+<!-- codigo propio -->
 <script type="text/javascript" src="js/firebase-config.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
-	function funcion_user () {
-		//desplegable del botón de menú
-		$(".options").click(function(){
-			$(".options_login").toggleClass("active");
-		});
+// 1.script.js -> chekear si hay user loggeado
+// 2.chekear parametros en la URL
+// 3.si no esta loggeado, cambiar link del menu historial, a login
+// 4.si hay usuario, poner enlace a sus bandas
+// event - toggle de opciones
 
-		//si viene del login, ponerle un CTA para crear banda
+//esta funcion se ejecuta siempre despues de checkear si esta loggeado
+	function funcion_user () {
+		var user;
+
+		//2.si viene desde login, ponerle un CTA para crear banda
 		var from = getUrlParameter("from");
 		console.log(from);
 		if (from === "login") {
@@ -64,17 +70,24 @@
 			$(".intro_clapp h3").html("Crea un perfil para tu <b>banda</b>");
 			$(".intro_clapp a").attr("href", "sign_band.html");
 		}
-		
+
+		//event - desplegable del botón de menú, por ahora sólo con login
+		$(".options").click(function(){
+			$(".options_login").toggleClass("active");
+		});
+
+		//3.si no está logeado, el link a historial te lleva a login
 		if (!login) {
 			$(".menu .historial a").attr("href", "login.html");
 		} else {
 			$(".options_login").html("logout");
 		}
-		var user;
 		
-		//cargar el usuario de la DB
+		
+		//3.cargar el usuario de la DB
 		const userRef = firestore.collection("usuarios").doc(userId);
 		userRef.get().then((doc) => {
+			//si está loggeado carga y tiene bandas, las carga
 			if (doc.exists) {
 				console.log("Document data:", doc.data());
 				user = doc.data();
@@ -95,8 +108,7 @@
 					$(".cambio_modo").hide();
 				}
 			} else {
-				// doc.data() will be undefined in this case
-				console.log("No such document!");
+				console.log("No user");
 			}
 		}).catch(function(error) {
 			console.log("Error getting document:", error);
