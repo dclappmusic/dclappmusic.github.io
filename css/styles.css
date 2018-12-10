@@ -274,8 +274,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     display: none;
   }
   .container .intro .main-parr {
-    font-size: 40px;
+    font-size: 12vw;
     margin-top: 10%;
+    width: 85%;
+    margin-left: 7.5%;
   }
   .container .intro .parrafo {
     font-size: 23px;
