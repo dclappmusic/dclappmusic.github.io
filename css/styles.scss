@@ -223,6 +223,7 @@ $mobile:"(max-width:768px)";
 	
 				input {
 					border: 0;
+					width: calc(100% - 30px);
 					-webkit-box-sizing: border-box;
 					box-sizing: border-box;
 					color: $color-parr;
@@ -234,7 +235,9 @@ $mobile:"(max-width:768px)";
 				}
 				.button {
 					border-radius: 20px;
-					margin-left: 10px;
+					position: absolute;
+					right: 10px;
+					// margin-left: 10px;
 					width: 36px;
 					height: 36px;
 					background-color: white;
