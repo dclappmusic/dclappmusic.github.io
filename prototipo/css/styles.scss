@@ -650,12 +650,12 @@ b {font-weight: bold;}
 		}
 	}
 }
-.container.opciones {
+.container.opciones, .container.bandas {
 	.cabecera {color: $secundario};
 	.boton-med {
 		display: block;
 		width: 80%;
-		margin: 0 auto;
+		margin: 10% auto;
 		padding: .5em 1em .7em;
 		text-align: center;
 		border-radius: 12px;

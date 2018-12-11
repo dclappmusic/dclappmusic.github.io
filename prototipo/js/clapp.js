@@ -117,7 +117,7 @@ var show_preclapps = 0;
             console.log("lista de shows lejanos, sin ordenar:");
             console.log(show_lejos);
             ordenarShows_lejos();
-            $(".fondo img").hide();
+            $(".fondo .fondo_banda").hide();
         }
     };
 
@@ -132,7 +132,7 @@ var show_preclapps = 0;
             band_preclapps = banda_activa.num_clapps;
             console.log("preclapps: " + band_preclapps);
             console.log(banda_activa.nombre + ", perfil encontrado");
-            $(".clapp .fondo img").attr("src", banda_activa.imagen);
+            $(".clapp .fondo .fondo_banda").attr("src", banda_activa.imagen);
             $(".act .name").html("<b>" + banda_activa.nombre + "</b>").attr("href", "perfil.html?band=" + banda_activa_id);
         });
     };

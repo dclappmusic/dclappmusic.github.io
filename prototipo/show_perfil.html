@@ -75,7 +75,7 @@
 <script type="text/javascript" src="js/firebase-config.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
-
+    //tabs
     $(".tabs li").click(function(){
         var tab = $(this).data("tab");
         console.log(tab);
@@ -118,7 +118,8 @@
     };    
     
     var bandId = getUrlParameter("band");
-		
+
+	//poner bandId en todos los links para seguir mostrando la misma banda
     $('a').each(function() {
         var href = $(this).attr('href');
         if (href && (href != "index.html")) {
@@ -126,9 +127,9 @@
             $(this).attr('href', href);
         }
     });
-    //encuentra la banda seguún el ID
+
+//traer banda de base de datos
     var banda;
-    //traer banda de base de datos
     const bandRef = firestore.collection("bandas").doc(bandId);
     var userRef;
     var tiene_foto = false;
@@ -162,7 +163,7 @@
         // $(".act .descripcion .parrafo").html(band.descripcion);
     });
     
-    //si cambia el nombre, coger el nuevo y guardarlo en una variable
+    //si cambian los datos, coger los nuevos y guardarlos en un array
     var cambios = {};
     $("#band-name").change(function() {
         cambios.nombre = document.querySelector("#band-name").value;
@@ -179,7 +180,10 @@
     //actualizar el perfil de la banda en la DB
     function actualizar_perfil() {
         bandRef.update(cambios);
+//* actualizar el nombre de la banda en el objeto_usuario
     }
+
+    //actualizar la imagen de perfil
     const storageRef = firebase.storage().ref();
 
     function imageUp() {

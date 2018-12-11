@@ -24,7 +24,10 @@
 		</div>
 		<div class="fondo">
 			<div class="overlay"></div>
-			<img>
+			<img class="fondo_banda">
+			<div class="buscando">
+
+			</div>
 		</div>
 		<div class="boton btn_clapp">
 			<span class="num_clapps"></span>
@@ -128,14 +131,14 @@
 	$(".link_show_cercano").click(function() {
 		$(".no_show").hide();
 		$(".show_cercano").show();
-		$(".fondo img").show();
+		$(".fondo .fondo_banda").show();
 		
 	});
 
 	$(".act .name").click(function(event) {
 		const link = $(this).attr("href");
 		event.preventDefault();
-		debugger;
+		// debugger;
 		console.log(link); 
 		if (clapped) {
 			set_subirClapps("profile");

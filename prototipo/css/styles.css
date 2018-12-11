@@ -949,14 +949,14 @@ b {
   color: white;
 }
 
-.container.opciones .cabecera {
+.container.opciones .cabecera, .container.bandas .cabecera {
   color: #0C3847;
 }
 
-.container.opciones .boton-med {
+.container.opciones .boton-med, .container.bandas .boton-med {
   display: block;
   width: 80%;
-  margin: 0 auto;
+  margin: 10% auto;
   padding: .5em 1em .7em;
   text-align: center;
   border-radius: 12px;
