@@ -68,8 +68,8 @@ $mobile:"(max-width:768px)";
 	z-index: 10;
 	background: linear-gradient(128.24deg, #D65238 4.12%, #7D352B 48.9%, #17225C 99.23%);
 	@media #{$mobile} {
-		position: relative;
-		height: auto;
+		// position: relative;
+		// height: auto;
 	}
 	.fondo {
 		position: absolute;
@@ -270,7 +270,7 @@ $mobile:"(max-width:768px)";
 			line-height: 1.3em;
 		}
 		@media #{$mobile} {
-			position: relative;
+			// position: relative;
 			padding: 5% 10px;
 			.izda {
 				width: 100%;

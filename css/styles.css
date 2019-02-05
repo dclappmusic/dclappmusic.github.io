@@ -169,13 +169,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: linear-gradient(128.24deg, #D65238 4.12%, #7D352B 48.9%, #17225C 99.23%);
 }
 
-@media (max-width: 768px) {
-  .container {
-    position: relative;
-    height: auto;
-  }
-}
-
 .container .fondo {
   position: absolute;
   top: 0;
@@ -475,7 +468,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @media (max-width: 768px) {
   .container .suscripcion {
-    position: relative;
     padding: 5% 10px;
   }
   .container .suscripcion .izda {
