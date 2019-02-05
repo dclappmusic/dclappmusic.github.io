@@ -43,10 +43,18 @@
 				de la mejor música en directo
 			</h2>
 		</div>
+		<div class="scroll_down">
+			<p class="tit">
+				¿TE INTERESA NUESTRA IDEA?<br>
+				<svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2 2L17 13L32 2" stroke="white" stroke-width="4"/>
+				</svg>
+					
+			</p>
+		</div>
 		<div class="suscripcion">
 			<div class="izda">
-				<p class="tit">¿te interesa nuestra idea?</p>
-				<p class="subtit">Queremos que seas el primero en probarla</p>
+				<p class="subtit">Sé el primero en probarla</p>
 				<p class="parrafo">
 					Actualmente estamos desarrollándola, y nos animaría y ayudaría muchísimo saber que contamos con tu interés. Dinos tu email o síguenos en nuestras redes sociales y te avisaremos en cuanto esté lista.
 				</p>
@@ -64,7 +72,7 @@
 						<img src="images/arrow.svg">
 					</button>
 				</form>
-				<small>
+				<small id="final">
 					No se nos ocurriría darle tu email a ningún tercero, sólo lo usaremos para comunicaciones propias.
 				</small>
 			</div>
@@ -82,7 +90,9 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-
+		$(".scroll_down p").click(function() {
+			$('html,body').animate({ scrollTop: $(".suscripcion").offset().top }, 500);
+		});
 		
 	</script>
 	

@@ -84,15 +84,14 @@ $mobile:"(max-width:768px)";
 	&>div {z-index: 10;position: relative;}
 	.logo {
 		display: block;
-		position: absolute;
-		top: 2%;
-		left: 2%;
+		margin: 1% auto;
+		text-align: center;
 		.claim {
 			@include typo($Changa, 1.2vw, $color-parr);
 			font-weight: 200;
 			// margin: 10px auto 0;
 		}
-		img {position: relative; left: 1vw; width: 8vw;}
+		img {width: 8vw;}
 		@media #{$mobile} {
 			width: 100%;
 			position: relative;
@@ -107,17 +106,17 @@ $mobile:"(max-width:768px)";
 		.main-parr {
 			width: 75%;
 			margin-left: 12.5%;
-			margin-top: 22vh;
-			@include typo($Changa, 5vw, $color_parr);
+			margin-top: 5vh;
+			@include typo($Changa, 7vw, $color_parr);
 			font-weight: bold;
-			line-height: 1.1em;
+			line-height: .8em;
 			// margin: 1em 0;
 		}
 		.parrafo {
 			@include typo($Roboto, 2vw, $color_parr);
 			font-weight: 450;
 			line-height: 1.4em;
-			margin: 1em 0;
+			margin: 1.5em 0;
 			width: 40%;
 			float: left;
 			margin-left: 10%;
@@ -143,19 +142,27 @@ $mobile:"(max-width:768px)";
 			}
 		}
 	}
-	.suscripcion {
-		background-color: rgba(51,51,51,.8);
+	.scroll_down {
 		position: absolute;
-		bottom: 0;
-		padding: 1.5% 2%;
+		bottom: 2vh;
+		width: 100%;
+		text-align: center;
+		cursor: pointer;
+		.tit {@include typo($Changa, 28px, $color-parr); font-weight: 500}
+	}
+	.suscripcion {
+		// background-color: rgba(51,51,51,.8);
+		background-color: #333;
+		position: absolute;
+		top: 100vh;
+		padding: 4%;
 		width: 100%;
 		.izda {
-			width: 70%;
+			width: 60%;
 			display: inline-block;
 			vertical-align: top;
-			margin-right: 5%;
-			.tit {@include typo($Changa, 28px, $color-parr); font-weight: 500}
-			.subtit {@include typo($Roboto, 20px, $color-parr); margin: .8em 0 .5em;}
+			margin-right: 5%;	
+			.subtit {@include typo($Changa, 24px, $color-parr); margin-bottom: 1em;}
 			.parrafo {
 				@include typo($Roboto, 18px, $color-parr);
 				font-weight: 450;
@@ -163,7 +170,7 @@ $mobile:"(max-width:768px)";
 			}
 		}
 		.dcha {
-			width: 24%;
+			width: 34%;
 			display: inline-block;
 			vertical-align: top;
 			.switch {
@@ -247,6 +254,7 @@ $mobile:"(max-width:768px)";
 					margin-left: -25px;
 					box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
 					transition: box-shadow 0.5s ease, box-shadow 0.5s ease;
+					cursor: pointer;
 					&:hover {box-shadow: none;}
 					img {
 						position: relative;

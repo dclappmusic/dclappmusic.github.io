@@ -195,9 +195,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .container .logo {
   display: block;
-  position: absolute;
-  top: 2%;
-  left: 2%;
+  margin: 1% auto;
+  text-align: center;
 }
 
 .container .logo .claim {
@@ -208,8 +207,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .container .logo img {
-  position: relative;
-  left: 1vw;
   width: 8vw;
 }
 
@@ -236,12 +233,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .container .intro .main-parr {
   width: 75%;
   margin-left: 12.5%;
-  margin-top: 22vh;
+  margin-top: 5vh;
   font-family: "Changa", sans-serif;
   color: white;
-  font-size: 5vw;
+  font-size: 7vw;
   font-weight: bold;
-  line-height: 1.1em;
+  line-height: .8em;
 }
 
 .container .intro .parrafo {
@@ -250,7 +247,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-size: 2vw;
   font-weight: 450;
   line-height: 1.4em;
-  margin: 1em 0;
+  margin: 1.5em 0;
   width: 40%;
   float: left;
   margin-left: 10%;
@@ -287,33 +284,41 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-.container .suscripcion {
-  background-color: rgba(51, 51, 51, 0.8);
+.container .scroll_down {
   position: absolute;
-  bottom: 0;
-  padding: 1.5% 2%;
+  bottom: 2vh;
   width: 100%;
+  text-align: center;
+  cursor: pointer;
 }
 
-.container .suscripcion .izda {
-  width: 70%;
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 5%;
-}
-
-.container .suscripcion .izda .tit {
+.container .scroll_down .tit {
   font-family: "Changa", sans-serif;
   color: white;
   font-size: 28px;
   font-weight: 500;
 }
 
+.container .suscripcion {
+  background-color: #333;
+  position: absolute;
+  top: 100vh;
+  padding: 4%;
+  width: 100%;
+}
+
+.container .suscripcion .izda {
+  width: 60%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5%;
+}
+
 .container .suscripcion .izda .subtit {
-  font-family: "Roboto", sans-serif;
+  font-family: "Changa", sans-serif;
   color: white;
-  font-size: 20px;
-  margin: .8em 0 .5em;
+  font-size: 24px;
+  margin-bottom: 1em;
 }
 
 .container .suscripcion .izda .parrafo {
@@ -325,7 +330,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .container .suscripcion .dcha {
-  width: 24%;
+  width: 34%;
   display: inline-block;
   vertical-align: top;
 }
@@ -447,6 +452,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   transition: -webkit-box-shadow 0.5s ease, -webkit-box-shadow 0.5s ease;
   transition: box-shadow 0.5s ease, box-shadow 0.5s ease;
   transition: box-shadow 0.5s ease, box-shadow 0.5s ease, -webkit-box-shadow 0.5s ease, -webkit-box-shadow 0.5s ease;
+  cursor: pointer;
 }
 
 .container .suscripcion .dcha form .button:hover {
