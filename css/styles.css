@@ -211,11 +211,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     top: 15px;
   }
   .container .logo img {
-    width: 25%;
+    width: 20%;
     left: 0;
   }
   .container .logo .claim {
-    font-size: 1.1em;
+    font-size: .8em;
   }
 }
 
@@ -270,9 +270,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     margin-left: 7.5%;
   }
   .container .intro .parrafo {
-    font-size: 23px;
+    font-size: 1.4em;
     width: 100%;
     float: none;
+    margin: 1em 0;
     margin-left: 5px !important;
   }
 }
@@ -290,6 +291,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   color: white;
   font-size: 28px;
   font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .container .scroll_down .tit {
+    font-size: 7vw;
+  }
 }
 
 .container .suscripcion {
