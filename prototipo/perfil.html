@@ -47,7 +47,7 @@
                 <div class="rrss">
                     <a class="link_rrss"></a>
                 </div>
-                <p class="boton-sm active">seguir</p>
+                <p class="boton-sm active">follow</p>
             </div>
             <div class="descripcion">
                 <p class="parrafo">
@@ -122,10 +122,10 @@
         //toggle del botón de seguir
         $(".seguir .boton-sm").click(function(){
             $(this).toggleClass("active");
-            if ($(this).html() === "seguir") {
-                $(this).html("siguiendo");
+            if ($(this).html() === "follow") {
+                $(this).html("following");
             } else {
-                $(this).html("seguir");
+                $(this).html("follow");
             }
         });
     }

@@ -35,23 +35,23 @@
 		</div>
 		
         <div class="act">
-			<a class="titulo name" href="#">asegúrate de tener activada la ubicación</a>
+			<a class="titulo name" href="#">make sure you have your device location activated</a>
 		</div>
 		<div class="no_show">
-			<p class="display-med">No hemos encontrado ningún show clappeable</p>
-			<p class="display-med link_registrar">Si estás viendo uno, ayúdanos a registrar al artista para poder clappearle</p>
-			<p class="parrafo link_show_cercano">si no, puedes ver dónde está el show más cercano</p>
+			<p class="display-med">We couldn't find any show near you</p>
+			<p class="display-med link_registrar">if you are watching a cool show, help us register the band</p>
+			<p class="parrafo link_show_cercano">if you are not, check out the shows happening right now near you!</p>
 		</div>
 		<div class="registrar_act">
-			<h1 class="parrafo">Ayudanos a registrar a un artista</h1>
-			<p class="display-med">sólo tiene que <b>escanear este QR</b></p>
+			<h1 class="parrafo">Help us out registering a new band!</h1>
+			<p class="display-med">they just need to <b>scan this QR code</b></p>
 			<img id="qr_registrar" alt="qr" title="qr" />
-			<p class="parrafo">o desde <b>www.dclappmusic.com/login.html</b></p>
+			<p class="parrafo">or access <b>www.dclappmusic.com/login.html</b></p>
 		</div>
 		<div class="show_cercano">
-			<h1 class="parrafo">No hay ningún show clappeable</h1>
+			<h1 class="parrafo">there is no show happening righ now in your location</h1>
 			<p class="show_cerca display-med"></p>
-			<a class="titulo name" href="#">asegúrate de tener activada la ubicación</a>
+			<a class="titulo name" href="#">make sure you have your device location activated </a>
 		</div>
 	</div>
 
@@ -106,8 +106,8 @@
 			} else if (login && banda_activa && (clapps < 51)) {
 				clapHold = setInterval(clapping(), 500);
 			} else {
-				console.log("suficientes clapps, ahora atiende al show");
-				$(".num_clapps").html("suficientes clapps, ahora atiende al show");
+				console.log("That's enough! now enjoy the show!");
+				$(".num_clapps").html("That's enough! now enjoy the show!");
 			}
 				
 		});
