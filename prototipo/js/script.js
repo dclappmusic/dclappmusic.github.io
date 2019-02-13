@@ -1,11 +1,12 @@
 
-//-------------FUNCIONES
+//-------------FUNCIONES GLOBALES
 
-//EJECUCION
-//ver si hay algun usuario logeado, y coger su user ID y ejecuta function user en la página concreta
+//ver si hay algun usuario logeado, coger su user ID y ejecutar function user en la página concreta
     const auth = firebase.auth();
     var userId;
     var login = false;
+
+    //chequear si hay user logeado, en cualquier caso, ejecuta function_user despues de chekear
     auth.onAuthStateChanged(user => {
         if (user) {
             // User is signed in.

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="dClapp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>dClapp</title>
+	<link rel="icon" type="image/jpg" href="images/favicon.png">
+	<link rel="stylesheet" href="css/styles.css">
+	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
+</head>
+
+<body>
+	<div class="container clapp">
+        <span class="back" onclick="window.history.back();">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.939341 10.9393C0.353554 11.5251 0.353554 12.4749 0.939341 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97919 12.6066 1.3934C12.0208 0.807611 11.0711 0.807611 10.4853 1.3934L0.939341 10.9393ZM26 10.5L2 10.5V13.5L26 13.5V10.5Z" fill="white"/>
+            </svg>     
+		</span>
+		<div class="postclapp-survey">
+			<div class="typeform-widget" data-url="https://dclapp.typeform.com/to/VBSQXo" style="width: 90%; height: 90%;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script> <div style="font-family: Sans-Serif;font-size: 12px;color: #999;opacity: 0.5; padding-top: 5px;"> powered by <a href="https://admin.typeform.com/signup?utm_campaign=VBSQXo&utm_source=typeform.com-12943108-Basic&utm_medium=typeform&utm_content=typeform-embedded-poweredbytypeform&utm_term=ES" style="color: #999" target="_blank">Typeform</a> </div>
+		</div>
+		<div class="fondo">
+			<div class="overlay"></div>
+			<img>
+		</div>
+		<div class="boton btn_clapp">
+			<span class="num_clapps"></span>
+			<img src="images/icon_clapp.png" />
+		</div>
+		
+        <div class="act">
+			<a class="titulo name" href="#">asegúrate de tener activada la ubicación</a>
+		</div>
+		<div class="no_show">
+			<p class="display-med">No hemos encontrado ningún show clappeable</p>
+			<p class="display-med link_registrar">Si estás viendo uno, ayúdanos a registrar al artista para poder clappearle</p>
+			<p class="parrafo link_show_cercano">si no, puedes ver dónde está el show más cercano</p>
+		</div>
+		<div class="registrar_act">
+			<h1 class="parrafo">Ayudanos a registrar a un artista</h1>
+			<p class="display-med">sólo tiene que <b>escanear este QR</b></p>
+			<img id="qr_registrar" alt="qr" title="qr" />
+			<p class="parrafo">o desde <b>www.dclappmusic.com/login.html</b></p>
+		</div>
+		<div class="show_cercano">
+			<h1 class="parrafo">No hay ningún show clappeable</h1>
+			<p class="show_cerca display-med"></p>
+			<a class="titulo name" href="#">asegúrate de tener activada la ubicación</a>
+		</div>
+	</div>
+
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script type="text/javascript" src="js/firebase-config.js"></script>
+<script type="text/javascript" src="js/clapp.js"></script>
+<script type="text/javascript" src="js/geolocation.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	var user;
+	var shows = [];
+	var banda_activa;
+	var banda_activa_id;
+	var show_encontrado_id;
+	var clapped = false;
+	let timeout;
+	let clapHold;
+	// var delay = window.setTimeout(function(){console.log("ok")}, 5000);
+	const showRef = firestore.collection("shows");	
+	const bandRef = firestore.collection("bandas");
+
+	function funcion_user() {
+//LOGIN OUT
+		// if (!login) { 
+		// 	login = true;
+		// 	userId = "anonimo_test2_buho" + firebase.firestore.FieldValue.serverTimestamp();
+		// }
+//
+		//crear array de shows activos en la DB, los mete en shows
+		showRef.where("active", "==", true).get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					shows.push(doc.data());
+					console.log("shows activos:");
+					console.log(shows);
+				});
+				tryGeolocation();
+			})
+			.catch(function(error) {
+				console.log("Error getting documents: ", error);
+			});
+		
+	//EVENT HANDLERS USER
+		//iniciar proceso de sumar clapps
+		$(".btn_clapp").mousedown(function() {
+			clearTimeout(timeout);
+			if (!login) {
+				window.location.href = "login.html";
+			} else if (login && banda_activa && (clapps < 51)) {
+				clapHold = setInterval(clapping(), 500);
+			} else {
+				console.log("suficientes clapps, ahora atiende al show");
+				$(".num_clapps").html("suficientes clapps, ahora atiende al show");
+			}
+				
+		});
+
+	//ayuda a registrar
+		var qr = "https://api.qrserver.com/v1/create-qr-code/?data=https://www.dclappmusic.com/beta/login.html%3Ffrom%3Dclapp" + "%26thanksto%3D" + userId;
+		$("#qr_registrar").attr("src", qr);
+	};
+
+//EVENT HANDLERS
+	
+    $(".btn_clapp").mouseup(function() {
+        clearInterval(clapHold);
+	});
+
+	$(".link_registrar").click(function() {
+		$(".no_show").hide();
+		$(".registrar_act").show();
+	});
+
+	$(".link_show_cercano").click(function() {
+		$(".no_show").hide();
+		$(".show_cercano").show();
+	});
+
+	$(".act .name").click(function(event) {
+		const link = $(this).attr("href");
+		event.preventDefault();
+		debugger;
+		console.log(link); 
+		if (clapped) {
+			set_subirClapps("profile");
+		} else {
+			window.location = link;
+		}
+	});
+
+
+	// var cerrar_form = document.querySelectorAll("[data-qa='close-button-mobile']");
+	// cerrar_form.click(function() {
+	// 	$(".postclapp-survey").hide();
+	// });
+
+	// $(window).unload(function() {
+	// 	console.log("unloading");
+	// 	debugger;
+	// 	set_subirClapps();
+	// });
+	// $(window).bind('beforeunload', function() {
+	// 	console.log("unloading");
+	// 	debugger;
+	// 	set_subirClapps();
+	// });
+
+	// window.addEventListener("beforeunload", function (e) {
+	// 	console.log("unloading");
+	// 	if (clapped) {
+	// 		window.setTimeout(function(){console.log("ok")}, 5000);
+	// 		set_subirClapps();
+	// 		delay();
+	// 	}
+	// });
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

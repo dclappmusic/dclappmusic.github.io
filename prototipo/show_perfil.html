@@ -15,11 +15,8 @@
 
 <body>
 	<div class="container show_perfil">
-        <a class="cambio_modo" href="index.html">volver a clapp</a>
-        <span class="editar">
-            <img class="edit" src="images/icon-edit.svg" />
-            <img class="save" src="images/icon-save.svg" />
-        </span>
+        <a class="hide cambio_modo" href="index.html">volver a clapp</a>
+        
         <div class="act">
             <label class="imagen" for="band-image"></label>
             <input id="band-image" class="image-input" type="file" name="band-imagen" accept="image/png, image/jpeg" id="band-image" disabled>
@@ -47,6 +44,10 @@
                 </ul>
             </div>
             <div class="info">
+                <span class="editar">
+                    <img class="edit" src="images/icon-edit.svg" />
+                    <img class="save" src="images/icon-save.svg" />
+                </span>
                 <textarea id="band-descripcion" class="parrafo descripcion" type="text" name="band-descripcion" value="" disabled></textarea>
             </div>
             <div class="shows">
@@ -54,7 +55,7 @@
                 <p class="boton-sm" onclick="deleteBand();">delete band</p>
             </div>
         </div>
-        <ul class="menu">
+        <ul class="hide menu">
             <li class="menu-tit">
                 <a href="#">historial</a>
             </li>
@@ -74,7 +75,7 @@
 <script type="text/javascript" src="js/firebase-config.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
-
+    //tabs
     $(".tabs li").click(function(){
         var tab = $(this).data("tab");
         console.log(tab);
@@ -84,13 +85,31 @@
 
     //hacer editables los inputs
     $(".edit").click(function() {
+        $(".show_perfil").css("background-color", "rgba(12, 56, 71, 0.2)");
         $(this).hide().siblings().show();
-        $("input, textarea").prop('disabled', false);
+        $("input, textarea").prop('disabled', false).addClass("able");
+        $(".editar").addClass("able");
+        $(".imagen").addClass("able");
+        $(".hide").hide();
     });
     $(".save").click(function() {
+        $(".show_perfil").css("background-color", "#F1F1F1");
         $(this).hide().siblings().show();
-        $("input, textarea").prop('disabled', true);
+        $("input, textarea").prop('disabled', true).removeClass("able");
+        $(".imagen").removeClass("able");
+        $(".editar").removeClass("able");
+        $(".hide").show();
         actualizar_perfil();
+    });
+
+    //hide menu on input focus
+    $("input, textarea").on('focus', function() {
+        document.body.scrollTop = $(this).offset().top;
+        $(".menu").hide()
+    });
+    $("input, textarea").on('blur', function() {
+        document.body.scrollTop = 0;
+        $(".menu").show();
     });
 
 
@@ -99,7 +118,8 @@
     };    
     
     var bandId = getUrlParameter("band");
-		
+
+	//poner bandId en todos los links para seguir mostrando la misma banda
     $('a').each(function() {
         var href = $(this).attr('href');
         if (href && (href != "index.html")) {
@@ -107,28 +127,34 @@
             $(this).attr('href', href);
         }
     });
-    //encuentra la banda seguún el ID
+
+//traer banda de base de datos
     var banda;
-    //traer banda de base de datos
     const bandRef = firestore.collection("bandas").doc(bandId);
     var userRef;
+    var tiene_foto = false;
 
-    bandRef.onSnapshot((doc) => {
-        banda = doc.data();
+    bandRef.onSnapshot((snap) => {
+        banda = snap.data();
         console.log("banda: " + banda.nombre);
 
     //diplay en pantalla de datos de la banda
         $("#band-name").attr("value", banda.nombre);
         $(".resumen .ciudad p").html(banda.ciudad);
         $(".resumen .clapps p").html(banda.num_clapps);
-        $(".resumen .actuaciones p").html(banda.shows.length);
+        if (banda.shows) {
+            $(".resumen .actuaciones p").html(banda.shows.length);
+        } else {
+            $(".resumen .actuaciones p").html("0");
+        }
         if (banda.imagen) {
+            tiene_foto = true;
             $(".act .imagen").css("background-image", "url(" + banda.imagen + ")");
         } else {
             $(".act .imagen").css("background-image", "url(images/perfil_kurt.png)");
         }
         if (banda.descripcion) {
-            $("#band-descripcion").attr("value", banda.descripcion);
+            $("#band-descripcion").html(banda.descripcion);
         } else {
             console.log("no descripcion");
             $("#band-descripcion").html("Todavía no sabemos quién es " + banda.nombre);
@@ -137,7 +163,7 @@
         // $(".act .descripcion .parrafo").html(band.descripcion);
     });
     
-    //si cambia el nombre, coger el nuevo y guardarlo en una variable
+    //si cambian los datos, coger los nuevos y guardarlos en un array
     var cambios = {};
     $("#band-name").change(function() {
         cambios.nombre = document.querySelector("#band-name").value;
@@ -154,7 +180,10 @@
     //actualizar el perfil de la banda en la DB
     function actualizar_perfil() {
         bandRef.update(cambios);
+//* actualizar el nombre de la banda en el objeto_usuario
     }
+
+    //actualizar la imagen de perfil
     const storageRef = firebase.storage().ref();
 
     function imageUp() {
@@ -181,32 +210,43 @@
 
     //borrar banda
     function deleteBand() {
-        var confirmar = confirm("¿Seguro que quieres borrar tu banda");
+        var confirmar = confirm("¿Seguro que quieres borrar tu banda? todos sus datos se perderán de manera permanente.");
         var newBand = [];
-        userRef.get().then(doc => {
-            user = doc.data();
-            newBand = user.band;
-            newBand = newBand.filter(band => band.band_id !== bandId);
-        });
         if (confirmar == true) {
-            userRef.update({
-                band: newBand
-            }).then(function() {
-                console.log("borrada con exito de user");
-                bandRef.delete().then(function() {
-                    console.log("borrada con exito de bandas");
-                    storageRef.child(bandId).delete().then(function() {
-                        console.log("borrada con exito de imagenes");
-                        window.location.href = "index.html";
+            debugger;
+            userRef.get().then(doc => {
+                user = doc.data();
+                const user_bands = user.band;
+                console.log(user_bands);
+                newBand = user_bands.filter(band => band.band_id !== bandId);
+                console.log(newBand);
+                userRef.update({
+                    band: newBand
+                }).then(function() {
+                    debugger;
+                    console.log("borrada con exito de user");
+                    bandRef.delete().then(function() {
+                        console.log("borrada con exito de bandas");
+                        if (tiene_foto) {
+                            storageRef.child(bandId).delete().then(function() {
+                                console.log("borrada con exito de imagenes");
+                                debugger;
+                                window.location.href = "index.html";
+                            }).catch((error) => {
+                                console.error("Error removing de bandas: ", error);
+                            });
+                        } else {
+                            debugger;
+                            window.location.href = "index.html";
+                        }
                     }).catch((error) => {
                         console.error("Error removing de bandas: ", error);
                     });
                 }).catch((error) => {
-                    console.error("Error removing de bandas: ", error);
+                    console.error("Error removing de user: ", error);
                 });
-            }).catch((error) => {
-                console.error("Error removing de user: ", error);
             });
+            
         } else {
             console.log("abortado");
         }
