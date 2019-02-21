@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="dClapp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>dClapp - aplaude el talento</title>
+	<link rel="icon" type="image/jpg" href="images/favicon.png">
+	<link rel="stylesheet" href="css/styles.css">
+	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56677487-3"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-56677487-3');
+	</script>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="logo">
+			<img src="images/logo_white.svg"/>
+			<h1 class="claim">aplaude el talento</h1>
+		</div>
+		<div class="intro">
+			<h1 class="main-parr">
+				Le damos a la música en directo<br>
+				el valor que se merece
+			</h1>
+			<h2 class="parrafo">
+				Queremos que <b>cualquier músico</b>
+				de forma simple y gratuita <b>pueda prosperar</b>
+				<b>sólo teniendo que preocuparse de salir y tocar</b>
+			</h2>
+			<h2 class="parrafo tu">
+				y que <b>tú</b> disfrutes<br>
+				de la mejor música en directo
+			</h2>
+		</div>
+		<div class="scroll_down">
+			<p class="tit">
+				¿TE INTERESA NUESTRA IDEA?<br>
+				<svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2 2L17 13L32 2" stroke="white" stroke-width="4"/>
+				</svg>
+					
+			</p>
+        </div>
+        <div class="container_producto">
+            <ul class="bullets_prod">
+                <li data-mock="fans" class="active">Consigue fans orgánicamente, saliendo a tocar</li>
+                <li data-mock="notificaciones">Recibe notificaciones sobre conciertos de grupos que sigues</li>
+                <li data-mock="concis">Descubre conciertos que están ocurriendo en tiempo real</li>
+                <li data-mock="geo">Geolocaliza a los músicos que tienes delante!</li>
+            </ul>
+            <div class="mockup_prod">
+				<img class="fans active" src="images/mock_prod_1.png" />
+				<img class="notificaciones" src="images/mock_prod_2.png" />
+				<img class="concis" src="images/mock_prod_3.png" />
+				<img class="geo" src="images/mock_prod_4.png" />
+            </div>
+        </div>
+		<!-- <div class="suscripcion">
+			<div class="izda">
+				<p class="subtit">Sé el primero en probarla</p>
+				<p class="parrafo">
+					Actualmente estamos desarrollándola, y nos animaría y ayudaría muchísimo saber que contamos con tu interés. Dinos tu email o síguenos en nuestras redes sociales y te avisaremos en cuanto esté lista.
+				</p>
+			</div>
+			<div class="dcha">
+				<form action="https://dclappmusic.us18.list-manage.com/subscribe/post?u=10a9ff771fff14a7ac528706e&amp;id=9bc44af218" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					<div class="mail_wrapper">
+						<input type="email" value="" placeholder="tu email" name="EMAIL" class="required email" id="mce-EMAIL">
+					</div>
+					<button type="submit" id="mc-embedded-subscribe" class="button">
+						<img src="images/arrow.svg">
+					</button>
+				</form>
+				<small id="final">
+					No se nos ocurriría darle tu email a ningún tercero, sólo lo usaremos para comunicaciones propias.
+				</small>
+			</div>
+		</div> -->
+		
+		<div class="rrss">
+			<a href="https://www.facebook.com/dclappmusic">
+				<img src="images/facebook.svg">
+			</a>
+			<a href="https://twitter.com/dClappmusic">
+				<img src="images/twitter.svg">
+			</a>
+		</div>
+		<img class="fondo" src="images/landing_fondo.jpg">
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(".scroll_down p").click(function() {
+			$('html,body').animate({ scrollTop: $(".suscripcion").offset().top }, 500);
+		});
+		$(".bullets_prod li").on("mouseover", function() {
+			$(this).addClass("active").siblings().removeClass("active");
+
+			var data = $(this).data("mock");
+			$(".mockup_prod ." + data).addClass("active").siblings().removeClass("active");
+		});
+	</script>
+	
+ </body>
+</html>
+
+
+
+
+
+
+
+
