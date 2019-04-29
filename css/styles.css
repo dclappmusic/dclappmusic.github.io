@@ -286,6 +286,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .container .scroll_down {
+  position: absolute;
+  top: 90vh;
   width: 100%;
   text-align: center;
   cursor: pointer;

@@ -146,6 +146,8 @@ $mobile:"(max-width:768px)";
 		}
 	}
 	.scroll_down {
+		position: absolute;
+		top: 90vh;
 		width: 100%;
 		text-align: center;
 		cursor: pointer;
