@@ -156,43 +156,6 @@ $mobile:"(max-width:768px)";
 			.tit {font-size: 7vw;}
 		}
 	}
-	.container_producto {
-		position: relative;
-		width: 100%;
-		height: 100vh;
-		background: linear-gradient(0deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), linear-gradient(134.74deg, #D65238 4.12%, #7D352B 48.9%, #17225C 99.23%);
-		// box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.4);
-		box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.47);
-		display: flex;
-		align-items: center;
-		.prod_izda {
-			float: left;
-			width: 50%;
-			margin-left: 10%;
-			.tit {@include typo($Roboto, 40px, white); font-weight: 450; margin-bottom: 2em;}
-			.bullets_prod {
-				@include typo($Roboto, 22px, white);
-				li {
-					margin: 1.8em 1em; 
-					margin-right: 0; 
-					opacity: .3; 
-					cursor: pointer;
-					list-style: circle;
-				}
-				.active {opacity: 1; list-style: initial; font-weight: 500;}
-			}
-		}
-		
-		.mockup_prod {
-			float: left;
-			width: 40%;
-			display: flex;
-			align-items: center;
-			height: 100%;
-			img {height: 80%; margin: 0 auto; display: none;}
-			.active {display: inherit;}
-		}
-	}
 
 	.suscripcion {
 		// background-color: rgba(51,51,51,.8);
@@ -346,6 +309,47 @@ $mobile:"(max-width:768px)";
 				margin: 0 5px;
 				img {height: 1.2em;}
 			}
+		}
+	}
+}
+
+.container.musicos {
+	.container_producto {
+		position: absolute;
+		top: 98vh;
+		width: 100%;
+		height: 100vh;
+		background: linear-gradient(0deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), linear-gradient(134.74deg, #D65238 4.12%, #7D352B 48.9%, #17225C 99.23%);
+		// box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.4);
+		box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.47);
+		display: flex;
+		align-items: center;
+		.prod_izda {
+			float: left;
+			width: 50%;
+			margin-left: 10%;
+			.tit {@include typo($Roboto, 40px, white); font-weight: 450; margin-bottom: 2em;}
+			.bullets_prod {
+				@include typo($Roboto, 22px, white);
+				li {
+					margin: 1.8em 1em; 
+					margin-right: 0; 
+					opacity: .3; 
+					cursor: pointer;
+					list-style: circle;
+				}
+				.active {opacity: 1; list-style: initial; font-weight: 500;}
+			}
+		}
+		
+		.mockup_prod {
+			float: left;
+			width: 40%;
+			display: flex;
+			align-items: center;
+			height: 100%;
+			img {height: 80%; margin: 0 auto; display: none;}
+			.active {display: inherit;}
 		}
 	}
 }
