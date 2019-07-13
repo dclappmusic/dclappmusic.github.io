@@ -3,53 +3,62 @@
 
 /*********************  fonts *****************************/
 @font-face {
-	font-family: 'Changa';
-	src: url("fonts/Changa-Bold.ttf");
-	font-weight: bold;
-}
-@font-face {
-	font-family: 'Changa';
-	src: url('fonts/changa-Medium.ttf');
-	font-weight: 500;
-}
-@font-face {
-	font-family: 'Changa';
-	src: url('fonts/changa-Regular.ttf');
-	font-weight: regular;
-}
-@font-face {
-	font-family: 'Changa';
-	src: url('fonts/changa-ExtraLight.ttf');
-	font-weight: 200;
-}
-@font-face {
-	font-family: 'Roboto';
-	src: url('fonts/Roboto-Regular.ttf');
-}
-@font-face {
-	font-family: 'Roboto';
-	src: url('fonts/Roboto-Light.ttf');
-	font-weight: 450;
-}
-@font-face {
-	font-family: 'Roboto';
-	src: url('fonts/Roboto-Medium.ttf');
-	font-weight: 500;
+    font-family: 'Changa';
+    src: url("fonts/Changa-Bold.ttf");
+    font-weight: bold;
 }
 
-$Roboto: 'Roboto', sans-serif;
-$Changa: 'Changa', sans-serif;
+@font-face {
+    font-family: 'Changa';
+    src: url('fonts/changa-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Changa';
+    src: url('fonts/changa-Regular.ttf');
+    font-weight: regular;
+}
+
+@font-face {
+    font-family: 'Changa';
+    src: url('fonts/changa-ExtraLight.ttf');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Light.ttf');
+    font-weight: 450;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Medium.ttf');
+    font-weight: 500;
+}
+
+$Roboto: 'Roboto',
+sans-serif;
+$Changa: 'Changa',
+sans-serif;
 
 @mixin typo($ffamily, $fsize, $fcolor) {
-	font-family:$ffamily;
-		   color:$fcolor;
-		font-size:$fsize;		
+    font-family: $ffamily;
+    color: $fcolor;
+    font-size: $fsize;
 }
 
 /*********************** colores ***********************/
 
 $rojo: #FC5130;
 $azul-texto: #031927;
+$azul-bands: #0C3847;
 $color-parr: white;
 
 /********************** resoluciones ********************/
@@ -61,291 +70,471 @@ $mobile:"(max-width:768px)";
 
 
 .container {
-	position: absolute;
-	display: block;
-	width: 100vw;
-	height: 100%;
-	z-index: 10;
-	background: linear-gradient(128.24deg, #D65238 4.12%, #7D352B 48.9%, #17225C 99.23%);
-	@media #{$mobile} {
-		// position: relative;
-		// height: auto;
-	}
-	.fondo {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		opacity: .25;
-		z-index: 0;
-	}
-	&>div {z-index: 10;position: relative;}
-	.logo {
-		display: block;
-		margin: 1% auto;
-		text-align: center;
-		.claim {
-			@include typo($Changa, 1.2vw, $color-parr);
-			font-weight: 200;
-			// margin: 10px auto 0;
-		}
-		img {width: 8vw;}
-		@media #{$mobile} {
-			width: 100%;
-			position: relative;
-			text-align: center;
-			top: 15px;
-			img {width: 20%; left: 0;}
-			.claim {font-size: .8em;}
-		}
-	}
-	.intro {
-		text-align: center;
-		height: 68vh;
-		.main-parr {
-			width: 85%;
-			margin-left: 7.5%;
-			margin-top: 5vh;
-			@include typo($Changa, 7vw, $color_parr);
-			font-weight: bold;
-			line-height: .9em;
-			// margin: 1em 0;
-		}
-		.parrafo {
-			@include typo($Roboto, 2vw, $color_parr);
-			font-weight: 450;
-			line-height: 1.4em;
-			margin: 1.5em 0;
-			width: 40%;
-			float: left;
-			margin-left: 10%;
-			text-align: left;
-			b {font-weight: 500;}
-			&.tu {margin-left: 5%;}
-			&.centrado {width: 60%; margin-left: 20%; margin-top: 5%;}
-		}
-		@media #{$mobile} {
-			width: calc(100% - 10px);
-			margin: 5% 5px;
-			br {display: none;}
-			.main-parr {
-				font-size: 12vw;
-				margin-top: 10%;
-				width: 85%;
-				margin-left: 7.5%;
-			}
-			.parrafo {
-				font-size: 1.4em;
-				width: 100%;
-				float: none;
-				margin: 1em 0;
-				margin-left: 5px!important;
-			}
-		}
-	}
-	.scroll_down {
-		position: absolute;
-		top: 90vh;
-		width: 100%;
-		text-align: center;
-		cursor: pointer;
-		.tit {@include typo($Changa, 28px, $color-parr); font-weight: 500}
-		@media #{$mobile} {
-			.tit {font-size: 7vw;}
-		}
-	}
-	.container_producto {
-		position: relative;
-		width: 100%;
-		height: 100vh;
-		background: linear-gradient(0deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), linear-gradient(134.74deg, #D65238 4.12%, #7D352B 48.9%, #17225C 99.23%);
-		// box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.4);
-		box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.47);
-		display: flex;
-		align-items: center;
-		.prod_izda {
-			float: left;
-			width: 50%;
-			margin-left: 10%;
-			.tit {@include typo($Roboto, 40px, white); font-weight: 450; margin-bottom: 2em;}
-			.bullets_prod {
-				@include typo($Roboto, 22px, white);
-				li {
-					margin: 1.8em 1em; 
-					margin-right: 0; 
-					opacity: .3; 
-					cursor: pointer;
-					list-style: circle;
-				}
-				.active {opacity: 1; list-style: initial; font-weight: 500;}
-			}
-		}
-		
-		.mockup_prod {
-			float: left;
-			width: 40%;
-			display: flex;
-			align-items: center;
-			height: 100%;
-			img {height: 80%; margin: 0 auto; display: none;}
-			.active {display: inherit;}
-		}
-	}
+    position: absolute;
+    display: block;
+    width: 100vw;
+    // height: 100%;
+    z-index: 10;
 
-	.suscripcion {
-		// background-color: rgba(51,51,51,.8);
-		background-color: #333;
-		position: absolute;
-		top: 100vh;
-		padding: 4%;
-		width: 100%;
-		.izda {
-			width: 60%;
-			display: inline-block;
-			vertical-align: top;
-			margin-right: 5%;	
-			.subtit {@include typo($Changa, 24px, $color-parr); margin-bottom: 1em;}
-			.parrafo {
-				@include typo($Roboto, 18px, $color-parr);
-				font-weight: 450;
-				line-height: 1.3em;
-			}
-		}
-		.dcha {
-			width: 34%;
-			display: inline-block;
-			vertical-align: top;
-			.switch {
-				position: relative;
-				display: inline-block;
-				width: 60px;
-				height: 34px;
-				&input {
-					opacity: 0;
-					width: 0;
-					height: 0;
-				}
-				/* The slider */
-				.slider {
-					position: absolute;
-					cursor: pointer;
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: 0;
-					background-color: #ccc;
-					transition: .4s;
-					border-radius: 34px;
-				}
-				
-				.slider:before {
-					position: absolute;
-					content: "";
-					height: 26px;
-					width: 26px;
-					left: 4px;
-					bottom: 4px;
-					background-color: white;
-					transition: .4s;
-					border-radius: 50%
-				}		
-				input:checked + .slider { background-color: #2196F3;}
-				input:focus + .slider {box-shadow: 0 0 1px #2196F3;}
-				input:checked + .slider:before {transform: translateX(26px);}
-			}
-			form {
-				width: 255px;
-				position: relative;
-				border-radius: 30px;
-				background-color: $rojo;
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-orient: horizontal;
-				-webkit-box-direction: normal;
-				-ms-flex-direction: row;
-				flex-direction: row;
-				-webkit-box-align: center;
-				-ms-flex-align: center;
-				align-items: center;
-				margin: 20px 0 12px;
-				padding: 0 10px 0 25px;
-				color: white;
-	
-				input {
-					border: 0;
-					width: calc(100% - 30px);
-					-webkit-box-sizing: border-box;
-					box-sizing: border-box;
-					color: $color-parr;
-					height: 50px;
-					outline: 0;
-					font-size: 20px;
-					background-color: transparent;
-					&::placeholder {color: white;}
-				}
-				.button {
-					border-radius: 20px;
-					position: absolute;
-					right: 10px;
-					// margin-left: 10px;
-					width: 36px;
-					height: 36px;
-					background-color: white;
-					border: none;
-					margin-left: -25px;
-					box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
-					transition: box-shadow 0.5s ease, box-shadow 0.5s ease;
-					cursor: pointer;
-					&:hover {box-shadow: none;}
-					img {
-						position: relative;
-						top: 1px;
-					}
-				}
-			}
-		}
-		
-		small {
-			@include typo($Roboto, 15px, $color-parr);
-			font-weight: 450;
-			line-height: 1.3em;
-		}
-		@media #{$mobile} {
-			// position: relative;
-			padding: 5% 10px;
-			.izda {
-				width: 100%;
-				margin-right: 0;
-				.tit {font-size: 18px;}
-				.subtit {font-size: 16px;}
-				.parrafo {font-size: 12px;}
-			}
-			.dcha {
-				width: 100%;
-				form {margin: 10px auto;}
-			}
-			small {font-size: 12px;}
-		}
-	}
-	.rrss {
-		position: absolute;
-		top: 5%;
-		right: 2%;
-		a {
-			display: inline-block;
-			margin: 0 .8vw;
-			img {height: 1.5vw}
-		}
-		@media #{$mobile} {
-			top: 15px;
-			right: 10px;
-			a {
-				margin: 0 5px;
-				img {height: 1.2em;}
-			}
-		}
-	}
+    &.fans {
+        .container_producto {    
+            .fans {
+                // left: 0;
+                transition: transform 1s ease-in-out;
+                transform: translateX(0);
+            }
+            .bands {
+                // left: 0;
+                transition: transform 1s ease-in-out;
+                transform: translateX(-1vw);
+                z-index: 90;
+            }
+        }
+    }
+
+    .fondo {
+        position: absolute;
+        background-image: url(../images/landing_fondo.jpg);
+        background-attachment: fixed;
+        background-size: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        // object-fit: cover;
+        opacity: .25;
+        z-index: 0;
+    }
+
+    &>div {
+        z-index: 10;
+        position: relative;
+    }
+
+    .switch {
+        position: fixed;
+        top: 50vh;
+        color: white;
+        padding: 1em;
+        
+        cursor: pointer;
+        z-index: 100;
+        &.active {transition: transform 1s ease-in-out;}
+        &.bands {
+            background-color: $azul-bands;
+            right: 100vw;
+            border-radius: 2em 0 0 2em;
+            &.active {transform: translateX(100vw);}
+        }
+        &.fans {
+            background-color: $rojo;
+            left: 100vw;
+            border-radius: 0 2em 2em 0;
+            &.active {transform: translateX(-100vw);}
+        }
+    }
+
+    .logo {
+        position: absolute;
+        // display: block;
+        margin: 2%;
+        text-align: center;
+
+        .claim {
+            @include typo($Changa, 1.2vw, $color-parr);
+            font-weight: 200;
+            // margin: 10px auto 0;
+        }
+
+        img {
+            width: 8vw;
+        }
+
+        @media #{$mobile} {
+            width: 100%;
+            position: relative;
+            text-align: center;
+            top: 15px;
+
+            img {
+                width: 20%;
+                left: 0;
+            }
+
+            .claim {
+                font-size: .8em;
+            }
+        }
+    }
+
+    .intro {
+        position: relative;
+        text-align: center;
+        margin-top: 30vh;
+        height: 70vh;
+
+        .main-parr {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-top: 5vh;
+            @include typo($Changa, 7vw, $color_parr);
+            font-weight: bold;
+            line-height: 1.2em;
+            // margin: 1em 0;
+        }
+
+        .definicion {
+            width: 90%;
+            margin-left: 2%;
+            text-align: left;
+            position: absolute;
+            bottom: 5%;
+
+            .parrafo {
+                @include typo($Roboto, 2vw, $color_parr);
+                font-weight: 450;
+                line-height: 1.4em;
+
+                b {
+                    font-weight: 500;
+                }
+            }
+
+            .small {
+                @include typo($Roboto, 1vw, $color_parr);
+
+            }
+        }
+
+        @media #{$mobile} {
+            width: calc(100% - 10px);
+            margin: 5% 5px;
+
+            br {
+                display: none;
+            }
+
+            .main-parr {
+                font-size: 12vw;
+                margin-top: 10%;
+                width: 85%;
+                margin-left: 7.5%;
+            }
+
+            .parrafo {
+                font-size: 1.4em;
+                width: 100%;
+                float: none;
+                margin: 1em 0;
+                margin-left: 5px !important;
+            }
+        }
+    }
+
+    // .scroll_down {
+    // 	position: absolute;
+    // 	top: 90vh;
+    // 	width: 100%;
+    // 	text-align: center;
+    // 	cursor: pointer;
+    // 	.tit {@include typo($Changa, 28px, $color-parr); font-weight: 500}
+    // 	@media #{$mobile} {
+    // 		.tit {font-size: 7vw;}
+    // 	}
+    // }
+    .container_producto {
+        // display: flex;
+        position: absolute;
+        top: 0;  
+        left: 0;
+        width: 200vw;
+        z-index: -1;
+        &>div {
+            padding-top: 100vh;
+            position: relative;
+            // float: left;
+            width: 100vw;
+            height: 200vh;
+            transition: transform 1s ease-in-out;
+            // background: $azul-bands;
+            // box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.4);
+            // box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.47);
+            display: flex;
+            align-items: center;
+
+            &.bands {
+                // left: -100vw; 
+                transform: translateX(-99vw);
+                float: right; 
+                background-color: $azul-bands;
+            }
+            &.fans {
+                // left: -100vw; 
+                transform: translateX(-99vw);
+                float: left; 
+                background-color: $rojo
+            }
+
+            .prod_izda {
+                float: left;
+                width: 50%;
+                margin-left: 10%;
+                .tit {
+                    @include typo($Roboto, 40px, white);
+                    font-weight: 450;
+                    margin-bottom: 2em;
+                }
+                .bullets_prod {
+                    @include typo($Roboto, 22px, white);
+                    li {
+                        margin: 1.8em 1em;
+                        margin-right: 0;
+                        opacity: .3;
+                        cursor: pointer;
+                        list-style: circle;
+                    }
+                    .active {
+                        opacity: 1;
+                        list-style: initial;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .mockup_prod {
+                float: left;
+                width: 40%;
+                display: flex;
+                align-items: center;
+                height: 100%;
+
+                img {
+                    height: 80%;
+                    margin: 0 auto;
+                    display: none;
+                }
+
+                .active {display: inherit;}
+            }
+        }
+    }
+
+    .suscripcion {
+        // background-color: rgba(51,51,51,.8);
+        background-color: #333;
+        position: absolute;
+        top: 100vh;
+        padding: 4%;
+        width: 100%;
+
+        .izda {
+            width: 60%;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 5%;
+
+            .subtit {
+                @include typo($Changa, 24px, $color-parr);
+                margin-bottom: 1em;
+            }
+
+            .parrafo {
+                @include typo($Roboto, 18px, $color-parr);
+                font-weight: 450;
+                line-height: 1.3em;
+            }
+        }
+
+        .dcha {
+            width: 34%;
+            display: inline-block;
+            vertical-align: top;
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            
+                &input {
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+
+                /* The slider */
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #ccc;
+                    transition: .4s;
+                    border-radius: 34px;
+                }
+
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 26px;
+                    width: 26px;
+                    left: 4px;
+                    bottom: 4px;
+                    background-color: white;
+                    transition: .4s;
+                    border-radius: 50%
+                }
+
+                input:checked+.slider {
+                    background-color: #2196F3;
+                }
+
+                input:focus+.slider {
+                    box-shadow: 0 0 1px #2196F3;
+                }
+
+                input:checked+.slider:before {
+                    transform: translateX(26px);
+                }
+            }
+
+            form {
+                width: 255px;
+                position: relative;
+                border-radius: 30px;
+                background-color: $rojo;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                flex-direction: row;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                margin: 20px 0 12px;
+                padding: 0 10px 0 25px;
+                color: white;
+
+                input {
+                    border: 0;
+                    width: calc(100% - 30px);
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    color: $color-parr;
+                    height: 50px;
+                    outline: 0;
+                    font-size: 20px;
+                    background-color: transparent;
+
+                    &::placeholder {
+                        color: white;
+                    }
+                }
+
+                .button {
+                    border-radius: 20px;
+                    position: absolute;
+                    right: 10px;
+                    // margin-left: 10px;
+                    width: 36px;
+                    height: 36px;
+                    background-color: white;
+                    border: none;
+                    margin-left: -25px;
+                    box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
+                    transition: box-shadow 0.5s ease, box-shadow 0.5s ease;
+                    cursor: pointer;
+
+                    &:hover {
+                        box-shadow: none;
+                    }
+
+                    img {
+                        position: relative;
+                        top: 1px;
+                    }
+                }
+            }
+        }
+
+        small {
+            @include typo($Roboto, 15px, $color-parr);
+            font-weight: 450;
+            line-height: 1.3em;
+        }
+
+        @media #{$mobile} {
+            // position: relative;
+            padding: 5% 10px;
+
+            .izda {
+                width: 100%;
+                margin-right: 0;
+
+                .tit {
+                    font-size: 18px;
+                }
+
+                .subtit {
+                    font-size: 16px;
+                }
+
+                .parrafo {
+                    font-size: 12px;
+                }
+            }
+
+            .dcha {
+                width: 100%;
+
+                form {
+                    margin: 10px auto;
+                }
+            }
+
+            small {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .rrss {
+        position: absolute;
+        top: 5%;
+        right: 2%;
+
+        a {
+            display: inline-block;
+            margin: 0 .8vw;
+
+            img {
+                height: 1.5vw
+            }
+
+            &.cta {
+                @include typo($Roboto, 18px, $color-parr);
+                border: 1px solid $color-parr;
+                border-radius: 2em;
+                padding: .5em 1em;
+            }
+        }
+
+        @media #{$mobile} {
+            top: 15px;
+            right: 10px;
+
+            a {
+                margin: 0 5px;
+
+                img {
+                    height: 1.2em;
+                }
+            }
+        }
+
+    }
 }

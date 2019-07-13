@@ -24,46 +24,55 @@
 
 <body>
 	<div class="container">
+        <a class="switch fans active">fans</a>
+        <a class="switch bands">bands</a>
 		<div class="logo">
 			<img src="images/logo_white.svg"/>
 			<h1 class="claim">aplaude el talento</h1>
 		</div>
 		<div class="intro">
 			<h1 class="main-parr">
-					<!-- No  descansaremos hasta que lo petéis al máximo.<br><br>
-					¡os lo merecéis! -->
-					Consigamos que cualquier músico pueda petarlo por sólo con su talento
+                Pasteurizamos* la<br>música en directo
 			</h1>
-			<h2 class="parrafo centrado">
-				Queremos que <b>cualquier músico</b>
-				de forma simple y gratuita <b>pueda prosperar</b>
-				<b>sólo teniendo que preocuparse de salir y tocar</b>
-			</h2>
+
+            <div class="definicion">
+                <p class="small">*Del fr. pasteuriser, de L. Pasteur, 1822-1895, químico francés inventor de la pasteurización, e -iser '-izar'.</p>
+                <p class="parrafo">Elevar la temperatura de <b>la escena músical de tu ciudad</b> con el fin de destruir los microorganismos patógenos sin alterar su composición y cualidades.</p>
+            </div>
 		</div>
-		<div class="scroll_down">
-			<p class="tit">
-				¿TE INTERESA NUESTRA IDEA?<br>
-				<svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M2 2L17 13L32 2" stroke="white" stroke-width="4"/>
-				</svg>
-					
-			</p>
-        </div>
+		
         <div class="container_producto">
-			<div class="prod_izda">
-				<h2 class="tit">Con nuestra ayuda, podrás:</h2>
-				<ul class="bullets_prod">
-					<li data-mock="fans" class="active">Conseguir fans orgánicamente, saliendo a tocar</li>
-					<li data-mock="notificaciones">Recibir notificaciones sobre conciertos de grupos que sigues</li>
-					<li data-mock="concis">Descubrir conciertos que están ocurriendo en tiempo real</li>
-					<li data-mock="geo">Conocer y seguir a los músicos que tienes delante!</li>
-				</ul>
-			</div>
-            <div class="mockup_prod">
-				<img class="fans active" src="images/mock_prod_1.png" />
-				<img class="notificaciones" src="images/mock_prod_2.png" />
-				<img class="concis" src="images/mock_prod_3.png" />
-				<img class="geo" src="images/mock_prod_4.png" />
+            <div class="bands">
+                <div class="prod_izda">
+                    <h2 class="tit">Consigue y mantén fans orgánicamente, saliendo a tocar.</h2>
+                    <ul class="bullets_prod">
+                        <li data-mock="entradas" class="active">La gente que te tiene delante está a 1 click de comprar las entradas para tu show</li>
+                        <li data-mock="concis">Encuentra salas afines donde tocar, y te facilitamos la reserva.</li>
+                        <li data-mock="mapa">Tu show aparecerá en nuestra agenda y en nuestro mapa en tiempo real, visible para todas las personas que estén cerca.</li>
+                    </ul>
+                </div>
+                <div class="mockup_prod">
+                    <img class="entradas active" src="images/entradas.png" />
+                    <img class="concis" src="images/concis.png" />
+                    <img class="mapa" src="images/mapa.png" />
+                </div>
+            </div>
+            <div class="fans">
+                <div class="prod_izda">
+                    <h2 class="tit">Disfruta, descubre y colabora con los shows que te ponen los pelos de punta.</h2>
+                    <ul class="bullets_prod">
+                        <li data-mock="fans_mapa" class="active">Busca conciertos cerca de tí con nuestra agenda-mapa en tiempo real.</li>
+                        <li data-mock="push">Estáte informado (de la forma que tú elijas, notificaciones, mails, etc.) de los shows de los grupos que te gustan.</li>
+                        <li data-mock="clapp">Clappea y ayuda a los grupos que se lo merecen a hacerse un hueco y prosperar.</li>
+                        <li data-mock="entradas">¿Te gusta ese músico? En 2 clicks consigue entradas para su próximo show.</li>
+                    </ul>
+                </div>
+                <div class="mockup_prod">
+                    <img class="fans_mapa active" src="images/mapa.png" />
+                    <img class="push" src="images/push.png" />
+                    <img class="clapp" src="images/clapp.png" />
+                    <img class="entradas" src="images/entradas.png" />
+                </div>
             </div>
         </div>
 		<!-- <div class="suscripcion">
@@ -89,6 +98,7 @@
 		</div> -->
 		
 		<div class="rrss">
+            <a href="#" class="cta">descárgatela</a>
 			<a href="https://www.facebook.com/dclappmusic">
 				<img src="images/facebook.svg">
 			</a>
@@ -96,7 +106,8 @@
 				<img src="images/twitter.svg">
 			</a>
 		</div>
-		<img class="fondo" src="images/landing_fondo.jpg">
+		<!-- <img class="fondo" src="images/landing_fondo.jpg"> -->
+        <div class="fondo"></div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -109,6 +120,14 @@
 			var data = $(this).data("mock");
 			$(".mockup_prod ." + data).addClass("active").siblings().removeClass("active");
 		});
+
+        $(".switch").click(function(e) {
+            e.preventDefault();
+            $(".container").toggleClass("fans");
+            $(".switch").addClass("active");
+            $(this).removeClass("active");
+
+        })
 	</script>
 	
  </body>
