@@ -75,6 +75,7 @@ $mobile:"(max-width:768px)";
     width: 100vw;
     // height: 100%;
     z-index: 10;
+    overflow-x: hidden;
 
     &.fans {
         .container_producto {    
@@ -151,19 +152,22 @@ $mobile:"(max-width:768px)";
         }
 
         @media #{$mobile} {
-            width: 100%;
-            position: relative;
-            text-align: center;
-            top: 15px;
+            margin: 5%;
+            img {width: 5em;}
+            .claim {font-size: .7em;}
+            // width: 100%;
+            // position: relative;
+            // text-align: center;
+            // top: 15px;
 
-            img {
-                width: 20%;
-                left: 0;
-            }
+            // img {
+            //     width: 20%;
+            //     left: 0;
+            // }
 
-            .claim {
-                font-size: .8em;
-            }
+            // .claim {
+            //     font-size: .8em;
+            // }
         }
     }
 
@@ -189,45 +193,34 @@ $mobile:"(max-width:768px)";
             text-align: left;
             position: absolute;
             bottom: 5%;
-
             .parrafo {
                 @include typo($Roboto, 2vw, $color_parr);
                 font-weight: 450;
                 line-height: 1.4em;
-
-                b {
-                    font-weight: 500;
-                }
+                b {font-weight: 500;}
             }
-
-            .small {
-                @include typo($Roboto, 1vw, $color_parr);
-
-            }
+            .small {@include typo($Roboto, 1vw, $color_parr);}
         }
 
         @media #{$mobile} {
-            width: calc(100% - 10px);
-            margin: 5% 5px;
-
-            br {
-                display: none;
+            margin-top: 35vh;
+            font-size: 10vw;
+            br {display: none;}
+            .main-parr {font-size: 10vw;}
+            .definicion {
+                overflow: scroll;
+                width: 98%;
+                bottom: 10vh;
+                .parrafo, .small {width: 500%; font-size: .6em;}
             }
 
-            .main-parr {
-                font-size: 12vw;
-                margin-top: 10%;
-                width: 85%;
-                margin-left: 7.5%;
-            }
-
-            .parrafo {
-                font-size: 1.4em;
-                width: 100%;
-                float: none;
-                margin: 1em 0;
-                margin-left: 5px !important;
-            }
+            // .parrafo {
+            //     font-size: 1.4em;
+            //     width: 100%;
+            //     float: none;
+            //     margin: 1em 0;
+            //     margin-left: 5px !important;
+            // }
         }
     }
 
@@ -254,7 +247,8 @@ $mobile:"(max-width:768px)";
             position: relative;
             // float: left;
             width: 100vw;
-            height: 200vh;
+            min-height: 200vh;
+            height: auto;
             transition: transform 1s ease-in-out;
             // background: $azul-bands;
             // box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.4);
@@ -304,17 +298,50 @@ $mobile:"(max-width:768px)";
             .mockup_prod {
                 float: left;
                 width: 40%;
-                display: flex;
-                align-items: center;
                 height: 100%;
-
-                img {
-                    height: 80%;
-                    margin: 0 auto;
+                &>div {
+                    // height: 80%;
                     display: none;
+                    img {
+                        display: block;
+                        height: 80vh;
+                        margin: 10vh auto;
+                    }
                 }
-
                 .active {display: inherit;}
+            }
+            @media #{$mobile} {
+                display: block;
+                .prod_izda {
+                    width: 100%; 
+                    margin-left: 0;
+                    margin-top: 5vh;
+                    .tit {margin: 0 10px; font-size: 1.5em; text-align: center;}
+                    .bullets_prod {
+                        margin: 2em 15px;
+                        font-size: 1em;
+                        li {
+                            display: none;
+                            opacity: 0;
+                            margin: 0;
+                        }
+                        .active {
+                            display: inline; 
+                            opacity: 1; 
+                            font-weight: lighter;
+                            transition: all .5s ease-in-out;
+                            list-style: none;
+                        }
+                    }
+                }
+                .mockup_prod {
+                    width: 100%;
+                    height: 75%;
+                    display: block;
+                    &>div {
+                        img {display: block; padding: 0 15vw; height: 70vh; margin-top: 0;}
+                    }
+                }
             }
         }
     }
@@ -469,36 +496,36 @@ $mobile:"(max-width:768px)";
 
         @media #{$mobile} {
             // position: relative;
-            padding: 5% 10px;
+            // padding: 5% 10px;
 
-            .izda {
-                width: 100%;
-                margin-right: 0;
+            // .izda {
+            //     width: 100%;
+            //     margin-right: 0;
 
-                .tit {
-                    font-size: 18px;
-                }
+            //     .tit {
+            //         font-size: 18px;
+            //     }
 
-                .subtit {
-                    font-size: 16px;
-                }
+            //     .subtit {
+            //         font-size: 16px;
+            //     }
 
-                .parrafo {
-                    font-size: 12px;
-                }
-            }
+            //     .parrafo {
+            //         font-size: 12px;
+            //     }
+            // }
 
-            .dcha {
-                width: 100%;
+            // .dcha {
+            //     width: 100%;
 
-                form {
-                    margin: 10px auto;
-                }
-            }
+            //     form {
+            //         margin: 10px auto;
+            //     }
+            // }
 
-            small {
-                font-size: 12px;
-            }
+            // small {
+            //     font-size: 12px;
+            // }
         }
     }
 
@@ -506,15 +533,10 @@ $mobile:"(max-width:768px)";
         position: absolute;
         top: 5%;
         right: 2%;
-
         a {
             display: inline-block;
             margin: 0 .8vw;
-
-            img {
-                height: 1.5vw
-            }
-
+            img {height: 1.5vw;}
             &.cta {
                 @include typo($Roboto, 18px, $color-parr);
                 border: 1px solid $color-parr;
@@ -524,16 +546,21 @@ $mobile:"(max-width:768px)";
         }
 
         @media #{$mobile} {
-            top: 15px;
-            right: 10px;
-
             a {
-                margin: 0 5px;
-
-                img {
-                    height: 1.2em;
-                }
+                &.cta {display: block;}
+                &:not(.cta) {float: right; margin: .5em; width: 30%;}
+                img {height: 5vw;}
             }
+            // top: 15px;
+            // right: 10px;
+
+            // a {
+            //     margin: 0 5px;
+
+            //     img {
+            //         height: 1.2em;
+            //     }
+            // }
         }
 
     }

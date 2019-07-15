@@ -8,6 +8,8 @@
 	
 	<title>dClapp - aplaude el talento</title>
 	<link rel="icon" type="image/jpg" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
 	<link rel="stylesheet" href="css/styles.css">
 	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -52,9 +54,15 @@
                     </ul>
                 </div>
                 <div class="mockup_prod">
-                    <img class="entradas active" src="images/entradas.png" />
-                    <img class="concis" src="images/concis.png" />
-                    <img class="mapa" src="images/mapa.png" />
+                    <div class="entradas active" data-mock="entradas">
+                        <img src="images/entradas.png" />
+                    </div>
+                    <div class="concis" data-mock="concis">
+                        <img  src="images/concis.png" />
+                    </div>
+                    <div class="mapa" data-mock="mapa">
+                        <img src="images/mapa.png"/>
+                    </div>
                 </div>
             </div>
             <div class="fans">
@@ -68,10 +76,18 @@
                     </ul>
                 </div>
                 <div class="mockup_prod">
-                    <img class="fans_mapa active" src="images/mapa.png" />
-                    <img class="push" src="images/push.png" />
-                    <img class="clapp" src="images/clapp.png" />
-                    <img class="entradas" src="images/entradas.png" />
+                    <div class="fans_mapa active" data-mock="fans_mapa">
+                        <img src="images/mapa.png" />
+                    </div>
+                    <div class="push" data-mock="push">
+                        <img src="images/push.png" />
+                    </div>
+                    <div class="clapp" data-mock="clapp">
+                        <img src="images/clapp.png" />
+                    </div>
+                    <div class="entradas" data-mock="entradas">
+                        <img src="images/entradas.png" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,6 +126,7 @@
         <div class="fondo"></div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script type="text/javascript">
 		$(".scroll_down p").click(function() {
 			$('html,body').animate({ scrollTop: $(".suscripcion").offset().top }, 500);
@@ -126,8 +143,26 @@
             $(".container").toggleClass("fans");
             $(".switch").addClass("active");
             $(this).removeClass("active");
+        });
 
-        })
+        $(document).ready(function() {
+            if (($(window).width() < 720)) {
+                console.log("mobile");
+                $(".mockup_prod").slick({
+                    swipeToSlide: true,
+                    touchThreshold: 15,
+                    arrows: false,
+                    dots: true
+                });
+                $('.mockup_prod').on('afterChange', function (slick, currentSlide) {
+                    var mockup = $(".mockup_prod .slick-current").attr("data-mock");
+                    console.log("mockup: " + mockup);
+                    $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+                });
+            } else {
+                console.log("desktop");
+            }
+        });
 	</script>
 	
  </body>
