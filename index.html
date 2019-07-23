@@ -7,10 +7,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<title>dClapp - aplaude el talento</title>
-	<link rel="icon" type="image/jpg" href="images/favicon.png">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
-	<link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/jpg" href="images/favicon.png">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/slick.min.js"></script>
 	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56677487-3"></script>
@@ -45,6 +46,7 @@
 		
         <div class="container_producto">
             <div class="bands">
+                <p class="for">for bands</p>
                 <div class="prod_izda">
                     <h2 class="tit">Consigue y mantén fans orgánicamente, saliendo a tocar.</h2>
                     <ul class="bullets_prod">
@@ -66,6 +68,7 @@
                 </div>
             </div>
             <div class="fans">
+                <p class="for">for fans</p>
                 <div class="prod_izda">
                     <h2 class="tit">Disfruta, descubre y colabora con los shows que te ponen los pelos de punta.</h2>
                     <ul class="bullets_prod">
@@ -91,27 +94,6 @@
                 </div>
             </div>
         </div>
-		<!-- <div class="suscripcion">
-			<div class="izda">
-				<p class="subtit">Sé el primero en probarla</p>
-				<p class="parrafo">
-					Actualmente estamos desarrollándola, y nos animaría y ayudaría muchísimo saber que contamos con tu interés. Dinos tu email o síguenos en nuestras redes sociales y te avisaremos en cuanto esté lista.
-				</p>
-			</div>
-			<div class="dcha">
-				<form action="https://dclappmusic.us18.list-manage.com/subscribe/post?u=10a9ff771fff14a7ac528706e&amp;id=9bc44af218" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-					<div class="mail_wrapper">
-						<input type="email" value="" placeholder="tu email" name="EMAIL" class="required email" id="mce-EMAIL">
-					</div>
-					<button type="submit" id="mc-embedded-subscribe" class="button">
-						<img src="images/arrow.svg">
-					</button>
-				</form>
-				<small id="final">
-					No se nos ocurriría darle tu email a ningún tercero, sólo lo usaremos para comunicaciones propias.
-				</small>
-			</div>
-		</div> -->
 		
 		<div class="rrss">
             <a href="#" class="cta">descárgatela</a>
@@ -121,16 +103,31 @@
 			<a href="https://twitter.com/dClappmusic">
 				<img src="images/twitter.svg">
 			</a>
-		</div>
-		<!-- <img class="fondo" src="images/landing_fondo.jpg"> -->
+        </div>
+        <div class="suscripcion">
+            <form action="https://dclappmusic.us18.list-manage.com/subscribe/post?u=10a9ff771fff14a7ac528706e&amp;id=9bc44af218" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div class="mail_wrapper">
+                    <input type="email" value="" placeholder="tu email" name="EMAIL" class="required email" id="mce-EMAIL">
+                </div>
+                <button type="submit" id="mc-embedded-subscribe" class="button">
+                    <img src="images/arrow.svg">
+                </button>
+            </form>
+            <small id="final">
+                No se nos ocurriría darle tu email a ningún tercero, sólo lo usaremos para comunicaciones propias.
+            </small>
+        </div>
         <div class="fondo"></div>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-	<script type="text/javascript">
-		$(".scroll_down p").click(function() {
-			$('html,body').animate({ scrollTop: $(".suscripcion").offset().top }, 500);
-		});
+	
+    <script type="text/javascript">
+        var unheight = $(window).height();
+        var unwidth = $(window).width();
+
+
+		// $(".scroll_down p").click(function() {
+		// 	$('html,body').animate({ scrollTop: $(".suscripcion").offset().top }, 500);
+		// });
 		$(".bullets_prod li").on("mouseover", function() {
 			$(this).addClass("active").siblings().removeClass("active");
 
@@ -145,27 +142,28 @@
             $(this).removeClass("active");
         });
 
-        $(document).ready(function() {
-            if (($(window).width() < 720)) {
-                console.log("mobile");
-                $(".mockup_prod").slick({
-                    swipeToSlide: true,
-                    touchThreshold: 15,
-                    arrows: false,
-                    dots: true
-                });
-                $('.mockup_prod').on('afterChange', function (slick, currentSlide) {
-                    var mockup = $(".mockup_prod .slick-current").attr("data-mock");
-                    console.log("mockup: " + mockup);
-                    $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
-                });
-            } else {
+        $(".rrss .cta").click(function() {
+            $(".suscripcion").toggle();
+        });
+
+        $(document).ready(function(){
+			if($(window).width() < 768) {
+				console.log("mobile");
+                $(".mockup_prod").addClass("mobile");
+			} else {
                 console.log("desktop");
             }
+
+            $(".mockup_prod.mobile").slick();
+
+            // $('.mockup_prod.mobile').on('afterChange', function (slick, currentSlide) {
+            //     var mockup = $(".mockup_prod .slick-current").attr("data-mock");
+            //     console.log("mockup: " + mockup);
+            //     $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+            // });
         });
 	</script>
-	
- </body>
+</body>
 </html>
 
 

@@ -78,6 +78,9 @@ $mobile:"(max-width:768px)";
     overflow-x: hidden;
 
     &.fans {
+        .fondo {
+            background-image: url(../images/landing_fondo_fans.jpg);
+        }
         .container_producto {    
             .fans {
                 // left: 0;
@@ -95,7 +98,7 @@ $mobile:"(max-width:768px)";
 
     .fondo {
         position: absolute;
-        background-image: url(../images/landing_fondo.jpg);
+        background-image: url(../images/landing_fondo_bands.jpg);
         background-attachment: fixed;
         background-size: cover;
         top: 0;
@@ -105,6 +108,7 @@ $mobile:"(max-width:768px)";
         // object-fit: cover;
         opacity: .25;
         z-index: 0;
+        transition: all 1s ease-in-out;
     }
 
     &>div {
@@ -242,6 +246,13 @@ $mobile:"(max-width:768px)";
         left: 0;
         width: 200vw;
         z-index: -1;
+        .for {
+            position: absolute;
+            top: 1em;
+            width: 100%;
+            text-align: center;
+            @include typo($Changa, 40px, white);
+        }
         &>div {
             padding-top: 100vh;
             position: relative;
@@ -348,150 +359,71 @@ $mobile:"(max-width:768px)";
 
     .suscripcion {
         // background-color: rgba(51,51,51,.8);
-        background-color: #333;
+        display: none;
+        background-color: white;
         position: absolute;
-        top: 100vh;
-        padding: 4%;
-        width: 100%;
+        top: 13vh;
+        right: 5vw;
+        padding: 1%;
+        vertical-align: top;
+        border-radius: 10px;
 
-        .izda {
-            width: 60%;
-            display: inline-block;
-            vertical-align: top;
-            margin-right: 5%;
+        form {
+            width: 255px;
+            position: relative;
+            border-radius: 30px;
+            background-color: $rojo;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 0 0 12px;
+            padding: 0 10px;
+            color: white;
 
-            .subtit {
-                @include typo($Changa, 24px, $color-parr);
-                margin-bottom: 1em;
+            input {
+                border: 0;
+                width: calc(100% - 30px);
+                box-sizing: border-box;
+                color: $color-parr;
+                height: 2.2em;
+                outline: 0;
+                font-size: 1em;
+                background-color: transparent;
+
+                &::placeholder {
+                    color: white;
+                }
             }
 
-            .parrafo {
-                @include typo($Roboto, 18px, $color-parr);
-                font-weight: 450;
-                line-height: 1.3em;
+            .button {
+                border-radius: 20px;
+                position: absolute;
+                right: 5px;
+                // margin-left: 10px;
+                width: 30px;
+                height: 30px;
+                background-color: white;
+                border: none;
+                margin-left: -25px;
+                box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
+                transition: box-shadow 0.5s ease-in-out;
+                cursor: pointer;
+                &:hover { box-shadow: none;}
+                img {
+                    position: relative;
+                    top: 1px;
+                    right: 2px;
+                }
             }
-        }
-
-        .dcha {
-            width: 34%;
-            display: inline-block;
-            vertical-align: top;
-
-            .switch {
-                position: relative;
-                display: inline-block;
-                width: 60px;
-                height: 34px;
             
-                &input {
-                    opacity: 0;
-                    width: 0;
-                    height: 0;
-                }
-
-                /* The slider */
-                .slider {
-                    position: absolute;
-                    cursor: pointer;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background-color: #ccc;
-                    transition: .4s;
-                    border-radius: 34px;
-                }
-
-                .slider:before {
-                    position: absolute;
-                    content: "";
-                    height: 26px;
-                    width: 26px;
-                    left: 4px;
-                    bottom: 4px;
-                    background-color: white;
-                    transition: .4s;
-                    border-radius: 50%
-                }
-
-                input:checked+.slider {
-                    background-color: #2196F3;
-                }
-
-                input:focus+.slider {
-                    box-shadow: 0 0 1px #2196F3;
-                }
-
-                input:checked+.slider:before {
-                    transform: translateX(26px);
-                }
-            }
-
-            form {
-                width: 255px;
-                position: relative;
-                border-radius: 30px;
-                background-color: $rojo;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-orient: horizontal;
-                -webkit-box-direction: normal;
-                -ms-flex-direction: row;
-                flex-direction: row;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                align-items: center;
-                margin: 20px 0 12px;
-                padding: 0 10px 0 25px;
-                color: white;
-
-                input {
-                    border: 0;
-                    width: calc(100% - 30px);
-                    -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
-                    color: $color-parr;
-                    height: 50px;
-                    outline: 0;
-                    font-size: 20px;
-                    background-color: transparent;
-
-                    &::placeholder {
-                        color: white;
-                    }
-                }
-
-                .button {
-                    border-radius: 20px;
-                    position: absolute;
-                    right: 10px;
-                    // margin-left: 10px;
-                    width: 36px;
-                    height: 36px;
-                    background-color: white;
-                    border: none;
-                    margin-left: -25px;
-                    box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
-                    transition: box-shadow 0.5s ease, box-shadow 0.5s ease;
-                    cursor: pointer;
-
-                    &:hover {
-                        box-shadow: none;
-                    }
-
-                    img {
-                        position: relative;
-                        top: 1px;
-                    }
-                }
-            }
         }
 
         small {
-            @include typo($Roboto, 15px, $color-parr);
+            @include typo($Roboto, 15px, #333);
             font-weight: 450;
             line-height: 1.3em;
+            display: block;
+            width: 20vw;
         }
 
         @media #{$mobile} {
