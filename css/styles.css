@@ -274,7 +274,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     width: 5em;
   }
   .container .logo .claim {
-    font-size: .7em;
+    display: none;
   }
 }
 
@@ -362,6 +362,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-size: 40px;
 }
 
+@media (max-width: 768px) {
+  .container .container_producto .for {
+    top: 5em;
+    text-align: left;
+    padding-left: 5%;
+    font-size: 1.2em;
+  }
+}
+
 .container .container_producto > div {
   padding-top: 100vh;
   position: relative;
@@ -434,11 +443,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   height: 100%;
 }
 
-.container .container_producto > div .mockup_prod > div {
+.container .container_producto > div .mockup_prod .swiper-slide {
   display: none;
 }
 
-.container .container_producto > div .mockup_prod > div img {
+.container .container_producto > div .mockup_prod .swiper-slide img {
   display: block;
   height: 80vh;
   margin: 10vh auto;
@@ -479,16 +488,31 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transition: all .5s ease-in-out;
     list-style: none;
   }
-  .container .container_producto > div .mockup_prod {
-    width: 100%;
-    height: 75%;
-    display: block;
+  .container .container_producto > div .mockup_prod > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   .container .container_producto > div .mockup_prod > div img {
     display: block;
     padding: 0 15vw;
     height: 70vh;
     margin-top: 0;
+  }
+  .container .container_producto > div .mockup_prod.swiper-container {
+    width: 100vw !important;
+    height: 80vh !important;
+  }
+  .container .container_producto > div .mockup_prod.swiper-container .swiper-slide {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 
@@ -616,12 +640,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @media (max-width: 768px) {
   .container .rrss a.cta {
-    display: block;
+    float: right;
   }
   .container .rrss a:not(.cta) {
     float: right;
     margin: .5em;
     width: 30%;
+    text-align: center;
   }
   .container .rrss a img {
     height: 5vw;

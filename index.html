@@ -8,10 +8,12 @@
 	
 	<title>dClapp - aplaude el talento</title>
     <link rel="icon" type="image/jpg" href="images/favicon.png">
-    <link rel="stylesheet" href="css/slick.css">
+    <!-- <link rel="stylesheet" href="css/slick.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/slick.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <!-- <script src="js/slick.js"></script> -->
+    
 	<meta name="p:domain_verify" content="010c67b82d18bca303e35e8b40011654"/>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56677487-3"></script>
@@ -27,8 +29,8 @@
 
 <body>
 	<div class="container landing_musicos">
-        <a class="switch fans active">fans</a>
-        <a class="switch bands">bands</a>
+        <a class="switch fans active">for fans</a>
+        <a class="switch bands">for bands</a>
 		<div class="logo">
 			<img src="images/logo_white.svg"/>
 			<h1 class="claim">aplaude el talento</h1>
@@ -56,14 +58,16 @@
                     </ul>
                 </div>
                 <div class="mockup_prod">
-                    <div class="entradas active" data-mock="entradas">
-                        <img src="images/entradas.png" />
-                    </div>
-                    <div class="concis" data-mock="concis">
-                        <img  src="images/concis.png" />
-                    </div>
-                    <div class="mapa" data-mock="mapa">
-                        <img src="images/mapa.png"/>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide entradas active" data-mock="entradas">
+                            <img src="images/entradas.png" />
+                        </div>
+                        <div class="swiper-slide concis" data-mock="concis">
+                            <img  src="images/concis.png" />
+                        </div>
+                        <div class="swiper-slide mapa" data-mock="mapa">
+                            <img src="images/mapa.png"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,32 +83,34 @@
                     </ul>
                 </div>
                 <div class="mockup_prod">
-                    <div class="fans_mapa active" data-mock="fans_mapa">
-                        <img src="images/mapa.png" />
-                    </div>
-                    <div class="push" data-mock="push">
-                        <img src="images/push.png" />
-                    </div>
-                    <div class="clapp" data-mock="clapp">
-                        <img src="images/clapp.png" />
-                    </div>
-                    <div class="entradas" data-mock="entradas">
-                        <img src="images/entradas.png" />
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide fans_mapa active" data-mock="fans_mapa">
+                            <img src="images/mapa.png" />
+                        </div>
+                        <div class="swiper-slide push" data-mock="push">
+                            <img src="images/push.png" />
+                        </div>
+                        <div class="swiper-slide clapp" data-mock="clapp">
+                            <img src="images/clapp.png" />
+                        </div>
+                        <div class="swiper-slide entradas" data-mock="entradas">
+                            <img src="images/entradas.png" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 		
 		<div class="rrss">
-            <a href="#" class="cta">descárgatela</a>
-			<a href="https://www.facebook.com/dclappmusic">
-				<img src="images/facebook.svg">
-			</a>
-			<a href="https://twitter.com/dClappmusic">
-				<img src="images/twitter.svg">
-			</a>
+            <a href="https://www.facebook.com/dclappmusic">
+                <img src="images/facebook.svg">
+            </a>
+            <a href="https://twitter.com/dClappmusic">
+                <img src="images/twitter.svg">
+            </a>
+            <a href="https://dclappmusic.us18.list-manage.com/subscribe/post?u=10a9ff771fff14a7ac528706e&amp;id=9bc44af218" class="cta">descárgatela</a>
         </div>
-        <div class="suscripcion">
+        <!-- <div class="suscripcion">
             <form action="https://dclappmusic.us18.list-manage.com/subscribe/post?u=10a9ff771fff14a7ac528706e&amp;id=9bc44af218" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                 <div class="mail_wrapper">
                     <input type="email" value="" placeholder="tu email" name="EMAIL" class="required email" id="mce-EMAIL">
@@ -116,10 +122,10 @@
             <small id="final">
                 No se nos ocurriría darle tu email a ningún tercero, sólo lo usaremos para comunicaciones propias.
             </small>
-        </div>
+        </div> -->
         <div class="fondo"></div>
 	</div>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
     <script type="text/javascript">
         var unheight = $(window).height();
         var unwidth = $(window).width();
@@ -149,15 +155,51 @@
         $(document).ready(function(){
 			if($(window).width() < 768) {
 				console.log("mobile");
-                $(".mockup_prod").addClass("mobile");
+                $(".mockup_prod").addClass("swiper-container");
 			} else {
                 console.log("desktop");
             }
 
-            $(".mockup_prod.mobile").slick();
+            // $(".mockup_prod.mobile").slick();
 
             // $('.mockup_prod.mobile').on('afterChange', function (slick, currentSlide) {
             //     var mockup = $(".mockup_prod .slick-current").attr("data-mock");
+            //     console.log("mockup: " + mockup);
+            //     $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+            // });
+
+            var mySwiper = new Swiper ('.bands .swiper-container', {
+                // Optional parameters
+                // direction: 'vertical',
+                loop: true,
+                // autoplay: {
+                //     delay: 3000,
+                // },
+                on: {
+                    transitionEnd: function() {
+                        var mockup = $(".bands .mockup_prod .swiper-slide-active").attr("data-mock");
+                        console.log("mockup: " + mockup);
+                        $(".bands .bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+                    }
+                }
+            });
+            var myOtherSwiper = new Swiper ('.fans .swiper-container', {
+                // Optional parameters
+                // direction: 'vertical',
+                loop: true,
+                // autoplay: {
+                //     delay: 3000,
+                // },
+                on: {
+                    transitionEnd: function() {
+                        var mockup = $(".fans .mockup_prod .swiper-slide-active").attr("data-mock");
+                        console.log("mockup: " + mockup);
+                        $(".fans .bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+                    }
+                }
+            });
+            // mySwiper.on('slideChange', function () {
+            //     var mockup = $(".mockup_prod .swiper-slide-active").attr("data-mock");
             //     console.log("mockup: " + mockup);
             //     $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
             // });
