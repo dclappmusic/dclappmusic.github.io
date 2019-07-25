@@ -166,10 +166,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 100vw;
   z-index: 10;
   overflow-x: hidden;
+  background-color: #0C3847;
 }
 
 .container.fans .fondo {
   background-image: url(../images/landing_fondo_fans.jpg);
+  background-position: center;
 }
 
 .container.fans .container_producto .fans {
@@ -443,11 +445,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   height: 100%;
 }
 
-.container .container_producto > div .mockup_prod .swiper-slide {
+.container .container_producto > div .mockup_prod > div {
   display: none;
 }
 
-.container .container_producto > div .mockup_prod .swiper-slide img {
+.container .container_producto > div .mockup_prod > div .mobile_description {
+  display: none;
+}
+
+.container .container_producto > div .mockup_prod > div img {
   display: block;
   height: 80vh;
   margin: 10vh auto;
@@ -472,6 +478,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     text-align: center;
   }
   .container .container_producto > div .prod_izda .bullets_prod {
+    display: none;
     margin: 2em 15px;
     font-size: 1em;
   }
@@ -488,31 +495,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transition: all .5s ease-in-out;
     list-style: none;
   }
+  .container .container_producto > div .mockup_prod {
+    width: 100%;
+  }
   .container .container_producto > div .mockup_prod > div {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    display: inherit;
+  }
+  .container .container_producto > div .mockup_prod > div .mobile_description {
+    display: block;
+    font-family: "Roboto", sans-serif;
+    color: white;
+    font-size: 18px;
+    margin: 1em 10px;
+    line-height: 1.3em;
   }
   .container .container_producto > div .mockup_prod > div img {
     display: block;
     padding: 0 15vw;
     height: 70vh;
     margin-top: 0;
-  }
-  .container .container_producto > div .mockup_prod.swiper-container {
-    width: 100vw !important;
-    height: 80vh !important;
-  }
-  .container .container_producto > div .mockup_prod.swiper-container .swiper-slide {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
 }
 

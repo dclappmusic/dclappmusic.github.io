@@ -76,10 +76,11 @@ $mobile:"(max-width:768px)";
     // height: 100%;
     z-index: 10;
     overflow-x: hidden;
-
+    background-color: $azul-bands;
     &.fans {
         .fondo {
             background-image: url(../images/landing_fondo_fans.jpg);
+            background-position: center;
         }
         .container_producto {    
             .fans {
@@ -317,9 +318,10 @@ $mobile:"(max-width:768px)";
                 float: left;
                 width: 40%;
                 height: 100%;
-                .swiper-slide {
+                &>div {
                     // height: 80%;
                     display: none;
+                    .mobile_description {display: none;}
                     img {
                         display: block;
                         height: 80vh;
@@ -336,6 +338,7 @@ $mobile:"(max-width:768px)";
                     margin-top: 5vh;
                     .tit {margin: 0 10px; font-size: 1.5em; text-align: center;}
                     .bullets_prod {
+                        display: none;
                         margin: 2em 15px;
                         font-size: 1em;
                         li {
@@ -353,18 +356,16 @@ $mobile:"(max-width:768px)";
                     }
                 }
                 .mockup_prod {
+                    width: 100%;
                     &>div {
-                        display: flex;
+                        display: inherit;
+                        .mobile_description {
+                            display: block;
+                            @include typo($Roboto, 18px, white);
+                            margin: 1em 10px;
+                            line-height: 1.3em;
+                        }
                         img {display: block; padding: 0 15vw; height: 70vh; margin-top: 0;}
-                    }
-                    &.swiper-container {
-                        width: 100vw!important;
-                        height: 80vh!important;
-                        .swiper-slide {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                          }
                     }
                 }
             }

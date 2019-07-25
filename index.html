@@ -9,7 +9,6 @@
 	<title>dClapp - aplaude el talento</title>
     <link rel="icon" type="image/jpg" href="images/favicon.png">
     <!-- <link rel="stylesheet" href="css/slick.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery.js"></script>
     <!-- <script src="js/slick.js"></script> -->
@@ -58,16 +57,23 @@
                     </ul>
                 </div>
                 <div class="mockup_prod">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide entradas active" data-mock="entradas">
-                            <img src="images/entradas.png" />
-                        </div>
-                        <div class="swiper-slide concis" data-mock="concis">
-                            <img  src="images/concis.png" />
-                        </div>
-                        <div class="swiper-slide mapa" data-mock="mapa">
-                            <img src="images/mapa.png"/>
-                        </div>
+                    <div class="entradas active" data-mock="entradas">
+                        <p class="mobile_description">
+                            La gente que te tiene delante está a 1 click de comprar las entradas para tu show
+                        </p>
+                        <img src="images/entradas.png" />
+                    </div>
+                    <div class="concis" data-mock="concis">
+                        <p class="mobile_description">
+                            Encuentra salas afines donde tocar, y te facilitamos la reserva.
+                        </p>
+                        <img  src="images/concis.png" />
+                    </div>
+                    <div class="mapa" data-mock="mapa">
+                        <p class="mobile_description">
+                            Tu show aparecerá en nuestra agenda y en nuestro mapa en tiempo real, visible para todas las personas que estén cerca.
+                        </p>
+                        <img src="images/mapa.png"/>
                     </div>
                 </div>
             </div>
@@ -83,19 +89,29 @@
                     </ul>
                 </div>
                 <div class="mockup_prod">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide fans_mapa active" data-mock="fans_mapa">
-                            <img src="images/mapa.png" />
-                        </div>
-                        <div class="swiper-slide push" data-mock="push">
-                            <img src="images/push.png" />
-                        </div>
-                        <div class="swiper-slide clapp" data-mock="clapp">
-                            <img src="images/clapp.png" />
-                        </div>
-                        <div class="swiper-slide entradas" data-mock="entradas">
-                            <img src="images/entradas.png" />
-                        </div>
+                    <div class="fans_mapa active" data-mock="fans_mapa">
+                        <p class="mobile_description">
+                            Busca conciertos cerca de tí con nuestra agenda-mapa en tiempo real
+                        </p>
+                        <img src="images/mapa.png" />
+                    </div>
+                    <div class="push" data-mock="push">
+                        <p class="mobile_description">
+                            Estáte informado (de la forma que tú elijas, notificaciones, mails, etc.) de los shows de los grupos que te gustan
+                        </p>
+                        <img src="images/push.png" />
+                    </div>
+                    <div class="clapp" data-mock="clapp">
+                        <p class="mobile_description">
+                            Clappea y ayuda a los grupos que se lo merecen a hacerse un hueco y prosperar
+                        </p>
+                        <img src="images/clapp.png" />
+                    </div>
+                    <div class="entradas" data-mock="entradas">
+                        <p class="mobile_description">
+                            ¿Te gusta ese músico? En 2 clicks consigue entradas para su próximo show
+                        </p>
+                        <img src="images/entradas.png" />
                     </div>
                 </div>
             </div>
@@ -125,7 +141,6 @@
         </div> -->
         <div class="fondo"></div>
 	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
     <script type="text/javascript">
         var unheight = $(window).height();
         var unwidth = $(window).width();
@@ -152,58 +167,58 @@
             $(".suscripcion").toggle();
         });
 
-        $(document).ready(function(){
-			if($(window).width() < 768) {
-				console.log("mobile");
-                $(".mockup_prod").addClass("swiper-container");
-			} else {
-                console.log("desktop");
-            }
+        // $(document).ready(function(){
+		// 	if($(window).width() < 768) {
+		// 		console.log("mobile");
+        //         $(".mockup_prod").addClass("swiper-container");
+		// 	} else {
+        //         console.log("desktop");
+        //     }
 
-            // $(".mockup_prod.mobile").slick();
+        //     // $(".mockup_prod.mobile").slick();
 
-            // $('.mockup_prod.mobile').on('afterChange', function (slick, currentSlide) {
-            //     var mockup = $(".mockup_prod .slick-current").attr("data-mock");
-            //     console.log("mockup: " + mockup);
-            //     $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
-            // });
+        //     // $('.mockup_prod.mobile').on('afterChange', function (slick, currentSlide) {
+        //     //     var mockup = $(".mockup_prod .slick-current").attr("data-mock");
+        //     //     console.log("mockup: " + mockup);
+        //     //     $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+        //     // });
 
-            var mySwiper = new Swiper ('.bands .swiper-container', {
-                // Optional parameters
-                // direction: 'vertical',
-                loop: true,
-                // autoplay: {
-                //     delay: 3000,
-                // },
-                on: {
-                    transitionEnd: function() {
-                        var mockup = $(".bands .mockup_prod .swiper-slide-active").attr("data-mock");
-                        console.log("mockup: " + mockup);
-                        $(".bands .bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
-                    }
-                }
-            });
-            var myOtherSwiper = new Swiper ('.fans .swiper-container', {
-                // Optional parameters
-                // direction: 'vertical',
-                loop: true,
-                // autoplay: {
-                //     delay: 3000,
-                // },
-                on: {
-                    transitionEnd: function() {
-                        var mockup = $(".fans .mockup_prod .swiper-slide-active").attr("data-mock");
-                        console.log("mockup: " + mockup);
-                        $(".fans .bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
-                    }
-                }
-            });
-            // mySwiper.on('slideChange', function () {
-            //     var mockup = $(".mockup_prod .swiper-slide-active").attr("data-mock");
-            //     console.log("mockup: " + mockup);
-            //     $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
-            // });
-        });
+        //     var mySwiper = new Swiper ('.bands .swiper-container', {
+        //         // Optional parameters
+        //         // direction: 'vertical',
+        //         loop: true,
+        //         // autoplay: {
+        //         //     delay: 3000,
+        //         // },
+        //         on: {
+        //             transitionEnd: function() {
+        //                 var mockup = $(".bands .mockup_prod .swiper-slide-active").attr("data-mock");
+        //                 console.log("mockup: " + mockup);
+        //                 $(".bands .bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+        //             }
+        //         }
+        //     });
+        //     var myOtherSwiper = new Swiper ('.fans .swiper-container', {
+        //         // Optional parameters
+        //         // direction: 'vertical',
+        //         loop: true,
+        //         // autoplay: {
+        //         //     delay: 3000,
+        //         // },
+        //         on: {
+        //             transitionEnd: function() {
+        //                 var mockup = $(".fans .mockup_prod .swiper-slide-active").attr("data-mock");
+        //                 console.log("mockup: " + mockup);
+        //                 $(".fans .bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+        //             }
+        //         }
+        //     });
+        //     // mySwiper.on('slideChange', function () {
+        //     //     var mockup = $(".mockup_prod .swiper-slide-active").attr("data-mock");
+        //     //     console.log("mockup: " + mockup);
+        //     //     $(".bullets_prod li[data-mock=" + mockup + "]").addClass("active").siblings().removeClass("active");
+        //     // });
+        // });
 	</script>
 </body>
 </html>
