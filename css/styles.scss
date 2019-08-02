@@ -17,7 +17,7 @@
 @font-face {
     font-family: 'Changa';
     src: url('fonts/changa-Regular.ttf');
-    font-weight: regular;
+    font-weight: 400;
 }
 
 @font-face {
@@ -43,10 +43,8 @@
     font-weight: 500;
 }
 
-$Roboto: 'Roboto',
-sans-serif;
-$Changa: 'Changa',
-sans-serif;
+$Roboto: 'Roboto', sans-serif;
+$Changa: 'Changa', sans-serif;
 
 @mixin typo($ffamily, $fsize, $fcolor) {
     font-family: $ffamily;
@@ -122,7 +120,7 @@ $mobile:"(max-width:768px)";
         top: 50vh;
         color: white;
         padding: 1em;
-        
+        font-family: $Changa;
         cursor: pointer;
         z-index: 100;
         &.active {transition: transform 1s ease-in-out;}

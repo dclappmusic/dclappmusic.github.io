@@ -132,7 +132,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: 'Changa';
   src: url("fonts/changa-Regular.ttf");
-  font-weight: regular;
+  font-weight: 400;
 }
 
 @font-face {
@@ -218,6 +218,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   top: 50vh;
   color: white;
   padding: 1em;
+  font-family: "Changa", sans-serif;
   cursor: pointer;
   z-index: 100;
 }
