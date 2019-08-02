@@ -474,7 +474,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     margin-top: 5vh;
   }
   .container .container_producto > div .prod_izda .tit {
-    margin: 0 10px;
+    margin: 2em 10px;
     font-size: 1.5em;
     text-align: center;
   }
@@ -507,7 +507,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     font-family: "Roboto", sans-serif;
     color: white;
     font-size: 18px;
-    margin: 1em 10px;
+    margin: 1.5em 10px;
     line-height: 1.3em;
   }
   .container .container_producto > div .mockup_prod > div img {

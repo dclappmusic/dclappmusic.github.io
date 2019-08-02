@@ -334,7 +334,7 @@ $mobile:"(max-width:768px)";
                     width: 100%; 
                     margin-left: 0;
                     margin-top: 5vh;
-                    .tit {margin: 0 10px; font-size: 1.5em; text-align: center;}
+                    .tit {margin: 2em 10px; font-size: 1.5em; text-align: center;}
                     .bullets_prod {
                         display: none;
                         margin: 2em 15px;
@@ -360,7 +360,7 @@ $mobile:"(max-width:768px)";
                         .mobile_description {
                             display: block;
                             @include typo($Roboto, 18px, white);
-                            margin: 1em 10px;
+                            margin: 1.5em 10px;
                             line-height: 1.3em;
                         }
                         img {display: block; padding: 0 15vw; height: 70vh; margin-top: 0;}
