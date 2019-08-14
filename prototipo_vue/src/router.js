@@ -8,12 +8,25 @@ export default new Router({
     {
       path: '/',
       name: 'index',
+      props: true,
       component: () => import('./views/Index.vue')
     },
     {
       path: '/index',
       name: 'index',
+      props: true,
       component: () => import('./views/Index.vue')
+    },
+    {
+      path: '/sub',
+      name: 'sub',
+      props: true,
+      component: () => import('./views/Sub.vue')
+    },
+    {
+      path: '/maps',
+      name: 'maps',
+      component: () => import('./views/Maps.vue')
     }
   ]
 })

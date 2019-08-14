@@ -88,7 +88,16 @@ b {font-weight: bold;}
 			}
 		}
 	}
-	.boton {
+    .boton {
+        position: relative;
+        display: block;
+        padding: .8em 1em;
+        text-align: center;
+        background-color: $secundario;
+        color: white;
+        margin: 0 auto;
+    }
+	.boton_preclapp {
 		position: absolute;
 		top: 25%;
 		left: calc(50% - 90px);
@@ -155,16 +164,15 @@ b {font-weight: bold;}
 		display: block;
 		width: 80%;
 		margin: 0 auto;
-		text-align: center;
+		text-align: left;
 		font-family: $Roboto;
 		font-size: 15px;
 		font-weight: 400;
 		text-transform: uppercase;
+        color: white;
 	}
 	.form-input {
-		position: absolute;
-		top: 47%;
-		left: 10%;
+        display: block;
 		width: 80%;
 		text-align: center;
 		background: transparent;
@@ -175,6 +183,5 @@ b {font-weight: bold;}
 		font-weight: 600;
 		color: white;
 		&::placeholder {opacity: .5; color: white; font-weight: 200;}
-		
 	}
 }

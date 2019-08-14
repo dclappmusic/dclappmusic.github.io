@@ -1,7 +1,7 @@
 <template>
     <div class="page home" data-page="home">
        Home
-       <a class="boton showtime" href="clapp.html">
+       <a class="boton_preclapp showtime" href="clapp.html">
 			<img src="images/icon_clapp.png" />
 		</a>
 		<div class="intro_clapp">
