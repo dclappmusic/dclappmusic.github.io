@@ -160,6 +160,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /*********************** colores ***********************/
 /********************** resoluciones ********************/
+.idioma {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-size: 18px;
+}
+
 .container {
   position: absolute;
   display: block;
