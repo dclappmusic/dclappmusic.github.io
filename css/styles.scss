@@ -496,7 +496,7 @@ $mobile:"(max-width:768px)";
         @media #{$mobile} {
             a {
                 &.cta {float: right;}
-                &:not(.cta) {float: right; margin: .5em; width: 30%; text-align: center;}
+                &:not(.cta) {float: right; margin: .5em; width: 13%; text-align: center;}
                 img {height: 5vw;}
             }
             // top: 15px;

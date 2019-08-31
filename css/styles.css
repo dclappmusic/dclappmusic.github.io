@@ -653,7 +653,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   .container .rrss a:not(.cta) {
     float: right;
     margin: .5em;
-    width: 30%;
+    width: 13%;
     text-align: center;
   }
   .container .rrss a img {
