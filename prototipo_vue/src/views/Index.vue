@@ -1,7 +1,10 @@
 <template>
     <div class="index">
         <div class="index_slider">
-            <Agenda :shows="this.shows"/>
+            <Agenda 
+                :shows="this.shows"
+                :geolocation="this.geolocation"
+            />
             <Home/>
         </div>
         <nav class="menu nav_slider">
@@ -26,7 +29,7 @@ export default {
     data() {
         return{}
     },
-    props: ["shows"],
+    props: ["shows", "geolocation"],
     created() {},
     mounted() {
         console.log("ei");

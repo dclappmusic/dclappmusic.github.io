@@ -22,11 +22,11 @@ export default new Router({
       name: 'sub',
       props: true,
       component: () => import('./views/Sub.vue')
-    },
-    {
-      path: '/maps',
-      name: 'maps',
-      component: () => import('./views/Maps.vue')
     }
+    // {
+    //   path: '/maps',
+    //   name: 'maps',
+    //   component: () => import('./views/Maps.vue')
+    // }
   ]
 })
