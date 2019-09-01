@@ -26,30 +26,27 @@
 </template>
 
 <script>
-import firebase from "firebase";
 import showSubir from '@/components/showSubir';
 
 export default {
-    name: 'Agenda',
-    props:[],
-    components: {
-        showSubir
-    },
+    name: 'Map',
+    props:["geolocation", "shows"],
+    components: {showSubir},
     data() {
         return {
-            shows: [],
+            // shows: [],
             show_form: false
         }
     },
     created() {
-        var db = firebase.firestore();
-        db.collection("shows").onSnapshot((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                var shows = doc.data();
-                console.log(shows);
-                this.shows.push(shows);
-            });
-        });
+        // var db = firebase.firestore();
+        // db.collection("shows").onSnapshot((querySnapshot) => {
+        //     querySnapshot.forEach((doc) => {
+        //         var shows = doc.data();
+        //         console.log(shows);
+        //         this.shows.push(shows);
+        //     });
+        // });
     }
 }
 </script>

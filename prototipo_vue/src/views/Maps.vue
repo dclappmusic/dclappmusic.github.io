@@ -1,6 +1,9 @@
 <template>
   <div class="page">
-        <Map></Map>
+        <Map
+            :geolocation="this.geolocation"
+            :shows="this.shows"
+        ></Map>
   </div>
 </template>
 
@@ -13,7 +16,7 @@ export default {
   components: {
     Map
   },
-  props: [],
+  props: ["geolocation", "shows"],
   created() {},
   mounted() {},
   data() {

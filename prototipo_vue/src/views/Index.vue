@@ -1,7 +1,7 @@
 <template>
     <div class="index">
         <div class="index_slider">
-            <Agenda/>
+            <Agenda :shows="this.shows"/>
             <Home/>
         </div>
         <nav class="menu nav_slider">
@@ -18,19 +18,23 @@ import Agenda from '@/components/Agenda.vue'
 import Home from '@/components/Home.vue'
 
 export default {
-  name: 'Index',
-  components: {
-    Home,
-    Agenda
-  },
-  created() {},
-  mounted() {
-      console.log("ei");
-      $(".index_slider").slick({
-          arrows: false,
-          initialSlide: 1
-      });
-      $(".nav_slider a").click(function () {
+    name: 'Index',
+    components: {
+        Home,
+        Agenda
+    },
+    data() {
+        return{}
+    },
+    props: ["shows"],
+    created() {},
+    mounted() {
+        console.log("ei");
+        $(".index_slider").slick({
+            arrows: false,
+            initialSlide: 1
+        });
+        $(".nav_slider a").click(function () {
             var slideIndex = $(this).index();
             console.log(slideIndex);
             $('.index_slider').slick('slickGoTo', slideIndex, false);
@@ -46,11 +50,7 @@ export default {
             console.log("página: " + page);
             $(".nav_slider ." + page).addClass("active").siblings().removeClass("active");
         });
-  },
-  data() {
-    return{}
-  },
-  props: {},
-  methods: {}
+    },
+    methods: {}
 }
 </script>
