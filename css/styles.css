@@ -418,6 +418,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-left: 10%;
 }
 
+.container .container_producto > div .prod_izda .for {
+  position: relative;
+  top: 0;
+  margin-bottom: 1em;
+  text-align: left;
+}
+
 .container .container_producto > div .prod_izda .tit {
   font-family: "Roboto", sans-serif;
   color: white;
@@ -478,6 +485,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     width: 100%;
     margin-left: 0;
     margin-top: 5vh;
+  }
+  .container .container_producto > div .prod_izda .for {
+    font-size: 2em;
+    text-align: center;
   }
   .container .container_producto > div .prod_izda .tit {
     margin: 2em 10px;
