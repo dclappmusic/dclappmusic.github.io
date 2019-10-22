@@ -38,6 +38,10 @@
 			}
 		},
 		created() {
+            if(localStorage.getItem('coords')){
+                this.geolocation = JSON.parse(localStorage.getItem('coords'));
+                console.log(this.geolocation);
+            }
 			this.get_geolocation();
             var db = firebase.firestore();
             db.collection("shows").onSnapshot((querySnapshot) => {
@@ -78,16 +82,7 @@
                 this.geolocation.latitud = position.coords.latitude;
                 this.geolocation.longitud = position.coords.longitude;
                 console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
-                // latitud = test_coord_clapp.latitud;
-                // longitud = test_coord_clapp.longitud;
-                // if (window.location.pathname.indexOf("clapp.html") > -1) {
-                //     console.log("clapping");
-                //     encontrar_shows();
-                // } else if (window.location.pathname.indexOf("in_show.html") > -1) {
-                //     console.log("showtime1");
-                //     // $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
-                //     showtime();
-                // }
+                localStorage.setItem('coords', JSON.stringify(this.geolocation));
             },
             browserGeolocationFail: function(error) {
                 switch (error.code) {
@@ -124,14 +119,7 @@
                 this.geolocation.latitud = position.coords.latitude;
                 this.geolocation.longitud = position.coords.longitude;
                 console.log("API geolocation success!\n\nlat = " + latitud + "\nlng = " + longitud);
-                // if (window.location.pathname.indexOf("clapp.html") > -1) {
-                //     console.log("clapping");
-                //     // encontrar_shows();
-                // } else if (window.location.pathname.indexOf("in_show.html") > -1) {
-                //     console.log("showtime1");
-                //     // $(".posicion").html("coordenadas: <br>" + latitud + ",<br> " + longitud);
-                //     // showtime();
-                // }
+                localStorage.setItem('coords', JSON.stringify(this.geolocation));
             }
 		}
 	};

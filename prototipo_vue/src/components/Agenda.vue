@@ -18,8 +18,8 @@
             />
        </div>
        
-       <button class="boton" @click="show_form = true;">crear show</button>
-       <showSubir v-show="show_form" @cerrar_form="show_form = false"/>
+       <!--<button class="boton" @click="show_form = true;">crear show</button>
+       <showSubir v-show="show_form" @cerrar_form="show_form = false"/> -->
        <!-- <router-link class="to_maps" to="/maps">MAPS</router-link> -->
     </div>
 </template>
