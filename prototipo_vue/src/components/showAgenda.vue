@@ -39,6 +39,7 @@ export default {
     .shows {
         width: 100%;
         padding: 20px;
+        margin-top: 15vh;
         .show {
             position: relative;
             display: flex;

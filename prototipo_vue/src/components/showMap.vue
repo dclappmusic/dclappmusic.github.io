@@ -31,6 +31,7 @@ export default {
             center: [this.geolocation.longitud, this.geolocation.latitud], 
             zoom: 12 
         });
+        
         this.shows.forEach(show => {
             var el = document.createElement('div');
             el.className = 'marker';
@@ -41,6 +42,10 @@ export default {
                     .setHTML("<h1>" + show.band +"</h1>"))
                 .addTo(map);
         });
+
+        // $(".mapboxgl-canvas").prepend("<div class='overlay'></div>");
+    },
+    methods: {
     }
 }
 </script>
@@ -50,6 +55,33 @@ export default {
             width: 100vw;
             height: 100vh;
             // z-index: -2;
+            .mapboxgl-popup {
+                // z-index: 100;
+                .mapboxgl-popup-tip {border-top-color: $secundario;}
+                .mapboxgl-popup-content {
+                    width: 60vw;
+                    height: 20vh;
+                    background-color: $secundario;
+                    color: white;
+                    border-radius: 1.8em;
+                }
+            }
+            // .overlay {
+            //     position: absolute; 
+            //     width: 100vw;
+            //     height: 100vh;
+            //     background: linear-gradient(166.85deg, rgba(252, 81, 48, 0.585) 0%, rgba(252, 81, 48, 0.669762) 51.37%, rgba(252, 81, 48, 0.75) 100%);
+            //     z-index: 15;
+            // }
+            // .mapboxgl-control-container {
+            //     position: absolute; 
+            //     top: 0;
+            //     width: 100vw;
+            //     height: 100vh;
+            //     background: linear-gradient(166.85deg, rgba(252, 81, 48, 0.585) 0%, rgba(252, 81, 48, 0.669762) 51.37%, rgba(252, 81, 48, 0.75) 100%);
+            //     mix-blend-mode: multiply;
+            //     z-index: 15;
+            // }
         }
         #marker {
             // background-image: url('images/pin_liveshow.png');
@@ -58,6 +90,7 @@ export default {
             height: 50px;
             border-radius: 50%;
             cursor: pointer;
+            
         }
     // }
 </style>

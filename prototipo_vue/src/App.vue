@@ -38,7 +38,7 @@
 			}
 		},
 		created() {
-            if(localStorage.getItem('coords')){
+            if (localStorage.getItem('coords')){
                 this.geolocation = JSON.parse(localStorage.getItem('coords'));
                 console.log(this.geolocation);
             }

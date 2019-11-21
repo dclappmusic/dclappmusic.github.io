@@ -1,9 +1,9 @@
 <template>
     <div class="page agenda" data-page="agenda">
        <div class="cabecera">
-           <h1>AGENDA</h1>
-            <p class="display-med" @click="map = true">hoy</p>
-            <p class="display-med" @click="map = false">otro dia</p>
+            <h1>AGENDA</h1>
+            <p class="display-med" :class="{'active': !map}"  @click="map = true">hoy</p>
+            <p class="display-med" :class="{'active': map}" @click="map = false">otro dia</p>
        </div>
        <div class="view">
            <showMap
@@ -55,7 +55,21 @@ export default {
 </script>
 <style lang="scss" >
     .agenda {
-        .cabecera {color: $primario; margin-bottom: 5%; position: fixed; z-index: 1;}
+        .cabecera {
+            color: $primario; 
+            margin-bottom: 5%; 
+            position: fixed; 
+            z-index: 20;
+            .active {
+                background-color: $primario;
+                color: white;
+                padding: .3em;
+                border-radius: 15px;
+                position: absolute;
+                right: 10px;
+                top: 0;
+            }
+        }
         // .shows {
         //     width: 100%;
         //     padding: 20px;

@@ -26,10 +26,10 @@ export default {
         Home,
         Agenda
     },
+    props: ["shows", "geolocation"],
     data() {
         return{}
     },
-    props: ["shows", "geolocation"],
     created() {},
     mounted() {
         console.log("ei");
