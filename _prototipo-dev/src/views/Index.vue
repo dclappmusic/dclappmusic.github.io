@@ -6,7 +6,7 @@
                 :shows="this.shows"
                 :geolocation="this.geolocation"
             />
-            <Historial v-if="page==='historial'" />
+            <Historial v-else-if="page==='historial'" />
             <Home v-else/>
         </div>
 

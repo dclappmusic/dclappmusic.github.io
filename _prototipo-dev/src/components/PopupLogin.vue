@@ -46,8 +46,7 @@
 				auth.signInWithEmailAndPassword(this.user_email, this.user_password).then(() => {
 					//redirigir a index
 					var user = auth.currentUser;
-					// firestore.collection("usuarios").where("email", "==", email).
-					this.$router.replace("home");
+					this.$router.replace("/");
 					console.log("logged");
 				}).catch((error) => {
 					// Handle Errors here.
