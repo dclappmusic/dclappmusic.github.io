@@ -93,6 +93,10 @@
                     });
                 });
             },
+            event_cerrar_popup: function(deferredPrompt) {
+				this.show_install = false;
+				this.deferredPrompt = deferredPrompt;
+			},
 			get_geolocation: function() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(

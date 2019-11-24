@@ -35,3 +35,16 @@
 		}
 	}
 </script>
+<style scoped lang="scss">
+.popup.install .sub_popup {
+    // width: 90vw;
+    // height: auto;
+    .install {width: 100%;}
+    .cancelar {
+        display: block;
+        margin: 10% auto 0;
+        background: none;
+        text-decoration: underline;
+    }
+}
+</style>
