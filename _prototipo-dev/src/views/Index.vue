@@ -2,13 +2,12 @@
     <div class="index">
         <Header :usuario="this.usuario" />
         <div class="index_slider">
-            <Home v-if="page==='home'"/>
             <Agenda v-if="page==='agenda'"
                 :shows="this.shows"
                 :geolocation="this.geolocation"
             />
-            
             <Historial v-if="page==='historial'" />
+            <Home v-else/>
         </div>
 
 
