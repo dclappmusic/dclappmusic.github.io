@@ -1,6 +1,6 @@
 <template>
     <div class="index">
-        <Header :usuario="this.usuario" />
+        <Header v-if="page==='home'" :usuario="this.usuario" />
         <div class="index_slider">
             <Agenda v-if="page==='agenda'"
                 :shows="this.shows"
@@ -12,18 +12,19 @@
 
 
         <nav class="menu nav_slider">
-            <a class="menu-tit slider_link agenda" 
-                @click="page='agenda'"
-                :class="{'active': page==='agenda'}"
-            >agenda</a>
-            <a class="menu-tit slider_link home" 
-                @click="page='home'"
-                :class="{'active': page==='home'}"
-            >home</a>
             <a class="menu-tit slider_link historial" 
                 @click="page='historial'"
                 :class="{'active': page==='historial'}"
             >historial</a>
+            <a class="menu-tit slider_link home" 
+                @click="page='home'"
+                :class="{'active': page==='home'}"
+            >home</a>
+            
+            <a class="menu-tit slider_link agenda" 
+                @click="page='agenda'"
+                :class="{'active': page==='agenda'}"
+            >agenda</a>
         </nav>
     </div>
 </template>

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import ShowCard from '@/components/ShowCard';
 // import firebase from "firebase";
 // import MarkerClusterer from '@google/markerclusterer';
 // import gmapsInit from '../utils/gmaps';
@@ -13,7 +14,9 @@
 export default {
     name: 'agendaMap',
     props: ["geolocation", "shows"],
-    components: {},
+    components: {
+        ShowCard
+    },
     data() {
         return {
             // shows: []

@@ -55,7 +55,7 @@ export default {
     align-items: center;
 	padding: 15px;
     background-color: var(--fondo);
-    z-index: 99;
+    z-index: -1;
 	.nombre {
 		display: inline-block;
         margin-left: .5em;

@@ -1,6 +1,5 @@
 <template>
     <div class="page home" data-page="home">
-       Home
        <a class="boton btn_preclapp" href="clapp.html">
 			<img src="images/icon_clapp.png" />
 		</a>

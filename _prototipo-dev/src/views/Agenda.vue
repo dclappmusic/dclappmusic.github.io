@@ -1,8 +1,8 @@
 <template>
     <div class="page agenda" data-page="agenda">
        <div class="cabecera">
-            <h1>AGENDA</h1>
-            <p class="display-med" :class="{'active': !map}"  @click="map = true">hoy</p>
+            <h1 class="titulo">AGENDA</h1>
+            <p class="display-med" :class="{'active': !map}"  @click="map = !map">hoy</p>
             <p class="display-med" :class="{'active': map}" @click="map = false">otro dia</p>
        </div>
        <div class="view">
@@ -23,16 +23,14 @@
 <script>
 import agendaMap from '@/components/agendaMap';
 import agendaList from "@/components/agendaList";
-import showSubir from '@/components/showSubir';
 
 export default {
     name: 'Agenda',
     props: ["geolocation", "shows"],
-    components: {showSubir, agendaList, agendaMap},
+    components: {agendaList, agendaMap},
     data() {
         return {
             // shows: [],
-            show_form: false,
             map: true
         }
     },
@@ -51,18 +49,16 @@ export default {
 <style scoped lang="scss">
     .agenda {
         .cabecera {
-            // color: var(--color_primario); 
-            margin-bottom: 5%; 
-            position: fixed; 
-            z-index: 20;
             .active {
-                // background-color: var(--color_primario);
+                background-color: var(--color_primario);
                 color: white;
                 padding: .3em;
-                border-radius: 15px;
+                border-radius: 5em;
                 position: absolute;
                 right: 10px;
                 top: 0;
+                font-size: .6em;
+                width: 25%;
             }
         }
         // .shows {

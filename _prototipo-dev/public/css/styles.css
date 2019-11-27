@@ -9,7 +9,7 @@
 }
 
 .titulo {
-  font-family: var(--roboto);
+  font-family: var(--changa);
   font-size: 40px;
 }
 
@@ -239,6 +239,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   overflow-x: hidden;
 }
 
+.container .page .cabecera {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 46px;
+  width: 100%;
+  margin-bottom: 5%;
+  font-family: var(--changa);
+  font-size: 35px;
+  text-align: center;
+  z-index: 20;
+}
+
 .menu {
   position: fixed;
   width: 100%;
@@ -256,8 +269,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .menu .menu-tit.active {
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
   background-color: white;
   border-radius: 100%;
   height: 6em;
@@ -311,16 +322,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   top: 15px;
   text-align: center;
   z-index: 100;
-}
-
-.cabecera {
-  width: 226px;
-  height: 46px;
-  width: 100%;
-  margin: 30px auto 20%;
-  font-family: var(--changa);
-  font-size: 35px;
-  text-align: center;
 }
 
 .popup {
@@ -471,15 +472,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   color: #333;
 }
 
-.container .cambio_modo {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-family: var(--roboto);
-  font-weight: 400;
-  color: var(--color_primario);
-}
-
 .container .intro_clapp {
   position: absolute;
   bottom: 25%;
@@ -523,6 +515,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-family: var(--changa);
   font-size: 35px;
   text-align: center;
+  color: var(--color_primario);
 }
 
 .container.home .options .options_login {
