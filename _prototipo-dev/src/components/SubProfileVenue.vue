@@ -1,7 +1,7 @@
 <template>
     <div class="page venue_profile" data-page="sub">
        <h1 class="cabecera">VENUE PROFILE</h1>
-       {{this.id}}
+       {{venue_id}}
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import firebase from "firebase";
 
 export default {
     name: 'SubProfileVenue',
-    props:["id"],
+    props:["venue_id"],
     components: {
     },
     data() {
