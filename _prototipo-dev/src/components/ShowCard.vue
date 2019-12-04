@@ -5,12 +5,12 @@
         <div class="primera_fila">
             <img class="foto" src="images/avatar_base.png">
             <div class="datos_principales">
-                <router-link class="banda" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id:"1" }}'>
+                <router-link class="banda" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'>
                     <p class="display-med">{{show.band}}</p>
                 </router-link>
-                <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id:"2" }}'>
+                <!-- <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'> -->
                     <p class="parr-sm">{{show.sala}}</p>
-                </router-link>
+                <!-- </router-link> -->
                 <p class="precio parr-sm">{{show.precio}}€</p>
             </div>
         </div>

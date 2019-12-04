@@ -1,12 +1,13 @@
 <template>
   <div class="sub">
-        <!-- {{$route.params.sub_page}} -->
-        <div v-if="$route.params.sub_page === 'profile_band'">
-            <SubProfileBand :id="$route.params.id"></SubProfileBand>
-        </div>
-        <div v-else-if="$route.params.sub_page === 'profile_venue'">
-            <SubProfileVenue :id="$route.params.id"></SubProfileVenue>
-        </div>
+    <!-- {{$route.params.sub_page}} -->
+	<a @click="$router.go(-1)">atras</a>
+    <div v-if="params.sub_page === 'sub_profile_band'">
+        <SubProfileBand :band_id="params.id" />
+    </div>
+    <div v-else-if="params.sub_page === 'sub_profile_venue'">
+        <SubProfileVenue :venue_id="params.id" />
+    </div>
       <p v-else>no page</p>
   </div>
 </template>
@@ -23,8 +24,15 @@ export default {
     SubProfileVenue
   },
   props: [],
+  computed: {
+    params() {
+      return this.$route.params;
+    }
+  },
   created() {},
-  mounted() {},
+  mounted() {
+    console.log(this.params.sub_page);
+  },
   data() {
     return{}
   },
@@ -32,4 +40,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.sub {
+	padding-top: 5em;
+	background: var(--color_secundario);
+}
 </style>
