@@ -52,6 +52,12 @@ export default {
         align-items: center;
         width: 100%;
         margin: 0 auto 1em;
+        &.mapa.open {
+            .caja {
+                background-color: var(--color_secundario);
+            }
+        }
+
         &.open {
             .caja {background-color: #333; color: white;}
         }

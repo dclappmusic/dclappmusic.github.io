@@ -96,14 +96,14 @@ export default {
   }
 }
 </script>
-<style lang="scss" >
+<style scoped lang="scss">
     .popup {
         .sub_popup {
             .form-label {display: block; margin: 1em auto;}
         }
-        .boton {
-            // background-color: var(--color_primario);
-        }
+        // .boton {
+        //     // background-color: var(--color_primario);
+        // }
     }
     
 </style>

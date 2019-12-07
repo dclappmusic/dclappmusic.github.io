@@ -3,18 +3,27 @@
         <MglMap 
             :accessToken="accessToken" 
             :mapStyle="mapStyle"
-            :center="[this.geolocation.longitud, this.geolocation.latitud]"
-            @load="onMapLoaded"
+            :center="[geolocation.longitud, geolocation.latitud]"
+            :zoom="12"
         >
             <!-- <MglPopup v-for="(show, index) in shows" :key="index"
                  :coordinates="[show.lon, show.lat]">
                 <span>Hello world!</span>
             </MglPopup> -->
             <MglMarker v-for="(show, index) in shows" :key="index"
-                :coordinates="[show.lon, show.lat]" 
-                :color="red"
+                :coordinates="[show.lon, show.lat]"
+                :anchor="'bottom'"
             >
-                <div slot="marker" class="marker"></div>
+                <div slot="marker" class="marker">
+                    <div class="pin">
+                        <svg width="21" height="30" viewBox="0 0 21 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.8369 14.5078C20.371 13.2509 20.6666 11.8667 20.6666 10.4129C20.6666 4.662 16.0402 0 10.3333 0C4.62638 0 0 4.662 0 10.4129C0 11.8667 0.295651 13.2509 0.82967 14.5078H0.696732L8.30735 28.8994C9.07669 30.3542 11.155 30.37 11.9463 28.927L18.9301 16.1924C19.2516 15.7078 19.5338 15.1944 19.7722 14.6569L19.854 14.5078H19.8369Z" fill="#0C3847"/>
+                        </svg>
+                    </div>
+                </div>
+                <MglPopup :closeButton="false">
+                    <ShowCard :show="show" class="mapa open" />
+                </MglPopup>
             </MglMarker>
         </MglMap>
     </div>
@@ -40,11 +49,12 @@ export default {
         return {
             // shows: []
             accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
-            mapStyle: "mapbox://styles/mapbox/streets-v11"
+            mapStyle: "mapbox://styles/mapbox/streets-v11",
+            // centro: [geolocation.longitud, geolocation.latitud]
         }
     },
     created() {
-        this.map = null;
+        // this.map = null;
     },
     mounted() {
         console.log(this.geolocation.latitud + ", " + this.geolocation.longitud);
@@ -68,9 +78,6 @@ export default {
         // });
     },
     methods: {
-        onMapLoaded() {
-            this.map = event.map;
-        }
     }
 }
 </script>
@@ -80,13 +87,16 @@ export default {
         width: 100vw;
         height: 100vh;
     }
-    #marker {
-        // background-image: url('images/pin_liveshow.png');
-        background-size: cover;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
+    .marker {
         cursor: pointer;
     }
+    &::v-deep .mapboxgl-popup {
+        .mapboxgl-popup-tip {border-top-color: var(--color_secundario);}
+        .mapboxgl-popup-content {
+            background-color: var(--color_secundario);
+            border-radius: 10px;
+        }
+    }
+    
 }
 </style>
