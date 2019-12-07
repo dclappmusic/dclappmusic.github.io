@@ -5,6 +5,7 @@
             :mapStyle="mapStyle"
             :center="[geolocation.longitud, geolocation.latitud]"
             :zoom="12"
+            @load="onMapLoaded"
         >
             <!-- <MglPopup v-for="(show, index) in shows" :key="index"
                  :coordinates="[show.lon, show.lat]">
@@ -13,6 +14,7 @@
             <MglMarker v-for="(show, index) in shows" :key="index"
                 :coordinates="[show.lon, show.lat]"
                 :anchor="'bottom'"
+                @click="fly_to(show)"
             >
                 <div slot="marker" class="marker">
                     <div class="pin">
@@ -50,6 +52,7 @@ export default {
             // shows: []
             accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
             mapStyle: "mapbox://styles/mapbox/streets-v11",
+            maps: {}
             // centro: [geolocation.longitud, geolocation.latitud]
         }
     },
@@ -78,6 +81,17 @@ export default {
         // });
     },
     methods: {
+        onMapLoaded(event) {
+            this.map = event.map;
+        },
+        fly_to(show) {
+            // const lonlat = [show.lon, show.lat];
+            // console.log(lonlat);
+            this.map.easeTo({
+                center: {lng: show.lon, lat: show.lat},
+                duration: 800
+            });
+        }
     }
 }
 </script>
@@ -95,7 +109,16 @@ export default {
         .mapboxgl-popup-content {
             background-color: var(--color_secundario);
             border-radius: 10px;
+            padding: 0;
         }
+    }
+    &::v-deep .mapboxgl-canvas:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-attachment: rgba(255,0,0,.5);
     }
     
 }
