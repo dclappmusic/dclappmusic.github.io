@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "9054a35980dadf7e787c2c086bb404d1",
-    "url": "/prototipo/images/pin_liveshow.png"
+    "revision": "c85c7e1e8b88f81e4abd080531e246ee",
+    "url": "/prototipo/images/icon_rrss_youtube.svg"
   },
   {
     "revision": "f9d1cecd69c397f71a1c7b3d6c920d10",
@@ -12,23 +12,23 @@ self.__precacheManifest = [
     "url": "/prototipo/js/slick.min.js"
   },
   {
-    "revision": "c15f4990d0ceb9bfef39",
-    "url": "/prototipo/js/chunk-28cb6045.a72d2160.js"
+    "revision": "5581b8ea4547a929aca5",
+    "url": "/prototipo/js/chunk-10579a5a.af732433.js"
   },
   {
     "revision": "8addaa12ea2985e2e21a75edb2912916",
     "url": "/prototipo/js/clapp.js"
   },
   {
-    "revision": "c3c0eda70e54a7970d1d",
-    "url": "/prototipo/js/chunk-56519045.8a420cb2.js"
+    "revision": "c15f4990d0ceb9bfef39",
+    "url": "/prototipo/js/chunk-28cb6045.a72d2160.js"
   },
   {
     "revision": "eda1134f9c38fc8c5104",
     "url": "/prototipo/js/chunk-vendors.1a68e61c.js"
   },
   {
-    "revision": "0105509fe93a3b016a9fbd0fb40c46eb",
+    "revision": "6459f678d7d19dd9114ec36c6cee4d6f",
     "url": "/prototipo/index.html"
   },
   {
@@ -48,24 +48,20 @@ self.__precacheManifest = [
     "url": "/prototipo/js/firebase-config.js"
   },
   {
-    "revision": "c9530e7e6abbd70a40d3",
-    "url": "/prototipo/js/app.464fc20c.js"
+    "revision": "9054a35980dadf7e787c2c086bb404d1",
+    "url": "/prototipo/images/pin_liveshow.png"
+  },
+  {
+    "revision": "b3eabcdcd829550a687f",
+    "url": "/prototipo/js/app.c2023497.js"
   },
   {
     "revision": "0079102f867897e0f9bc42b0c97ae965",
     "url": "/prototipo/images/icon_completo.png"
   },
   {
-    "revision": "c9530e7e6abbd70a40d3",
-    "url": "/prototipo/css/app.4cd93a99.css"
-  },
-  {
-    "revision": "02bd531a07a5a374651ab76ef033601b",
-    "url": "/prototipo/images/avatar_base.png"
-  },
-  {
-    "revision": "369254abd9dba2886a7874e242113111",
-    "url": "/prototipo/images/clapp-rojo.png"
+    "revision": "f38b2db10e01b1572732a3191d538707",
+    "url": "/prototipo/css/slick.css"
   },
   {
     "revision": "fcec6f5152dba4d6075d7d34689ea5d5",
@@ -76,6 +72,10 @@ self.__precacheManifest = [
     "url": "/prototipo/images/favicon.png"
   },
   {
+    "revision": "369254abd9dba2886a7874e242113111",
+    "url": "/prototipo/images/clapp-rojo.png"
+  },
+  {
     "revision": "332c2ab57d9ecfdc3b4f177c254af20e",
     "url": "/prototipo/images/icon_clapp.png"
   },
@@ -84,32 +84,24 @@ self.__precacheManifest = [
     "url": "/prototipo/images/icon_rrss_facebook.svg"
   },
   {
-    "revision": "e7894605485353c30d00dab2090823e0",
-    "url": "/prototipo/images/icon_rrss_instagram.svg"
-  },
-  {
     "revision": "8fa7791615266bcf9874fc20626c4e64",
     "url": "/prototipo/images/icon_rrss_link.svg"
   },
   {
-    "revision": "b7e9f8c16789d3297dcf2e3f927ab0d0",
-    "url": "/prototipo/images/icon-edit.svg"
+    "revision": "e7894605485353c30d00dab2090823e0",
+    "url": "/prototipo/images/icon_rrss_instagram.svg"
   },
   {
     "revision": "eaa786835fdf3df7e8e3665fa11a956e",
     "url": "/prototipo/images/icon-options.svg"
   },
   {
+    "revision": "b7e9f8c16789d3297dcf2e3f927ab0d0",
+    "url": "/prototipo/images/icon-edit.svg"
+  },
+  {
     "revision": "df9cb61ab8e18b32cff85c2f006b6459",
     "url": "/prototipo/images/icon-save.svg"
-  },
-  {
-    "revision": "134334996e9d95895458145920775631",
-    "url": "/prototipo/css/fonts.css"
-  },
-  {
-    "revision": "c85c7e1e8b88f81e4abd080531e246ee",
-    "url": "/prototipo/images/icon_rrss_youtube.svg"
   },
   {
     "revision": "6a083ad3c422c48de4fd5bdcbb35ce0f",
@@ -120,72 +112,80 @@ self.__precacheManifest = [
     "url": "/prototipo/images/historial_preview.png"
   },
   {
-    "revision": "14f5f301e600a9357882b92b4a189b20",
-    "url": "/prototipo/css/fonts/Changa-Medium.ttf"
-  },
-  {
-    "revision": "c1a282bf2e734550ce86099d96eb0ba1",
-    "url": "/prototipo/css/fonts/Changa-Light.ttf"
-  },
-  {
-    "revision": "a6aa4fb891b5d078969d1e0c3a7e0135",
-    "url": "/prototipo/css/fonts/Changa-Regular.ttf"
-  },
-  {
-    "revision": "f38b2db10e01b1572732a3191d538707",
-    "url": "/prototipo/css/slick.css"
-  },
-  {
-    "revision": "c3c0eda70e54a7970d1d",
-    "url": "/prototipo/css/chunk-56519045.33e44a67.css"
-  },
-  {
-    "revision": "f9c7da14e053be903086cc8c3731126f",
-    "url": "/prototipo/css/styles.css"
-  },
-  {
-    "revision": "d1a328c321aaa24cb3290dc43335c8f3",
-    "url": "/prototipo/css/styles.scss"
+    "revision": "36389f5cb6c569ce9ee9d465b5607c68",
+    "url": "/prototipo/images/google.svg"
   },
   {
     "revision": "01a08b8d7685b6051101fbecb575d21e",
     "url": "/prototipo/images/icon_rrss_soundcloud.svg"
   },
   {
-    "revision": "36389f5cb6c569ce9ee9d465b5607c68",
-    "url": "/prototipo/images/google.svg"
+    "revision": "d1a328c321aaa24cb3290dc43335c8f3",
+    "url": "/prototipo/css/styles.scss"
+  },
+  {
+    "revision": "647360b76c24904c02b03436445ccba5",
+    "url": "/prototipo/css/styles.css"
+  },
+  {
+    "revision": "02bd531a07a5a374651ab76ef033601b",
+    "url": "/prototipo/images/avatar_base.png"
+  },
+  {
+    "revision": "c1a282bf2e734550ce86099d96eb0ba1",
+    "url": "/prototipo/css/fonts/Changa-Light.ttf"
+  },
+  {
+    "revision": "b3eabcdcd829550a687f",
+    "url": "/prototipo/css/app.4cd93a99.css"
+  },
+  {
+    "revision": "134334996e9d95895458145920775631",
+    "url": "/prototipo/css/fonts.css"
   },
   {
     "revision": "c15f4990d0ceb9bfef39",
     "url": "/prototipo/css/chunk-28cb6045.683810f2.css"
   },
   {
-    "revision": "e059ade26a46c3fb3aff219ae53d709e",
-    "url": "/prototipo/css/fonts/Changa-Bold.ttf"
+    "revision": "a6aa4fb891b5d078969d1e0c3a7e0135",
+    "url": "/prototipo/css/fonts/Changa-Regular.ttf"
   },
   {
-    "revision": "74c8205b3f80972510d7f9630329d7a5",
-    "url": "/prototipo/css/fonts/Changa-ExtraLight.ttf"
+    "revision": "14f5f301e600a9357882b92b4a189b20",
+    "url": "/prototipo/css/fonts/Changa-Medium.ttf"
   },
   {
-    "revision": "eb8f1404a04d6aec2ee064eb7e87baeb",
-    "url": "/prototipo/css/fonts/Changa-ExtraBold.ttf"
-  },
-  {
-    "revision": "e22062b3188c8199283ef2aa835d4653",
-    "url": "/prototipo/css/fonts/Roboto-Light.ttf"
+    "revision": "5581b8ea4547a929aca5",
+    "url": "/prototipo/css/chunk-10579a5a.aa44b3af.css"
   },
   {
     "revision": "99fc0816a09395454061301fefa42bf1",
     "url": "/prototipo/css/fonts/Roboto-Medium.ttf"
   },
   {
+    "revision": "eb8f1404a04d6aec2ee064eb7e87baeb",
+    "url": "/prototipo/css/fonts/Changa-ExtraBold.ttf"
+  },
+  {
+    "revision": "e059ade26a46c3fb3aff219ae53d709e",
+    "url": "/prototipo/css/fonts/Changa-Bold.ttf"
+  },
+  {
     "revision": "685eefb3c10874ee3c24c06be82a82bc",
     "url": "/prototipo/css/fonts/Changa-SemiBold.ttf"
   },
   {
+    "revision": "e22062b3188c8199283ef2aa835d4653",
+    "url": "/prototipo/css/fonts/Roboto-Light.ttf"
+  },
+  {
     "revision": "54a91b0619ccf9373d525109268219dc",
     "url": "/prototipo/css/fonts/Roboto-Regular.ttf"
+  },
+  {
+    "revision": "74c8205b3f80972510d7f9630329d7a5",
+    "url": "/prototipo/css/fonts/Changa-ExtraLight.ttf"
   },
   {
     "revision": "8897a185905ffbd29cf3c2f5b424405b",
@@ -196,7 +196,7 @@ self.__precacheManifest = [
     "url": "/prototipo/css/_login.scss"
   },
   {
-    "revision": "35d09d54caff985277b6a8ad76d34ccf",
+    "revision": "8713584802d3b40edfe167eebae44383",
     "url": "/prototipo/css/_global.scss"
   },
   {
