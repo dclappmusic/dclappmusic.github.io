@@ -1,6 +1,12 @@
 <template>
 <div class="shows">
-    <ShowCard v-for="(show, index) in this.shows" :key="index" :show="show" />
+    <div v-for="(day, index) in shows_week" :key="index">
+        <div v-if="day[0]">
+            <p>{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd')}}</p>
+            <ShowCard v-for="(show, subindex) in day" :key="subindex" :show="show" />
+        </div>
+    </div>
+    
     <button @click="show_showsubir = true" class="boton">subir show</button>
     <showSubir v-if="show_showsubir" @cerrar-form="show_showsubir = false" />
 </div>
@@ -11,7 +17,7 @@ import ShowCard from '@/components/ShowCard';
 import showSubir from '@/components/showSubir';
 
 export default {
-    name: 'agendaAgenda',
+    name: 'agendaList',
     props:["geolocation", "shows"],
     components: {
         ShowCard,
@@ -19,10 +25,28 @@ export default {
     },
     data() {
         return {
-            show_showsubir: false
+            show_showsubir: false,
+            shows_week: {}
         }
     },
     created() {
+        var hoy = this.$moment();
+        this.shows_week = {
+            0: [],
+            1: [],
+            2: [],
+            3: [],
+            4: [],
+            5: [],
+            6: []
+        };
+        this.shows.forEach(show => {
+            var show_time = this.$moment(show.timestamp);
+            var diff = show_time.diff(hoy, 'days');
+            if (diff < 7) {
+                this.shows_week[diff].push(show);
+            }
+        });
     },
     mounted() {
 

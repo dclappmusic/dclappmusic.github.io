@@ -1,6 +1,6 @@
 <template>
 <div class="show" @click="ampliar" :class="{open: ampliado}">
-    <p class="hora">{{show.hora || "20:30"}}</p>
+    <p class="hora">{{this.$moment(show.timestamp).format("HH:mm")}}</p>
     <div class="caja">
         <div class="primera_fila">
             <img class="foto" src="images/avatar_base.png">
@@ -9,9 +9,9 @@
                     <p class="display-med">{{show.band}}</p>
                 </router-link>
                 <!-- <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'> -->
-                    <p class="parr-sm">{{show.sala}}</p>
+                    <p class="parr-sm">{{show.venue}}</p>
                 <!-- </router-link> -->
-                <p class="precio parr-sm">{{show.precio}}€</p>
+                <p class="precio parr-sm">{{show.price}}€</p>
             </div>
         </div>
         <div class="segunda_fila" v-if="ampliado">
