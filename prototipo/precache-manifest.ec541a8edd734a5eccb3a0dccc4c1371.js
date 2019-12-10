@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "df9cb61ab8e18b32cff85c2f006b6459",
-    "url": "/prototipo/images/icon-save.svg"
+    "revision": "eaa786835fdf3df7e8e3665fa11a956e",
+    "url": "/prototipo/images/icon-options.svg"
   },
   {
     "revision": "f9d1cecd69c397f71a1c7b3d6c920d10",
@@ -12,23 +12,23 @@ self.__precacheManifest = [
     "url": "/prototipo/js/slick.min.js"
   },
   {
-    "revision": "54f171026bd5e04f4b9a",
-    "url": "/prototipo/js/chunk-0f06ac52.35d1620f.js"
+    "revision": "1f163f4c06871866127e",
+    "url": "/prototipo/js/chunk-28cb6045.94e14b25.js"
   },
   {
     "revision": "8addaa12ea2985e2e21a75edb2912916",
     "url": "/prototipo/js/clapp.js"
   },
   {
-    "revision": "1f163f4c06871866127e",
-    "url": "/prototipo/js/chunk-28cb6045.94e14b25.js"
+    "revision": "d4a6e1006258188ae23d",
+    "url": "/prototipo/js/chunk-753b14af.e3423ef1.js"
   },
   {
     "revision": "dd7cd886168a99f7d0ea",
     "url": "/prototipo/js/chunk-vendors.b9bf2ae8.js"
   },
   {
-    "revision": "e3adb3bd7830593cf141cdefa3d2a5f5",
+    "revision": "63877e89fe386122391fe2c7e48300ff",
     "url": "/prototipo/index.html"
   },
   {
@@ -52,8 +52,8 @@ self.__precacheManifest = [
     "url": "/prototipo/images/pin_liveshow.png"
   },
   {
-    "revision": "759b504775060b7c2558",
-    "url": "/prototipo/js/app.8ef57184.js"
+    "revision": "b42a3fcec448084b60b7",
+    "url": "/prototipo/js/app.f10f2a86.js"
   },
   {
     "revision": "0079102f867897e0f9bc42b0c97ae965",
@@ -68,16 +68,20 @@ self.__precacheManifest = [
     "url": "/prototipo/images/avatar_base.png"
   },
   {
-    "revision": "369254abd9dba2886a7874e242113111",
-    "url": "/prototipo/images/clapp-rojo.png"
-  },
-  {
     "revision": "2d7ec526e2845fc4df963a91b85d8227",
     "url": "/prototipo/images/favicon.png"
   },
   {
+    "revision": "fcec6f5152dba4d6075d7d34689ea5d5",
+    "url": "/prototipo/images/facebook.svg"
+  },
+  {
     "revision": "332c2ab57d9ecfdc3b4f177c254af20e",
     "url": "/prototipo/images/icon_clapp.png"
+  },
+  {
+    "revision": "e7894605485353c30d00dab2090823e0",
+    "url": "/prototipo/images/icon_rrss_instagram.svg"
   },
   {
     "revision": "53dee859715f0520e4214c63a73700e6",
@@ -88,20 +92,16 @@ self.__precacheManifest = [
     "url": "/prototipo/images/icon_rrss_link.svg"
   },
   {
-    "revision": "e7894605485353c30d00dab2090823e0",
-    "url": "/prototipo/images/icon_rrss_instagram.svg"
+    "revision": "c85c7e1e8b88f81e4abd080531e246ee",
+    "url": "/prototipo/images/icon_rrss_youtube.svg"
   },
   {
     "revision": "b7e9f8c16789d3297dcf2e3f927ab0d0",
     "url": "/prototipo/images/icon-edit.svg"
   },
   {
-    "revision": "c85c7e1e8b88f81e4abd080531e246ee",
-    "url": "/prototipo/images/icon_rrss_youtube.svg"
-  },
-  {
-    "revision": "eaa786835fdf3df7e8e3665fa11a956e",
-    "url": "/prototipo/images/icon-options.svg"
+    "revision": "df9cb61ab8e18b32cff85c2f006b6459",
+    "url": "/prototipo/images/icon-save.svg"
   },
   {
     "revision": "6a083ad3c422c48de4fd5bdcbb35ce0f",
@@ -128,15 +128,15 @@ self.__precacheManifest = [
     "url": "/prototipo/css/styles.scss"
   },
   {
-    "revision": "fcec6f5152dba4d6075d7d34689ea5d5",
-    "url": "/prototipo/images/facebook.svg"
+    "revision": "369254abd9dba2886a7874e242113111",
+    "url": "/prototipo/images/clapp-rojo.png"
   },
   {
     "revision": "54a91b0619ccf9373d525109268219dc",
     "url": "/prototipo/css/fonts/Roboto-Regular.ttf"
   },
   {
-    "revision": "759b504775060b7c2558",
+    "revision": "b42a3fcec448084b60b7",
     "url": "/prototipo/css/app.4cd93a99.css"
   },
   {
@@ -144,20 +144,20 @@ self.__precacheManifest = [
     "url": "/prototipo/css/fonts/Changa-Regular.ttf"
   },
   {
-    "revision": "14f5f301e600a9357882b92b4a189b20",
-    "url": "/prototipo/css/fonts/Changa-Medium.ttf"
+    "revision": "e22062b3188c8199283ef2aa835d4653",
+    "url": "/prototipo/css/fonts/Roboto-Light.ttf"
   },
   {
-    "revision": "685eefb3c10874ee3c24c06be82a82bc",
-    "url": "/prototipo/css/fonts/Changa-SemiBold.ttf"
+    "revision": "14f5f301e600a9357882b92b4a189b20",
+    "url": "/prototipo/css/fonts/Changa-Medium.ttf"
   },
   {
     "revision": "134334996e9d95895458145920775631",
     "url": "/prototipo/css/fonts.css"
   },
   {
-    "revision": "54f171026bd5e04f4b9a",
-    "url": "/prototipo/css/chunk-0f06ac52.fa0050b2.css"
+    "revision": "1f163f4c06871866127e",
+    "url": "/prototipo/css/chunk-28cb6045.683810f2.css"
   },
   {
     "revision": "99fc0816a09395454061301fefa42bf1",
@@ -168,16 +168,12 @@ self.__precacheManifest = [
     "url": "/prototipo/css/fonts/Changa-ExtraBold.ttf"
   },
   {
-    "revision": "e22062b3188c8199283ef2aa835d4653",
-    "url": "/prototipo/css/fonts/Roboto-Light.ttf"
-  },
-  {
-    "revision": "1f163f4c06871866127e",
-    "url": "/prototipo/css/chunk-28cb6045.683810f2.css"
-  },
-  {
     "revision": "e059ade26a46c3fb3aff219ae53d709e",
     "url": "/prototipo/css/fonts/Changa-Bold.ttf"
+  },
+  {
+    "revision": "d4a6e1006258188ae23d",
+    "url": "/prototipo/css/chunk-753b14af.6da73be4.css"
   },
   {
     "revision": "74c8205b3f80972510d7f9630329d7a5",
@@ -186,6 +182,10 @@ self.__precacheManifest = [
   {
     "revision": "c1a282bf2e734550ce86099d96eb0ba1",
     "url": "/prototipo/css/fonts/Changa-Light.ttf"
+  },
+  {
+    "revision": "685eefb3c10874ee3c24c06be82a82bc",
+    "url": "/prototipo/css/fonts/Changa-SemiBold.ttf"
   },
   {
     "revision": "8897a185905ffbd29cf3c2f5b424405b",

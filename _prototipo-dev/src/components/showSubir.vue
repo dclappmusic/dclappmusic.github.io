@@ -84,7 +84,7 @@ export default {
         var show = {
             band: this.show_band,
             city: this.show_city,
-            timestamp: timestamp,
+            timestamp: date,
             year: year,
             month: month,
             week: week,

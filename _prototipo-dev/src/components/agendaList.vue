@@ -6,6 +6,10 @@
             <ShowCard v-for="(show, subindex) in day" :key="subindex" :show="show" />
         </div>
     </div>
+    <div v-if="other_shows[0]">
+        <p>Soon</p>
+        <ShowCard v-for="(show, index) in day" :key="index" :show="other_shows" />
+    </div>
     
     <button @click="show_showsubir = true" class="boton">subir show</button>
     <showSubir v-if="show_showsubir" @cerrar-form="show_showsubir = false" />
@@ -26,7 +30,8 @@ export default {
     data() {
         return {
             show_showsubir: false,
-            shows_week: {}
+            shows_week: {},
+            other_shows: []
         }
     },
     created() {
@@ -43,8 +48,11 @@ export default {
         this.shows.forEach(show => {
             var show_time = this.$moment(show.timestamp);
             var diff = show_time.diff(hoy, 'days');
-            if (diff < 7) {
+            // debugger;
+            if (diff >= 0 && diff < 7) {
                 this.shows_week[diff].push(show);
+            } else if (diff > 6) {
+                this.other_shows.push(show);
             }
         });
     },

@@ -31,17 +31,22 @@ export default {
     data() {
         return {
             // shows: [],
-            map: true
+            map: true,
+            shows_semana: []
+        }
+    },
+    computed: {
+        current_week: function() {
+            return new Date().getWeekNumber();
         }
     },
     created() {
-        // var db = firebase.firestore();
-        // db.collection("shows").onSnapshot((querySnapshot) => {
-        //     querySnapshot.forEach((doc) => {
-        //         var shows = doc.data();
-        //         console.log(shows);
-        //         this.shows.push(shows);
-        //     });
+    },
+    mounted() {
+        // shows.forEach(show => {
+        //     if (show.week === this.current_week) {
+        //         this.shows_semana.push(show);
+        //     }
         // });
     }
 }
