@@ -51,7 +51,7 @@ export default {
         return {
             // shows: []
             accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
-            mapStyle: "mapbox://styles/mapbox/streets-v11",
+            mapStyle: "mapbox://styles/japimes/ck46x3e5u3ac31dt6ricaqy5d",
             maps: {}
             // centro: [geolocation.longitud, geolocation.latitud]
         }

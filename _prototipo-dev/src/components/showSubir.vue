@@ -75,7 +75,7 @@ export default {
   methods: {
       subir_show: function() {
         var date = new Date(this.show_date + "," + this.show_time);
-        var timestamp = date.getTime();
+        var timestamp = date;
         var month = date.getMonth() + 1;
         var day = date.getDate();
         var year = date.getFullYear();
