@@ -2,8 +2,8 @@
     <div class="page agenda" data-page="agenda">
        <div class="cabecera">
             <h1 class="titulo">AGENDA</h1>
-            <p class="display-med" :class="{'active': !map}"  @click="map = !map">hoy</p>
-            <p class="display-med" :class="{'active': map}" @click="map = false">otro dia</p>
+            <p v-if="!map" class="display-med" :class="{'active': !map}"  @click="map = !map">mapa</p>
+            <p v-else class="display-med" :class="{'active': map}" @click="map = false">lista</p>
        </div>
        <div class="view">
            <agendaMap
