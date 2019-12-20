@@ -12,18 +12,20 @@
 			@cerrar_popup="event_cerrar_popup"
 		/>
 	</div>
+    
 </template>
 
 <script>
 	import firebase from "firebase";
-	import Nav from '@/components/Nav';
+	// import Nav from '@/components/Nav';
 	import PopupInstall from '@/components/PopupInstall';
     import PopupLogin from '@/components/PopupLogin';
+    import axios from 'axios';
 
 	export default {
 		name: 'app',
 		components: {
-			Nav,
+			// Nav,
 			PopupInstall,
             PopupLogin
 		},
@@ -37,9 +39,19 @@
                 },
                 shows: [],
                 show_install: false,
-                deferredPrompt: null
+                deferredPrompt: null,
+                shows_gs: [],
+                shows_fb: []
 			}
 		},
+        watch: {
+            shows_gs: function() {
+                this.shows = [...this.shows_fb, ...this.shows_gs];
+            },
+            shows_fb: function() {
+                this.shows = [...this.shows_fb, ...this.shows_gs];
+            }
+        },
 		created() {
             setInterval(() => {
                 this.fecha_hoy = new Date();
@@ -65,7 +77,9 @@
 		},
 		mounted() {
             this.get_shows();
-			// alert("mounted");
+            this.get_fake_bd();
+            
+			
 			window.addEventListener('beforeinstallprompt', (e) => {
 				// Prevent Chrome 67 and earlier from automatically showing the prompt
 				e.preventDefault();
@@ -76,6 +90,7 @@
 				// Update UI notify the user they can add to home screen
 				this.show_install = true;
 			});
+            
 		},
 		methods: {
             get_shows: function() {
@@ -88,8 +103,11 @@
                 db.collection("shows").onSnapshot((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         var shows = doc.data();
+                        shows.forEach(show => {
+                            show.timestamp = show.timestamp.toDate();
+                        });
                         console.log(shows);
-                        this.shows.push(shows);
+                        this.shows_fb.push(shows);
                     });
                 });
             },
@@ -151,6 +169,17 @@
                 this.geolocation.longitud = position.coords.longitude;
                 console.log("API geolocation success!\n\nlat = " + latitud + "\nlng = " + longitud);
                 localStorage.setItem('coords', JSON.stringify(this.geolocation));
+            },
+            get_fake_bd: function() {
+                axios
+                    .get('https://script.googleusercontent.com/macros/echo?user_content_key=B2RCswZE_bKhpHpWLE7dh2l8upFAFVNYQNafy9jwsBLeMJurc3MhDJ8KuNBYdrDuZcD7gNoC_pzp8K_h_dbOvXucpcXqn7hum5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC0Bj8AjnxtLtGH0GnscS5xiWkyEaXlWRRcy-WjMZPpjVKzXvaCvl0CKlmml5HH8C0W-dnclfdIe&lib=M59Av1ZsTFidnmm2zCZX2mvv91E1OTAZR')
+                    .then((response) => {
+                        var shows = response.data.shows;
+                        shows.forEach(show => {
+                            show.timestamp =  new Date(show.timestamp);
+                        });
+                        this.shows_gs = shows;
+                    })
             }
 		}
 	};

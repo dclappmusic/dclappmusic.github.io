@@ -46,7 +46,7 @@ export default {
             6: []
         };
         this.shows.forEach(show => {
-            show.timestamp = show.timestamp.toDate();
+            // show.timestamp = show.timestamp.toDate();
             var show_time = this.$moment(show.timestamp);
             var diff = show_time.diff(hoy, 'days');
             // debugger;
