@@ -5,6 +5,8 @@
             <Agenda v-if="page==='agenda'"
                 :shows="this.shows"
                 :geolocation="this.geolocation"
+                :bands="bands"
+                :venues="venues"
             />
             <Historial v-else-if="page==='historial'" />
             <Home v-else/>

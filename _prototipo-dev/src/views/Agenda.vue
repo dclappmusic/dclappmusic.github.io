@@ -10,11 +10,15 @@
                 v-if="map"
                 :geolocation="geolocation"
                 :shows="shows"
+                :bands="bands"
+                :venues="venues"
             />
             <agendaList
                 v-else
                 :geolocation="geolocation"
                 :shows="shows"
+                :bands="bands"
+                :venues="venues"
             />
        </div>
     </div>

@@ -4,6 +4,8 @@
             :geolocation="this.geolocation"
             :shows="this.shows"
             :usuario="usuario"
+            :bands="bands"
+            :venues="venues"
 		/>
         <PopupLogin v-if="show_login" />
 		<PopupInstall 
@@ -21,6 +23,7 @@
 	import PopupInstall from '@/components/PopupInstall';
     import PopupLogin from '@/components/PopupLogin';
     import axios from 'axios';
+    import { mapState } from 'vuex';
 
 	export default {
 		name: 'app',
@@ -37,19 +40,39 @@
                     latitud: null,
                     longitud: null
                 },
-                shows: [],
                 show_install: false,
                 deferredPrompt: null,
                 shows_gs: [],
-                shows_fb: []
+                shows_fb: [],
+                bands_gs: [],
+                bands_fb: [],
+                venues_gs: [],
+                venues_fb: [],
 			}
 		},
+        computed: {
+            ...mapState([
+                "shows", "bands", "venues", "user"
+            ]),
+        },
         watch: {
             shows_gs: function() {
-                this.shows = [...this.shows_fb, ...this.shows_gs];
+                this.$store.commit("updateShows", [...this.shows_fb, ...this.shows_gs]);
             },
             shows_fb: function() {
-                this.shows = [...this.shows_fb, ...this.shows_gs];
+                this.$store.commit("updateShows", [...this.shows_fb, ...this.shows_gs]);
+            },
+            bands_gs: function() {
+                this.$store.commit("updateBands", [...this.bands_fb, ...this.bands_gs]);
+            },
+            bands_fb: function() {
+                this.$store.commit("updateBands", [...this.bands_fb, ...this.bands_gs]);
+            },
+            venues_gs: function() {
+                this.$store.commit("updateVenues", [...this.venues_fb, ...this.venues_gs]);
+            },
+            venues_fb: function() {
+                this.$store.commit("updateVenues", [...this.venues_fb, ...this.venues_gs]);
             }
         },
 		created() {
@@ -81,15 +104,11 @@
             
 			
 			window.addEventListener('beforeinstallprompt', (e) => {
-				// Prevent Chrome 67 and earlier from automatically showing the prompt
 				e.preventDefault();
-				// alert("before install");
-				// Stash the event so it can be triggered later.
 				this.deferredPrompt = e;
-				
-				// Update UI notify the user they can add to home screen
 				this.show_install = true;
 			});
+            this.forceSWupdate();
             
 		},
 		methods: {
@@ -180,6 +199,25 @@
                         });
                         this.shows_gs = shows;
                     })
+                axios
+                    .get("https://script.google.com/macros/s/AKfycbwE4QipXuKLAV0UVEsE8_pp2CA2XQu3cqVIzW8co9fLjFi-Javu/exec")
+                    .then((response) => {
+                        this.bands_gs = response.data.bands;
+                    })
+                axios
+                    .get("https://script.google.com/macros/s/AKfycbxMG-visbQGWcrCwBRig56yhzpNTiTVKyRqB7blIg/exec")
+                    .then((response) => {
+                        this.venues_gs = response.data.venues;
+                    })
+            },
+            forceSWupdate: function() {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                    for (let registration of registrations) {
+                        registration.update()
+                    }
+                    })
+                }
             }
 		}
 	};

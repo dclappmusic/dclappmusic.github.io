@@ -4,10 +4,15 @@ import App from './App.vue';
 import router from './router';
 import './registerServiceWorker';
 import moment from 'moment';
+import Vuex from 'vuex';
 
-// Vue.use(require('vue-moment'));
+Vue.use(Vuex);
 
 Vue.config.productionTip = false;
+
+//global variables and setting to global object. To use it: this.$moment()
+Vue.prototype.$moment = moment;
+
 
 var firebaseConfig = {
     apiKey: "AIzaSyCcFHmQQSZQMCLlNetLQbW2T4Z7AKH6ztc",
@@ -21,9 +26,6 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-//global variables and setting to global object. To use it: this.$moment()
-Vue.prototype.$moment = moment;
-
 Date.prototype.getWeekNumber = function(){
   var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
   var dayNum = d.getUTCDay() || 7;
@@ -34,7 +36,32 @@ Date.prototype.getWeekNumber = function(){
 
 
 
+const store = new Vuex.Store({
+    state: {
+        shows: [],
+        bands: [],
+        venues: [],
+        user: {}
+    },
+    mutations: {
+        updateShows(state, shows) {
+            state.shows = shows;
+        },
+        updateBands(state, bands) {
+            state.bands = bands;
+        },
+        updateVenues(state, venues) {
+            state.venues = venues;
+        }
+    }
+})
+
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app');
+
+
+
+
