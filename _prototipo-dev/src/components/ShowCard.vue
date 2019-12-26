@@ -9,9 +9,9 @@
                     <p class="display-med">{{show.band}}</p>
                 </router-link>
                 <div class="segunda">
-                    <!-- <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'> -->
+                    <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'>
                         <p class="parr-sm">{{show.venue}}</p>
-                    <!-- </router-link> -->
+                    </router-link>
                     <p class="tipo parr-sm">{{show.show_type}}</p>
                     <p class="precio parr-sm">{{show.price}}€</p>
                 </div>
