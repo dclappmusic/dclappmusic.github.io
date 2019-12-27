@@ -66,7 +66,10 @@ export default {
         }
 
         &.open {
-            .caja {background-color: #333; color: white;}
+            .caja {
+                background-color: #333; color: white;
+                a {pointer-events: unset;}
+            }
         }
         .hora {
             width: 10%;
@@ -78,11 +81,12 @@ export default {
         }
         .caja {
             position: relative;
-            width: 90%;
+            width: 100%;
             background-color: var(--color_fondo);
             color: #333;
-            padding: 1em;
+            padding: 1em .5em;
             border-radius: .5em;
+            a {pointer-events: none;}
             .primera_fila {
                 display: flex;
                 width: 100%;
@@ -101,6 +105,7 @@ export default {
                     width: 100%;
                     align-items: center;
                     justify-content: center;
+                    
                     .banda {width: 100%; margin-bottom: .5em;}
                     .segunda {
                         width: 100%;

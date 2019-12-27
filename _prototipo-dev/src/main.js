@@ -45,6 +45,11 @@ const store = new Vuex.Store({
     },
     mutations: {
         updateShows(state, shows) {
+            if (shows) {
+                shows.sort(function(a,b){
+                    return new Date(a.timestamp) - new Date(b.timestamp);
+                });
+            }
             state.shows = shows;
         },
         updateBands(state, bands) {

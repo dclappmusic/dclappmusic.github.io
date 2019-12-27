@@ -35,10 +35,11 @@
 import ShowCard from '@/components/ShowCard';
 import Mapbox from "mapbox-gl";
 import { MglMap, MglPopup,MglNavigationControl, MglGeolocateControl, MglMarker } from "vue-mapbox";
+import { mapState } from 'vuex';
 
 export default {
     name: 'agendaMap',
-    props: ["geolocation", "shows"],
+    props: ["geolocation"],
     components: {
         MglMap,
         MglNavigationControl,
@@ -55,6 +56,11 @@ export default {
             maps: {}
             // centro: [geolocation.longitud, geolocation.latitud]
         }
+    },
+    computed: {
+        ...mapState([
+            "shows"
+        ])
     },
     created() {
         // this.map = null;
@@ -105,11 +111,12 @@ export default {
         cursor: pointer;
     }
     &::v-deep .mapboxgl-popup {
+        max-width: 75vw!important;
         .mapboxgl-popup-tip {border-top-color: var(--color_secundario);}
         .mapboxgl-popup-content {
             background-color: var(--color_secundario);
             border-radius: 10px;
-            padding: 0;
+            padding: 5% 0;
         }
     }
     &::v-deep .mapboxgl-canvas:before {

@@ -1,10 +1,8 @@
 <template>
-    <nav class="nav">
-        <p class="slider_link agenda">agenda</p>
-        <p class="slider_link home">home</p>
-        <!-- <router-link class="agenda" to="/agenda">agenda</router-link>
-        <router-link class="index" to="/index">home</router-link> -->
-        <!-- <router-link v-if="this.admin" class="registrar" to="/lista-empleados"><img src="images/agenda-de-contactos.svg">empleados</router-link> -->
+    <nav class="menu nav_slider">
+        <router-link class="menu-tit slider_link historial" to="/historial">historial</router-link>
+        <router-link class="menu-tit slider_link home" to="/">home</router-link>
+        <router-link class="menu-tit slider_link agenda" to="/agenda">agenda</router-link>
     </nav>
 </template>
 

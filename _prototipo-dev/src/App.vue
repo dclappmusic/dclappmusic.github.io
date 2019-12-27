@@ -4,9 +4,8 @@
             :geolocation="this.geolocation"
             :shows="this.shows"
             :usuario="usuario"
-            :bands="bands"
-            :venues="venues"
 		/>
+        <Nav></Nav>
         <PopupLogin v-if="show_login" />
 		<PopupInstall 
 			v-if="show_install" 
@@ -19,7 +18,7 @@
 
 <script>
 	import firebase from "firebase";
-	// import Nav from '@/components/Nav';
+	import Nav from '@/components/Nav';
 	import PopupInstall from '@/components/PopupInstall';
     import PopupLogin from '@/components/PopupLogin';
     import axios from 'axios';
@@ -28,9 +27,9 @@
 	export default {
 		name: 'app',
 		components: {
-			// Nav,
+			Nav,
 			PopupInstall,
-            PopupLogin
+            PopupLogin,
 		},
 		data() {
 			return {
@@ -57,6 +56,7 @@
         },
         watch: {
             shows_gs: function() {
+                this.set_show_cords(this.shows_gs, this.venues_gs);
                 this.$store.commit("updateShows", [...this.shows_fb, ...this.shows_gs]);
             },
             shows_fb: function() {
@@ -121,13 +121,38 @@
                 var db = firebase.firestore();
                 db.collection("shows").onSnapshot((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
-                        var shows = doc.data();
-                        shows.forEach(show => {
-                            show.timestamp = show.timestamp.toDate();
-                        });
-                        console.log(shows);
-                        this.shows_fb.push(shows);
+                        let show = doc.data();
+                        show.timestamp = show.timestamp.toDate();
+                        this.shows_fb.push(show);
                     });
+                });
+            },
+            get_fake_bd: function() {
+                axios
+                    .get('https://script.googleusercontent.com/macros/echo?user_content_key=B2RCswZE_bKhpHpWLE7dh2l8upFAFVNYQNafy9jwsBLeMJurc3MhDJ8KuNBYdrDuZcD7gNoC_pzp8K_h_dbOvXucpcXqn7hum5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC0Bj8AjnxtLtGH0GnscS5xiWkyEaXlWRRcy-WjMZPpjVKzXvaCvl0CKlmml5HH8C0W-dnclfdIe&lib=M59Av1ZsTFidnmm2zCZX2mvv91E1OTAZR')
+                    .then((response) => {
+                        var shows = response.data.shows;
+                        shows.forEach(show => {
+                            show.timestamp =  new Date(show.timestamp);
+                        });
+                        this.shows_gs = shows;
+                    })
+                axios
+                    .get("https://script.google.com/macros/s/AKfycbwE4QipXuKLAV0UVEsE8_pp2CA2XQu3cqVIzW8co9fLjFi-Javu/exec")
+                    .then((response) => {
+                        this.bands_gs = response.data.bands;
+                    })
+                axios
+                    .get("https://script.google.com/macros/s/AKfycbxMG-visbQGWcrCwBRig56yhzpNTiTVKyRqB7blIg/exec")
+                    .then((response) => {
+                        this.venues_gs = response.data.venues;
+                    })
+            },
+            set_show_cords: function(shows, venues) {
+                shows.forEach(show => {
+                    var venue_id = show.venue_id;
+                    show.lat = venues[venue_id].latitud;
+                    show.lon = venues[venue_id].longitud;
                 });
             },
             event_cerrar_popup: function(deferredPrompt) {
@@ -188,27 +213,6 @@
                 this.geolocation.longitud = position.coords.longitude;
                 console.log("API geolocation success!\n\nlat = " + latitud + "\nlng = " + longitud);
                 localStorage.setItem('coords', JSON.stringify(this.geolocation));
-            },
-            get_fake_bd: function() {
-                axios
-                    .get('https://script.googleusercontent.com/macros/echo?user_content_key=B2RCswZE_bKhpHpWLE7dh2l8upFAFVNYQNafy9jwsBLeMJurc3MhDJ8KuNBYdrDuZcD7gNoC_pzp8K_h_dbOvXucpcXqn7hum5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC0Bj8AjnxtLtGH0GnscS5xiWkyEaXlWRRcy-WjMZPpjVKzXvaCvl0CKlmml5HH8C0W-dnclfdIe&lib=M59Av1ZsTFidnmm2zCZX2mvv91E1OTAZR')
-                    .then((response) => {
-                        var shows = response.data.shows;
-                        shows.forEach(show => {
-                            show.timestamp =  new Date(show.timestamp);
-                        });
-                        this.shows_gs = shows;
-                    })
-                axios
-                    .get("https://script.google.com/macros/s/AKfycbwE4QipXuKLAV0UVEsE8_pp2CA2XQu3cqVIzW8co9fLjFi-Javu/exec")
-                    .then((response) => {
-                        this.bands_gs = response.data.bands;
-                    })
-                axios
-                    .get("https://script.google.com/macros/s/AKfycbxMG-visbQGWcrCwBRig56yhzpNTiTVKyRqB7blIg/exec")
-                    .then((response) => {
-                        this.venues_gs = response.data.venues;
-                    })
             },
             forceSWupdate: function() {
                 if ('serviceWorker' in navigator) {

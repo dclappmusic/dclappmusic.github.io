@@ -7,15 +7,27 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
+      name: 'home',
       props: true,
-      component: () => import('./views/Index.vue')
+      component: () => import('./views/Home.vue')
     },
     {
-      path: '/index',
-      name: 'index',
+      path: '/home',
+      name: 'home',
       props: true,
-      component: () => import('./views/Index.vue')
+      component: () => import('./views/Home.vue')
+    },
+    {
+      path: '/historial',
+      name: 'historial',
+      props: true,
+      component: () => import('./views/Historial.vue')
+    },
+    {
+      path: '/agenda',
+      name: 'agenda',
+      props: true,
+      component: () => import('./views/Agenda.vue')
     },
     {
       path: '/sub',

@@ -37,14 +37,14 @@
 	.menu-tit {
 		color: var(--color_secundario);
 		width: 33%;
-		&.active {
+		&.router-link-exact-active {
 			// transition: all .5s ease-in-out;
 			background-color: white;
 			border-radius: 100%;
-			height: 6em;
+			height: 10em;
 			padding-top: 40px;
 			position: relative;
-			top: -2em;
+			top: -3em;
 		}
 	}
 }
@@ -480,7 +480,7 @@
 	.cabecera {color: white; margin-bottom: 5%;}
 	.menu .menu-tit {
 		color: white;
-		&.active {
+		&.router-link-exact-active {
 			color: var(--color_primario);
 		}
 	}	
@@ -529,7 +529,7 @@
 	.cabecera {color: white;}
 	.menu .menu-tit {
 		color: white;
-		&.active {
+		&.router-link-exact-active {
 			color: var(--color_primario);
 		}
 	}	
@@ -800,7 +800,7 @@
 	}
 	.menu .menu-tit {
 		color: white;
-		&.active {
+		&.router-link-exact-active {
 			color: var(--color_secundario);
 		}
 	}
@@ -879,7 +879,7 @@
 				font-size: 20px;
 				font-weight: 500;
 				color: var(--color_secundario);
-				&.active {
+				&.router-link-exact-active {
 					text-decoration: underline;
 				}
 			}
@@ -940,7 +940,7 @@
 	}
 	.menu .menu-tit {
 		color: white;
-		&.active {color: var(--color_secundario);}
+		&.router-link-exact-active {color: var(--color_secundario);}
 	}
 }
 
