@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/prototipo/precache-manifest.2f6bb3a26a67ae1aa6db4c624278bbe4.js"
+  "/prototipo/precache-manifest.1c669457b5a4758374d3d5d5b65e3f66.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "weclapp"});

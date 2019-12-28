@@ -8,11 +8,11 @@
     </div>
     <div v-if="other_shows[0]">
         <p>Soon</p>
-        <ShowCard v-for="(show, index) in day" :key="index" :show="other_shows" />
+        <ShowCard v-for="(show, index) in other_shows" :key="index" :show="show" />
     </div>
     
-    <button @click="show_showsubir = true" class="boton">subir show</button>
-    <showSubir v-if="show_showsubir" @cerrar-form="show_showsubir = false" />
+    <!-- <button @click="show_showsubir = true" class="boton">subir show</button> -->
+    <!-- <showSubir v-if="show_showsubir" @cerrar-form="show_showsubir = false" /> -->
 </div>
 </template>
 

@@ -4,9 +4,10 @@
             :geolocation="this.geolocation"
             :shows="this.shows"
             :usuario="usuario"
+            :get_fake_bd="get_fake_bd"
 		/>
         <Nav></Nav>
-        <PopupLogin v-if="show_login" />
+        <!-- <PopupLogin v-if="show_login" /> -->
 		<PopupInstall 
 			v-if="show_install" 
 			:deferredPrompt="this.deferredPrompt" 
@@ -128,6 +129,7 @@
                 });
             },
             get_fake_bd: function() {
+                console.log("get fake bd");
                 axios
                     .get('https://script.googleusercontent.com/macros/echo?user_content_key=B2RCswZE_bKhpHpWLE7dh2l8upFAFVNYQNafy9jwsBLeMJurc3MhDJ8KuNBYdrDuZcD7gNoC_pzp8K_h_dbOvXucpcXqn7hum5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC0Bj8AjnxtLtGH0GnscS5xiWkyEaXlWRRcy-WjMZPpjVKzXvaCvl0CKlmml5HH8C0W-dnclfdIe&lib=M59Av1ZsTFidnmm2zCZX2mvv91E1OTAZR')
                     .then((response) => {

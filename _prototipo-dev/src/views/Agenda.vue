@@ -9,12 +9,10 @@
            <agendaMap
                 v-if="map"
                 :geolocation="geolocation"
-                :shows="shows"
             />
             <agendaList
                 v-else
                 :geolocation="geolocation"
-                :shows="shows"
             />
        </div>
     </div>
@@ -26,7 +24,7 @@ import agendaList from "@/components/agendaList";
 
 export default {
     name: 'Agenda',
-    props: ["geolocation", "shows"],
+    props: ["geolocation", "get_fake_bd"],
     components: {agendaList, agendaMap},
     data() {
         return {
@@ -43,6 +41,7 @@ export default {
     created() {
     },
     mounted() {
+        this.get_fake_bd();
         // shows.forEach(show => {
         //     if (show.week === this.current_week) {
         //         this.shows_semana.push(show);
