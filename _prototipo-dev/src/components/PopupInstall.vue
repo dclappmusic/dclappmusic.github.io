@@ -14,7 +14,7 @@
 		created() {},
 		data() {return {}},
 		methods: {
-            install: function(e) {
+            install: function() {
                 // Show the prompt
                 this.deferredPrompt.prompt();
                 // Wait for the user to respond to the prompt

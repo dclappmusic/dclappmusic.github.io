@@ -1,8 +1,7 @@
 <template>
     <div class="page historia" data-page="historial">
        <div class="cabecera">
-            <h1>Historial</h1>
-            
+            <h1>Historial</h1>   
        </div>
        <div class="view">
            

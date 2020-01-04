@@ -1,6 +1,5 @@
 <template>
     <div class="page band_profile" data-page="sub">
-        <!-- <h1 class="cabecera">BAND PROFILE</h1> -->
         <svg class="elipse" width="468" height="413" viewBox="0 0 468 413" fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="234" cy="206.5" rx="234" ry="206.5" fill="#0C3847"/>
         </svg>
@@ -36,6 +35,7 @@ export default {
         }
     },
     created() {
+    //get band by id from firestore
         // firebase.firestore().collection("bands").doc(this.band_id).onSnapshot((doc) => {
         //     var bd_band = doc.data();
         //     console.log(bd_band);

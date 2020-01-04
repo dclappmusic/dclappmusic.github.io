@@ -1,6 +1,6 @@
 <template>
     <div class="page home" data-page="home">
-        <Header :usuario="this.usuario" />
+        <Header :user="this.user" />
         <a class="boton btn_preclapp" href="clapp.html">
 			<img src="images/icon_clapp.png" />
 		</a>
@@ -18,7 +18,7 @@ export default {
     components: {
         Header
     },
-	props: ["usuario"],
+	props: ["user"],
 	data() {
 		return{}
 	},

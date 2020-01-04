@@ -14,9 +14,9 @@
                     {{cta_text}}
                 </button>
                 <div>
-                    <a class="login_btn" v-if="cta_text != 'login'" @click="mostrar_login">atrás</a>
-                    <a class="reset_btn" v-if="cta_text === 'login'" @click="mostrar_reset">restablecer contraseña</a>
-                    <a class="signup_btn" v-if="cta_text === 'login'" @click="mostrar_signup">crear una cuenta</a>
+                    <a class="login_btn" v-if="cta_text != 'login'" @click="show_login">atrás</a>
+                    <a class="reset_btn" v-if="cta_text === 'login'" @click="show_reset">restablecer contraseña</a>
+                    <a class="signup_btn" v-if="cta_text === 'login'" @click="show_signup">crear una cuenta</a>
                 </div>
             </div>
         </div>
@@ -42,25 +42,21 @@
 			login: function() {
 				const auth = firebase.auth();
 
-				//autenticar el login
+				//authenticate the login
 				auth.signInWithEmailAndPassword(this.user_email, this.user_password).then(() => {
-					//redirigir a index
-					var user = auth.currentUser;
+					//redirect to home
 					this.$router.replace("/");
 					console.log("logged");
 				}).catch((error) => {
-					// Handle Errors here.
-					var errorCode = error.code;
-					var errorMessage = error.message;
-					window.alert("error: " + errorMessage);
+					window.alert("error " + error.code + ": " + error.message);
 				});
 			},
             signup: function() {
 				const auth = firebase.auth();
-                //crear login de usuario
+                //create user
                 auth.createUserWithEmailAndPassword(this.user_email, this.user_password)
                     .then(() => {
-                        //añadir el usuario a la DB
+                        //add user to firestore
 						firebase.firestore().collection("fans").doc(auth.currentUser.uid).set({
                             uid: auth.currentUser.uid,
                             email: this.user_email
@@ -73,27 +69,25 @@
 				firebase.auth().sendPasswordResetEmail(this.user_email).then(() => {
 					console.log("reseteando");
 					alert("Revisa tu email para poner una contraseña");
-					// $(".form").append("<p>Revisa tu email para poner una contraseña</p>");
 				}).catch((error) => {
-				// An error happened.
 					console.log(error);
 				});
 			},
-			mostrar_reset: function() {
+			show_reset: function() {
                 this.cta_text = "restablecer";
 			},
-            mostrar_signup: function() {
+            show_signup: function() {
                 this.cta_text = "signup";
 			},
-            mostrar_login: function() {
+            show_login: function() {
                 this.cta_text = "login";
             },
-            cta: function(accion) {
-                if (accion === "login") {
+            cta: function(action) {
+                if (action === "login") {
                     this.login();
-                } else if (accion === "signup") {
+                } else if (action === "signup") {
                     this.signup();
-                } else if(accion === "restablecer") {
+                } else if(action === "restablecer") {
                     this.reset();
                 }
             }

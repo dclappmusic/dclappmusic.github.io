@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <p class="nombre">
-            {{this.usuario.email}}
+            {{this.user.email}}
         </p>
         <div class="ajustes" @click="toggle_menu">
             <svg width="8" height="34" viewBox="0 0 8 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +22,7 @@ import firebase from 'firebase';
 
 export default {
   name: 'Header',
-  props: ["usuario"],
+  props: ["user"],
   data() {
       return {
           open: false

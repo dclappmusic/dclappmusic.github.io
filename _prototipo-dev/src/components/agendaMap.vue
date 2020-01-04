@@ -8,7 +8,6 @@
             @load="onMapLoaded"
             :attributionControl="false"
         >
-
             <MglGeolocateControl 
                 position="top-left" 
                 :trackUserLocation="true"
@@ -42,7 +41,7 @@
 
 <script>
 import ShowCard from '@/components/ShowCard';
-import Mapbox from "mapbox-gl";
+// import Mapbox from "mapbox-gl";
 import { 
     MglMap, 
     MglPopup,
@@ -65,12 +64,10 @@ export default {
     },
     data() {
         return {
-            // shows: []
             accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
             mapStyle: "mapbox://styles/japimes/ck46x3e5u3ac31dt6ricaqy5d",
             maps: {},
             shows_hoy: []
-            // centro: [geolocation.longitud, geolocation.latitud]
         }
     },
     computed: {
@@ -83,26 +80,27 @@ export default {
     },
     mounted() {
         console.log(this.geolocation.latitud + ", " + this.geolocation.longitud);
-        var hoy = this.$moment();
-        this.shows.forEach(show => {
-            var show_time = this.$moment(show.timestamp);
-            var diff = show_time.diff(hoy, 'hours');
-            if (diff > -2 && diff < 16 ) {
-                diff > -1 && diff < 1 ? show.live = true : show.live = false;
-                this.shows_hoy.push(show);
-            }
-        });
+        this.filter_shows_today();
     },
     methods: {
         onMapLoaded(event) {
             this.map = event.map;
         },
         fly_to(show) {
-            // const lonlat = [show.lon, show.lat];
-            // console.log(lonlat);
             this.map.easeTo({
                 center: {lng: show.lon, lat: show.lat},
                 duration: 800
+            });
+        },
+        filter_shows_today: function() {
+            var hoy = this.$moment();
+            this.shows.forEach(show => {
+                var show_time = this.$moment(show.timestamp);
+                var diff = show_time.diff(hoy, 'hours');
+                if (diff > -2 && diff < 16 ) {
+                    diff > -1 && diff < 1 ? show.live = true : show.live = false;
+                    this.shows_hoy.push(show);
+                }
             });
         }
     }

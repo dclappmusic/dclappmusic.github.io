@@ -3,7 +3,7 @@
 		<router-view
             :geolocation="this.geolocation"
             :shows="this.shows"
-            :usuario="usuario"
+            :user="user"
             :get_fake_bd="get_fake_bd"
 		/>
         <Nav></Nav>
@@ -35,7 +35,7 @@
 		data() {
 			return {
                 show_login: true,
-                usuario: {},
+                user: {},
                 geolocation: {
                     latitud: null,
                     longitud: null
@@ -77,21 +77,20 @@
             }
         },
 		created() {
-            setInterval(() => {
-                this.fecha_hoy = new Date();
-            }, 1000);
+            // setInterval(() => {
+            //     this.fecha_hoy = new Date();
+            // }, 1000);
 
 			firebase.auth().onAuthStateChanged(user => {
 				if (user) {
 					console.log("ya estas logueado");
 					console.log(user);
 					this.show_login = false;
-//descargarse usuario
+        //download user
 					firebase.firestore().collection("fans").doc(user.uid).onSnapshot((doc) => {
-                        this.usuario = doc.data();
-                        console.log(this.usuario);
+                        this.user = doc.data();
+                        console.log(this.user);
 					});
-					// this.$router.replace('fichaje');
 				} else {
 					// No user is signed in.
                     this.show_login = true;
@@ -100,19 +99,18 @@
 			});
 		},
 		mounted() {
-            this.get_shows();
-            this.get_fake_bd();
-            
-			
 			window.addEventListener('beforeinstallprompt', (e) => {
 				e.preventDefault();
 				this.deferredPrompt = e;
 				this.show_install = true;
 			});
-            this.forceSWupdate();
-            
+            this.get_shows();
+            this.get_fake_bd();
+            this.forceSWupdate();  
 		},
 		methods: {
+
+        //gets the shows from the firebase database
             get_shows: function() {
                 if (localStorage.getItem('coords')){
                     this.geolocation = JSON.parse(localStorage.getItem('coords'));
@@ -128,6 +126,8 @@
                     });
                 });
             },
+
+        //Gets data from the Google sheets database
             get_fake_bd: function() {
                 console.log("get fake bd");
                 axios
@@ -150,6 +150,7 @@
                         this.venues_gs = response.data.venues;
                     })
             },
+        //Crosses the venues and shows DB to set the show coords
             set_show_cords: function(shows, venues) {
                 shows.forEach(show => {
                     var venue_id = show.venue_id;
@@ -157,10 +158,12 @@
                     show.lon = venues[venue_id].longitud;
                 });
             },
+        //close the PWA install popup
             event_cerrar_popup: function(deferredPrompt) {
 				this.show_install = false;
 				this.deferredPrompt = deferredPrompt;
 			},
+        //geolocation functions
 			get_geolocation: function() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
@@ -216,6 +219,8 @@
                 console.log("API geolocation success!\n\nlat = " + latitud + "\nlng = " + longitud);
                 localStorage.setItem('coords', JSON.stringify(this.geolocation));
             },
+
+        //suposely update the PWA version everytime you open the App
             forceSWupdate: function() {
                 if ('serviceWorker' in navigator) {
                     navigator.serviceWorker.getRegistrations().then(function (registrations) {

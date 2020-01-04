@@ -1,6 +1,7 @@
 <template>
 <div class="show" @click="ampliar" :class="{open: ampliado}">
     <p class="hora">{{this.$moment(show.timestamp).format("HH:mm")}}</p>
+    
     <div class="caja">
         <div class="primera_fila">
             <img class="foto" :src="show.image">
@@ -13,12 +14,11 @@
                         <p class="parr-sm">{{show.venue}}</p>
                     </router-link>
                     <p class="tipo parr-sm">{{show.show_type}}</p>
-                    <p class="precio parr-sm">{{show.price}}€</p>
+                    <p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p>
                 </div>
             </div>
         </div>
         <div class="segunda_fila" v-if="ampliado">
-            
             <a class="boton-sm" :href="show.link">comprar entradas</a>
         </div>
     </div>
@@ -29,7 +29,7 @@
 
 export default {
     name: 'ShowCard',
-    props:["show"],
+    props:["show", "from"],
     data() {
         return {
             show_form: false,
@@ -46,9 +46,6 @@ export default {
             // $(".show").removeClass("open");
             this.ampliado = !this.ampliado;
         },
-        get_band: function(id) {
-
-        }
     }
 }
 </script>
@@ -78,6 +75,7 @@ export default {
             color: #333;
             font-weight: bold;
             font-size: 1.2em;
+            margin-left: -5%;
         }
         .caja {
             position: relative;
@@ -110,9 +108,23 @@ export default {
                     .segunda {
                         width: 100%;
                         display: flex;
+                        text-align: center;
                         .parr-sm:not(:first-child) {margin: 0 .5em;}
-                        .sala {display: inline-block; margin-right: 1em;}
-                        .precio {display: inline-block; margin-right: 1em;}
+                        .sala {
+                            display: flex; 
+                            justify-content: center;
+                            margin-right: .5em; 
+                            min-width: 50%;
+                            &:before {
+                                content: "";
+                                background-image: url("/images/pin_liveshow.png");
+                                width: 1em;
+                                height: 1em;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            }
+                        }
+                        .precio {display: inline-block; margin-right: .5em;}
                     }
                 }
             }
