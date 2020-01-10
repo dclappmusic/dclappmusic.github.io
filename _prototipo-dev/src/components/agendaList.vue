@@ -2,13 +2,13 @@
 <div class="shows">
     <div v-for="(day, index) in shows_week" :key="index">
         <div v-if="day[0]">
-            <p>{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd')}}</p>
-            <ShowCard v-for="(show, subindex) in day" :key="subindex" :show="show" :from="'list'"/>
+            <p class="display-med">{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd')}}</p>
+            <ShowCard v-for="(show, subindex) in day" :key="subindex" :show="show" :type="'list'"/>
         </div>
     </div>
     <div v-if="other_shows[0]">
-        <p>Soon</p>
-        <ShowCard v-for="(show, index) in other_shows" :key="index" :show="show" />
+        <p class="display-med">Soon</p>
+        <ShowCard v-for="(show, index) in other_shows" :key="index" :show="show" :type="'list_soon'" />
     </div>
     
     <!-- <button @click="show_showsubir = true" class="boton">subir show</button> -->
@@ -18,7 +18,7 @@
 
 <script>
 import ShowCard from '@/components/ShowCard';
-import showSubir from '@/components/showSubir';
+// import showSubir from '@/components/showSubir';
 import { mapState } from 'vuex';
 
 export default {
@@ -26,7 +26,7 @@ export default {
     props:["geolocation"],
     components: {
         ShowCard,
-        showSubir
+        // showSubir
     },
     data() {
         return {
@@ -44,7 +44,7 @@ export default {
         
     },
     mounted() {
-
+        this.filter_shows();
     },
     methods: {
         filter_shows: function() {

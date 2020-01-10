@@ -256,6 +256,45 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   z-index: 20;
 }
 
+.container .overlay {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 1000;
+}
+
+.container .overlay .ov_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 15vh;
+  width: 85vw;
+  background-color: var(--color_primario);
+  color: white;
+  padding: 1em;
+  text-align: center;
+  border-radius: .5em;
+  font-size: 1.5em;
+}
+
 .menu {
   position: fixed;
   width: 100%;

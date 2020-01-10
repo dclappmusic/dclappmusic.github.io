@@ -1,12 +1,20 @@
 <template>
     <div class="page home" data-page="home">
         <Header :user="this.user" />
-        <a class="boton btn_preclapp" href="clapp.html">
-			<img src="images/icon_clapp.png" />
-		</a>
+        <a class="boton btn_preclapp" @click="overlay('clapp')">
+            <img src="images/icon_clapp.png" />
+        </a>
+        <!-- <router-link class="boton btn_preclapp" to="clapp">
+            <img src="images/icon_clapp.png" />
+        </router-link> -->
 		<div class="intro_clapp">
 			<a href="sign_band.html"><h3 class="display-med">applaud<br>the talent</h3></a>
 		</div>
+        <div class="overlay" v-if="show_overlay" @click="show_overlay = false">
+            <div class="ov_box">
+                <p>{{overlay_msgs.msg}}</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -20,11 +28,27 @@ export default {
     },
 	props: ["user"],
 	data() {
-		return{}
+		return{
+            show_overlay: false,
+            overlay_msgs: {
+                msg: "",
+                clapp: "Próximamente"
+            }
+        }
 	},
 	created() {},
 	mounted() {},
-	methods: {}
+	methods: {
+        overlay: function(msg) {
+            clearTimeout(timeout);
+            let timeout;
+            this.show_overlay = true;
+            this.overlay_msgs.msg = this.overlay_msgs[msg];
+            timeout = setTimeout(()=> {
+                this.show_overlay = false;
+            }, 1700);
+        },
+    }
 }
 </script>
 <style scoped lang="scss">

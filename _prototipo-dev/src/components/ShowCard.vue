@@ -1,5 +1,6 @@
 <template>
 <div class="show" @click="ampliar" :class="{open: ampliado}">
+    <p v-if="type==='list_soon'" class="display-sm soon">{{this.$moment(show.timestamp).format("D/MM")}}</p>
     <p class="hora">{{this.$moment(show.timestamp).format("HH:mm")}}</p>
     
     <div class="caja">
@@ -29,7 +30,7 @@
 
 export default {
     name: 'ShowCard',
-    props:["show", "from"],
+    props:["show", "type"],
     data() {
         return {
             show_form: false,
@@ -52,7 +53,7 @@ export default {
 <style scoped lang="scss" > 
     .show {
         position: relative;
-        display: flex;
+        display: block;
         align-items: center;
         width: 100%;
         margin: 0 auto 1em;
@@ -69,17 +70,21 @@ export default {
             }
         }
         .hora {
-            width: 10%;
+            position: relative;
             transform: rotate(-90deg);
             transform-origin: top;
+            display: inline-block;
+            width: 10%;
             color: #333;
             font-weight: bold;
             font-size: 1.2em;
             margin-left: -5%;
+            top: -30px;
         }
         .caja {
             position: relative;
-            width: 100%;
+            display: inline-block;
+            width: 90%;
             background-color: var(--color_fondo);
             color: #333;
             padding: 1em .5em;
@@ -90,8 +95,10 @@ export default {
                 width: 100%;
                 height: 5em;
                 .foto {
-                    width: 20vw;
-                    height: 20vw;
+                    // width: 20vw;
+                    // height: 20vw;
+                    width: 75px;
+                    height: 75px;
                     object-fit: cover;
                     margin-right: 10px;
                     border-radius: 50%;
@@ -112,9 +119,10 @@ export default {
                         .parr-sm:not(:first-child) {margin: 0 .5em;}
                         .sala {
                             display: flex; 
-                            justify-content: center;
+                            justify-content: flex-start;
                             margin-right: .5em; 
-                            min-width: 50%;
+                            max-width: 50%;
+                            .parr-sm {text-align: left;}
                             &:before {
                                 content: "";
                                 background-image: url("/images/pin_liveshow.png");

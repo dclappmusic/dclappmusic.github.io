@@ -41,7 +41,8 @@
 
 <script>
 import ShowCard from '@/components/ShowCard';
-// import Mapbox from "mapbox-gl";
+import Mapbox from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { 
     MglMap, 
     MglPopup,
@@ -55,6 +56,7 @@ export default {
     name: 'agendaMap',
     props: ["geolocation"],
     components: {
+        Mapbox,
         MglMap,
         MglNavigationControl,
         MglGeolocateControl,
@@ -65,7 +67,7 @@ export default {
     data() {
         return {
             accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
-            mapStyle: "mapbox://styles/japimes/ck46x3e5u3ac31dt6ricaqy5d",
+            mapStyle: "mapbox://styles/japimes/ck58mtgvc0mo61cmjcrzlvb2r",
             maps: {},
             shows_hoy: []
         }

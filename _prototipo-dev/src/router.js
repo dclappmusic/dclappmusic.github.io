@@ -34,6 +34,12 @@ export default new Router({
       name: 'sub',
       props: true,
       component: () => import('./views/Sub.vue')
+    },
+    {
+      path: '/clapp',
+      name: 'clapp',
+      props: true,
+      component: () => import('./views/Clapp.vue')
     }
     // {
     //   path: '/maps',
