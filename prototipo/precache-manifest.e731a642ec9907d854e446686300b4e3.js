@@ -12,6 +12,14 @@ self.__precacheManifest = [
     "url": "/prototipo/js/clapp.js"
   },
   {
+    "revision": "08699b5a20e59d83e5bd",
+    "url": "/prototipo/js/chunk-18017a94.b1a15745.js"
+  },
+  {
+    "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
+    "url": "/prototipo/robots.txt"
+  },
+  {
     "revision": "adcf9971ab280851a375",
     "url": "/prototipo/js/chunk-291f8bcf.f05377df.js"
   },
@@ -20,24 +28,16 @@ self.__precacheManifest = [
     "url": "/prototipo/js/chunk-2d0e5772.5b80f0f7.js"
   },
   {
-    "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
-    "url": "/prototipo/robots.txt"
+    "revision": "9054a35980dadf7e787c2c086bb404d1",
+    "url": "/prototipo/images/pin_liveshow.png"
   },
   {
     "revision": "cd128566a177fbce5cef",
     "url": "/prototipo/js/chunk-7fd8b957.834e2644.js"
   },
   {
-    "revision": "9054a35980dadf7e787c2c086bb404d1",
-    "url": "/prototipo/images/pin_liveshow.png"
-  },
-  {
-    "revision": "dd7a6fe8a182e9fbcfed",
-    "url": "/prototipo/js/chunk-92870cb0.69f4dd9b.js"
-  },
-  {
-    "revision": "a0375566065a2a030dca",
-    "url": "/prototipo/js/app.d1fa0116.js"
+    "revision": "b0aa12455dfa0278c26024eebddf10fb",
+    "url": "/prototipo/images/pin_liveshow_white.png"
   },
   {
     "revision": "aadb7e57920bd83516f2",
@@ -48,15 +48,19 @@ self.__precacheManifest = [
     "url": "/prototipo/js/chunk-vendors.3cc762f9.js"
   },
   {
-    "revision": "5018e75ab03813c6634495b884266672",
+    "revision": "7dd5e5d92db026b93763991ba22f19fa",
     "url": "/prototipo/index.html"
+  },
+  {
+    "revision": "5079d26d804956536a8c",
+    "url": "/prototipo/js/app.ee3137b7.js"
   },
   {
     "revision": "a64ef4a4bb606a284dc00775925a170e",
     "url": "/prototipo/css/_bands.scss"
   },
   {
-    "revision": "a0375566065a2a030dca",
+    "revision": "5079d26d804956536a8c",
     "url": "/prototipo/css/app.71da9840.css"
   },
   {
@@ -66,10 +70,6 @@ self.__precacheManifest = [
   {
     "revision": "2b58be4fd9d1744adf33a10f5e855964",
     "url": "/prototipo/images/historial_preview.png"
-  },
-  {
-    "revision": "a6aa4fb891b5d078969d1e0c3a7e0135",
-    "url": "/prototipo/css/fonts/Changa-Regular.ttf"
   },
   {
     "revision": "134334996e9d95895458145920775631",
@@ -108,8 +108,8 @@ self.__precacheManifest = [
     "url": "/prototipo/images/icon_rrss_instagram.svg"
   },
   {
-    "revision": "aadb7e57920bd83516f2",
-    "url": "/prototipo/css/chunk-e65511b6.5a78f627.css"
+    "revision": "685eefb3c10874ee3c24c06be82a82bc",
+    "url": "/prototipo/css/fonts/Changa-SemiBold.ttf"
   },
   {
     "revision": "c85c7e1e8b88f81e4abd080531e246ee",
@@ -120,32 +120,36 @@ self.__precacheManifest = [
     "url": "/prototipo/images/icon-edit.svg"
   },
   {
-    "revision": "df9cb61ab8e18b32cff85c2f006b6459",
-    "url": "/prototipo/images/icon-save.svg"
-  },
-  {
-    "revision": "dd7a6fe8a182e9fbcfed",
-    "url": "/prototipo/css/chunk-92870cb0.e0361e33.css"
-  },
-  {
     "revision": "eaa786835fdf3df7e8e3665fa11a956e",
     "url": "/prototipo/images/icon-options.svg"
   },
   {
-    "revision": "14f5f301e600a9357882b92b4a189b20",
-    "url": "/prototipo/css/fonts/Changa-Medium.ttf"
+    "revision": "df9cb61ab8e18b32cff85c2f006b6459",
+    "url": "/prototipo/images/icon-save.svg"
+  },
+  {
+    "revision": "aadb7e57920bd83516f2",
+    "url": "/prototipo/css/chunk-e65511b6.5a78f627.css"
   },
   {
     "revision": "cd128566a177fbce5cef",
     "url": "/prototipo/css/chunk-7fd8b957.fb340f3f.css"
   },
   {
-    "revision": "0079102f867897e0f9bc42b0c97ae965",
-    "url": "/prototipo/images/icon_completo.png"
+    "revision": "c1a282bf2e734550ce86099d96eb0ba1",
+    "url": "/prototipo/css/fonts/Changa-Light.ttf"
   },
   {
     "revision": "adcf9971ab280851a375",
     "url": "/prototipo/css/chunk-291f8bcf.10fa1e95.css"
+  },
+  {
+    "revision": "0079102f867897e0f9bc42b0c97ae965",
+    "url": "/prototipo/images/icon_completo.png"
+  },
+  {
+    "revision": "08699b5a20e59d83e5bd",
+    "url": "/prototipo/css/chunk-18017a94.51d05d0f.css"
   },
   {
     "revision": "87457e7a97b534083e675da16aac22f1",
@@ -172,28 +176,28 @@ self.__precacheManifest = [
     "url": "/prototipo/css/fonts/Changa-ExtraBold.ttf"
   },
   {
-    "revision": "e22062b3188c8199283ef2aa835d4653",
-    "url": "/prototipo/css/fonts/Roboto-Light.ttf"
+    "revision": "54a91b0619ccf9373d525109268219dc",
+    "url": "/prototipo/css/fonts/Roboto-Regular.ttf"
   },
   {
     "revision": "e059ade26a46c3fb3aff219ae53d709e",
     "url": "/prototipo/css/fonts/Changa-Bold.ttf"
   },
   {
+    "revision": "e22062b3188c8199283ef2aa835d4653",
+    "url": "/prototipo/css/fonts/Roboto-Light.ttf"
+  },
+  {
     "revision": "74c8205b3f80972510d7f9630329d7a5",
     "url": "/prototipo/css/fonts/Changa-ExtraLight.ttf"
   },
   {
-    "revision": "54a91b0619ccf9373d525109268219dc",
-    "url": "/prototipo/css/fonts/Roboto-Regular.ttf"
+    "revision": "14f5f301e600a9357882b92b4a189b20",
+    "url": "/prototipo/css/fonts/Changa-Medium.ttf"
   },
   {
-    "revision": "685eefb3c10874ee3c24c06be82a82bc",
-    "url": "/prototipo/css/fonts/Changa-SemiBold.ttf"
-  },
-  {
-    "revision": "c1a282bf2e734550ce86099d96eb0ba1",
-    "url": "/prototipo/css/fonts/Changa-Light.ttf"
+    "revision": "a6aa4fb891b5d078969d1e0c3a7e0135",
+    "url": "/prototipo/css/fonts/Changa-Regular.ttf"
   },
   {
     "revision": "8897a185905ffbd29cf3c2f5b424405b",

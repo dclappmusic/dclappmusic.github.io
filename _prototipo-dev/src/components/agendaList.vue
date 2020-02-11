@@ -2,13 +2,13 @@
 <div class="shows">
     <div v-for="(day, index) in shows_week" :key="index">
         <div v-if="day[0]">
-            <p class="display-med">{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd')}}</p>
+            <p class="when display-med">{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd')}}</p>
             <ShowCard v-for="(show, subindex) in day" :key="subindex" :show="show" :type="'list'"/>
         </div>
     </div>
     <div v-if="other_shows[0]">
-        <p class="display-med">Soon</p>
-        <ShowCard v-for="(show, index) in other_shows" :key="index" :show="show" :type="'list_soon'" />
+        <p class="when display-med">Soon</p>
+        <ShowCard class="list-soon" v-for="(show, index) in other_shows" :key="index" :show="show" :type="'list_soon'" />
     </div>
     
     <!-- <button @click="show_showsubir = true" class="boton">subir show</button> -->
@@ -72,6 +72,10 @@ export default {
     .shows {
         width: 100%;
         padding: 20px;
-        margin-top: 15vh;
+        margin-top: 5vh;
+        .when {
+            margin-bottom: 1em;
+            color: var(--color_primario);
+        }
     }
 </style>

@@ -5,7 +5,9 @@
     
     <div class="caja">
         <div class="primera_fila">
-            <img class="foto" :src="show.image">
+            <div class="foto_container">
+                <img class="foto" :src="show.image">
+            </div>
             <div class="datos_principales">
                 <router-link class="banda" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'>
                     <p class="display-med">{{show.band}}</p>
@@ -53,13 +55,14 @@ export default {
 <style scoped lang="scss" > 
     .show {
         position: relative;
-        display: block;
+        display: flex;
+        flex-wrap: wrap;
         align-items: center;
         width: 100%;
         margin: 0 auto 1em;
         &.mapa.open {
             .caja {
-                background-color: var(--color_secundario);
+                background-color: transparent;
             }
         }
 
@@ -67,24 +70,30 @@ export default {
             .caja {
                 background-color: #333; color: white;
                 a {pointer-events: unset;}
+                .primera_fila .datos_principales .segunda .sala:before {
+                    background-image: url("/images/pin_liveshow_white.png");
+                }
             }
+        }
+        .soon {
+            margin-right: 100%;
         }
         .hora {
             position: relative;
+            display: inline-block;
             transform: rotate(-90deg);
             transform-origin: top;
-            display: inline-block;
             width: 10%;
             color: #333;
             font-weight: bold;
             font-size: 1.2em;
             margin-left: -5%;
-            top: -30px;
+            // top: -15px;
         }
         .caja {
             position: relative;
             display: inline-block;
-            width: 90%;
+            width: 95%;
             background-color: var(--color_fondo);
             color: #333;
             padding: 1em .5em;
@@ -94,15 +103,18 @@ export default {
                 display: flex;
                 width: 100%;
                 height: 5em;
-                .foto {
-                    // width: 20vw;
-                    // height: 20vw;
-                    width: 75px;
-                    height: 75px;
-                    object-fit: cover;
+                .foto_container {
+                    position: relative;
+                    width: 30%;
+                    height: 100%;
                     margin-right: 10px;
-                    border-radius: 50%;
-                    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.45);
+                    .foto {
+                        width: 20vw;
+                        height: 20vw;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.45);
+                    }
                 }
                 .datos_principales {
                     display: flex;
@@ -132,7 +144,7 @@ export default {
                                 background-repeat: no-repeat;
                             }
                         }
-                        .precio {display: inline-block; margin-right: .5em;}
+                        // .precio {margin-right: .5em;}
                     }
                 }
             }
