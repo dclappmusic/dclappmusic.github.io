@@ -19,24 +19,52 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import agendaMap from '@/components/agendaMap';
 import agendaList from "@/components/agendaList";
+import axios from 'axios';
 
 export default {
     name: 'Agenda',
-    props: ["geolocation", "get_fake_bd"],
-    components: {agendaList, agendaMap},
+    props: [],
+    components: {
+        agendaList, 
+        agendaMap
+    },
     data() {
         return {
             map: true,
+            accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
+            city: null
         }
     },
     computed: {
+        ...mapState([
+            "geolocation"
+        ]),
+    },
+    watch: {
+        geolocation: function() {
+            this.getCity();
+        }
     },
     created() {
     },
     mounted() {
-        this.get_fake_bd();
+        if (this.geolocation.latitud) {
+            this.getCity();
+        }
+    },
+    methods: {
+        getCity: function() {
+            let call = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + this.geolocation.longitud +  "," + this.geolocation.latitud + ".json?access_token=" + this.accessToken;
+            axios
+                .get(call)
+                .then((response) => {
+                    this.city = response.data.features[3].text;
+                    this.$store.commit("updateCity", this.city);
+                })
+        }
     }
 }
 </script>

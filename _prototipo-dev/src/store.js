@@ -8,7 +8,9 @@ export default new Vuex.Store({
         shows: [],
         bands: [],
         venues: [],
-        user: {}
+        user: {},
+        geolocation: {},
+        city: null
     },
     getters: {
     },
@@ -27,6 +29,12 @@ export default new Vuex.Store({
         },
         updateVenues(state, venues) {
             state.venues = venues;
+        },
+        updateGeolocation(state, geolocation) {
+            state.geolocation = geolocation;
+        },
+        updateCity(state, city) {
+            state.city = city;
         }
     },
     actions: {

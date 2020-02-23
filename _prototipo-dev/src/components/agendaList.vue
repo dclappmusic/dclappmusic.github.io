@@ -32,26 +32,36 @@ export default {
         return {
             show_showsubir: false,
             shows_week: {},
-            other_shows: []
+            other_shows: [],
+            shows_here: []
         }
     },
     computed: {
         ...mapState([
-            "shows"
+            "shows", "city"
         ])
     },
     created() {
         
     },
     mounted() {
-        this.filter_shows();
+        this.shows_city();
     },
     methods: {
+        shows_city: function() {
+            this.shows.forEach(show => {
+                if (show.city === this.city) {
+                    this.shows_here.push(show);
+                }
+            });
+            this.filter_shows();
+            // this.shows.find(show => show.city === this.city);
+        },
         filter_shows: function() {
             let today = this.$moment().hours(12).minutes(0).seconds(0).millisecond(0);
             this.shows_week = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
-            this.shows.forEach(show => {
+            this.shows_here.forEach(show => {
                 var time = this.$moment(show.timestamp);
                 var show_time = this.$moment().set({
                     "year": time.year(), "month": time.month(), "date": time.date(),"hour": 12, "minute": 0, "second": 0, "millisecond": 0

@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ShowCard from '@/components/ShowCard';
 import Mapbox from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -50,7 +51,6 @@ import {
     MglGeolocateControl, 
     MglMarker 
     } from "vue-mapbox";
-import { mapState } from 'vuex';
 
 export default {
     name: 'agendaMap',

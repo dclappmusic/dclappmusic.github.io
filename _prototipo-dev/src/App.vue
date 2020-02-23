@@ -74,6 +74,9 @@
             },
             venues_fb: function() {
                 this.$store.commit("updateVenues", [...this.venues_fb, ...this.venues_gs]);
+            },
+            geolocation: function() {
+                this.$store.commit("updateGeolocation", this.geolocation);
             }
         },
 		created() {
@@ -181,6 +184,7 @@
                 this.geolocation.longitud = position.coords.longitude;
                 console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
                 localStorage.setItem('coords', JSON.stringify(this.geolocation));
+                this.$store.commit("updateGeolocation", this.geolocation);
             },
             browserGeolocationFail: function(error) {
                 switch (error.code) {
@@ -218,6 +222,7 @@
                 this.geolocation.longitud = position.coords.longitude;
                 console.log("API geolocation success!\n\nlat = " + latitud + "\nlng = " + longitud);
                 localStorage.setItem('coords', JSON.stringify(this.geolocation));
+                this.$store.commit("updateGeolocation", this.geolocation);
             },
 
         //suposely update the PWA version everytime you open the App
