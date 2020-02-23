@@ -305,6 +305,29 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   line-height: 1.2em;
 }
 
+.container .intro .cta {
+  position: relative;
+  display: inline-block;
+  margin: 2em auto;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-size: 22px;
+  border: 1px solid white;
+  border-radius: 2em;
+  padding: .5em 1em;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.container .intro .cta:hover {
+  background-color: white;
+  color: #031927;
+  font-weight: bold;
+  top: -2px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
 .container .intro .definicion {
   width: 90%;
   margin-left: 2%;
@@ -341,6 +364,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
   .container .intro .main-parr {
     font-size: 10vw;
+  }
+  .container .intro .cta {
+    margin-top: 6em;
   }
   .container .intro .definicion {
     overflow: scroll;
