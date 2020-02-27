@@ -126,12 +126,12 @@ export default {
         }
     }
     &::v-deep .mapboxgl-popup {
-        max-width: 85vw!important;
+        max-width: 75vw!important;
         .mapboxgl-popup-tip {border-top-color: var(--color_secundario);}
         .mapboxgl-popup-content {
             background-color: var(--color_secundario);
             border-radius: 10px;
-            padding: 3% 0;
+            padding: 5% 0;
             .hora {color: white;}
         }
     }
@@ -143,8 +143,6 @@ export default {
         height: 100vh;
         background-attachment: rgba(255,0,0,.5);
     }
-    &::v-deep .mapboxgl-ctrl-logo {
-        display: none!important;
-    }
+    
 }
 </style>

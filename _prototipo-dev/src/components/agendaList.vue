@@ -2,7 +2,7 @@
 <div class="shows">
     <div v-for="(day, index) in shows_week" :key="index">
         <div v-if="day[0]">
-            <p class="when display-med">{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd DD')}}</p>
+            <p class="when display-med">{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd')}}</p>
             <ShowCard v-for="(show, subindex) in day" :key="subindex" :show="show" :type="'list'"/>
         </div>
     </div>
@@ -18,16 +18,19 @@
 
 <script>
 import ShowCard from '@/components/ShowCard';
+// import showSubir from '@/components/showSubir';
 import { mapState } from 'vuex';
 
 export default {
     name: 'agendaList',
     props:["geolocation"],
     components: {
-        ShowCard
+        ShowCard,
+        // showSubir
     },
     data() {
         return {
+            show_showsubir: false,
             shows_week: {},
             other_shows: [],
             shows_here: []
