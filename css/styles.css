@@ -312,9 +312,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-family: "Roboto", sans-serif;
   color: white;
   font-size: 22px;
-  border: 1px solid white;
+  background-color: 2px solid white;
   border-radius: 2em;
   padding: .5em 1em;
+  font-weight: bold;
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
@@ -322,7 +323,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .container .intro .cta:hover {
   background-color: white;
   color: #031927;
-  font-weight: bold;
   top: -2px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
           box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);

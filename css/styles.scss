@@ -198,14 +198,14 @@ $mobile:"(max-width:768px)";
             display: inline-block;
             margin: 2em auto;
             @include typo($Roboto, 22px, $color-parr);
-            border: 1px solid $color-parr;
+            background-color: 2px solid $color-parr;
             border-radius: 2em;
             padding: .5em 1em;
+            font-weight: bold;
             transition: all .2s ease-in-out;
             &:hover {
                 background-color: $color-parr;
                 color: $azul-texto;
-                font-weight: bold;
                 top: -2px;
                 box-shadow: 0 5px 10px rgba(0,0,0,.15);
             }
