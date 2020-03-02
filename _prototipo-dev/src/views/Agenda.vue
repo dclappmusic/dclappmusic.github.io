@@ -2,19 +2,24 @@
     <div class="page agenda" data-page="agenda">
        <div class="cabecera">
             <!-- <h1 class="titulo">AGENDA</h1> -->
+            <p class="display-med filtros" @click="filters = true">filtros</p>
+            <keep-alive>
+                <AgendaFilters v-if="filters" @filters_popup="filters = false" @filtering="filtering"/>
+            </keep-alive>
             <p v-if="!map" class="display-med mapa" :class="{'active': !map}"  @click="map = !map">mapa</p>
             <p v-else class="display-med lista" :class="{'active': map}" @click="map = false">lista</p>
        </div>
-       <div class="view">
+       <div class="view" v-if="geolocation.latitud && shows[0]">
            <agendaMap
-                v-if="map"
-                :geolocation="geolocation"
+                v-if="map && city"
+                :shows="shows_filtered"
             />
             <agendaList
                 v-else
-                :geolocation="geolocation"
+                :shows="shows_filtered"
             />
        </div>
+       <div v-else class="spinner">loading</div>
     </div>
 </template>
 
@@ -22,6 +27,7 @@
 import { mapState } from 'vuex';
 import agendaMap from '@/components/agendaMap';
 import agendaList from "@/components/agendaList";
+import AgendaFilters from "@/components/AgendaFilters";
 import axios from 'axios';
 
 export default {
@@ -29,31 +35,38 @@ export default {
     props: [],
     components: {
         agendaList, 
-        agendaMap
+        agendaMap,
+        AgendaFilters
     },
     data() {
         return {
             map: true,
             accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
-            city: null
+            city: null,
+            filters: false,
+            shows_filtered: []
         }
     },
     computed: {
         ...mapState([
-            "geolocation"
+            "geolocation", "shows"
         ]),
     },
     watch: {
         geolocation: function() {
             this.getCity();
+        },
+        shows_filtered: function() {
+            
         }
     },
     created() {
-    },
-    mounted() {
+        this.shows_filtered = this.shows;
         if (this.geolocation.latitud) {
             this.getCity();
         }
+    },
+    mounted() {
     },
     methods: {
         getCity: function() {
@@ -64,6 +77,13 @@ export default {
                     this.city = response.data.features[3].text;
                     this.$store.commit("updateCity", this.city);
                 })
+        },
+        filtering(new_filters) {
+            console.log(new_filters.tipo);
+            console.log(new_filters.price);
+            this.shows_filtered = this.shows.filter(show => (new_filters.tipo.includes(show.show_type)) && (new_filters.price > show.price));
+            console.log(this.shows_filtered);
+
         }
     }
 }
@@ -87,7 +107,26 @@ export default {
                         color: white;
                     }
                 }
+                &.filtros {
+                    position: absolute;
+                    width: 25%;
+                    top: 0;
+                    left: 10px;
+                    font-size: .6em;
+                    background-color: white;
+                    color: var(--color_primario);
+                    padding: .3em;
+                    border-radius: 5em;
+                }
             }
+        }
+        .spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vh;
+            height: 100vh;
+            background: rgba(0,0,0,.5);
         }
     }
 </style>

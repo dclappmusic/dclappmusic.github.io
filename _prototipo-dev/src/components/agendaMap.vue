@@ -50,11 +50,11 @@ import {
     MglNavigationControl,
     MglGeolocateControl, 
     MglMarker 
-    } from "vue-mapbox";
+} from "vue-mapbox";
 
 export default {
     name: 'agendaMap',
-    props: ["geolocation"],
+    props: ["shows"],
     components: {
         Mapbox,
         MglMap,
@@ -74,11 +74,16 @@ export default {
     },
     computed: {
         ...mapState([
-            "shows"
+            "geolocation"
         ])
     },
+    watch: {
+        shows() {
+            this.filter_shows_today();
+        }
+    },
     created() {
-        // this.map = null;
+        this.map = null;
     },
     mounted() {
         console.log(this.geolocation.latitud + ", " + this.geolocation.longitud);
@@ -96,6 +101,7 @@ export default {
         },
         filter_shows_today: function() {
             var hoy = this.$moment();
+            this.shows_hoy = [];
             this.shows.forEach(show => {
                 var show_time = this.$moment(show.timestamp);
                 var diff = show_time.diff(hoy, 'hours');
@@ -126,13 +132,13 @@ export default {
         }
     }
     &::v-deep .mapboxgl-popup {
-        max-width: 75vw!important;
+        min-width: 90vw!important;
         .mapboxgl-popup-tip {border-top-color: var(--color_secundario);}
         .mapboxgl-popup-content {
             background-color: var(--color_secundario);
             border-radius: 10px;
             padding: 5% 0;
-            .hora {color: white;}
+            .hora {color: white; }
         }
     }
     &::v-deep .mapboxgl-canvas:before {
@@ -143,6 +149,14 @@ export default {
         height: 100vh;
         background-attachment: rgba(255,0,0,.5);
     }
-    
+    &::v-deep .mapboxgl-ctrl-logo {
+        display: none!important;
+    }
+    &::v-deep .mapboxgl-ctrl-top-left {
+        top: 80%;
+        right: 2%;
+        .mapboxgl-ctrl.mapboxgl-ctrl-group {float: right;}
+    }
+
 }
 </style>

@@ -52,7 +52,7 @@
 		},
         computed: {
             ...mapState([
-                "shows", "bands", "venues", "user"
+                "shows", "bands", "venues"
             ]),
         },
         watch: {
@@ -84,22 +84,22 @@
             //     this.fecha_hoy = new Date();
             // }, 1000);
 
-			firebase.auth().onAuthStateChanged(user => {
-				if (user) {
-					console.log("ya estas logueado");
-					console.log(user);
-					this.show_login = false;
-        //download user
-					firebase.firestore().collection("fans").doc(user.uid).onSnapshot((doc) => {
-                        this.user = doc.data();
-                        console.log(this.user);
-					});
-				} else {
-					// No user is signed in.
-                    this.show_login = true;
-					console.log("no estás logueado");
-				}
-			});
+		// 	firebase.auth().onAuthStateChanged(user => {
+		// 		if (user) {
+		// 			console.log("ya estas logueado");
+		// 			console.log(user);
+		// 			this.show_login = false;
+        // //download user
+		// 			firebase.firestore().collection("fans").doc(user.uid).onSnapshot((doc) => {
+        //                 this.user = doc.data();
+        //                 console.log(this.user);
+		// 			});
+		// 		} else {
+		// 			// No user is signed in.
+        //             this.show_login = true;
+		// 			console.log("no estás logueado");
+		// 		}
+		// 	});
 		},
 		mounted() {
 			window.addEventListener('beforeinstallprompt', (e) => {
@@ -107,6 +107,8 @@
 				this.deferredPrompt = e;
 				this.show_install = true;
 			});
+            
+            this.get_geolocation();
             this.get_shows();
             this.get_fake_bd();
             this.forceSWupdate();  
@@ -115,11 +117,6 @@
 
         //gets the shows from the firebase database
             get_shows: function() {
-                if (localStorage.getItem('coords')){
-                    this.geolocation = JSON.parse(localStorage.getItem('coords'));
-                    console.log(this.geolocation);
-                }
-                this.get_geolocation();
                 var db = firebase.firestore();
                 db.collection("shows").onSnapshot((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
@@ -168,6 +165,10 @@
 			},
         //geolocation functions
 			get_geolocation: function() {
+                if (localStorage.getItem('coords')){
+                    this.geolocation = JSON.parse(localStorage.getItem('coords'));
+                    console.log(this.geolocation);
+                }
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         this.browserGeolocationSuccess,

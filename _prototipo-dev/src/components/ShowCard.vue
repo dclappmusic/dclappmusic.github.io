@@ -1,6 +1,6 @@
 <template>
 <div class="show" @click="ampliar" :class="{open: ampliado}">
-    <p v-if="type==='list_soon'" class="display-sm soon">{{this.$moment(show.timestamp).format("D/MM")}}</p>
+    <p v-if="type==='list_soon'" class="display-sm soon">{{this.$moment(show.timestamp).format("DD/MM")}}</p>
     <p class="hora">{{this.$moment(show.timestamp).format("HH:mm")}}</p>
     
     <div class="caja">
@@ -21,8 +21,8 @@
                 </div>
             </div>
         </div>
-        <div class="segunda_fila" v-if="ampliado">
-            <a class="boton-sm" :href="show.link">comprar entradas</a>
+        <div class="segunda_fila" v-if="ampliado || from==='mapa'">
+            <a class="boton-sm comprar" :href="show.link">comprar entradas</a>
         </div>
     </div>
 </div>
@@ -32,7 +32,7 @@
 
 export default {
     name: 'ShowCard',
-    props:["show", "type"],
+    props:["show", "type", "from"],
     data() {
         return {
             show_form: false,
@@ -63,6 +63,14 @@ export default {
         &.mapa.open {
             .caja {
                 background-color: transparent;
+            }
+        }
+        &.mapa {
+            margin-bottom: 0;
+            .caja .segunda_fila {
+                background: none;
+                margin: 1em -1.5em -1em;
+                width: calc(100% + 2em);
             }
         }
 
@@ -107,7 +115,7 @@ export default {
                     position: relative;
                     width: 30%;
                     height: 100%;
-                    margin-right: 10px;
+                    margin-right: 5%;
                     .foto {
                         width: 20vw;
                         height: 20vw;
@@ -123,18 +131,19 @@ export default {
                     align-items: center;
                     justify-content: center;
                     
-                    .banda {width: 100%; margin-bottom: .5em;}
+                    .banda {width: 100%; margin-bottom: 1em;}
                     .segunda {
                         width: 100%;
                         display: flex;
                         text-align: center;
-                        .parr-sm:not(:first-child) {margin: 0 .5em;}
+                        // .parr-sm:not(:first-child) {margin: 0 .5em;}
                         .sala {
                             display: flex; 
                             justify-content: flex-start;
                             margin-right: .5em; 
                             max-width: 50%;
-                            .parr-sm {text-align: left;}
+                            font-weight: 600;
+                            .parr-sm {text-align: left; width: fit-content;}
                             &:before {
                                 content: "";
                                 background-image: url("/images/pin_liveshow.png");
@@ -144,8 +153,23 @@ export default {
                                 background-repeat: no-repeat;
                             }
                         }
+                        .precio {margin-left: .5em;}
                         // .precio {margin-right: .5em;}
                     }
+                }
+            }
+            .segunda_fila {
+                background-color: rgba(255,255,255,.1);
+                display: flex;
+                justify-content: flex-end;
+                width: calc(100% + 1em);
+                margin: 2em -.5em -2em;
+                .comprar {
+                    background-color: var(--color_primario);
+                    color: var(--color_fondo);
+                    padding: .4em .5em;
+                    border-radius: .5em;
+                    margin: .5em .5em .5em 0;
                 }
             }
         }

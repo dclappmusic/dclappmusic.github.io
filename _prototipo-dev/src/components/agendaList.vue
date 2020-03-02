@@ -2,13 +2,13 @@
 <div class="shows">
     <div v-for="(day, index) in shows_week" :key="index">
         <div v-if="day[0]">
-            <p class="when display-med">{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd')}}</p>
-            <ShowCard v-for="(show, subindex) in day" :key="subindex" :show="show" :type="'list'"/>
+            <p class="when display-med">{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd DD')}}</p>
+            <ShowCard v-for="(show, subindex) in day" :key="subindex" :show="show" :type="'list'" :from="'list'" />
         </div>
     </div>
     <div v-if="other_shows[0]">
         <p class="when display-med">Soon</p>
-        <ShowCard class="list-soon" v-for="(show, index) in other_shows" :key="index" :show="show" :type="'list_soon'" />
+        <ShowCard class="list-soon" v-for="(show, index) in other_shows" :key="index" :show="show" :type="'list_soon'" :from="'list'" />
     </div>
     
     <!-- <button @click="show_showsubir = true" class="boton">subir show</button> -->
@@ -18,19 +18,16 @@
 
 <script>
 import ShowCard from '@/components/ShowCard';
-// import showSubir from '@/components/showSubir';
 import { mapState } from 'vuex';
 
 export default {
     name: 'agendaList',
-    props:["geolocation"],
+    props:["shows"],
     components: {
-        ShowCard,
-        // showSubir
+        ShowCard
     },
     data() {
         return {
-            show_showsubir: false,
             shows_week: {},
             other_shows: [],
             shows_here: []
@@ -38,8 +35,13 @@ export default {
     },
     computed: {
         ...mapState([
-            "shows", "city"
+            "city", "geolocation"
         ])
+    },
+    watch: {
+        shows() {
+            this.shows_city();
+        }
     },
     created() {
         
@@ -49,6 +51,7 @@ export default {
     },
     methods: {
         shows_city: function() {
+            this.shows_here = [];
             this.shows.forEach(show => {
                 if (show.city === this.city) {
                     this.shows_here.push(show);
@@ -82,7 +85,7 @@ export default {
     .shows {
         width: 100%;
         padding: 20px;
-        margin-top: 5vh;
+        margin-top: 10vh;
         .when {
             margin-bottom: 1em;
             color: var(--color_primario);

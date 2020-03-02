@@ -1,6 +1,6 @@
 <template>
     <div class="page home" data-page="home">
-        <Header :user="this.user" />
+        <!-- <Header :user="this.user" /> -->
         <a class="boton btn_preclapp" @click="overlay('clapp')">
             <img src="images/icon_clapp.png" />
         </a>
