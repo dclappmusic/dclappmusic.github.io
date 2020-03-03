@@ -6,8 +6,13 @@
         <img class="image" :src="band.image">
        
         <h2 class="titulo name">{{band.name}}</h2>
-        <div>
-
+        <h3 class="style">{{band.estilo}}</h3>
+        <p class="description">{{band.description}}</p>
+        <div class="concert">
+            <h3>Next Concerts</h3>
+            <div v-for="show in band_shows" v-bind:key="show">
+                {{$moment(show.timestamp).format("D/MM")}} {{show.venue}} {{show.city}} {{show.price}}
+            </div>
         </div>
 
     </div>
@@ -32,6 +37,10 @@ export default {
         ]),
         band: function() {
             return this.bands.find(band => band.id === this.band_id);
+        },
+        band_shows: function() {
+            var band_shows = this.shows.filter(show => show.band_id === this.band_id);
+            return band_shows;
         }
     },
     created() {
@@ -77,6 +86,44 @@ export default {
         font-weight: 900;
         line-height: normal;
         font-size: 40px;
+        z-index: 10;
+    }
+    .style {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        text-align: left;
+        font-family: var(--roboto);
+        color: white;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+        font-size: 20px;
+        z-index: 10;
+    }
+    .description {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        text-align: justify;
+        font-family: var(--roboto);
+        color: white;
+        font-style: normal;
+        line-height: normal;
+        font-size: 14px;
+        z-index: 10;
+    }
+    .concert {
+        background-color: grey;
+        position: relative;
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        font-family: var(--roboto);
+        color: white;
+        font-style: normal;
+        line-height: normal;
+        font-size: 14px;
         z-index: 10;
     }
     .resumen {

@@ -38,6 +38,8 @@ export default {
         padding-top: 3%;
 		&.router-link-exact-active {
 			// position: relative;
+            font-weight: bold;
+            font-size: 1.1em;
 		}
 	}
     .selected {

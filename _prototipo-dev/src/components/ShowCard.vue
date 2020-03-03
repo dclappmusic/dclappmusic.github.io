@@ -67,10 +67,13 @@ export default {
         }
         &.mapa {
             margin-bottom: 0;
-            .caja .segunda_fila {
-                background: none;
-                margin: 1em -1.5em -1em;
-                width: calc(100% + 2em);
+            .caja {
+                padding: 1em .5em;
+                .segunda_fila {
+                    background: none;
+                    margin: 1em -1.5em -2em;
+                    width: calc(100% + 2em);
+                }
             }
         }
 
@@ -104,7 +107,7 @@ export default {
             width: 95%;
             background-color: var(--color_fondo);
             color: #333;
-            padding: 1em .5em;
+            padding: 2em .5em;
             border-radius: .5em;
             a {pointer-events: none;}
             .primera_fila {

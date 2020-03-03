@@ -10,8 +10,8 @@
             <h3 class="display-sm">Tipo de show:</h3>
             <ul class="show_type_container">
                 <li class="filtro" v-for="(type, subindex) in show_types" :key="subindex" 
-                    @click="filter_type[type] = !filter_type[type]"
-                    :class="{active: filter_type[type] ? true : false}"
+                    @click="filtering(type)"
+                    :class="{active: filter_type.includes(type)}"
                 >
                     <p class="parrafo">{{type}}</p>
                     <!-- {{filter_type[type]}} -->
@@ -45,7 +45,7 @@ export default {
     data() {
         return {
             show_types: [],
-            filter_type: {},
+            filter_type: [],
             filter_price: null
         }
     },
@@ -55,12 +55,6 @@ export default {
         ])
     },
     watch: {
-        // filters: {
-        //     handler(val){
-        //         // do stuff
-        //     },
-        //     deep: true
-        // }
     },
     created() {
         console.log(this.show_types);
@@ -71,38 +65,40 @@ export default {
                 console.log(type);
                 if (type && (!this.show_types.includes(type))) {
                     this.show_types.push(type);
+                    this.filter_type.push(type);
                 }
             });
-            this.show_types.forEach(el => {
-                this.filter_type[el] = true;
-            });
+            // this.show_types.forEach(el => {
+            //     this.filter_type[el] = true;
+            // });
         }
+        // let tipos = this.show_types;
+        // this.filter_type = tipos;
     },
     mounted() {
     },
     methods: {
         filtering(filter) {
-            this.filter_type[filter] = !this.filter_type[filter];
+            // this.filter_type[filter] = !this.filter_type[filter];
+            if (!this.filter_type.includes(filter)) {
+                this.filter_type.push(filter)
+            } else {
+                const index = this.filter_type.indexOf(filter);
+                this.filter_type.splice(index, 1);
+            }
         },
         close_popup() {
-            let array_filters = [];
-            for (let type in this.filter_type) {
-                if (this.filter_type[type]) { array_filters.push(type); }
-            }
+            // let array_filters = [];
+            // for (let type in this.filter_type) {
+            //     if (this.filter_type[type]) { array_filters.push(type); }
+            // }
             let filtros = {
-                tipo: array_filters,
+                tipo: this.filter_type,
                 price: this.filter_price
             }
             this.$emit('filtering', filtros);
             this.$emit('filters_popup', false);
-        },
-        getClass(type) {
-            this.filter_type[type] ? 'active' : '';
         }
-        // filter_active(filter) {
-        //     debugger;
-        //     this.filters.type[filter] ? true : false;
-        // }
     }
 }
 </script>
