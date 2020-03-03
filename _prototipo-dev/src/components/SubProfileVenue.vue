@@ -2,6 +2,13 @@
     <div class="page venue_profile" data-page="sub">
        <img class="image" :src="venue.logo">
         <h2 class="titulo name">{{venue.name}}</h2>
+
+        <div class="concert">
+            <h3>Next Concerts</h3>
+            <div class="concert" v-for="show in venue_shows" v-bind:key="show">
+                {{$moment(show.timestamp).format("D/MM")}} {{show.band}} {{show.city}} {{show.price}}
+            </div>
+        </div>
     </div>
 </template>
 
@@ -24,6 +31,10 @@ export default {
         ]),
         venue: function() {
             return this.venues.find(venue => venue.id === this.venue_id);
+        },
+        venue_shows: function() {
+            var venue_shows = this.shows.filter(show => show.venue_id === this.venue_id);
+            return venue_shows;
         }
     },
     created() {
@@ -54,6 +65,18 @@ export default {
         font-weight: 900;
         line-height: normal;
         font-size: 40px;
+        z-index: 10;
+    }
+    .concert {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        font-family: var(--roboto);
+        color: white;
+        font-style: normal;
+        line-height: normal;
+        font-size: 14px;
         z-index: 10;
     }
 }
