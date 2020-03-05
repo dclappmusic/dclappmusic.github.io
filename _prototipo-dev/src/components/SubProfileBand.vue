@@ -10,9 +10,12 @@
         <p class="description">{{band.description}}</p>
         <div class="concert">
             <h3>Next Concerts</h3>
-            <div v-for="show in band_shows" v-bind:key="show" class="show">
-                {{$moment(show.timestamp).format("D/MM")}} {{show.venue}} {{show.city}} {{show.price}}
-            </div>
+            <a v-for="show in band_shows" v-bind:key="show" class="show">
+                <a class="date">{{$moment(show.timestamp).format("D/MM")}}</a>
+                <a class="sala">{{show.venue}}</a>
+                <a class="city">{{show.city}}</a>
+                <a class="precio">{{show.price > 0 ? show.price + "€" : "FREE"}}</a>
+            </a>
         </div>
 
     </div>
@@ -114,11 +117,11 @@ export default {
         z-index: 10;
     }
     .concert {
-        background-color: grey;
+        background-color: gray;
         border-radius: 20px;
         padding: 10px;
         position: relative;
-        width: 70%;
+        width: 90%;
         margin: 10px auto auto auto;
         text-align: center;
         font-family: var(--roboto);
@@ -140,6 +143,33 @@ export default {
             border-width: 1px;
             border-style: solid;
             margin: 3px auto;
+            display: inline-block;
+            width: 90%;
+            text-align: justify;
+
+            a {
+                display: inline-block;
+            }
+
+            .date {
+                font-weight: bold;
+                width: 20%;
+                padding-left: 10px;
+            } 
+            .sala {
+                font-weight: lighter;
+                width: 40%;
+            }
+            .city {
+                font-weight: bold;
+                width: 20%;
+            } 
+            .precio {
+                font-weight: lighter;
+                width: 20%;
+                text-align: right;
+                padding-right: 10px 
+            }
         }
     }
     .resumen {
