@@ -10,7 +10,7 @@
         <p class="description">{{band.description}}</p>
         <div class="concert">
             <h3>Next Concerts</h3>
-            <div v-for="show in band_shows" v-bind:key="show">
+            <div v-for="show in band_shows" v-bind:key="show" class="show">
                 {{$moment(show.timestamp).format("D/MM")}} {{show.venue}} {{show.city}} {{show.price}}
             </div>
         </div>
@@ -78,7 +78,7 @@ export default {
     .name {
         position: relative;
         width: 80%;
-        margin: 0 auto;
+        margin: 5px auto;
         text-align: center;
         font-family: var(--roboto);
         color: white;
@@ -91,7 +91,7 @@ export default {
     .style {
         position: relative;
         width: 80%;
-        margin: 0 auto;
+        margin: 2px auto;
         text-align: left;
         font-family: var(--roboto);
         color: white;
@@ -104,7 +104,7 @@ export default {
     .description {
         position: relative;
         width: 80%;
-        margin: 0 auto;
+        margin: 5px auto;
         text-align: justify;
         font-family: var(--roboto);
         color: white;
@@ -115,16 +115,32 @@ export default {
     }
     .concert {
         background-color: grey;
+        border-radius: 20px;
+        padding: 10px;
         position: relative;
-        width: 60%;
-        margin: 0 auto;
+        width: 70%;
+        margin: 10px auto auto auto;
         text-align: center;
         font-family: var(--roboto);
         color: white;
         font-style: normal;
         line-height: normal;
         font-size: 14px;
-        z-index: 10;
+        z-index: auto;
+
+        h3 {
+            text-decoration: underline;
+            font-size: 18px;
+            padding-bottom: 10px;
+        }
+
+        .show {
+            border-radius: 5px;
+            border-color: white;
+            border-width: 1px;
+            border-style: solid;
+            margin: 3px auto;
+        }
     }
     .resumen {
         position: relative;

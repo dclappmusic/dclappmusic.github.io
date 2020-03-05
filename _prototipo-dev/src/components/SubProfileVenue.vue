@@ -5,7 +5,7 @@
 
         <div class="concert">
             <h3>Next Concerts</h3>
-            <div class="concert" v-for="show in venue_shows" v-bind:key="show">
+            <div class="show" v-for="show in venue_shows" v-bind:key="show">
                 {{$moment(show.timestamp).format("D/MM")}} {{show.band}} {{show.city}} {{show.price}}
             </div>
         </div>
@@ -68,16 +68,33 @@ export default {
         z-index: 10;
     }
     .concert {
+        background-color: grey;
+        border-radius: 20px;
+        padding: 10px;
         position: relative;
-        width: 80%;
-        margin: 0 auto;
+        width: 70%;
+        margin: 10px auto auto auto;
         text-align: center;
         font-family: var(--roboto);
         color: white;
         font-style: normal;
         line-height: normal;
         font-size: 14px;
-        z-index: 10;
+        z-index: auto;
+
+        h3 {
+            text-decoration: underline;
+            font-size: 18px;
+            padding-bottom: 10px;
+        }
+
+        .show {
+            border-radius: 5px;
+            border-color: white;
+            border-width: 1px;
+            border-style: solid;
+            margin: 3px auto;
+        }
     }
 }
 </style>
