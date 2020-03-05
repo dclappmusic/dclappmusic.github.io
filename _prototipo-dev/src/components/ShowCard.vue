@@ -149,7 +149,7 @@ export default {
                             .parr-sm {text-align: left; width: fit-content;}
                             &:before {
                                 content: "";
-                                background-image: url("/images/pin_liveshow.png");
+                                background-image: url("~/images/pin_liveshow.png");
                                 width: 1em;
                                 height: 1em;
                                 background-size: contain;

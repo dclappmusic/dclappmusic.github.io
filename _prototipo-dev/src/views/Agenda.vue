@@ -81,7 +81,7 @@ export default {
         filtering(new_filters) {
             console.log(new_filters.tipo);
             console.log(new_filters.price);
-            this.shows_filtered = this.shows.filter(show => (new_filters.tipo.includes(show.show_type)) && (new_filters.price > show.price));
+            this.shows_filtered = this.shows.filter(show => (new_filters.tipo.includes(show.show_type)) && (new_filters.price >= show.price));
             console.log(this.shows_filtered);
 
         }

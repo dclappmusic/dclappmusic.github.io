@@ -154,8 +154,10 @@
             set_show_cords: function(shows, venues) {
                 shows.forEach(show => {
                     var venue_id = show.venue_id;
-                    show.lat = venues[venue_id].latitud || "";
-                    show.lon = venues[venue_id].longitud || "";
+                    if (venue_id) {
+                        show.lat = venues[venue_id].latitud;
+                        show.lon = venues[venue_id].longitud;
+                    }
                 });
             },
         //close the PWA install popup

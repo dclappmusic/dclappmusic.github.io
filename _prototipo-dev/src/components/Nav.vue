@@ -36,6 +36,8 @@ export default {
 		width: 20%;
         z-index: 10;
         padding-top: 3%;
+        user-select: none!important;
+        outline: none!important;
 		&.router-link-exact-active {
 			// position: relative;
             font-weight: bold;
