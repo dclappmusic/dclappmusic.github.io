@@ -1,5 +1,5 @@
 <template>
-    <nav class="menu nav_slider">
+    <nav class="menu nav_slider" :class="{fondo: $route.name != 'Home'}">
         <span class="selected" :class="$route.name">
             <svg width="80" height="51" viewBox="0 0 80 51" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="40" cy="40" r="40" fill="white"/>
@@ -16,7 +16,7 @@ export default {
   name: 'Nav',
   props: ["admin"],
   mounted() {
-      console.log(this.$route);
+    //   console.log(this.$route);
   }
 }
 </script>
@@ -31,6 +31,9 @@ export default {
     justify-content: space-between;
     padding: 0 3%;
 	text-align: center;
+    &.fondo {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) -46.67%, rgba(255, 255, 255, 0.0441989) 12.92%, rgba(255, 255, 255, 0.54) 49.58%, #FFFEFE 100%);
+    }
 	.menu-tit {
 		color: var(--color_secundario);
 		width: 20%;

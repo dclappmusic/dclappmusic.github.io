@@ -13,11 +13,13 @@
                     <p class="display-med">{{show.band}}</p>
                 </router-link>
                 <div class="segunda">
+                    <p class="tipo parr-sm">{{show.show_type}}</p>
+                    <p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p>
+                </div>
+                <div class="segunda">
                     <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'>
                         <p class="parr-sm">{{show.venue}}</p>
                     </router-link>
-                    <p class="tipo parr-sm">{{show.show_type}}</p>
-                    <p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p>
                 </div>
             </div>
         </div>
@@ -134,7 +136,7 @@ export default {
                     align-items: center;
                     justify-content: center;
                     
-                    .banda {width: 100%; margin-bottom: 1em;}
+                    .banda {width: 100%; margin-bottom: .5em;}
                     .segunda {
                         width: 100%;
                         display: flex;
@@ -144,8 +146,9 @@ export default {
                             display: flex; 
                             justify-content: flex-start;
                             margin-right: .5em; 
-                            max-width: 50%;
+                            max-width: 100%;
                             font-weight: 600;
+                            margin-top: .5em;
                             .parr-sm {text-align: left; width: fit-content;}
                             &:before {
                                 content: "";

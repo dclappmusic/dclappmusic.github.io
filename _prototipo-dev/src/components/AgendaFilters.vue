@@ -19,7 +19,7 @@
             </ul>
         </div>
         <div class="filter show_price">
-            <h3 class="display-sm">Precio máximo:</h3>
+            <h3 class="display-sm">Precio máximo (€):</h3>
             <ul class="show_price_container">
                 <input class="slider" type="range" min="0" max="50" step="10" list="precios" v-model="filter_price">
                 <datalist id="precios" class="precios" >
@@ -28,10 +28,11 @@
                     <option value="20">20</option>
                     <option value="30">30</option>
                     <option value="40">40</option>
-                    <option value="50">50</option>
+                    <option value="50">todos</option>
                 </datalist>
             </ul>
         </div>
+        <a class="boton" @click="close_popup">listo</a>
     </div>
 </div>
 </template>
@@ -46,7 +47,7 @@ export default {
         return {
             show_types: [],
             filter_type: [],
-            filter_price: null
+            filter_price: 50
         }
     },
     computed: {
@@ -116,6 +117,14 @@ export default {
                 padding: .5em;
                 svg {width: .5em; height: .5em;}
             }
+            .boton {
+                font-size: .6em;
+                padding: .2em .3em;
+                border-radius: 2em;
+                width: 35%;
+                float: right;
+                margin: 1em -.5em -.7em;
+            }
             .display-sm {
                 text-align: left;
             }
@@ -149,6 +158,7 @@ export default {
                     padding: 0;
                     margin: 0;
                     transition: all 0.2s ease-out;
+                    background-color: white;
                     &::-webkit-slider-thumb {
                         -webkit-appearance: none;
                         width: 1em;
