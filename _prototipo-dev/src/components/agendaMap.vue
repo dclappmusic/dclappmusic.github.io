@@ -3,7 +3,7 @@
         <MglMap 
             :accessToken="accessToken" 
             :mapStyle="mapStyle"
-            :center="[geolocation.longitud, geolocation.latitud]"
+            :center="[geolocation.lon, geolocation.lat]"
             :zoom="12"
             @load="onMapLoaded"
             :attributionControl="false"
@@ -86,7 +86,7 @@ export default {
         this.map = null;
     },
     mounted() {
-        console.log(this.geolocation.latitud + ", " + this.geolocation.longitud);
+        console.log(this.geolocation.lat + ", " + this.geolocation.lon);
         this.filter_shows_today();
     },
     methods: {

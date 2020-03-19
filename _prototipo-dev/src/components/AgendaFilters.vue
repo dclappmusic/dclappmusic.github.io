@@ -120,7 +120,7 @@ export default {
             .boton {
                 font-size: .6em;
                 padding: .2em .3em;
-                border-radius: 2em;
+                border-radius: 5px;
                 width: 35%;
                 float: right;
                 margin: 1em -.5em -.7em;

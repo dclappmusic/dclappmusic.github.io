@@ -1,6 +1,6 @@
 <template>
     <div class="page agenda" data-page="agenda">
-       <div class="cabecera">
+        <div class="cabecera">
             <!-- <h1 class="titulo">AGENDA</h1> -->
             <p class="display-med filtros" @click="filters = true">filtros</p>
             <keep-alive>
@@ -8,18 +8,16 @@
             </keep-alive>
             <p v-if="!map" class="display-med mapa" :class="{'active': !map}"  @click="map = !map">mapa</p>
             <p v-else class="display-med lista" :class="{'active': map}" @click="map = false">lista</p>
-       </div>
-       <div class="view" v-if="geolocation.latitud && shows[0]">
-           <agendaMap
-                v-if="map && city"
-                :shows="shows_filtered"
-            />
-            <agendaList
-                v-else
-                :shows="shows_filtered"
-            />
-       </div>
-       <div v-else class="spinner">loading</div>
+        </div>
+        <div class="view" v-if="geolocation.lat && shows[0]">
+            <keep-alive v-if="map && city">
+                <agendaMap :shows="shows_filtered" />
+            </keep-alive>
+            <keep-alive v-else>
+                <agendaList :shows="shows_filtered" />
+            </keep-alive>
+        </div>
+        <div v-else class="spinner">loading</div>
     </div>
 </template>
 
@@ -62,7 +60,7 @@ export default {
     },
     created() {
         this.shows_filtered = this.shows;
-        if (this.geolocation.latitud) {
+        if (this.geolocation.lat) {
             this.getCity();
         }
     },
@@ -70,7 +68,7 @@ export default {
     },
     methods: {
         getCity: function() {
-            let call = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + this.geolocation.longitud +  "," + this.geolocation.latitud + ".json?access_token=" + this.accessToken;
+            let call = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + this.geolocation.lon +  "," + this.geolocation.lat + ".json?access_token=" + this.accessToken;
             axios
                 .get(call)
                 .then((response) => {

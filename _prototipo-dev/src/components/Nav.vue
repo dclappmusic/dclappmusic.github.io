@@ -1,5 +1,5 @@
 <template>
-    <nav class="menu nav_slider" :class="{fondo: $route.name != 'Home'}">
+    <nav class="menu nav_slider" v-if="$route.name != 'clapp'" :class="{fondo: $route.name != 'Home'}">
         <span class="selected" :class="$route.name">
             <svg width="80" height="51" viewBox="0 0 80 51" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="40" cy="40" r="40" fill="white"/>
