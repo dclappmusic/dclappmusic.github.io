@@ -37,8 +37,8 @@
                 show_login: true,
                 user: {},
                 geolocation: {
-                    latitud: null,
-                    longitud: null
+                    lat: null,
+                    lon: null
                 },
                 show_install: false,
                 deferredPrompt: null,
@@ -183,8 +183,8 @@
                 }
             },
             browserGeolocationSuccess: function(position) {
-                this.geolocation.latitud = position.coords.latitude;
-                this.geolocation.longitud = position.coords.longitude;
+                this.geolocation.lat = position.coords.latitude;
+                this.geolocation.lon = position.coords.longitude;
                 console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
                 localStorage.setItem('coords', JSON.stringify(this.geolocation));
                 this.$store.commit("updateGeolocation", this.geolocation);
@@ -221,8 +221,8 @@
             },
 
             apiGeolocationSuccess: function(position) {
-                this.geolocation.latitud = position.coords.latitude;
-                this.geolocation.longitud = position.coords.longitude;
+                this.geolocation.lat = position.coords.latitude;
+                this.geolocation.lon = position.coords.longitude;
                 console.log("API geolocation success!\n\nlat = " + latitud + "\nlng = " + longitud);
                 localStorage.setItem('coords', JSON.stringify(this.geolocation));
                 this.$store.commit("updateGeolocation", this.geolocation);

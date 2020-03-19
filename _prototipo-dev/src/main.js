@@ -5,13 +5,14 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 import moment from 'moment';
-
+import Vue2TouchEvents from 'vue2-touch-events'
 
 Vue.config.productionTip = false;
 
-//global variables and setting to global object. To use it: this.$moment()
+
 Vue.prototype.$moment = moment;
 
+Vue.use(Vue2TouchEvents)
 
 var firebaseConfig = {
     apiKey: "AIzaSyCcFHmQQSZQMCLlNetLQbW2T4Z7AKH6ztc",

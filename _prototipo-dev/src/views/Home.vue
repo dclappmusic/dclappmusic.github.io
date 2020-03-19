@@ -1,9 +1,9 @@
 <template>
     <div class="page home" data-page="home">
         <!-- <Header :user="this.user" /> -->
-        <a class="boton btn_preclapp" @click="overlay('clapp')">
+        <router-link class="boton btn_preclapp" to="/clapp">
             <img src="images/icon_clapp.png" />
-        </a>
+        </router-link>
         <!-- <router-link class="boton btn_preclapp" to="clapp">
             <img src="images/icon_clapp.png" />
         </router-link> -->
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import Header from '@/components/Header';
+// import Header from '@/components/Header';
 
 export default {
 	name: 'Home',
     components: {
-        Header
+        // Header
     },
 	props: ["user"],
 	data() {
