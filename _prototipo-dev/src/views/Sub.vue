@@ -42,7 +42,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .sub {
-	padding-top: 3em;
+	padding-top: 2em;
 	// background: var(--color_secundario);
     background: linear-gradient(116.98deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
 }

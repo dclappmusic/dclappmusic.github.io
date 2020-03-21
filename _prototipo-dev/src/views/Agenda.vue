@@ -1,5 +1,6 @@
 <template>
     <div class="page agenda" data-page="agenda">
+        <get-geolocation />
         <div class="cabecera">
             <!-- <h1 class="titulo">AGENDA</h1> -->
             <p class="display-med filtros" @click="filters = true">filtros</p>
@@ -23,6 +24,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import GetGeolocation from '@/components/GetGeolocation';
 import agendaMap from '@/components/agendaMap';
 import agendaList from "@/components/agendaList";
 import AgendaFilters from "@/components/AgendaFilters";
@@ -34,7 +36,8 @@ export default {
     components: {
         agendaList, 
         agendaMap,
-        AgendaFilters
+        AgendaFilters,
+        GetGeolocation
     },
     data() {
         return {
