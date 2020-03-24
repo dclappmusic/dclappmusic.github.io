@@ -1,43 +1,54 @@
 <template>
     <div class="page clapp">
+        <get-geolocation />
         <svg @click="$router.go(-1)" class="back" width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.939341 10.9393C0.353554 11.5251 0.353554 12.4749 0.939341 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97919 12.6066 1.3934C12.0208 0.807611 11.0711 0.807611 10.4853 1.3934L0.939341 10.9393ZM26 10.5L2 10.5V13.5L26 13.5V10.5Z" fill="white"/>
         </svg>
 
-        <div v-if="show_founded" class="band">
+        <div v-if="show_founded" class="band close">
             <p class="parrafo clapps">{{clapps}}</p>
-            <p class="titulo animation">
+            <!-- <p class="titulo animation">
                 {{clapp_animacion[clapp_step]}}
-            </p>
+            </p> -->
             <p class="titulo tap" 
                 v-touch:start="startHandler" 
                 v-touch:end="endHandler"
                 v-touch="touchHandler"
                 v-touch:longtap="longtapHandler"
             >
-                tap<br>to<br>clapp<br>
+               {{clapp_animacion[clapp_step]}}
             </p>
-            <p class="titulo name">
-                {{band_closest.name}}<br>
-            </p>
+            <router-link :to='{ name: "sub", params: {from: "clapp", sub_page: "sub_profile_band", id: band_closest.id }}'>
+                <p class="titulo name">
+                    {{band_closest.name}}
+                </p>
+            </router-link>
             <div class="background">
                 <span class="overlay"></span>
                 <img class="image_band" :src="band_closest.image" />
             </div>
         </div>
-        <!-- <div v-else-if="showFar_closest.band">
-            no shows cerca.
-            el más cercano es
-            {{showFar_closest.band}}
-        </div> -->
+        <div v-else-if="showFar_closest" class="band far">
+            <p class="titulo tap">
+                no shows cerca.
+                el más cercano es 
+            </p>
+            <p class="titulo name">
+                {{showFar_closest.band}}
+            </p>
+        </div>
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import firebase from "firebase"
+import GetGeolocation from '@/components/GetGeolocation'
 export default {
 	name: 'Clapp',
-    components: {},
+    components: {
+        GetGeolocation
+    },
     computed: {
         ...mapState([
             "geolocation", "shows", "bands"
@@ -45,10 +56,9 @@ export default {
     },
 	data() {
 		return{
+            user_id: 11111,
             distance_max: 0.013,
             distance: null,
-            band_preclapps: 0,
-            show_preclapps: 0,
             show_closest: null,
             band_closest: null,
             shows_close: [],
@@ -57,20 +67,39 @@ export default {
             show_founded: false,
             shows_active: [],
             clapp_time: 0,
+            clapp_taps: 0,
             clapp_start: null,
             clapps: 0,
             clapp_animacion: [
-                "", "beh", "guay", "la ostia", "wooooooooow"
+                "tap to clapp", "beh", "guay", "la ostia", "wooooooooow"
             ],
             clapp_step: 0,
-            interval: null
+            clapp_step_init: 0,
+            interval: null,
+            upload_timer: null
         }
 	},
     watch: {
         clapp_time() {
             console.log(this.clapp_time);
             const clapp_value =  Math.round(this.clapp_time/100);
-            clapp_value < 1 ? this.clapps++ : this.clapps += clapp_value;
+            clapp_value < 1 ? this.clapp_taps++ : this.clapps += clapp_value;
+        },
+        clapp_taps() {
+            this.clapps++;
+        },
+        geolocation() {
+            this.filter_shows_today();
+            this.arrangeShows();
+        },
+        clapps() {
+            if (this.clapps > 10) {
+                if (this.clapps > 20) {
+                    this.clapp_step_init = 2;
+                } else {
+                    this.clapp_step_init = 1;
+                }
+            } else {this.clapp_step_init = 0;}
         }
     },
 	created() {},
@@ -127,7 +156,8 @@ export default {
             // this.clapps += 1;
         },
         startHandler(e) {
-            this.clapp_step = 1;
+            clearInterval(this.upload_timer);
+            this.clapp_step = this.clapp_step_init;
             this.interval = setInterval(() => {
                 this.clapp_step < 3 ? this.clapp_step++ : '';
             }, 500);
@@ -144,9 +174,27 @@ export default {
             const termina = this.$moment(e.timeStamp);
             console.log('end:' + termina.millisecond());
             this.clapp_time = termina.subtract(this.clapp_start, 'milliseconds').millisecond();
+
+            this.upload_timer = setTimeout(() => {
+                this.uploadClapps();
+            }, 3000);
         },
         longtapHandler(e) {
             console.log(e);
+        },
+        uploadClapps() {
+            let doc_name = this.user_id + '-' + this.show_closest.band_id + '-' + this.clapps;
+            let clapp_ob = {
+                band_id: this.band_closest.id,
+                show_id: this.show_closest.show_id,
+                user_id: this.user_id,
+                clapp_time: this.clapp_time,
+                clapp_taps: this.clapp_taps,
+                timestamp: new Date().getTime()
+            }
+            firebase.firestore().collection("clapps").doc(doc_name).set(clapp_ob).then(() => {
+                console.log("clapp uploaded");
+            })
         }
     }
 }
@@ -156,7 +204,8 @@ export default {
     position: relative;
     width: 100vw;
     height: 100vh;
-    // background: var(--color_primario);
+    background: var(--color_primario);
+    z-index: -1;
     // background-blend-mode: screen;
     .band {
         width: 100%;

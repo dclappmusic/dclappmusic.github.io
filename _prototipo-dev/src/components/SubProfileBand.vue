@@ -6,11 +6,11 @@
         <img class="image" :src="band.image">
        
         <h2 class="titulo name">{{band.name}}</h2>
-        <h3 class="style">{{band.estilo}}</h3>
+        <h3 class="parrafo-big style">{{band.estilo}}</h3>
         <p class="description">{{band.description}}</p>
         <div class="concert">
             <h3>Next Concerts</h3>
-            <a v-for="show in band_shows" v-bind:key="show" class="show">
+            <a class="show" v-for="(show, index) in band_shows" :key="index">
                 <a class="date">{{$moment(show.timestamp).format("D/MM")}}</a>
                 <a class="sala">{{show.venue}}</a>
                 <a class="city">{{show.city}}</a>
@@ -85,23 +85,14 @@ export default {
         text-align: center;
         font-family: var(--roboto);
         color: white;
-        font-style: normal;
         font-weight: 900;
-        line-height: normal;
-        font-size: 40px;
-        z-index: 10;
     }
     .style {
         position: relative;
         width: 80%;
-        margin: 2px auto;
+        margin: 3em auto;
         text-align: left;
-        font-family: var(--roboto);
         color: white;
-        font-style: normal;
-        font-weight: 900;
-        line-height: normal;
-        font-size: 20px;
         z-index: 10;
     }
     .description {
@@ -117,16 +108,15 @@ export default {
         z-index: 10;
     }
     .concert {
-        background-color: gray;
-        border-radius: 20px;
-        padding: 10px;
         position: relative;
         width: 90%;
-        margin: 10px auto auto auto;
+        margin: 3em auto;
+        padding: 10px;
+        background-color: #333;
+        border-radius: 20px;
         text-align: center;
         font-family: var(--roboto);
         color: white;
-        font-style: normal;
         line-height: normal;
         font-size: 14px;
         z-index: auto;
