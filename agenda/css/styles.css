@@ -46,7 +46,7 @@
   line-height: 1.5em;
 }
 
-.parrafo {
+.parrafo, .parr {
   font-family: var(--roboto);
   font-size: 15px;
   line-height: 1.5em;
