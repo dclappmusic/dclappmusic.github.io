@@ -24,20 +24,20 @@ self.__precacheManifest = [
     "url": "/agenda/robots.txt"
   },
   {
-    "revision": "663fd4fb3f2abf4084fe",
-    "url": "/agenda/js/chunk-470b4236.6a28406a.js"
+    "revision": "08247d0026f58a82ef71",
+    "url": "/agenda/js/chunk-556d1aa4.cf7ff2e8.js"
   },
   {
-    "revision": "b0aa12455dfa0278c26024eebddf10fb",
-    "url": "/agenda/images/pin_liveshow_white.png"
+    "revision": "9054a35980dadf7e787c2c086bb404d1",
+    "url": "/agenda/images/pin_liveshow.png"
   },
   {
     "revision": "e7d8d18eb42a9e3f5fbf",
     "url": "/agenda/js/chunk-6d79e746.f2965fd4.js"
   },
   {
-    "revision": "9054a35980dadf7e787c2c086bb404d1",
-    "url": "/agenda/images/pin_liveshow.png"
+    "revision": "b0aa12455dfa0278c26024eebddf10fb",
+    "url": "/agenda/images/pin_liveshow_white.png"
   },
   {
     "revision": "a8ac169df97f9523217c",
@@ -48,19 +48,19 @@ self.__precacheManifest = [
     "url": "/agenda/js/chunk-vendors.aea861fe.js"
   },
   {
-    "revision": "95f31677ce1380834bef99dee8e68c74",
+    "revision": "b08e36e296f476ccbf0fe2a90bbda515",
     "url": "/agenda/index.html"
   },
   {
-    "revision": "bb4e640f4abe7471b02a",
-    "url": "/agenda/js/app.74fe03cf.js"
+    "revision": "93f1e9a77f91a1b207b3",
+    "url": "/agenda/js/app.08555842.js"
   },
   {
-    "revision": "663fd4fb3f2abf4084fe",
-    "url": "/agenda/css/chunk-470b4236.5a370160.css"
+    "revision": "a64ef4a4bb606a284dc00775925a170e",
+    "url": "/agenda/css/_bands.scss"
   },
   {
-    "revision": "bb4e640f4abe7471b02a",
+    "revision": "93f1e9a77f91a1b207b3",
     "url": "/agenda/css/app.652ad050.css"
   },
   {
@@ -68,8 +68,8 @@ self.__precacheManifest = [
     "url": "/agenda/images/icon_rrss_spotify.svg"
   },
   {
-    "revision": "2b58be4fd9d1744adf33a10f5e855964",
-    "url": "/agenda/images/historial_preview.png"
+    "revision": "a6aa4fb891b5d078969d1e0c3a7e0135",
+    "url": "/agenda/css/fonts/Changa-Regular.ttf"
   },
   {
     "revision": "134334996e9d95895458145920775631",
@@ -84,12 +84,12 @@ self.__precacheManifest = [
     "url": "/agenda/images/avatar_base.png"
   },
   {
-    "revision": "369254abd9dba2886a7874e242113111",
-    "url": "/agenda/images/clapp-rojo.png"
-  },
-  {
     "revision": "fcec6f5152dba4d6075d7d34689ea5d5",
     "url": "/agenda/images/facebook.svg"
+  },
+  {
+    "revision": "369254abd9dba2886a7874e242113111",
+    "url": "/agenda/images/clapp-rojo.png"
   },
   {
     "revision": "2d7ec526e2845fc4df963a91b85d8227",
@@ -108,20 +108,16 @@ self.__precacheManifest = [
     "url": "/agenda/images/icon_rrss_instagram.svg"
   },
   {
-    "revision": "a6aa4fb891b5d078969d1e0c3a7e0135",
-    "url": "/agenda/css/fonts/Changa-Regular.ttf"
-  },
-  {
-    "revision": "b7e9f8c16789d3297dcf2e3f927ab0d0",
-    "url": "/agenda/images/icon-edit.svg"
+    "revision": "2b58be4fd9d1744adf33a10f5e855964",
+    "url": "/agenda/images/historial_preview.png"
   },
   {
     "revision": "c85c7e1e8b88f81e4abd080531e246ee",
     "url": "/agenda/images/icon_rrss_youtube.svg"
   },
   {
-    "revision": "eaa786835fdf3df7e8e3665fa11a956e",
-    "url": "/agenda/images/icon-options.svg"
+    "revision": "b7e9f8c16789d3297dcf2e3f927ab0d0",
+    "url": "/agenda/images/icon-edit.svg"
   },
   {
     "revision": "df9cb61ab8e18b32cff85c2f006b6459",
@@ -136,12 +132,16 @@ self.__precacheManifest = [
     "url": "/agenda/css/chunk-6d79e746.0fb85c8b.css"
   },
   {
-    "revision": "14f5f301e600a9357882b92b4a189b20",
-    "url": "/agenda/css/fonts/Changa-Medium.ttf"
+    "revision": "eaa786835fdf3df7e8e3665fa11a956e",
+    "url": "/agenda/images/icon-options.svg"
   },
   {
     "revision": "685eefb3c10874ee3c24c06be82a82bc",
     "url": "/agenda/css/fonts/Changa-SemiBold.ttf"
+  },
+  {
+    "revision": "08247d0026f58a82ef71",
+    "url": "/agenda/css/chunk-556d1aa4.d98e88fd.css"
   },
   {
     "revision": "5bba5d045167b4be74411143efd3b028",
@@ -160,24 +160,20 @@ self.__precacheManifest = [
     "url": "/agenda/images/icon_rrss_soundcloud.svg"
   },
   {
-    "revision": "e10eecd1e7e3b92702bf3246f4b57e14",
-    "url": "/agenda/images/icon_completo.png"
-  },
-  {
     "revision": "36389f5cb6c569ce9ee9d465b5607c68",
     "url": "/agenda/images/google.svg"
   },
   {
-    "revision": "99fc0816a09395454061301fefa42bf1",
-    "url": "/agenda/css/fonts/Roboto-Medium.ttf"
+    "revision": "e10eecd1e7e3b92702bf3246f4b57e14",
+    "url": "/agenda/images/icon_completo.png"
   },
   {
     "revision": "eb8f1404a04d6aec2ee064eb7e87baeb",
     "url": "/agenda/css/fonts/Changa-ExtraBold.ttf"
   },
   {
-    "revision": "e059ade26a46c3fb3aff219ae53d709e",
-    "url": "/agenda/css/fonts/Changa-Bold.ttf"
+    "revision": "99fc0816a09395454061301fefa42bf1",
+    "url": "/agenda/css/fonts/Roboto-Medium.ttf"
   },
   {
     "revision": "e22062b3188c8199283ef2aa835d4653",
@@ -188,12 +184,20 @@ self.__precacheManifest = [
     "url": "/agenda/css/fonts/Roboto-Regular.ttf"
   },
   {
+    "revision": "c1a282bf2e734550ce86099d96eb0ba1",
+    "url": "/agenda/css/fonts/Changa-Light.ttf"
+  },
+  {
+    "revision": "e059ade26a46c3fb3aff219ae53d709e",
+    "url": "/agenda/css/fonts/Changa-Bold.ttf"
+  },
+  {
     "revision": "74c8205b3f80972510d7f9630329d7a5",
     "url": "/agenda/css/fonts/Changa-ExtraLight.ttf"
   },
   {
-    "revision": "c1a282bf2e734550ce86099d96eb0ba1",
-    "url": "/agenda/css/fonts/Changa-Light.ttf"
+    "revision": "14f5f301e600a9357882b92b4a189b20",
+    "url": "/agenda/css/fonts/Changa-Medium.ttf"
   },
   {
     "revision": "b9bb9b4ea21cba4fbe9c44b9ec77351c",
@@ -210,10 +214,6 @@ self.__precacheManifest = [
   {
     "revision": "20f2e96867d5f4e5552cd832bfa1f133",
     "url": "/agenda/css/_clapp.scss"
-  },
-  {
-    "revision": "a64ef4a4bb606a284dc00775925a170e",
-    "url": "/agenda/css/_bands.scss"
   },
   {
     "revision": "34b46885be10a894f1e8c8111230c552",
