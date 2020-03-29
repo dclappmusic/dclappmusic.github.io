@@ -24,20 +24,20 @@ self.__precacheManifest = [
     "url": "/agenda/robots.txt"
   },
   {
-    "revision": "08247d0026f58a82ef71",
-    "url": "/agenda/js/chunk-556d1aa4.cf7ff2e8.js"
+    "revision": "5d817d58230aa8e02999",
+    "url": "/agenda/js/chunk-5ca8b551.4e460bc0.js"
   },
   {
-    "revision": "9054a35980dadf7e787c2c086bb404d1",
-    "url": "/agenda/images/pin_liveshow.png"
+    "revision": "b0aa12455dfa0278c26024eebddf10fb",
+    "url": "/agenda/images/pin_liveshow_white.png"
   },
   {
     "revision": "e7d8d18eb42a9e3f5fbf",
     "url": "/agenda/js/chunk-6d79e746.f2965fd4.js"
   },
   {
-    "revision": "b0aa12455dfa0278c26024eebddf10fb",
-    "url": "/agenda/images/pin_liveshow_white.png"
+    "revision": "9054a35980dadf7e787c2c086bb404d1",
+    "url": "/agenda/images/pin_liveshow.png"
   },
   {
     "revision": "a8ac169df97f9523217c",
@@ -48,19 +48,19 @@ self.__precacheManifest = [
     "url": "/agenda/js/chunk-vendors.aea861fe.js"
   },
   {
-    "revision": "b08e36e296f476ccbf0fe2a90bbda515",
+    "revision": "73c8f2adb3a4da69daabc73f4103c17d",
     "url": "/agenda/index.html"
   },
   {
-    "revision": "93f1e9a77f91a1b207b3",
-    "url": "/agenda/js/app.08555842.js"
+    "revision": "e4048c952639f2936411",
+    "url": "/agenda/js/app.a9834f14.js"
   },
   {
     "revision": "a64ef4a4bb606a284dc00775925a170e",
     "url": "/agenda/css/_bands.scss"
   },
   {
-    "revision": "93f1e9a77f91a1b207b3",
+    "revision": "e4048c952639f2936411",
     "url": "/agenda/css/app.652ad050.css"
   },
   {
@@ -68,24 +68,16 @@ self.__precacheManifest = [
     "url": "/agenda/images/icon_rrss_spotify.svg"
   },
   {
-    "revision": "a6aa4fb891b5d078969d1e0c3a7e0135",
-    "url": "/agenda/css/fonts/Changa-Regular.ttf"
-  },
-  {
     "revision": "134334996e9d95895458145920775631",
     "url": "/agenda/css/fonts.css"
   },
   {
+    "revision": "2b58be4fd9d1744adf33a10f5e855964",
+    "url": "/agenda/images/historial_preview.png"
+  },
+  {
     "revision": "f38b2db10e01b1572732a3191d538707",
     "url": "/agenda/css/slick.css"
-  },
-  {
-    "revision": "02bd531a07a5a374651ab76ef033601b",
-    "url": "/agenda/images/avatar_base.png"
-  },
-  {
-    "revision": "fcec6f5152dba4d6075d7d34689ea5d5",
-    "url": "/agenda/images/facebook.svg"
   },
   {
     "revision": "369254abd9dba2886a7874e242113111",
@@ -94,6 +86,14 @@ self.__precacheManifest = [
   {
     "revision": "2d7ec526e2845fc4df963a91b85d8227",
     "url": "/agenda/images/favicon.png"
+  },
+  {
+    "revision": "02bd531a07a5a374651ab76ef033601b",
+    "url": "/agenda/images/avatar_base.png"
+  },
+  {
+    "revision": "fcec6f5152dba4d6075d7d34689ea5d5",
+    "url": "/agenda/images/facebook.svg"
   },
   {
     "revision": "332c2ab57d9ecfdc3b4f177c254af20e",
@@ -108,8 +108,12 @@ self.__precacheManifest = [
     "url": "/agenda/images/icon_rrss_instagram.svg"
   },
   {
-    "revision": "2b58be4fd9d1744adf33a10f5e855964",
-    "url": "/agenda/images/historial_preview.png"
+    "revision": "14f5f301e600a9357882b92b4a189b20",
+    "url": "/agenda/css/fonts/Changa-Medium.ttf"
+  },
+  {
+    "revision": "eaa786835fdf3df7e8e3665fa11a956e",
+    "url": "/agenda/images/icon-options.svg"
   },
   {
     "revision": "c85c7e1e8b88f81e4abd080531e246ee",
@@ -120,28 +124,24 @@ self.__precacheManifest = [
     "url": "/agenda/images/icon-edit.svg"
   },
   {
-    "revision": "df9cb61ab8e18b32cff85c2f006b6459",
-    "url": "/agenda/images/icon-save.svg"
-  },
-  {
     "revision": "a8ac169df97f9523217c",
     "url": "/agenda/css/chunk-b3341afc.305338e3.css"
+  },
+  {
+    "revision": "df9cb61ab8e18b32cff85c2f006b6459",
+    "url": "/agenda/images/icon-save.svg"
   },
   {
     "revision": "e7d8d18eb42a9e3f5fbf",
     "url": "/agenda/css/chunk-6d79e746.0fb85c8b.css"
   },
   {
-    "revision": "eaa786835fdf3df7e8e3665fa11a956e",
-    "url": "/agenda/images/icon-options.svg"
+    "revision": "a6aa4fb891b5d078969d1e0c3a7e0135",
+    "url": "/agenda/css/fonts/Changa-Regular.ttf"
   },
   {
-    "revision": "685eefb3c10874ee3c24c06be82a82bc",
-    "url": "/agenda/css/fonts/Changa-SemiBold.ttf"
-  },
-  {
-    "revision": "08247d0026f58a82ef71",
-    "url": "/agenda/css/chunk-556d1aa4.d98e88fd.css"
+    "revision": "5d817d58230aa8e02999",
+    "url": "/agenda/css/chunk-5ca8b551.adf6a7b1.css"
   },
   {
     "revision": "5bba5d045167b4be74411143efd3b028",
@@ -160,12 +160,12 @@ self.__precacheManifest = [
     "url": "/agenda/images/icon_rrss_soundcloud.svg"
   },
   {
-    "revision": "36389f5cb6c569ce9ee9d465b5607c68",
-    "url": "/agenda/images/google.svg"
-  },
-  {
     "revision": "e10eecd1e7e3b92702bf3246f4b57e14",
     "url": "/agenda/images/icon_completo.png"
+  },
+  {
+    "revision": "36389f5cb6c569ce9ee9d465b5607c68",
+    "url": "/agenda/images/google.svg"
   },
   {
     "revision": "eb8f1404a04d6aec2ee064eb7e87baeb",
@@ -176,28 +176,28 @@ self.__precacheManifest = [
     "url": "/agenda/css/fonts/Roboto-Medium.ttf"
   },
   {
-    "revision": "e22062b3188c8199283ef2aa835d4653",
-    "url": "/agenda/css/fonts/Roboto-Light.ttf"
-  },
-  {
     "revision": "54a91b0619ccf9373d525109268219dc",
     "url": "/agenda/css/fonts/Roboto-Regular.ttf"
-  },
-  {
-    "revision": "c1a282bf2e734550ce86099d96eb0ba1",
-    "url": "/agenda/css/fonts/Changa-Light.ttf"
-  },
-  {
-    "revision": "e059ade26a46c3fb3aff219ae53d709e",
-    "url": "/agenda/css/fonts/Changa-Bold.ttf"
   },
   {
     "revision": "74c8205b3f80972510d7f9630329d7a5",
     "url": "/agenda/css/fonts/Changa-ExtraLight.ttf"
   },
   {
-    "revision": "14f5f301e600a9357882b92b4a189b20",
-    "url": "/agenda/css/fonts/Changa-Medium.ttf"
+    "revision": "685eefb3c10874ee3c24c06be82a82bc",
+    "url": "/agenda/css/fonts/Changa-SemiBold.ttf"
+  },
+  {
+    "revision": "e059ade26a46c3fb3aff219ae53d709e",
+    "url": "/agenda/css/fonts/Changa-Bold.ttf"
+  },
+  {
+    "revision": "e22062b3188c8199283ef2aa835d4653",
+    "url": "/agenda/css/fonts/Roboto-Light.ttf"
+  },
+  {
+    "revision": "c1a282bf2e734550ce86099d96eb0ba1",
+    "url": "/agenda/css/fonts/Changa-Light.ttf"
   },
   {
     "revision": "b9bb9b4ea21cba4fbe9c44b9ec77351c",
