@@ -6,31 +6,34 @@
     <div class="caja">
         <div class="primera_fila">
             <div class="foto_container">
-                <img class="foto" :src="show.image">
+                <img class="foto" :src="getBand(show.band_id).image">
             </div>
             <div class="datos_principales">
-                <router-link class="banda" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'>
-                    <p class="display-med">{{show.band}}</p>
-                </router-link>
-                <div class="segunda">
-                    <p class="tipo parr-sm">{{show.show_type}}</p>
-                    <p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p>
+                <div class="banda">
+                <!-- <router-link class="banda" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'> -->
+                    <p class="display-med">{{show.band ? show.band : ''}}</p>
+                <!-- </router-link> -->
                 </div>
                 <div class="segunda">
-                    <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'>
-                        <p class="parr-sm">{{show.venue}}</p>
-                    </router-link>
+                    <p class="tipo parr-sm">{{show.show_type ? show.show_type : ''}}</p>
+                    <!-- <p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p> -->
+                </div>
+                <div class="segunda">
+                    <!-- <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'> -->
+                        <p class="parr-sm">{{show.festival ? show.festival : ''}}</p>
+                    <!-- </router-link> -->
                 </div>
             </div>
         </div>
-        <div class="segunda_fila" v-if="ampliado || from==='mapa'">
-            <a class="boton-sm comprar" :href="show.link">comprar entradas</a>
+        <div class="segunda_fila" >
+            <a v-if="show.link" class="boton-sm comprar" :href="`https://www.instagram.com/${show.link}/`" target="blank">Ver concierto</a>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
     name: 'ShowCard',
@@ -41,6 +44,11 @@ export default {
             ampliado: false
         }
     },
+    computed: {
+        ...mapState([
+            'bands'
+        ])
+    },
     created() {
     },
     mounted() {
@@ -49,8 +57,12 @@ export default {
     methods: {
         ampliar() {
             // $(".show").removeClass("open");
-            this.ampliado = !this.ampliado;
+            // this.ampliado = !this.ampliado;
         },
+        getBand(id) {
+            let band = this.bands.find( band => band.id === id );
+            return band;
+        }
     }
 }
 </script>
@@ -111,7 +123,7 @@ export default {
             color: #333;
             padding: 2em .5em;
             border-radius: .5em;
-            a {pointer-events: none;}
+            // a {pointer-events: none;}
             .primera_fila {
                 display: flex;
                 width: 100%;
@@ -124,6 +136,8 @@ export default {
                     .foto {
                         width: 20vw;
                         height: 20vw;
+                        max-width: 7em;
+                        max-height: 7em;
                         object-fit: cover;
                         border-radius: 50%;
                         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.45);
@@ -169,13 +183,14 @@ export default {
                 display: flex;
                 justify-content: flex-end;
                 width: calc(100% + 1em);
-                margin: 2em -.5em -2em;
+                margin: 0 -.5em -2em;
                 .comprar {
                     background-color: var(--color_primario);
                     color: var(--color_fondo);
                     padding: .4em .5em;
                     border-radius: .5em;
                     margin: .5em .5em .5em 0;
+                    cursor: pointer;
                 }
             }
         }

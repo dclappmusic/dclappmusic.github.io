@@ -1,24 +1,29 @@
 <template>
     <div class="page agenda" data-page="agenda">
-        <get-geolocation />
+        <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/>
         <div class="cabecera">
             <!-- <h1 class="titulo">AGENDA</h1> -->
-            <p class="display-med filtros" @click="filters = true">filtros</p>
+            <a href="https://weclapp.live/" target="blank" class="logo">
+                <img src="images/icon_completo.png" />
+            </a>
+            <!-- <p class="display-med filtros" @click="filters = true">filtros</p> -->
             <keep-alive>
                 <AgendaFilters v-if="filters" @filters_popup="filters = false" @filtering="filtering"/>
             </keep-alive>
-            <p v-if="!map" class="display-med mapa" :class="{'active': !map}"  @click="map = !map">mapa</p>
-            <p v-else class="display-med lista" :class="{'active': map}" @click="map = false">lista</p>
+            <!-- <p v-if="!map" class="display-med mapa" :class="{'active': !map}"  @click="map = !map">mapa</p>
+            <p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p> -->
         </div>
         <div class="view" v-if="geolocation.lat && shows[0]">
-            <keep-alive v-if="map && city">
+            <keep-alive v-if="map">
                 <agendaMap :shows="shows_filtered" />
             </keep-alive>
             <keep-alive v-else>
                 <agendaList :shows="shows_filtered" />
             </keep-alive>
         </div>
-        <div v-else class="spinner">loading</div>
+        <div v-else class="spinner">
+            <p class="display-sm">buscando shows cerca de ti...</p>
+        </div>
     </div>
 </template>
 
@@ -41,11 +46,12 @@ export default {
     },
     data() {
         return {
-            map: true,
+            map: false,
             accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
             city: null,
             filters: false,
-            shows_filtered: []
+            shows_filtered: [],
+            findLocation: false
         }
     },
     computed: {
@@ -55,17 +61,20 @@ export default {
     },
     watch: {
         geolocation: function() {
-            this.getCity();
+            // this.getCity();
         },
         shows_filtered: function() {
             
+        },
+        shows() {
+            this.shows_filtered = [...this.shows];
         }
     },
     created() {
-        this.shows_filtered = this.shows;
-        if (this.geolocation.lat) {
-            this.getCity();
-        }
+        this.shows_filtered = [...this.shows];
+        // if (this.geolocation.lat) {
+        //     this.getCity();
+        // }
     },
     mounted() {
     },
@@ -86,6 +95,9 @@ export default {
             this.shows_filtered = this.shows.filter(show => (new_filters.tipo.includes(show.show_type)) && (new_filters.price >= show.price));
             console.log(this.shows_filtered);
 
+        },
+        geolocationError(error) {
+            // alert(error);
         }
     }
 }
@@ -93,6 +105,17 @@ export default {
 <style scoped lang="scss">
     .agenda {
         .cabecera {
+            .logo {
+                display: block;
+                margin: 0 auto;
+                float: right;
+                margin-right: 12px;
+                margin-top: -15px;
+                img {
+                    width: 2em;
+                    box-shadow: 0 0 15px rgba(0,0,0,.15);
+                }
+            }
             .display-med {
                 &.active {
                     background-color: white;
@@ -126,9 +149,15 @@ export default {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vh;
+            width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,.5);
+            background: var(--color_primario);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .display-med {
+                color: white;
+            }
         }
     }
 </style>

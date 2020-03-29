@@ -1,0 +1,75 @@
+//VARIABLES
+
+:root {
+  --roboto: "Roboto", Arial, helvetica;
+  --changa: "Changa", Arial, helvetica;
+
+  --color_primario: #FC5130;
+  --color_secundario: #0C3847;
+  --color_fondo: #F1F1F1;
+
+  --Bigdesktop:"(min-width:1366px)";
+  --mobile:"(max-width:768px)";
+}
+
+// ESTILOS GLOBALES
+
+.titulo {
+	font-family: var(--changa);
+	font-size: 40px;
+}
+.display-big {
+	font-family: var(--changa);
+	font-size: 35px;
+}
+.display-med {
+	font-family: var(--changa);
+	font-size: 25px;
+}
+.display-sm {
+	font-family: var(--changa);
+	font-size: 18px;
+}
+.menu-tit {
+	font-family: var(--changa);
+	font-size: 13px;
+	font-weight: 200;
+	&.active {
+		font-size: 20px;
+		font-weight: 500;
+		text-decoration: underline;
+	}
+}
+// .titulo {
+// 	font-family: var(--roboto);
+//     line-height: 1.5em;
+//     font-size: 30px;
+//     font-weight: 900;
+// }
+.parrafo-big {
+	font-family: var(--roboto);
+	font-size: 20px;
+	line-height: 1.5em;
+}
+.parrafo {
+	font-family: var(--roboto);
+	font-size: 15px;
+	line-height: 1.5em;
+}
+.parrafo-sm {
+	font-family: var(--roboto);
+	font-size: 10px;
+}
+.boton-med {
+	font-family: var(--roboto);
+	font-size: 20px;
+	font-weight: bold;
+}
+.boton-sm {
+	font-family: var(--roboto);
+	font-size: 15px;
+	font-weight: 400;
+}
+b {font-weight: bold;}
+
+

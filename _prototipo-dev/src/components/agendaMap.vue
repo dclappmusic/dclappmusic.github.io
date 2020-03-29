@@ -83,9 +83,12 @@ export default {
         }
     },
     created() {
+        // debugger;
         this.map = null;
+        
     },
     mounted() {
+        // debugger;
         console.log(this.geolocation.lat + ", " + this.geolocation.lon);
         this.filter_shows_today();
     },
@@ -100,6 +103,7 @@ export default {
             });
         },
         filter_shows_today: function() {
+            console.log('filter shows')
             var hoy = this.$moment();
             this.shows_hoy = [];
             this.shows.forEach(show => {
@@ -150,10 +154,11 @@ export default {
         background-attachment: rgba(255,0,0,.5);
     }
     &::v-deep .mapboxgl-ctrl-logo {
-        display: none!important;
+        // display: none!important;
     }
     &::v-deep .mapboxgl-ctrl-top-left {
-        top: 80%;
+        top: auto;
+        bottom: 2%;
         right: 2%;
         .mapboxgl-ctrl.mapboxgl-ctrl-group {float: right;}
     }

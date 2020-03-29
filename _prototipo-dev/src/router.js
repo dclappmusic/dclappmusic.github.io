@@ -7,9 +7,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'agenda',
       props: true,
-      component: () => import('./views/Home.vue')
+      component: () => import('./views/Agenda.vue')
     },
     {
       path: '/home',

@@ -1,10 +1,10 @@
 <template>
 	<div id="app" class="container">
-        <get-geolocation />
+        <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/>
         <keep-alive>
             <router-view />
         </keep-alive>
-        <Nav></Nav>
+        <!-- <Nav></Nav> -->
         <!-- <PopupLogin v-if="show_login" /> -->
 		<PopupInstall 
 			v-if="show_install" 
@@ -44,6 +44,7 @@
                 bands_fb: [],
                 venues_gs: [],
                 venues_fb: [],
+                findLocation: false
 			}
 		},
         computed: {
@@ -136,7 +137,18 @@
                 axios
                     .get("https://script.google.com/macros/s/AKfycbwE4QipXuKLAV0UVEsE8_pp2CA2XQu3cqVIzW8co9fLjFi-Javu/exec")
                     .then((response) => {
-                        this.bands_gs = response.data.bands;
+                        let bands = response.data.bands;
+                        bands.forEach(band => {
+                            let insta = 'https://www.instagram.com/' + band.insta + '/?__a=1';
+                            axios
+                                .get(insta)
+                                .then((response1) => {
+                                    band.image = response1.data.graphql.user.profile_pic_url;
+                                    // console.log(band.image);
+                                    this.bands_gs = [this.bands_gs, ...response.data.bands];
+                                });
+                        });
+                        
                     })
                 axios
                     .get("https://script.google.com/macros/s/AKfycbxMG-visbQGWcrCwBRig56yhzpNTiTVKyRqB7blIg/exec")
@@ -168,6 +180,9 @@
                         }
                     })
                 }
+            },
+            geolocationError(error) {
+                alert(error);
             }
 		}
 	};
