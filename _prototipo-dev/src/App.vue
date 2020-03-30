@@ -1,36 +1,36 @@
 <template>
 	<div id="app" class="container">
-        <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/>
+        <!-- <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/> -->
         <keep-alive>
             <router-view />
         </keep-alive>
         <!-- <Nav></Nav> -->
         <!-- <PopupLogin v-if="show_login" /> -->
-		<PopupInstall 
+		<!-- <PopupInstall 
 			v-if="show_install" 
 			:deferredPrompt="this.deferredPrompt" 
 			@cerrar_popup="event_cerrar_popup"
-		/>
+		/> -->
 	</div>
     
 </template>
 
 <script>
     import { mapState } from 'vuex';
-	import firebase from "firebase";
-	import Nav from '@/components/Nav';
-	import PopupInstall from '@/components/PopupInstall';
-    import PopupLogin from '@/components/PopupLogin';
-    import GetGeolocation from '@/components/GetGeolocation';
+	// import firebase from "firebase";
+	// import Nav from '@/components/Nav';
+	// import PopupInstall from '@/components/PopupInstall';
+    // import PopupLogin from '@/components/PopupLogin';
+    // import GetGeolocation from '@/components/GetGeolocation';
     import axios from 'axios';
 
 	export default {
 		name: 'app',
 		components: {
-			Nav,
-			PopupInstall,
-            PopupLogin,
-            GetGeolocation
+			// Nav,
+			// PopupInstall,
+            // PopupLogin,
+            // GetGeolocation
 		},
 		data() {
 			return {
@@ -72,9 +72,9 @@
             venues_fb: function() {
                 this.$store.commit("updateVenues", [...this.venues_fb, ...this.venues_gs]);
             },
-            geolocation: function() {
-                this.$store.commit("updateGeolocation", this.geolocation);
-            }
+            // geolocation: function() {
+            //     this.$store.commit("updateGeolocation", this.geolocation);
+            // }
         },
 		created() {
             // setInterval(() => {
@@ -99,27 +99,27 @@
 		// 	});
 		},
 		mounted() {
-			window.addEventListener('beforeinstallprompt', (e) => {
-				e.preventDefault();
-				this.deferredPrompt = e;
-				this.show_install = true;
-			});
-            this.get_shows();
+			// window.addEventListener('beforeinstallprompt', (e) => {
+			// 	e.preventDefault();
+			// 	this.deferredPrompt = e;
+			// 	// this.show_install = true;
+			// });
+            // this.get_shows();
             this.get_fake_bd();
-            this.forceSWupdate();  
+            // this.forceSWupdate();  
 		},
 		methods: {
 
         //gets the shows from the firebase database
             get_shows: function() {
-                var db = firebase.firestore();
-                db.collection("shows").onSnapshot((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                        let show = doc.data();
-                        show.timestamp = show.timestamp.toDate();
-                        this.shows_fb.push(show);
-                    });
-                });
+                // var db = firebase.firestore();
+                // db.collection("shows").onSnapshot((querySnapshot) => {
+                //     querySnapshot.forEach((doc) => {
+                //         let show = doc.data();
+                //         show.timestamp = show.timestamp.toDate();
+                //         this.shows_fb.push(show);
+                //     });
+                // });
             },
 
         //Gets data from the Google sheets database
@@ -138,17 +138,26 @@
                     .get("https://script.google.com/macros/s/AKfycbwE4QipXuKLAV0UVEsE8_pp2CA2XQu3cqVIzW8co9fLjFi-Javu/exec")
                     .then((response) => {
                         let bands = response.data.bands;
-                        bands.forEach(band => {
-                            let insta = 'https://www.instagram.com/' + band.insta + '/?__a=1';
-                            axios
-                                .get(insta)
-                                .then((response1) => {
-                                    band.image = response1.data.graphql.user.profile_pic_url;
-                                    // console.log(band.image);
-                                    this.bands_gs = [this.bands_gs, ...response.data.bands];
-                                });
-                        });
-                        
+                        this.bands_gs = bands;
+                        console.log("get bands");
+                        // bands.forEach(band => {
+                        //     if (band.insta) {
+                        //         let insta = 'https://www.instagram.com/' + band.insta + '/?__a=1';
+                        //         axios
+                        //             .get(insta)
+                        //             .then((response1) => {
+                        //                 if (response1.data.graphql) {
+                        //                     debugger;
+                        //                     band.image = response1.data.graphql.user.profile_pic_url;
+                        //                     console.log(band.image);
+                        //                     this.bands_gs = [this.bands_gs, ...response.data.bands];
+                        //                 } else {
+                        //                     // band.image = '';
+                        //                     // this.bands_gs = [this.bands_gs, ...response.data.bands];
+                        //                 }
+                        //             });
+                        //     }
+                        // });
                     })
                 axios
                     .get("https://script.google.com/macros/s/AKfycbxMG-visbQGWcrCwBRig56yhzpNTiTVKyRqB7blIg/exec")

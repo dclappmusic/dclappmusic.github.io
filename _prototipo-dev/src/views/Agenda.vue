@@ -1,6 +1,6 @@
 <template>
     <div class="page agenda" data-page="agenda">
-        <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/>
+        <!-- <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/> -->
         <div class="cabecera">
             <!-- <h1 class="titulo">AGENDA</h1> -->
             <a href="https://weclapp.live/" target="blank" class="logo">
@@ -13,9 +13,9 @@
             <!-- <p v-if="!map" class="display-med mapa" :class="{'active': !map}"  @click="map = !map">mapa</p>
             <p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p> -->
         </div>
-        <div class="view" v-if="geolocation.lat && shows[0]">
+        <div class="view" v-if="shows[0]">
             <keep-alive v-if="map">
-                <agendaMap :shows="shows_filtered" />
+                <!-- <agendaMap :shows="shows_filtered" /> -->
             </keep-alive>
             <keep-alive v-else>
                 <agendaList :shows="shows_filtered" />
@@ -113,6 +113,7 @@ export default {
                 margin-top: -15px;
                 img {
                     width: 2em;
+                    border-radius: 10px;
                     box-shadow: 0 0 15px rgba(0,0,0,.15);
                 }
             }
@@ -155,7 +156,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            .display-med {
+            .display-sm {
                 color: white;
             }
         }

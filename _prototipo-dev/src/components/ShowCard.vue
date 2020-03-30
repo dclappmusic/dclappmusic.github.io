@@ -1,11 +1,11 @@
 <template>
-<div class="show" @click="ampliar" :class="{open: ampliado}">
+<div class="show" @click="ampliar" :class="{open: ampliado, live: show.live}">
     <p v-if="type==='list_soon'" class="display-sm soon">{{this.$moment(show.timestamp).format("DD/MM")}}</p>
-    <p class="hora">{{this.$moment(show.timestamp).format("HH:mm")}}</p>
+    <p class="parrafo-sm hora">{{this.$moment(show.timestamp).format("HH:mm")}}</p>
     
     <div class="caja">
         <div class="primera_fila">
-            <div class="foto_container">
+            <div class="foto_container" v-if="getBand(show.band_id)">
                 <img class="foto" :src="getBand(show.band_id).image">
             </div>
             <div class="datos_principales">
@@ -15,18 +15,18 @@
                 <!-- </router-link> -->
                 </div>
                 <div class="segunda">
-                    <p class="tipo parr-sm">{{show.show_type ? show.show_type : ''}}</p>
+                    <p class="tipo parrafo">{{show.show_type ? show.show_type : ''}}</p>
                     <!-- <p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p> -->
                 </div>
                 <div class="segunda">
                     <!-- <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'> -->
-                        <p class="parr-sm">{{show.festival ? show.festival : ''}}</p>
+                        <p class="parrafo">{{show.festival ? show.festival : ''}}</p>
                     <!-- </router-link> -->
                 </div>
             </div>
         </div>
         <div class="segunda_fila" >
-            <a v-if="show.link" class="boton-sm comprar" :href="`https://www.instagram.com/${show.link}/`" target="blank">Ver concierto</a>
+            <a v-if="show.link" class="boton-sm comprar" :href="show.link" target="blank">Ver concierto</a>
         </div>
     </div>
 </div>
@@ -74,6 +74,18 @@ export default {
         align-items: center;
         width: 100%;
         margin: 0 auto 1em;
+        &.live {
+            .hora {display: none;}
+            .caja {
+                background-color: var(--color_primario);
+                width: 100%;
+                padding-top: 1em;
+                .segunda_fila .comprar {
+                    color: var(--color_primario);
+                    background-color: white;
+                }
+            }
+        }
         &.mapa.open {
             .caja {
                 background-color: transparent;
@@ -108,11 +120,11 @@ export default {
             display: inline-block;
             transform: rotate(-90deg);
             transform-origin: top;
-            width: 10%;
+            width: 13%;
             color: #333;
             font-weight: bold;
             font-size: 1.2em;
-            margin-left: -5%;
+            margin-left: -10%;
             // top: -15px;
         }
         .caja {
@@ -154,7 +166,7 @@ export default {
                     .segunda {
                         width: 100%;
                         display: flex;
-                        text-align: center;
+                        text-align: left;
                         // .parr-sm:not(:first-child) {margin: 0 .5em;}
                         .sala {
                             display: flex; 
@@ -163,7 +175,7 @@ export default {
                             max-width: 100%;
                             font-weight: 600;
                             margin-top: .5em;
-                            .parr-sm {text-align: left; width: fit-content;}
+                            .parrafo-sm {text-align: left; width: fit-content;}
                             &:before {
                                 content: "";
                                 background-image: url("~/images/pin_liveshow.png");
