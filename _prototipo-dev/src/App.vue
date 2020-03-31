@@ -54,7 +54,7 @@
         },
         watch: {
             shows_gs: function() {
-                this.set_show_cords(this.shows_gs, this.venues_gs);
+                // this.set_show_cords(this.shows_gs, this.venues_gs);
                 this.$store.commit("updateShows", [...this.shows_fb, ...this.shows_gs]);
             },
             shows_fb: function() {
