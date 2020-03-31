@@ -312,20 +312,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-family: "Roboto", sans-serif;
   color: white;
   font-size: 22px;
-  background-color: 2px solid white;
+  background-color: white;
+  color: #031927;
   border-radius: 2em;
   padding: .5em 1em;
   font-weight: bold;
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 .container .intro .cta:hover {
-  background-color: white;
-  color: #031927;
-  top: -2px;
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  top: 2px;
 }
 
 .container .intro .definicion {
@@ -339,7 +342,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .container .intro .definicion .parrafo {
   font-family: "Roboto", sans-serif;
   color: white;
-  font-size: 2vw;
+  font-size: 1.7vw;
   font-weight: 450;
   line-height: 1.4em;
 }

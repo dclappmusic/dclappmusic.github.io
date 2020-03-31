@@ -198,16 +198,20 @@ $mobile:"(max-width:768px)";
             display: inline-block;
             margin: 2em auto;
             @include typo($Roboto, 22px, $color-parr);
-            background-color: 2px solid $color-parr;
+            // border: 2px solid $color-parr;
+            background-color: $color-parr;
+            color: $azul-texto;
             border-radius: 2em;
             padding: .5em 1em;
             font-weight: bold;
-            transition: all .2s ease-in-out;
+            transition: all .3s ease-in-out;
+            box-shadow: 0 5px 10px rgba(0,0,0,.15);
             &:hover {
-                background-color: $color-parr;
-                color: $azul-texto;
-                top: -2px;
-                box-shadow: 0 5px 10px rgba(0,0,0,.15);
+                transition: all .5s ease-in-out;
+                // background-color: $color-parr;
+                // color: $azul-texto;
+                box-shadow: 0 2px 3px rgba(0,0,0,.5);
+                top: 2px;
             }
         }
 
@@ -218,7 +222,7 @@ $mobile:"(max-width:768px)";
             position: absolute;
             bottom: 5%;
             .parrafo {
-                @include typo($Roboto, 2vw, $color_parr);
+                @include typo($Roboto, 1.7vw, $color_parr);
                 font-weight: 450;
                 line-height: 1.4em;
                 b {font-weight: 500;}
