@@ -5,25 +5,27 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 import moment from 'moment';
+// import VueI18n from 'vue-i18n'
 import Vue2TouchEvents from 'vue2-touch-events'
 
 Vue.config.productionTip = false;
 
-
+// moment.locale('es');
 Vue.prototype.$moment = moment;
+// Vue.use(VueI18n);
 
-Vue.use(Vue2TouchEvents)
+Vue.use(Vue2TouchEvents);
 
-var firebaseConfig = {
-    apiKey: "AIzaSyCcFHmQQSZQMCLlNetLQbW2T4Z7AKH6ztc",
-    authDomain: "weclapp-eddbd.firebaseapp.com",
-    databaseURL: "https://weclapp-eddbd.firebaseio.com",
-    projectId: "weclapp-eddbd",
-    storageBucket: "",
-    messagingSenderId: "611930943683",
-    appId: "1:611930943683:web:c50aff0449c4ad6a"
-};
-firebase.initializeApp(firebaseConfig);
+// var firebaseConfig = {
+//     apiKey: "AIzaSyCcFHmQQSZQMCLlNetLQbW2T4Z7AKH6ztc",
+//     authDomain: "weclapp-eddbd.firebaseapp.com",
+//     databaseURL: "https://weclapp-eddbd.firebaseio.com",
+//     projectId: "weclapp-eddbd",
+//     storageBucket: "",
+//     messagingSenderId: "611930943683",
+//     appId: "1:611930943683:web:c50aff0449c4ad6a"
+// };
+// firebase.initializeApp(firebaseConfig);
 
 //adds get week number to the date method
 Date.prototype.getWeekNumber = function(){

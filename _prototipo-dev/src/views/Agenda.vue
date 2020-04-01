@@ -1,8 +1,8 @@
 <template>
     <div class="page agenda" data-page="agenda">
-        <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/>
+        <!-- <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/> -->
         <div class="cabecera">
-            <!-- <h1 class="titulo">AGENDA</h1> -->
+            <h1 class="titulo">AGENDA DE CONCIERTOS STREAMING</h1>
             <a href="https://weclapp.live/" target="blank" class="logo">
                 <img src="images/icon_completo.png" />
             </a>
@@ -13,9 +13,9 @@
             <!-- <p v-if="!map" class="display-med mapa" :class="{'active': !map}"  @click="map = !map">mapa</p>
             <p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p> -->
         </div>
-        <div class="view" v-if="geolocation.lat && shows[0]">
+        <div class="view" v-if="shows[0]">
             <keep-alive v-if="map">
-                <agendaMap :shows="shows_filtered" />
+                <!-- <agendaMap :shows="shows_filtered" /> -->
             </keep-alive>
             <keep-alive v-else>
                 <agendaList :shows="shows_filtered" />
@@ -40,14 +40,14 @@ export default {
     props: [],
     components: {
         agendaList, 
-        agendaMap,
+        // agendaMap,
         AgendaFilters,
-        GetGeolocation
+        // GetGeolocation
     },
     data() {
         return {
             map: false,
-            accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
+            // accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
             city: null,
             filters: false,
             shows_filtered: [],
@@ -105,16 +105,21 @@ export default {
 <style scoped lang="scss">
     .agenda {
         .cabecera {
+            position: absolute;
+            padding: 0 15px;
             .logo {
-                display: block;
-                margin: 0 auto;
-                float: right;
-                margin-right: 12px;
-                margin-top: -15px;
+                position: fixed;
+                top: 15px;
+                right: 15px;
                 img {
                     width: 2em;
+                    border-radius: 10px;
                     box-shadow: 0 0 15px rgba(0,0,0,.15);
                 }
+            }
+            .titulo {
+                max-width: calc(100% - 2em);
+                text-align: left;
             }
             .display-med {
                 &.active {
@@ -155,8 +160,13 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            .display-med {
+            .display-sm {
                 color: white;
+            }
+        }
+        @media (max-width:768px) {
+            .cabecera {
+                .titulo {font-size: 6vw;}
             }
         }
     }
