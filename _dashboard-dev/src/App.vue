@@ -148,6 +148,7 @@ export default {
 					var shows = response.data.shows;
 					shows.forEach(show => {
 						show.timestamp =  new Date(show.timestamp);
+                        show.id = show.show_id;
 					});
 					this.shows_gs = shows;
 				})

@@ -1,15 +1,15 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c40c761e284a320d1bd8",
-    "url": "/dashboard/css/app.3be58f35.css"
+    "revision": "6b234ddcfd154c04902a",
+    "url": "/dashboard/css/app.c9addb74.css"
   },
   {
     "revision": "aec6dc77b786ea823a5e",
     "url": "/dashboard/css/chunk-87dbe6a8.f437a946.css"
   },
   {
-    "revision": "d82fe9be59af45d1f04b",
-    "url": "/dashboard/css/chunk-d7f021fe.8e046e06.css"
+    "revision": "2ea9b5ef13743840282a",
+    "url": "/dashboard/css/chunk-d876c864.5a7c7f53.css"
   },
   {
     "revision": "e059ade26a46c3fb3aff219ae53d709e",
@@ -44,20 +44,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dashboard/fonts/Roboto-Regular.54a91b06.ttf"
   },
   {
-    "revision": "5e5c2471141e856253b8c5b2b46389f0",
+    "revision": "b290a09124a89bca743eb38c2812bcbd",
     "url": "/dashboard/index.html"
   },
   {
-    "revision": "c40c761e284a320d1bd8",
-    "url": "/dashboard/js/app.17c87c74.js"
+    "revision": "6b234ddcfd154c04902a",
+    "url": "/dashboard/js/app.ec82f354.js"
   },
   {
     "revision": "aec6dc77b786ea823a5e",
     "url": "/dashboard/js/chunk-87dbe6a8.9ca9c596.js"
   },
   {
-    "revision": "d82fe9be59af45d1f04b",
-    "url": "/dashboard/js/chunk-d7f021fe.bc620c63.js"
+    "revision": "2ea9b5ef13743840282a",
+    "url": "/dashboard/js/chunk-d876c864.b73eeaf8.js"
   },
   {
     "revision": "06cffaf0a5969b7f850c",

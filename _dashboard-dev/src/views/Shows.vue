@@ -12,7 +12,7 @@
                     <h3 class="tit fest">festival?</h3>
                     <h3 class="tit clicks">clicks</h3>
                 </div>
-                <div class="fila" v-for="(show, index) in shows" :key="index">
+                <div class="fila" v-for="(show, index) in shows_filtrados" :key="index">
                     <p class="id">{{show.id}}</p>
                     <p class="band">{{show.band}}</p>
                     <p class="where">{{show.link}}</p>
@@ -39,6 +39,7 @@ export default {
     data() {
         return {
             subir_show: false,
+            shows_filtrados: [],
             new_show: {
                 id: null,
                 band: null,
@@ -46,6 +47,11 @@ export default {
                 fest: null,
                 clicks: null
             }  
+        }
+    },
+    watch: {
+        shows() {
+            this.shows_filtrados = [...this.shows].sort((a, b) => b.id - a.id);
         }
     },
     created() {
