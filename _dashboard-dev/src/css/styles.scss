@@ -1,0 +1,63 @@
+@import "fonts";
+@import "global";
+
+:root {
+      --roboto: "Roboto", Arial, helvetica;
+    --changa: "Changa", Arial, helvetica;
+
+    --rojo01: #FC5130;
+    --azul01: #0C3847;
+    --gris01: #F1F1F1;
+    --gris04: #333;
+
+    --color_cta: var(--rojo01);
+    --color_fondo: var(--gris01);
+    --color_texto: var(--gris04);
+}
+
+#app {
+    font-family: var(--roboto);
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--color_fondo);
+    .view {
+        .cabecera {
+            text-align: center;
+        }
+    }
+    .fila {
+        margin: 1em 0;
+        width: 100%;
+        display: flex;
+    }
+
+    .tit {
+        font-family: var(--changa);
+        color: var(--color_texto);
+        font-size: 1.8em; 
+        font-weight: bold;
+    }
+    p .parrafo {
+        color: var(--color_texto);
+        font-size: 1em;
+        line-height: 1.3em;
+    }
+    .small {
+        color: var(--color_texto);
+        font-size: .8em;
+        line-height: 1.2em;
+    }
+    .boton, .cta {
+        cursor: pointer;
+    }
+    p {margin-bottom: 0;}
+    .link {cursor: pointer;}
+    .bold, b {font-weight: bold;}
+    .semibold {font-weight: 600;}
+    .light {font-weight: 300;}
+    .centered {text-align: center;}   
+}
