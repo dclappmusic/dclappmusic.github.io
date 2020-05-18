@@ -260,7 +260,7 @@ export default {
 			}
             .filtradas .banda .parr {
                 cursor: pointer;
-                text-decoration: underline;
+                &:hover {text-decoration: underline;}
             }
 			.parr, .tit, input {
 				color: white!important;
