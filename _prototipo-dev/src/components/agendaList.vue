@@ -2,12 +2,12 @@
 <div class="shows">
     <div v-for="(day, index) in shows_week" :key="index" class="dia">
         <div v-if="day[0]">
-            <p class="when display-med">{{index === "0" ? "Today" : index === "1" ? "Tomorrow" : $moment(day[0].timestamp).format('dddd DD')}}</p>
+            <p class="when display-med">{{index === "0" ? "Hoy" : index === "1" ? "Mañana" : $moment(day[0].timestamp).format('dddd DD')}}</p>
             <ShowCard v-for="(show, subindex) in day" :key="subindex" 
                 :show="show" 
                 :type="'list'" 
-                :from="'list'" 
-                :class="{live: show.live}"
+                :from="'list'"
+                :id="'show_' + show.show_id"
             />
         </div>
     </div>
@@ -35,7 +35,8 @@ export default {
         return {
             shows_week: {},
             other_shows: [],
-            shows_here: []
+            shows_here: [],
+            url_show_id: null
         }
     },
     computed: {
@@ -49,7 +50,7 @@ export default {
         }
     },
     created() {
-        
+        this.url_show_id = this.getUrlParameter('showid');
     },
     mounted() {
         this.shows_city();
@@ -62,6 +63,17 @@ export default {
                     this.shows_here.push(show);
                 // }
             });
+            if (this.url_show_id) {
+                let show_highlighted = this.shows_here.find(show => show.show_id == this.url_show_id);
+                console.log(show_highlighted);
+                if (show_highlighted) {
+                    show_highlighted.highlight = true;
+                    // var el = this.$el.querySelector('#show_' + this.url_show_id);
+                    // el.scrollIntoView();
+                    // var container = this.$el.querySelector("#shows");
+                    // container.scrollTop = container.scrollHeight;
+                }
+            }
             this.filter_shows();
         },
         filter_shows: function() {
@@ -77,22 +89,45 @@ export default {
                 });
                 var diff_days = show_time.diff(today, 'days');
                 var diff_hours = time.diff(now, 'hours');
+                var diff_minutes = time.diff(now, 'minutes');
                 if (diff_days >= 0 && diff_days < 7) {
                     show.diff_days = diff_days;
                     show.diff_hours = diff_hours;
                     if (show.link && diff_hours > -1) {
-                        diff_hours < 0 ? show.live = true : show.live = false;
+                        diff_minutes < 0 ? show.live = true : show.live = false;
                         this.shows_week[diff_days].push(show);
                     }
                 } else if (diff_days > 6) {
-                    if (show.link) {this.shows_week[diff_days].push(show);}
-                    this.other_shows.push(show);
+                    // if (show.link) {this.shows_week[diff_days].push(show);}
+                    if (show.link) {this.other_shows.push(show);}
                 }
             });
             for (let day in this.shows_week) {
                 this.shows_week[day].sort((a, b) => this.$moment(a.timestamp).unix() - this.$moment(b.timestamp).unix());
             }
             this.other_shows.sort((a, b) => this.$moment(a.timestamp).unix() - this.$moment(b.timestamp).unix());
+            if (this.url_show_id) {
+                setTimeout(() => {
+                    let el = this.$el.querySelector('#show_' + this.url_show_id);
+                    el = el.previousSibling;
+                    el.scrollIntoView({block: "start", behavior: "smooth"});
+                    // container.scrollTop = el.offsetTop - 200;
+                }, 500);
+            }
+        },
+        getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
         }
     }
 }

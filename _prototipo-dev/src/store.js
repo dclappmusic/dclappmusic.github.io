@@ -8,13 +8,16 @@ export default new Vuex.Store({
         shows: [],
         bands: [],
         venues: [],
-        user: {},
+        user: null,
         geolocation: {},
         city: null
     },
     getters: {
     },
     mutations: {
+        updateUser(state, user) {
+            state.user = user;
+        },
         updateShows(state, shows) {
         //before store it, sort them by time
             if (shows) {

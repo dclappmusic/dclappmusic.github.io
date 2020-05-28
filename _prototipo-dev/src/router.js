@@ -40,6 +40,12 @@ export default new Router({
       name: 'clapp',
       props: true,
       component: () => import('./views/Clapp.vue')
+    },
+    {
+      path: '/subirShow',
+      name: 'subirShow',
+      props: true,
+      component: () => import('./views/SubirShow.vue')
     }
     // {
     //   path: '/maps',

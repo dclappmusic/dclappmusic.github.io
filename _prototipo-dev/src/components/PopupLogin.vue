@@ -45,7 +45,7 @@
 				//authenticate the login
 				auth.signInWithEmailAndPassword(this.user_email, this.user_password).then(() => {
 					//redirect to home
-					this.$router.replace("/");
+					// this.$router.replace("/");
 					console.log("logged");
 				}).catch((error) => {
 					window.alert("error " + error.code + ": " + error.message);

@@ -1,18 +1,23 @@
 import Vue from 'vue';
-import firebase from 'firebase';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import './registerServiceWorker';
+// import './registerServiceWorker';
 import moment from 'moment';
-// import VueI18n from 'vue-i18n'
+import VueI18n from 'vue-i18n'
 import Vue2TouchEvents from 'vue2-touch-events'
 
 Vue.config.productionTip = false;
+let localeGlobal = 'es';
+Vue.use(VueI18n);
 
-// moment.locale('es');
+const i18n = new VueI18n({
+  locale: localeGlobal, // set locale
+});
+
+
+moment.locale('es');
 Vue.prototype.$moment = moment;
-// Vue.use(VueI18n);
 
 Vue.use(Vue2TouchEvents);
 
@@ -21,7 +26,7 @@ Vue.use(Vue2TouchEvents);
 //     authDomain: "weclapp-eddbd.firebaseapp.com",
 //     databaseURL: "https://weclapp-eddbd.firebaseio.com",
 //     projectId: "weclapp-eddbd",
-//     storageBucket: "",
+//     storageBucket: "weclapp-eddbd.appspot.com",
 //     messagingSenderId: "611930943683",
 //     appId: "1:611930943683:web:c50aff0449c4ad6a"
 // };
@@ -37,9 +42,10 @@ Date.prototype.getWeekNumber = function(){
 };
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    i18n,
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app');
 
 

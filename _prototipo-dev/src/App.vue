@@ -17,6 +17,7 @@
 
 <script>
     import { mapState } from 'vuex';
+    import {db} from '@/firebaseConfig'
 	// import firebase from "firebase";
 	// import Nav from '@/components/Nav';
 	// import PopupInstall from '@/components/PopupInstall';
@@ -35,7 +36,7 @@
 		data() {
 			return {
                 show_login: true,
-                user: {},
+                // user: {},
                 show_install: false,
                 deferredPrompt: null,
                 shows_gs: [],
@@ -49,7 +50,7 @@
 		},
         computed: {
             ...mapState([
-                "shows", "bands", "venues"
+                "shows", "bands", "venues", 'user'
             ]),
         },
         watch: {
@@ -85,11 +86,12 @@
 		// 		if (user) {
 		// 			console.log("ya estas logueado");
 		// 			console.log(user);
-		// 			this.show_login = false;
-        // //download user
+		// // 			this.show_login = false;
+        // // //download user
 		// 			firebase.firestore().collection("fans").doc(user.uid).onSnapshot((doc) => {
         //                 this.user = doc.data();
         //                 console.log(this.user);
+        //                 this.$store.commit("updateUser", user);
 		// 			});
 		// 		} else {
 		// 			// No user is signed in.
@@ -104,14 +106,23 @@
 			// 	this.deferredPrompt = e;
 			// 	// this.show_install = true;
 			// });
-            // this.get_shows();
+            this.get_shows();
             this.get_fake_bd();
             // this.forceSWupdate();  
 		},
 		methods: {
 
         //gets the shows from the firebase database
-            get_shows: function() {
+            get_shows() {
+                db.ref('/shows/').on('value', snapshot => {
+                    this.shows_fb = [];
+                    let data = snapshot.val();
+                    for (let doc in data) {
+                        let show = data[doc];
+                        show.timestamp = new Date(show.timestamp * 1000);
+                        this.shows_fb.push(show);
+                    }
+                });
                 // var db = firebase.firestore();
                 // db.collection("shows").onSnapshot((querySnapshot) => {
                 //     querySnapshot.forEach((doc) => {
