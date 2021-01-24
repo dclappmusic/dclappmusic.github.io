@@ -7,9 +7,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'agenda',
+      name: 'home',
       props: true,
-      component: () => import('./views/Agenda.vue')
+      component: () => import('./views/Home.vue')
     },
     {
       path: '/home',
@@ -47,10 +47,5 @@ export default new Router({
       props: true,
       component: () => import('./views/SubirShow.vue')
     }
-    // {
-    //   path: '/maps',
-    //   name: 'maps',
-    //   component: () => import('./views/Maps.vue')
-    // }
   ]
 })

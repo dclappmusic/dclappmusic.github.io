@@ -167,7 +167,7 @@ export default {
         // },
         touchHandler(e) {
             // const touch = this.$moment(e.timeStamp).millisecond();
-            console.log('touch');
+            console.log(e + 'touch');
             // this.clapps += 1;
         },
         startHandler(e) {

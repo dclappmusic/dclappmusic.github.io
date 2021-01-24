@@ -42,12 +42,12 @@
 <script>
 import { mapState } from 'vuex';
 import ShowCard from '@/components/ShowCard';
-import Mapbox from "mapbox-gl";
+// import Mapbox from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { 
     MglMap, 
     MglPopup,
-    MglNavigationControl,
+    // MglNavigationControl,
     MglGeolocateControl, 
     MglMarker 
 } from "vue-mapbox";
@@ -56,9 +56,9 @@ export default {
     name: 'agendaMap',
     props: ["shows"],
     components: {
-        Mapbox,
+        // Mapbox,
         MglMap,
-        MglNavigationControl,
+        // MglNavigationControl,
         MglGeolocateControl,
         MglPopup,
         MglMarker,
@@ -85,7 +85,6 @@ export default {
     created() {
         // debugger;
         this.map = null;
-        
     },
     mounted() {
         // debugger;

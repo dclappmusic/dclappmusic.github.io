@@ -15,18 +15,18 @@
             </div>
             <div class="datos_principales">
                 <div class="banda">
-                <!-- <router-link class="banda" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'> -->
+                <router-link class="banda" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'>
                     <p class="display-med">{{show.band ? show.band : ''}}</p>
-                <!-- </router-link> -->
+                </router-link>
                 </div>
                 <div class="segunda">
                     <p class="tipo parrafo">{{getBand(show.band_id).estilo ? getBand(show.band_id).estilo : ''}}</p>
-                    <!-- <p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p> -->
+                    <p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p>
                 </div>
                 <div class="segunda">
-                    <!-- <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'> -->
+                    <router-link class="sala" :to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'>
                         <p class="parrafo">{{show.festival ? show.festival : ''}}</p>
-                    <!-- </router-link> -->
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -61,8 +61,8 @@ export default {
     },
     methods: {
         ampliar() {
-            // $(".show").removeClass("open");
-            // this.ampliado = !this.ampliado;
+            document.querySelectorAll(".show").removeClass("open");
+            this.ampliado = !this.ampliado;
         },
         getBand(id) {
             let band = this.bands.find( band => band.id === id );
@@ -149,7 +149,7 @@ export default {
                 background-color: #333; color: white;
                 a {pointer-events: unset;}
                 .primera_fila .datos_principales .segunda .sala:before {
-                    background-image: url("/images/pin_liveshow_white.png");
+                    background-image: url("../../public/images/pin_liveshow_white.png");
                 }
             }
         }
@@ -226,7 +226,7 @@ export default {
                             .parrafo-sm {text-align: left; width: fit-content;}
                             &:before {
                                 content: "";
-                                background-image: url("~/images/pin_liveshow.png");
+                                background-image: url("../../public/images/pin_liveshow.png");
                                 width: 1em;
                                 height: 1em;
                                 background-size: contain;

@@ -6,6 +6,8 @@ import store from './store';
 import moment from 'moment';
 import VueI18n from 'vue-i18n'
 import Vue2TouchEvents from 'vue2-touch-events'
+//General styles
+import  "@/css/styles.scss"
 
 Vue.config.productionTip = false;
 let localeGlobal = 'es';

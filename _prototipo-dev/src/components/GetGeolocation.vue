@@ -5,8 +5,7 @@
 <script>
 export default {
     name: 'GetGeolocation',
-    components: {
-    },
+    components: {},
     props: ['findLocation'],
     data() {
         return {
@@ -75,19 +74,27 @@ export default {
             }
         },
         tryAPIGeolocation: function() {
-            jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function(success) {
+            fetch("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", {
+                method: "GET", 
+            }).then(success => {
                 this.apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
-            })
-            .fail(function(err) {
+            }).catch(err => {
                 console.log("API Geolocation error! \n\n"+err);
                 this.$emit("geolocationError",  "API Geolocation error! \n\n"+err);
-            });
+            })
+            // jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function(success) {
+            //     this.apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+            // })
+            // .fail(function(err) {
+            //     console.log("API Geolocation error! \n\n"+err);
+            //     this.$emit("geolocationError",  "API Geolocation error! \n\n"+err);
+            // });
         },
 
         apiGeolocationSuccess: function(position) {
             this.geolocation.lat = position.coords.latitude;
             this.geolocation.lon = position.coords.longitude;
-            console.log("API geolocation success!\n\nlat = " + latitud + "\nlng = " + longitud);
+            console.log("API geolocation success!\n\nlat = " + this.geolocation.lat + "\nlng = " + this.geolocation.lon);
             localStorage.setItem('coords', JSON.stringify(this.geolocation));
             this.$store.commit("updateGeolocation", this.geolocation);
         },

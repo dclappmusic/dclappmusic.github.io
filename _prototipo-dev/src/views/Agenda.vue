@@ -1,38 +1,42 @@
 <template>
     <div class="page agenda" data-page="agenda">
-        <!-- <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/> -->
+        <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/>
         <div class="cabecera">
-            <h1 class="titulo">Agenda de conciertos streaming</h1>
+            <h1 class="titulo">Agenda de conciertos</h1>
 
-            <a href="https://weclapp.live/" target="blank" class="logo">
+            <!-- <a href="https://weclapp.live/" target="blank" class="logo">
                 <img src="images/icon_completo.png" />
-            </a>
-            <router-link class="display-med subir" to="/subirShow">subir show</router-link>
+            </a> -->
+            <!-- <router-link class="display-med subir" to="/subirShow">subir show</router-link> -->
             <!-- <p class="display-med filtros" @click="filters = true">filtros</p> -->
             <keep-alive>
                 <AgendaFilters v-if="filters" @filters_popup="filters = false" @filtering="filtering"/>
             </keep-alive>
-            <!-- <p v-if="!map" class="display-med mapa" :class="{'active': !map}"  @click="map = !map">mapa</p>
-            <p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p> -->
+            <p v-if="!map" class="display-med mapa" :class="{'active': !map}"  @click="map = !map">mapa</p>
+            <p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p>
         </div>
         <div class="view" v-if="shows[0]">
             <keep-alive v-if="map">
-                <!-- <agendaMap :shows="shows_filtered" /> -->
+                <agendaMap :shows="shows_filtered" />
             </keep-alive>
             <keep-alive v-else>
                 <agendaList :shows="shows_filtered" />
             </keep-alive>
         </div>
-        <div class="spinner" :class="{active: !shows[0]}">
-            <p class="display-sm">Bienvenido a weclapp</p>
-        </div>
+        <!-- <div class="spinner active">
+            <p class="display-med">
+                Estamos recalibrandonos para encontrar la mejor forma de ser de  mayor utilidad para la comunidad de músicos ante esta nueva situación.<br><br>
+                Estate atento a las redes para las novedades
+            </p>
+            <a href="https://weclapp.live" class="display-sm">volver a la página princpal</a>
+        </div> -->
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-// import GetGeolocation from '@/components/GetGeolocation';
-// import agendaMap from '@/components/agendaMap';
+import GetGeolocation from '@/components/GetGeolocation';
+import agendaMap from '@/components/agendaMap';
 import agendaList from "@/components/agendaList";
 // import ModalSubirShow from "@/components/ModalSubirShow";
 import AgendaFilters from "@/components/AgendaFilters";
@@ -43,15 +47,15 @@ export default {
     props: [],
     components: {
         agendaList, 
-        // agendaMap,
+        agendaMap,
         AgendaFilters,
         // ModalSubirShow
-        // GetGeolocation
+        GetGeolocation
     },
     data() {
         return {
             map: false,
-            // accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
+            accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
             city: null,
             filters: false,
             shows_filtered: [],
@@ -66,7 +70,7 @@ export default {
     },
     watch: {
         geolocation: function() {
-            // this.getCity();
+            this.getCity();
         },
         shows_filtered: function() {
             
@@ -77,9 +81,9 @@ export default {
     },
     created() {
         this.shows_filtered = [...this.shows];
-        // if (this.geolocation.lat) {
-        //     this.getCity();
-        // }
+        if (this.geolocation.lat) {
+            this.getCity();
+        }
     },
     mounted() {
     },
@@ -102,7 +106,7 @@ export default {
 
         },
         geolocationError(error) {
-            // alert(error);
+            alert(error);
         }
     }
 }
@@ -170,15 +174,19 @@ export default {
             transition: all .5s ease-in-out;
             &.active {
                 display: flex;
-                opacity: 1;
+                flex-flow: column;
+                opacity: .8;
                 height: 100vh;
-                .display-sm {display: initial;}
+                .display-sm, .display-med {display: initial;}
+                a {margin-top: 4em; text-decoration: underline!important;}
                 // transition: all 1s ease-in-out;
             }
-            .display-sm {
+            .display-sm, .display-med {
                 color: white;
                 text-align: center;
                 display: none;
+                margin: .5em;
+                max-width: 35em;
             }
         }
         @media (max-width:768px) {
