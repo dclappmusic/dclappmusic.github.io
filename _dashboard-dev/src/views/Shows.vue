@@ -55,6 +55,7 @@ export default {
         }
     },
     created() {
+        this.shows_filtrados = [...this.shows].sort((a, b) => b.id - a.id);
     }
 }
 </script>
