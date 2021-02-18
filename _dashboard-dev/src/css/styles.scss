@@ -16,48 +16,77 @@
 }
 
 #app {
-    font-family: var(--roboto);
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: var(--color_fondo);
-    .view {
-        .cabecera {
-            text-align: center;
-        }
-    }
-    .fila {
-        margin: 1em 0;
-        width: 100%;
-        display: flex;
-    }
+	font-family: var(--roboto);
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: var(--color_fondo);
+	.view {
+		max-width: 1200px;
+		margin: 0 auto;
+		.cabecera {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			&>* {margin: 0 1em;}
+			.nav_link {
+				font-family: var(--changa);	
+				color: var(--color_texto);
+				font-size: 1.8em; 
+				text-decoration: underline!important;
+			}
+		}
+	}
 
-    .tit {
-        font-family: var(--changa);
-        color: var(--color_texto);
-        font-size: 1.8em; 
-        font-weight: bold;
-    }
-    p .parrafo {
-        color: var(--color_texto);
-        font-size: 1em;
-        line-height: 1.3em;
-    }
-    .small {
-        color: var(--color_texto);
-        font-size: .8em;
-        line-height: 1.2em;
-    }
-    .boton, .cta {
-        cursor: pointer;
-    }
-    p {margin-bottom: 0;}
-    .link {cursor: pointer;}
-    .bold, b {font-weight: bold;}
-    .semibold {font-weight: 600;}
-    .light {font-weight: 300;}
-    .centered {text-align: center;}   
+	.tit {
+		font-family: var(--changa);
+		color: var(--color_texto);
+		font-size: 1.8em; 
+		font-weight: bold;
+	}
+	p .parrafo {
+		color: var(--color_texto);
+		font-size: 1em;
+		line-height: 1.3em;
+	}
+	.small {
+		color: var(--color_texto);
+		font-size: .8em;
+		line-height: 1.2em;
+	}
+	.boton, .cta {
+		display: inline-block;
+		background-color: #333;
+		padding: .5em 1em;
+		color: white;
+		border-radius: 4px;
+		text-align: center;
+		cursor: pointer;
+	}
+	a { text-decoration: underline;}
+	p {margin-bottom: 0;}
+	.link {cursor: pointer;}
+	.bold, b {font-weight: bold;}
+	.semibold {font-weight: 600;}
+	.light {font-weight: 300;}
+	.centered {text-align: center;}   
+	.tabla {
+		position: relative;
+		width: 100%;
+		max-width: 80vw;
+		margin: 2em auto;
+		height: auto;
+		.fila {
+			margin: 1em 0;
+			width: 100%;
+			display: flex;
+			h3, p, input {
+				width: 20%;
+				text-align: left;
+			}
+		}
+	}	
 }
