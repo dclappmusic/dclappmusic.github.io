@@ -1,5 +1,8 @@
 <template>
 	<div id="app">
+		<div class="logo">
+			<img src="/img/logo.png" />
+		</div>
 		<div class="nav">
 			<p class="parr">Número de shows: <b class="tit">{{num_shows}}</b></p>
 			<p class="parr">Número de bandas: <b class="tit">{{num_bands}}</b></p>
@@ -167,6 +170,13 @@ export default {
 <style scoped lang="scss">
 #app {
 	min-height: 100vh;
+	padding: 1em;
+	.logo {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		img {width: 5rem;}
+	}
 	.nav {
 		display: flex;
 		align-items: center;
