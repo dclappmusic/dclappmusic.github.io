@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "vue": {
-    "publicPath": "/app/"
+    "publicPath": "/dev-app/"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
