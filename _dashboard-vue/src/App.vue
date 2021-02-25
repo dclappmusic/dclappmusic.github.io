@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<div class="logo">
-			<img src="dashboard/img/logo.png" />
+			<img src="/img/logo.png" />
 		</div>
 		<div class="nav">
 			<p class="parr">Número de shows: <b class="tit">{{num_shows}}</b></p>
