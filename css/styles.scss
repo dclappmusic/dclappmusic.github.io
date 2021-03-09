@@ -1,0 +1,544 @@
+@import "main";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/*********************  fonts *****************************/
+@font-face {
+    font-family: 'Changa';
+    src: url("fonts/Changa-Bold.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Changa';
+    src: url('fonts/changa-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Changa';
+    src: url('fonts/changa-Regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Changa';
+    src: url('fonts/changa-ExtraLight.ttf');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Light.ttf');
+    font-weight: 450;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Medium.ttf');
+    font-weight: 500;
+}
+
+$Roboto: 'Roboto', sans-serif;
+$Changa: 'Changa', sans-serif;
+
+@mixin typo($ffamily, $fsize, $fcolor) {
+    font-family: $ffamily;
+    color: $fcolor;
+    font-size: $fsize;
+}
+
+/*********************** colores ***********************/
+
+$rojo: #FC5130;
+$azul-texto: #031927;
+$azul-bands: #0C3847;
+$color-parr: white;
+
+/********************** resoluciones ********************/
+
+$Bigdesktop:"(min-width:1366px)";
+$mobile:"(max-width:768px)";
+
+//LANDING PAGE
+
+.idioma {
+    @include typo($Roboto, 18px, white);
+
+}
+.container {
+    position: absolute;
+    display: block;
+    width: 100vw;
+    // height: 100%;
+    z-index: 10;
+    overflow-x: hidden;
+    background-color: $azul-bands;
+    &.fans {
+        .fondo {
+            background-image: url(../images/landing_fondo_fans.jpg);
+            background-position: center;
+        }
+        .container_producto {    
+            .fans {
+                // left: 0;
+                transition: transform 1s ease-in-out;
+                transform: translateX(0);
+            }
+            .bands {
+                // left: 0;
+                transition: transform 1s ease-in-out;
+                transform: translateX(-1vw);
+                z-index: 90;
+            }
+        }
+    }
+
+    .fondo {
+        position: absolute;
+        background-image: url(../images/landing_fondo_bands.jpg);
+        background-attachment: fixed;
+        background-size: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        // object-fit: cover;
+        opacity: .25;
+        z-index: 0;
+        transition: all 1s ease-in-out;
+    }
+
+    &>div {
+        z-index: 10;
+        position: relative;
+    }
+
+    .switch {
+        position: fixed;
+        top: 50vh;
+        color: white;
+        padding: 1em;
+        font-family: $Changa;
+        cursor: pointer;
+        z-index: 100;
+        &.active {transition: transform 1s ease-in-out;}
+        &.bands {
+            background-color: $azul-bands;
+            right: 100vw;
+            border-radius: 2em 0 0 2em;
+            &.active {transform: translateX(100vw);}
+        }
+        &.fans {
+            background-color: $rojo;
+            left: 100vw;
+            border-radius: 0 2em 2em 0;
+            &.active {transform: translateX(-100vw);}
+        }
+    }
+
+    .logo {
+        position: absolute;
+        // display: block;
+        margin: 2%;
+        text-align: center;
+
+        .claim {
+            @include typo($Changa, 1.2vw, $color-parr);
+            font-weight: 200;
+            // margin: 10px auto 0;
+        }
+
+        img {
+            width: 8vw;
+        }
+
+        @media #{$mobile} {
+            margin: 5%;
+            img {width: 5em;}
+            // .claim {font-size: .7em;}
+            .claim {display: none;}
+            // width: 100%;
+            // position: relative;
+            // text-align: center;
+            // top: 15px;
+
+            // img {
+            //     width: 20%;
+            //     left: 0;
+            // }
+
+            // .claim {
+            //     font-size: .8em;
+            // }
+        }
+    }
+
+    .intro {
+        position: relative;
+        text-align: center;
+        margin-top: 30vh;
+        height: 70vh;
+
+        .main-parr {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-top: 5vh;
+            @include typo($Changa, 7vw, $color_parr);
+            font-weight: bold;
+            line-height: 1.2em;
+            // margin: 1em 0;
+        }
+        .cta {
+            position: relative;
+            display: inline-block;
+            margin: 2em auto;
+            @include typo($Roboto, 22px, $color-parr);
+            // border: 2px solid $color-parr;
+            background-color: $color-parr;
+            color: $azul-texto;
+            border-radius: 2em;
+            padding: .5em 1em;
+            font-weight: bold;
+            transition: all .3s ease-in-out;
+            box-shadow: 0 5px 10px rgba(0,0,0,.15);
+            &:hover {
+                transition: all .5s ease-in-out;
+                // background-color: $color-parr;
+                // color: $azul-texto;
+                box-shadow: 0 2px 3px rgba(0,0,0,.5);
+                top: 2px;
+            }
+        }
+
+        .definicion {
+            width: 90%;
+            margin-left: 2%;
+            text-align: left;
+            position: absolute;
+            bottom: 5%;
+            .parrafo {
+                @include typo($Roboto, 1.7vw, $color_parr);
+                font-weight: 450;
+                line-height: 1.4em;
+                b {font-weight: 500;}
+            }
+            .small {@include typo($Roboto, 1vw, $color_parr);}
+        }
+
+        @media #{$mobile} {
+            margin-top: 35vh;
+            font-size: 10vw;
+            br {display: none;}
+            .main-parr {font-size: 10vw;}
+            .cta {margin-top: 6em;}
+            .definicion {
+                overflow: scroll;
+                width: 98%;
+                bottom: 10vh;
+                .parrafo, .small {width: 500%; font-size: .6em;}
+            }
+
+            // .parrafo {
+            //     font-size: 1.4em;
+            //     width: 100%;
+            //     float: none;
+            //     margin: 1em 0;
+            //     margin-left: 5px !important;
+            // }
+        }
+    }
+
+    // .scroll_down {
+    // 	position: absolute;
+    // 	top: 90vh;
+    // 	width: 100%;
+    // 	text-align: center;
+    // 	cursor: pointer;
+    // 	.tit {@include typo($Changa, 28px, $color-parr); font-weight: 500}
+    // 	@media #{$mobile} {
+    // 		.tit {font-size: 7vw;}
+    // 	}
+    // }
+    .container_producto {
+        // display: flex;
+        position: absolute;
+        top: 0;  
+        left: 0;
+        width: 200vw;
+        z-index: -1;
+        .for {
+            position: absolute;
+            top: 1em;
+            width: 100%;
+            text-align: center;
+            @include typo($Changa, 40px, white);
+            @media #{$mobile} {
+                top: 5em;
+                text-align: left;
+                padding-left: 5%;
+                font-size: 1.2em;
+            }
+        }
+        &>div {
+            padding-top: 100vh;
+            position: relative;
+            // float: left;
+            width: 100vw;
+            min-height: 200vh;
+            height: auto;
+            transition: transform 1s ease-in-out;
+            // background: $azul-bands;
+            // box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.4);
+            // box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.47);
+            display: flex;
+            align-items: center;
+
+            &.bands {
+                // left: -100vw; 
+                transform: translateX(-99vw);
+                float: right; 
+                background-color: $azul-bands;
+            }
+            &.fans {
+                // left: -100vw; 
+                transform: translateX(-99vw);
+                float: left; 
+                background-color: $rojo
+            }
+
+            .prod_izda {
+                float: left;
+                width: 50%;
+                margin-left: 10%;
+                .for {
+                    position: relative; 
+                    top: 0; 
+                    margin-bottom: 1em; 
+                    text-align: left;
+                }
+                .tit {
+                    @include typo($Roboto, 40px, white);
+                    font-weight: 450;
+                    margin-bottom: 2em;
+                }
+                .bullets_prod {
+                    @include typo($Roboto, 22px, white);
+                    li {
+                        margin: 1.8em 1em;
+                        margin-right: 0;
+                        opacity: .3;
+                        cursor: pointer;
+                        list-style: circle;
+                    }
+                    .active {
+                        opacity: 1;
+                        list-style: initial;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .mockup_prod {
+                float: left;
+                width: 40%;
+                height: 100%;
+                &>div {
+                    // height: 80%;
+                    display: none;
+                    .mobile_description {display: none;}
+                    img {
+                        display: block;
+                        height: 80vh;
+                        margin: 10vh auto;
+                    }
+                }
+                .active {display: inherit;}
+            }
+            @media #{$mobile} {
+                display: block;
+                .prod_izda {
+                    .for {font-size: 2em; text-align: center;}
+                    width: 100%; 
+                    margin-left: 0;
+                    margin-top: 5vh;
+                    .tit {margin: 2em 10px; font-size: 1.5em; text-align: center;}
+                    .bullets_prod {
+                        display: none;
+                        margin: 2em 15px;
+                        font-size: 1em;
+                        li {
+                            display: none;
+                            opacity: 0;
+                            margin: 0;
+                        }
+                        .active {
+                            display: inline; 
+                            opacity: 1; 
+                            font-weight: lighter;
+                            transition: all .5s ease-in-out;
+                            list-style: none;
+                        }
+                    }
+                }
+                .mockup_prod {
+                    width: 100%;
+                    &>div {
+                        display: inherit;
+                        .mobile_description {
+                            display: block;
+                            @include typo($Roboto, 18px, white);
+                            margin: 1.5em 10px;
+                            line-height: 1.3em;
+                        }
+                        img {display: block; padding: 0 15vw; height: 70vh; margin-top: 0;}
+                    }
+                }
+            }
+        }
+    }
+
+    .suscripcion {
+        // background-color: rgba(51,51,51,.8);
+        display: none;
+        background-color: white;
+        position: absolute;
+        top: 13vh;
+        right: 5vw;
+        padding: 1%;
+        vertical-align: top;
+        border-radius: 10px;
+
+        form {
+            width: 255px;
+            position: relative;
+            border-radius: 30px;
+            background-color: $rojo;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 0 0 12px;
+            padding: 0 10px;
+            color: white;
+
+            input {
+                border: 0;
+                width: calc(100% - 30px);
+                box-sizing: border-box;
+                color: $color-parr;
+                height: 2.2em;
+                outline: 0;
+                font-size: 1em;
+                background-color: transparent;
+
+                &::placeholder {
+                    color: white;
+                }
+            }
+
+            .button {
+                border-radius: 20px;
+                position: absolute;
+                right: 5px;
+                // margin-left: 10px;
+                width: 30px;
+                height: 30px;
+                background-color: white;
+                border: none;
+                margin-left: -25px;
+                box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
+                transition: box-shadow 0.5s ease-in-out;
+                cursor: pointer;
+                &:hover { box-shadow: none;}
+                img {
+                    position: relative;
+                    top: 1px;
+                    right: 2px;
+                }
+            }
+            
+        }
+
+        small {
+            @include typo($Roboto, 15px, #333);
+            font-weight: 450;
+            line-height: 1.3em;
+            display: block;
+            width: 20vw;
+        }
+
+        @media #{$mobile} {
+            // position: relative;
+            // padding: 5% 10px;
+
+            // .izda {
+            //     width: 100%;
+            //     margin-right: 0;
+
+            //     .tit {
+            //         font-size: 18px;
+            //     }
+
+            //     .subtit {
+            //         font-size: 16px;
+            //     }
+
+            //     .parrafo {
+            //         font-size: 12px;
+            //     }
+            // }
+
+            // .dcha {
+            //     width: 100%;
+
+            //     form {
+            //         margin: 10px auto;
+            //     }
+            // }
+
+            // small {
+            //     font-size: 12px;
+            // }
+        }
+    }
+
+    .rrss {
+        position: absolute;
+        top: 5%;
+        right: 2%;
+        a {
+            display: inline-block;
+            margin: 0 .8vw;
+            img {height: 1.5vw;}
+            &.cta {
+                @include typo($Roboto, 18px, $color-parr);
+                border: 1px solid $color-parr;
+                border-radius: 2em;
+                padding: .5em 1em;
+            }
+        }
+
+        @media #{$mobile} {
+            a {
+                &.cta {float: right;}
+                &:not(.cta) {float: right; margin: .5em; width: 13%; text-align: center;}
+                img {height: 5vw;}
+            }
+            // top: 15px;
+            // right: 10px;
+
+            // a {
+            //     margin: 0 5px;
+
+            //     img {
+            //         height: 1.2em;
+            //     }
+            // }
+        }
+
+    }
+}
