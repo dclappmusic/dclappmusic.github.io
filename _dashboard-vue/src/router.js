@@ -11,12 +11,12 @@ export default new Router({
       props: true,
       component: () => import('./views/Bands.vue')
     },
-    {
-      path: '/Bands',
-      name: 'bands',
-      props: true,
-      component: () => import('./views/Bands.vue')
-    },
+    // {
+    //   path: '/Bands',
+    //   name: 'bands',
+    //   props: true,
+    //   component: () => import('./views/Bands.vue')
+    // },
     {
       path: '/Shows',
       name: 'shows',

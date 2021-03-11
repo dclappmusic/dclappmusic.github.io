@@ -1,47 +1,73 @@
 <template>
   <div class="modal subir_form">
     <div class="sub_modal">
-      <span class="cerrar">x</span>
       <svg class="cerrar" @click="$emit('close')" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0.646446 18.6464C0.451185 18.8417 0.451184 19.1583 0.646446 19.3536C0.841709 19.5488 1.15829 19.5488 1.35355 19.3536L10 10.7071L18.6464 19.3536C18.8417 19.5488 19.1583 19.5488 19.3536 19.3536C19.5488 19.1583 19.5488 18.8417 19.3536 18.6464L10.7071 10L19.3536 1.35355C19.5488 1.15829 19.5488 0.841709 19.3536 0.646447C19.1583 0.451185 18.8417 0.451185 18.6464 0.646447L10 9.29289L1.35356 0.646446C1.15829 0.451185 0.841711 0.451185 0.646448 0.646446C0.451186 0.841709 0.451186 1.15829 0.646448 1.35355L9.29289 10L0.646446 18.6464Z" fill="#B4B4B7"/>
+        <path d="M0.646446 18.6464C0.451185 18.8417 0.451184 19.1583 0.646446 19.3536C0.841709 19.5488 1.15829 19.5488 1.35355 19.3536L10 10.7071L18.6464 19.3536C18.8417 19.5488 19.1583 19.5488 19.3536 19.3536C19.5488 19.1583 19.5488 18.8417 19.3536 18.6464L10.7071 10L19.3536 1.35355C19.5488 1.15829 19.5488 0.841709 19.3536 0.646447C19.1583 0.451185 18.8417 0.451185 18.6464 0.646447L10 9.29289L1.35356 0.646446C1.15829 0.451185 0.841711 0.451185 0.646448 0.646446C0.451186 0.841709 0.451186 1.15829 0.646448 1.35355L9.29289 10L0.646446 18.6464Z" fill="#B4B4B7"/>
       </svg>
-      <div class="new_band" v-if="!new_show.band">
-        <label class="parr label">
-          Nombre del grupo
-          <input class="parr input" placeholder="Insta" type="text" v-model="new_band.name" list="filtros">
-          <!-- <p @click="new_show.band = new_band.name" class="parr">Crear banda también</p> -->
-          <!-- <datalist id="filtros">
-            <option v-for="(band, index) in bandas_filtradas" :key="index" :value="band.name"></option>
-          </datalist> -->
-        </label>
+      <form class="form banda" v-if="new_show.band || edited_band">
+        <div v-if="!new_show.band_id || edited_band">
+          <h3 class="tit">Band</h3>
+          <div class="fila band">
+            <input class="parr" placeholder="name" v-model="new_band.name" />
+          </div>
+          <div class="fila band">
+            <input class="parr" placeholder="city" v-model="new_band.city" />
+            <input class="parr" placeholder="afin a" v-model="new_band.afin_a" />
+            <input class="parr" placeholder="estilo" v-model="new_band.estilo" />
+            <input class="parr" placeholder="descripción" v-model="new_band.description" />
+            <input class="parr" placeholder="image" v-model="new_band.image" />
+          </div>
+          <div class="fila band">
+            <input class="parr" placeholder="facebook" v-model="new_band.facebook" />
+            <input class="parr" placeholder="youtube" v-model="new_band.youtube" />
+            <input class="parr" placeholder="image" v-model="new_band.image" />
+          </div>
+        </div>
+        <div v-if="!edited_band">
+          <h3 class="tit">Show de {{new_show.band}}</h3>
+          <div class="fila show">
+            <input class="parr" type="date" v-model="new_show.timestamp" placeholder="fecha"/>
+            <input class="parr" v-model="new_show.venue" placeholder="sala"/>
+          </div>
+          <div class="fila show">
+            <input class="parr" v-model="new_show.link" placeholder="link"/>
+            <input class="parr" v-model="new_show.city" placeholder="ciudad"/>
+            <input class="parr" v-model="new_show.festival" placeholder="festival"/>
+            </div>
+          <div class="fila show">
+            <input class="parr" v-model="new_show.lat" placeholder="lat"/>
+            <input class="parr" v-model="new_show.lon" placeholder="lon"/>
+            </div>
+          <div class="fila show">
+            <input class="parr" v-model="new_show.image" placeholder="imagen"/>
+            <input class="parr" v-model="new_show.price" placeholder="precio"/>
+          </div>
+        </div>
+        <div v-if="!edited_band && !edited_show" class="fila_botones">
+          <button class="boton cta" @click.prevent="subirShow">Subir show</button>
+        </div>
+        <div v-else-if="edited_show" class="fila_botones">
+          <button class="boton eliminar" @click.prevent="deleteShow">borrar show</button>
+          <button class="boton cta" @click.prevent="editShow">editar show</button>
+        </div>
+        <div v-else-if="edited_band && edited_band.id" class="fila_botones">
+          <button class="boton eliminar" @click.prevent="deleteBand">borrar banda</button>
+          <button class="boton cta" @click.prevent="editBand">editar banda</button>
+        </div>
+        <div v-else-if="edited_band" class="fila_botones">
+          <button class="boton cta" @click.prevent="subirBand">subir banda</button>
+        </div>
+      </form>
+      <div class="new_band form" v-else-if="edited_show && !edited_show.id">
+        <input class="parr" placeholder="Nombre del grupo" type="text" v-model="new_band.name" list="filtros">
         <div class="filtradas">
           <div class="banda" v-for="(band, index) in bandas_filtradas" :key="index" @click="elegirBand(band)">
             <p class="parr">{{band.name}}</p>
-            <!-- <p class="parr">{{band.insta_user}}</p> -->
           </div>
           <div class="banda" @click="new_show.band = new_band.name">
-            <p class="parr">Registrar banda</p>
+            <button class="boton cta">Registrar banda</button>
           </div>
         </div>
-        
-      </div>
-      <div v-if="new_show.band">
-        <h3 class="tit">Band</h3>
-        <div class="fila band">
-          <input class="parr name" placeholder="name" v-model="new_band.name" />
-          <input class="parr location" placeholder="location" v-model="new_band.location" />
-          <input class="parr insta" placeholder="insta" v-model="new_band.insta" />
-          <input class="parr fb" placeholder="facebook" v-model="new_band.facebook" />
-          <input class="parr ytube" placeholder="youtube" v-model="new_band.youtube" />
-          <input class="parr image" placeholder="image" v-model="new_band.image" />
-        </div>
-        <h3 class="tit">Show</h3>
-        <div class="fila show">
-          <input class="parr where" v-model="new_show.timestamp" placeholder="20 may 2020 15:20"/>
-          <input class="parr where" v-model="new_show.where" placeholder="link"/>
-          <input class="parr fest" v-model="new_show.fest" placeholder="festival"/>
-        </div>
-        <p class="boton cta" @click="subirShow">Subir show</p>
       </div>
     </div>
   </div>
@@ -54,39 +80,56 @@ import firebase from "firebase";
 export default {
 	name: 'ModalSubirShow',
 	components: {},
+  props: ['edited_band', 'edited_show'],
 	computed: {
 		...mapState([
 			"shows", "bands", "venues", 'user'
 		]),
-		band_name() {return this.new_band.name}
+    db() {return firebase.firestore();}
 	},
 	data() {
 		return {
 			subir_form: false,
+      bandas_filtradas: [],
 			new_band: {
+        id: null,
 				name: null,
-				insta: null,
+        description: null,
 				instagram: null,
 				youtube: null,
 				facebook: null,
 				city: null,
+        afin_a: null,
+        estilo: null,
+        image: null
 			},
 			new_show: {
-				date: null,
-				time: null,
-				festival: null,
+        id: null,
 				link: null,
 				band: null,
-				band_id: null
+				band_id: null,
+        timestamp: null,
+        city: null,
+        venue: null,
+				festival: null,
+        image: null,
+        lat: null,
+        lon: null,
+        price: null
 			}
 		}
 	},
 	watch: {
-		band_name() {
+		'new_band.name' () {
 			this.bandas_filtradas = this.bands.filter(band => band.name.toLowerCase().includes(this.new_band.name.toLowerCase()));
 		}
 	},
 	created() {
+    if (this.edited_band?.name) {
+      this.new_band = this.edited_band;
+    } else if (this.edited_show?.id >= 0) {
+      this.new_show = this.edited_show;
+    }
 	},
 	methods: {
 		elegirBand(band) {
@@ -100,90 +143,121 @@ export default {
 			this.new_band.image = band.image;
 			this.new_band.location = band.location;
 		},
-		subirShow() {
-			var db = firebase.firestore();
-
-			const new_band_id = this.bands.length;
-			const show_id = this.shows.length;
-
-			const timestamp = new Date(this.new_show.timestamp);
-
-			if (!this.bands.find(bnd => bnd.name === this.new_show.band)) {
-				db.collection("bands").doc('band_' + new_band_id).set({
+    editBand() {
+      this.db.collection("bands").doc('band_' + this.new_band.id).set({
+        id: this.new_band.id,
+        name: this.new_band.name,
+        description: this.new_band.description || null,
+        youtube: this.new_band.youtube || null,
+        instagram: this.new_band.instagram || null,
+        facebook: this.new_band.facebook || null,
+        city: this.new_band.city || null,
+        afin_a: this.new_band.afin_a || null,
+        estilo: this.new_band.estilo || null,
+        image: this.new_band.image || null
+      }, {merge: true}).then(() => {
+        console.log("banda editada");
+        this.$emit('close', 'refrescar bands');
+      })
+    },
+    subirBand() {
+      const new_band_id = this.bands.length;
+      this.db.collection("bands").doc('band_' + new_band_id).set({
 					id: new_band_id,
-					name: this.new_band.name,
-					youtube: this.new_band.youtube,
-					instagram: this.new_band.instagram,
-					facebook: this.new_band.facebook,
-					city: this.new_band.city,
+          name: this.new_band.name,
+          description: this.new_band.description,
+          youtube: this.new_band.youtube,
+          instagram: this.new_band.instagram,
+          facebook: this.new_band.facebook,
+          city: this.new_band.city,
+          afin_a: this.new_band.afin_a,
+          estilo: this.new_band.estilo,
+          image: this.new_band.image
 				}).then(() => {
-					console.log("banda subida");
-					db.collection("shows").doc('show_' + show_id).set({
-						id: show_id,
-						timestamp: timestamp,
-						festival: this.new_show.festival,
-						link: this.new_show.link,
-						band_id: this.new_show.band_id,
-					}).then(() => console.log("show subido"))
-				})
+          console.log('banda subida');
+          if (!this.edited_band && this.new_show.timestamp) {
+            this.new_show.band_id = new_band_id;
+            this.new_show.band_name = this.new_band.name;
+            this.subirShow();
+          } else {
+            this.$emit('close', 'refrescar bands');
+          }
+        });
+    },
+    deleteBand() {
+      if (window.confirm("Tas seguro?")) {
+        this.db.collection("bands").doc('band_' + this.new_band.id).delete().then(() => {
+          console.log('banda borrada');
+          this.$emit('close', 'refrescar bands');
+        })
+      }
+    },
+		subirShow() {
+			const show_id = this.shows.length;
+			const timestamp = new Date(this.new_show.timestamp);
+			if (!this.bands.find(bnd => bnd.name === this.new_show.band)) {
+        this.subirBand();
 			} else {
-				db.collection("shows").doc('show_' + show_id).set({
+				this.db.collection("shows").doc('show_' + show_id).set({
 					id: show_id,
 					timestamp: timestamp,
 					festival: this.new_show.festival,
 					link: this.new_show.link,
-					band_id: this.new_show.band_id,
-				}).then(() => console.log("show subido"))
+          band: this.new_show.band,
+          band_id: this.new_show.band_id,
+          city: this.new_show.city,
+          venue: this.new_show.venue,
+          image: this.new_show.image,
+          lat: this.new_show.lat,
+          lon: this.new_show.lon,
+          price: this.new_show.price
+				}).then(() => {
+          console.log("show subido");
+          this.$emit('close', 'refrescar shows');
+        })
 			}
-		}
+		},
+    editShow() {
+      this.db.collection("shows").doc('show_' + this.new_show.id).set({
+        id: this.new_show.id,
+        timestamp: this.new_show.timestamp || null,
+        festival: this.new_show.festival || null,
+        link: this.new_show.link || null,
+        band: this.new_show.band || null,
+        band_id: this.new_show.band_id || null,
+        city: this.new_show.city || null,
+        venue: this.new_show.venue || null,
+        image: this.new_show.image || null,
+        lat: this.new_show.lat || null,
+        lon: this.new_show.lon || null,
+        price: this.new_show.price || null
+      }, {merge: true}).then(() => {
+        console.log("show editada");
+        this.$emit('close', 'refrescar shows');
+      })
+    },
+    deleteShow() {
+      if (window.confirm("Tas seguro?")) {
+        this.db.collection("shows").doc('show_' + this.new_show.id).delete().then(() => {
+          console.log('show borrado');
+          this.$emit('close', 'refrescar shows');
+        })
+      }
+    }
 	}
 }
 </script>
 
 <style scoped lang="scss">
-.modal {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0,0,0,.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  .sub_modal {
-    position: relative;
-    width: 80%;
-    // height: 80%;
-    background-color: #333;
-    padding: 3em;
-    border-radius: .25em;
-    .cerrar {
-      position: absolute;
-      top: 2em;
-      right: 2em;
-      color: white;
-              cursor: pointer;
-              padding: 1em;
-    }
-          .filtradas .banda .parr {
-              cursor: pointer;
-              &:hover {text-decoration: underline;}
-          }
-    .parr, .tit, input {
-      color: white!important;
-      margin-right: 1em;
-    }
-    .boton {
-      background-color: white;
-      color: #333;
-      padding: 1em;
-      margin: 1em auto;
-      display: inline-block;
-      border-radius: .25em;
-      cursor: pointer;
-    }
+.sub_modal {
+  .filtradas .banda .parr {
+    cursor: pointer;
+    &:hover {text-decoration: underline;}
+  }
+  .tit {margin-bottom: 1em;}
+  .parr, .tit, input {
+    color: white!important;
+    margin-right: 1em;
   }
 }
 

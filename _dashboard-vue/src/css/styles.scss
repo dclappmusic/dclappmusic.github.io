@@ -1,4 +1,5 @@
 @import "fonts";
+@import "grid";
 @import "global";
 
 :root {
@@ -80,13 +81,90 @@
 		margin: 2em auto;
 		height: auto;
 		.fila {
-			margin: 1em 0;
+			margin: .5em 0;
+			padding: .5em;
 			width: 100%;
 			display: flex;
+			&:not(.cabecero):hover {
+				background-color: rgba(0,0,0,.1);
+				cursor: pointer;
+			}
 			h3, p, input {
 				width: 20%;
 				text-align: left;
 			}
 		}
 	}	
+
+	.modal {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		z-index: 101;
+		background-color: rgba(0,0,0,.5);
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
+		.sub_modal {
+			position: relative;
+			width: 80%;
+			max-width: 90em;
+			height: auto;
+			min-height: 40vh;
+			max-height: 80vh;
+			overflow-y: scroll;
+			padding: 2em 5% 2em;
+			margin: auto;
+			border-radius: 5px;
+			background-color: #333;
+			.cerrar {
+				position: absolute;
+				top: 2em;
+				right: 1.8em;
+				cursor: pointer;
+			}
+			.form {
+				width: 100%;
+				max-height:80vh;
+				overflow-y: auto;
+				overflow-x: hidden;
+				display: flex;
+    		flex-flow: column;
+				justify-content: space-between;
+				input {
+					height: 2em;
+					padding: .5em .5em .3em;
+					min-width: 5rem;
+					border: none;
+					border: 1px solid #fff;
+					border-radius: .25em;
+					margin-bottom: 1em;
+					&:focus { outline:none; }
+				}
+				.fila_botones {
+					display: flex;
+					align-items: flex-end;
+					justify-content: flex-end;
+				}
+				.boton {
+					margin: 2em 0 0 1em;
+					padding: .7em 1em;
+					border-radius: .25em;
+					cursor: pointer;
+					&.cta {
+						background-color: white;
+						color: #333;
+						&.disabled {opacity: .5; cursor: not-allowed;}
+					}
+					&.delete {
+						border: 1px solid white;
+						color: white;
+					}
+				}
+			}
+		}
+	}
 }
