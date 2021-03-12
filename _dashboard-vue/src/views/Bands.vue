@@ -17,7 +17,7 @@
 					<!-- <h3 class="tit similar">similar to</h3> -->
 					<!-- <h3 class="tit shows">shows</h3> -->
 				</div>
-				<div class="fila" v-for="(band, index) in bands_ord" :key="index"
+				<div class="fila" v-for="(band, index) in bands_filtradas" :key="index"
 					@click="$emit('openModalSubirShow', 'band', band)"
 				>
 					<p class="parr id">{{band.id}}</p>
@@ -50,7 +50,12 @@
 		},
 		data() {
 			return {
-				bands_ord: []
+				bands_filtradas: []
+			}
+		},
+		watch: {
+			bands() {
+				this.bands_filtradas = [...this.bands].sort((a, b) => b.id - a.id);
 			}
 		},
 		methods: {
@@ -58,14 +63,14 @@
 				let sentido_ascendente;
 				// if (typeof categoria === 'number') {
 				if (categoria === 'id') {
-					sentido_ascendente = this.bands_ord[0][categoria] < this.bands_ord[this.bands_ord.length - 1][categoria];
-					this.bands_ord.sort((a, b) => {
+					sentido_ascendente = this.bands_filtradas[0][categoria] < this.bands_filtradas[this.bands_filtradas.length - 1][categoria];
+					this.bands_filtradas.sort((a, b) => {
 						if (sentido_ascendente) return b[categoria] - a[categoria]
 						else {return a[categoria] - b[categoria]}
 					});
 				} else {
-					sentido_ascendente = this.bands_ord[0][categoria].localeCompare(this.bands_ord[this.bands_ord.length - 1][categoria]);
-					this.bands_ord.sort((a, b) => {
+					sentido_ascendente = this.bands_filtradas[0][categoria].localeCompare(this.bands_filtradas[this.bands_filtradas.length - 1][categoria]);
+					this.bands_filtradas.sort((a, b) => {
 						if (sentido_ascendente > 0) {
 							return a[categoria].localeCompare(b[categoria])
 						} else {
@@ -76,7 +81,7 @@
 			}
 		},
 		created() {
-			this.bands_ord = this.bands;
+			this.bands_filtradas = [...this.bands].sort((a, b) => b.id - a.id);
 		}
 	}
 </script>
