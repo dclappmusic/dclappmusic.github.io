@@ -1,5 +1,5 @@
 <template>
-	<div class="page bands">
+	<div id="bands" class="page bands">
 		<div class="cabecera">
 			<h1 class="tit">Bands</h1>
 			<router-link to="/Shows" class="nav_link">Shows</router-link>
@@ -8,13 +8,13 @@
 		<div class="view">
 			<div class="tabla">
 				<div class="fila cabecero">
-					<h3 class="tit id" @click="ordenarPor('id')">id</h3>
-					<h3 class="tit name" @click="ordenarPor('name')">name</h3>
+					<h3 class="tit id sort" @click="ordenarPor('id')">id &#8661;</h3>
+					<h3 class="tit name sort" @click="ordenarPor('name')">name &#8661;</h3>
 					<h3 class="tit location">location</h3>
 					<h3 class="tit insta">insta</h3>
 					<h3 class="tit fb">facebook</h3>
 					<!-- <h3 class="tit image">image</h3> -->
-					<h3 class="tit similar">similar to</h3>
+					<!-- <h3 class="tit similar">similar to</h3> -->
 					<!-- <h3 class="tit shows">shows</h3> -->
 				</div>
 				<div class="fila" v-for="(band, index) in bands_ord" :key="index"
@@ -26,7 +26,7 @@
 					<p class="parr insta">{{band.instagram}}</p>
 					<p class="parr fb">{{band.facebool}}</p>
 					<!-- <p class="parr image"><img class="band_image" :src="band.image" /></p> -->
-					<p class="parr similar">{{band.afin_a}}</p>
+					<!-- <p class="parr similar">{{band.afin_a}}</p> -->
 					<!-- <p class="parr shows">{{band.shows}}</p> -->
 				</div>
 			</div>
@@ -81,14 +81,15 @@
 	}
 </script>
 <style scoped lang="scss">
-.tabla {
-	.id {width: 5%;}
-	.name {width: 30%;}
-	.insta {width: 25%;}
-	.image {
-		position: relative;
-		width: 20%;
-		.band_image {width: 100%;}
+#bands {
+	.tabla {
+		.id {width: 10%;}
+		.name {width: 30%;}
+		.insta {width: 25%;}
+		.sort {
+			cursor: pointer;
+			&:hover{font-weight: normal;}
+		}
 	}
 }
 </style>

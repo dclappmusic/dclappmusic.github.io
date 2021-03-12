@@ -18,6 +18,7 @@
             <input class="parr" placeholder="image" v-model="new_band.image" />
           </div>
           <div class="fila band">
+            <input class="parr" placeholder="instagram" v-model="new_band.instagram" />
             <input class="parr" placeholder="facebook" v-model="new_band.facebook" />
             <input class="parr" placeholder="youtube" v-model="new_band.youtube" />
             <input class="parr" placeholder="image" v-model="new_band.image" />
@@ -124,13 +125,14 @@ export default {
 			this.bandas_filtradas = this.bands.filter(band => band.name.toLowerCase().includes(this.new_band.name.toLowerCase()));
 		}
 	},
-	created() {
+	created: function() {
     if (this.edited_band?.name) {
       this.new_band = this.edited_band;
     } else if (this.edited_show?.id >= 0) {
       this.new_show = this.edited_show;
     }
 	},
+  mounted: function(){},
 	methods: {
 		elegirBand(band) {
 			this.new_show.band = band.name;
@@ -138,7 +140,7 @@ export default {
 			
 			this.new_band.id = band.id;
 			this.new_band.name = band.name;
-			this.new_band.insta = band.insta;
+			this.new_band.instagram = band.instagram;
 			this.new_band.facebook = band.facebook;
 			this.new_band.image = band.image;
 			this.new_band.location = band.location;
@@ -163,26 +165,26 @@ export default {
     subirBand() {
       const new_band_id = this.bands.length;
       this.db.collection("bands").doc('band_' + new_band_id).set({
-					id: new_band_id,
-          name: this.new_band.name,
-          description: this.new_band.description,
-          youtube: this.new_band.youtube,
-          instagram: this.new_band.instagram,
-          facebook: this.new_band.facebook,
-          city: this.new_band.city,
-          afin_a: this.new_band.afin_a,
-          estilo: this.new_band.estilo,
-          image: this.new_band.image
-				}).then(() => {
-          console.log('banda subida');
-          if (!this.edited_band && this.new_show.timestamp) {
-            this.new_show.band_id = new_band_id;
-            this.new_show.band_name = this.new_band.name;
-            this.subirShow();
-          } else {
-            this.$emit('close', 'refrescar bands');
-          }
-        });
+        id: new_band_id,
+        name: this.new_band.name,
+        description: this.new_band.description,
+        youtube: this.new_band.youtube,
+        instagram: this.new_band.instagram,
+        facebook: this.new_band.facebook,
+        city: this.new_band.city,
+        afin_a: this.new_band.afin_a,
+        estilo: this.new_band.estilo,
+        image: this.new_band.image
+      }).then(() => {
+        console.log('banda subida');
+        if (!this.edited_band && this.new_show.timestamp) {
+          this.new_show.band_id = new_band_id;
+          this.new_show.band_name = this.new_band.name;
+          this.subirShow();
+        } else {
+          this.$emit('close', 'refrescar bands');
+        }
+      });
     },
     deleteBand() {
       if (window.confirm("Tas seguro?")) {

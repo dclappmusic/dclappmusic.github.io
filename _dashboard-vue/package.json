@@ -8,10 +8,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "cdeploy": "vue-cli-service build && rm -rf ../dashboard  &&  cp -R  ../_dashboard-vue/dist ../dashboard"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "core-js": "^3.6.4",
     "firebase": "^7.14.4",
     "moment": "^2.29.1",

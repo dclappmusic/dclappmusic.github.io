@@ -19,7 +19,7 @@
 <script>
 import { mapState } from 'vuex';
 import firebase from "firebase";
-import axios from 'axios';
+// import axios from 'axios';
 import ModalSubirShow from './components/modalSubirShow.vue';
 
 export default {
@@ -62,7 +62,7 @@ export default {
 		},
 	},
 	created() {
-		this.getFakeDb();
+		// this.getFakeDb();
 		this.getShows();
 		this.getBands();
 	},
@@ -74,7 +74,6 @@ export default {
 			db.collection("shows").onSnapshot((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					let show = doc.data();
-					show.timestamp = show.timestamp.toDate();
 					this.shows_fb.push(show);
 				});
 			});
@@ -88,52 +87,6 @@ export default {
 					this.bands_fb.push(band);
 				});
 			});
-		},
-
-	//Gets data from the Google sheets database
-		getFakeDb() {
-			console.log("get fake bd");
-			axios
-				.get('https://script.googleusercontent.com/macros/echo?user_content_key=B2RCswZE_bKhpHpWLE7dh2l8upFAFVNYQNafy9jwsBLeMJurc3MhDJ8KuNBYdrDuZcD7gNoC_pzp8K_h_dbOvXucpcXqn7hum5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC0Bj8AjnxtLtGH0GnscS5xiWkyEaXlWRRcy-WjMZPpjVKzXvaCvl0CKlmml5HH8C0W-dnclfdIe&lib=M59Av1ZsTFidnmm2zCZX2mvv91E1OTAZR')
-				.then((response) => {
-					var shows = response.data.shows;
-					this.shows_gs = shows.map(show => {
-						return {
-							id: show.show_id,
-							link: show.link,
-							band: show.band,
-							band_id: show.band_id,
-							timestamp: new Date(show.timestamp),
-							city: show.city,
-							venue: show.venue,
-							festival: show.festival,
-							image: show.image,
-							lat: show.lat,
-							lon: show.lon,
-							price: show.price
-						}
-					});
-				})
-			axios
-				.get("https://script.google.com/macros/s/AKfycbwE4QipXuKLAV0UVEsE8_pp2CA2XQu3cqVIzW8co9fLjFi-Javu/exec")
-				.then((response) => {
-					let bands = response.data.bands;
-					this.bands_gs = bands.map(band => {
-						return {
-							id: band.id,
-							name: band.name,
-							instagram: band.insta_user,
-							youtube: band.rrss3,
-							facebook: band.facebook,
-							city: band.location,
-							afin_a: band['afin a'],
-							description: band.description,
-							estilo: band.estilo,
-							image: band.image
-						}
-					});
-					console.log("get bands");
-				})
 		},
 
 //open modal edit show/band
