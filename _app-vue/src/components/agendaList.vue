@@ -68,10 +68,6 @@ export default {
 				console.log(show_highlighted);
 				if (show_highlighted) {
 					show_highlighted.highlight = true;
-					// var el = this.$el.querySelector('#show_' + this.url_show_id);
-					// el.scrollIntoView();
-					// var container = this.$el.querySelector("#shows");
-					// container.scrollTop = container.scrollHeight;
 				}
 			}
 			this.filter_shows();
@@ -80,26 +76,33 @@ export default {
 			// this.shows_here.sort((a, b) => this.$moment(a.timestamp).unix() - this.$moment(b.timestamp).unix());
 			let today = this.$moment().hours(12).minutes(0).seconds(0).millisecond(0);
 			let now = this.$moment();
-			this.shows_week = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
+			this.shows_week = {};
 
 			this.shows_here.forEach(show => {
-				var time = this.$moment(show.timestamp);
-				var show_time = this.$moment().set({
-					"year": time.year(), "month": time.month(), "date": time.date(),"hour": time.hour(), "minute": time.minute(), "second": 0, "millisecond": 0
-				});
-				var diff_days = show_time.diff(today, 'days');
-				var diff_hours = time.diff(now, 'hours');
-				var diff_minutes = time.diff(now, 'minutes');
-				if (diff_days >= 0 && diff_days < 7) {
-					show.diff_days = diff_days;
-					show.diff_hours = diff_hours;
-					if (show.link && diff_hours > -1) {
-						diff_minutes < 0 ? show.live = true : show.live = false;
-						this.shows_week[diff_days].push(show);
+				if (show.timestamp) {
+					var time = this.$moment(show.timestamp);
+					var show_time = this.$moment().set({
+						"year": time.year(), "month": time.month(), "date": time.date(),"hour": time.hour(), "minute": time.minute(), "second": 0, "millisecond": 0
+					});
+					var diff_days = show_time.diff(today, 'days');
+					var diff_hours = time.diff(now, 'hours');
+					var diff_minutes = time.diff(now, 'minutes');
+					if (diff_days >= 0 && diff_days < 7) {
+						show.diff_days = diff_days;
+						show.diff_hours = diff_hours;
+						// if (show.link && diff_hours > -1) {
+						if (diff_hours > -1) {
+							diff_minutes < 0 ? show.live = true : show.live = false;
+							if (this.shows_week[diff_days]) {
+								this.shows_week[diff_days].push(show);
+							} else {
+								this.shows_week[diff_days] = [show];
+							}
+						}
+					} else if (diff_days > 6) {
+						// if (show.link) {this.shows_week[diff_days].push(show);}
+						if (show.link) {this.other_shows.push(show);}
 					}
-				} else if (diff_days > 6) {
-					// if (show.link) {this.shows_week[diff_days].push(show);}
-					if (show.link) {this.other_shows.push(show);}
 				}
 			});
 			for (let day in this.shows_week) {

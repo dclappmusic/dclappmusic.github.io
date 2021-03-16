@@ -23,7 +23,6 @@
 	import PopupInstall from '@/components/PopupInstall';
   // import PopupLogin from '@/components/PopupLogin';
   import GetGeolocation from '@/components/GetGeolocation';
-  import axios from 'axios';
 
 	export default {
 		name: 'app',
@@ -54,24 +53,14 @@
         ]),
     },
     watch: {
-      shows_gs: function() {
-        // this.set_show_cords(this.shows_gs, this.venues_gs);
-        this.$store.commit("updateShows", [...this.shows_fb, ...this.shows_gs]);
-      },
-      shows_fb: function() {
-        this.$store.commit("updateShows", [...this.shows_fb, ...this.shows_gs]);
-      },
-      bands_gs: function() {
-        this.$store.commit("updateBands", [...this.bands_fb, ...this.bands_gs]);
-      },
-      bands_fb: function() {
-        this.$store.commit("updateBands", [...this.bands_fb, ...this.bands_gs]);
-      },
-      venues_gs: function() {
-        this.$store.commit("updateVenues", [...this.venues_fb, ...this.venues_gs]);
-      },
+      // shows_fb: function() {
+      //   this.$store.commit("updateShows", this.shows_fb);
+      // },
+      // bands_fb: function() {
+      //   this.$store.commit("updateBands", this.bands_fb);
+      // },
       venues_fb: function() {
-        this.$store.commit("updateVenues", [...this.venues_fb, ...this.venues_gs]);
+        this.$store.commit("updateVenues", this.venues_fb);
       },
       geolocation: function() {
         this.$store.commit("updateGeolocation", this.geolocation);
@@ -89,8 +78,8 @@
 				this.deferredPrompt = e;
 				this.show_install = true;
 			});
-      this.get_shows();
-      this.get_fake_bd();
+      this.getShows();
+      this.getBands();
       // this.forceSWupdate();  
 		},
 		methods: {
@@ -115,50 +104,27 @@
         });
       },
       //gets the shows from the firebase database
-      get_shows() {
-        // db.ref('/shows/').on('value', snapshot => {
-        //     this.shows_fb = [];
-        //     let data = snapshot.val();
-        //     for (let doc in data) {
-        //         let show = data[doc];
-        //         show.timestamp = new Date(show.timestamp * 1000);
-        //         this.shows_fb.push(show);
-        //     }
-        // });
+      getShows() {
         db.collection("shows").onSnapshot((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                let show = doc.data();
-                show.timestamp = show.timestamp.toDate();
-                this.shows_fb.push(show);
-            });
+          this.shows_fb = [];
+          querySnapshot.forEach((doc) => {
+            let show = doc.data();
+            this.shows_fb.push(show);
+          });
+          this.$store.commit("updateShows", this.shows_fb);
+        });
+      },
+      getBands() {
+        db.collection("bands").onSnapshot((querySnapshot) => {
+          this.bands_fb = [];
+          querySnapshot.forEach((doc) => {
+            let band = doc.data();
+            this.bands_fb.push(band);
+          });
+          this.$store.commit("updateBands", this.bands_fb);
         });
       },
 
-      //Gets data from the Google sheets database
-      get_fake_bd() {
-        console.log("get fake bd");
-        axios
-          .get('https://script.googleusercontent.com/macros/echo?user_content_key=B2RCswZE_bKhpHpWLE7dh2l8upFAFVNYQNafy9jwsBLeMJurc3MhDJ8KuNBYdrDuZcD7gNoC_pzp8K_h_dbOvXucpcXqn7hum5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC0Bj8AjnxtLtGH0GnscS5xiWkyEaXlWRRcy-WjMZPpjVKzXvaCvl0CKlmml5HH8C0W-dnclfdIe&lib=M59Av1ZsTFidnmm2zCZX2mvv91E1OTAZR')
-          .then((response) => {
-            var shows = response.data.shows;
-            shows.forEach(show => {
-                show.timestamp =  new Date(show.timestamp);
-            });
-            this.shows_gs = shows;
-          })
-        axios
-          .get("https://script.google.com/macros/s/AKfycbwE4QipXuKLAV0UVEsE8_pp2CA2XQu3cqVIzW8co9fLjFi-Javu/exec")
-          .then((response) => {
-            let bands = response.data.bands;
-            this.bands_gs = bands;
-            console.log("get bands");
-          })
-        axios
-          .get("https://script.google.com/macros/s/AKfycbxMG-visbQGWcrCwBRig56yhzpNTiTVKyRqB7blIg/exec")
-          .then((response) => {
-            this.venues_gs = response.data.venues;
-          })
-      },
       //Crosses the venues and shows DB to set the show coords
       set_show_cords(shows, venues) {
         shows.forEach(show => {

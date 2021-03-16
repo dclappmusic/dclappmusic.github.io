@@ -7,21 +7,21 @@
 			<!-- <a href="https://weclapp.live/" target="blank" class="logo">
 							<img src="images/icon_completo.png" />
 					</a> -->
-			<router-link class="display-med subir" to="/subirShow">subir show</router-link>
-			<p class="display-med filtros" @click="filters = true">filtros</p>
-			<keep-alive>
+			<!-- <router-link class="display-med subir" to="/subirShow">subir show</router-link>
+			<p class="display-med filtros" @click="filters = true">filtros</p> -->
+			<!-- <keep-alive>
 				<AgendaFilters v-if="filters" @filters_popup="filters = false" @filtering="filtering"/>
-			</keep-alive>
-			<p v-if="!map" class="display-med mapa" :class="{'active': !map}" @click="map = !map">mapa</p>
-			<p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p>
+			</keep-alive> -->
+			<!-- <p v-if="!map" class="display-med mapa" :class="{'active': !map}" @click="map = !map">mapa</p>
+			<p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p> -->
 		</div>
 		<div class="view" v-if="shows[0]">
-			<keep-alive v-if="map">
+			<!-- <keep-alive v-if="map">
 				<agendaMap :shows="shows_filtered" />
-			</keep-alive>
-			<keep-alive v-else>
+			</keep-alive> -->
+			<!-- <keep-alive v-else> -->
 				<agendaList :shows="shows_filtered" />
-			</keep-alive>
+			<!-- </keep-alive> -->
 		</div>
 		<!-- <div class="spinner active">
 					<p class="display-med">
@@ -36,10 +36,10 @@
 <script>
 	import {mapState} from 'vuex';
 	import GetGeolocation from '@/components/GetGeolocation';
-	import agendaMap from '@/components/agendaMap';
+	// import agendaMap from '@/components/agendaMap';
 	import agendaList from "@/components/agendaList";
 	// import ModalSubirShow from "@/components/ModalSubirShow";
-	import AgendaFilters from "@/components/AgendaFilters";
+	// import AgendaFilters from "@/components/AgendaFilters";
 	import axios from 'axios';
 
 	export default {
@@ -47,8 +47,8 @@
 		props: [],
 		components: {
 			agendaList,
-			agendaMap,
-			AgendaFilters,
+			// agendaMap,
+			// AgendaFilters,
 			// ModalSubirShow,
 			GetGeolocation
 		},
