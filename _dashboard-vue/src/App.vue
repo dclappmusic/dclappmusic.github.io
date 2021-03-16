@@ -38,9 +38,9 @@ export default {
 	},
 	data() {
 		return {
-			shows_gs: [],
+			// shows_gs: [],
 			shows_fb: [],
-			bands_gs: [],
+			// bands_gs: [],
 			bands_fb: [],
 			subir_form: false,
 			edited_band: false,
@@ -48,18 +48,18 @@ export default {
 		}
 	},
 	watch: {
-		shows_gs: function() {
-			this.$store.commit("updateShows", [...this.shows_fb, ...this.shows_gs]);
-		},
-		shows_fb: function() {
-			this.$store.commit("updateShows", [...this.shows_fb, ...this.shows_gs]);
-		},
-		bands_gs: function() {
-			this.$store.commit("updateBands", [...this.bands_fb, ...this.bands_gs]);
-		},
-		bands_fb: function() {
-			this.$store.commit("updateBands", [...this.bands_fb, ...this.bands_gs]);
-		},
+		// shows_gs: function() {
+		// 	this.$store.commit("updateShows", this.shows_fb);
+		// },
+		// shows_fb: function() {
+		// 	if (this.shows_fb.length) this.$store.commit("updateShows", this.shows_fb);
+		// },
+		// bands_gs: function() {
+		// 	this.$store.commit("updateBands", this.bands_fb);
+		// },
+		// bands_fb: function() {
+		// 	if (this.bands_fb.length) this.$store.commit("updateBands", this.bands_fb);
+		// },
 	},
 	created() {
 		// this.getFakeDb();
@@ -69,34 +69,38 @@ export default {
 	methods: {
 	//gets the shows from the firebase database
 		getShows() {
-			this.shows_fb = [];
 			var db = firebase.firestore();
 			db.collection("shows").onSnapshot((querySnapshot) => {
+				this.shows_fb = [];
 				querySnapshot.forEach((doc) => {
 					let show = doc.data();
 					this.shows_fb.push(show);
 				});
+				if (this.shows_fb.length) this.$store.commit("updateShows", this.shows_fb);
 			});
 		},
 		getBands() {
-			this.bands_fb = [];
 			var db = firebase.firestore();
 			db.collection("bands").onSnapshot((querySnapshot) => {
+				this.bands_fb = [];
 				querySnapshot.forEach((doc) => {
 					let band = doc.data();
 					this.bands_fb.push(band);
 				});
+				if (this.bands_fb.length) this.$store.commit("updateBands", this.bands_fb);
 			});
 		},
 
 //open modal edit show/band
 		openModalSubirShow(tipo, id) {
-			if (tipo && tipo === 'band') this.edited_band = id || 'nueva';
-			if (tipo && tipo === 'show') this.edited_show = id || 'nueva';
+			if (tipo && tipo === 'band') this.edited_band = id || 'new';
+			if (tipo && tipo === 'show') this.edited_show = id || 'new';
 			this.subir_form = true;
 		},
 		closeModalSubirShow(accion) {
 			this.subir_form = false;
+			this.edited_band = false;
+			this.edited_show = false;
 			if (accion === 'refrescar bands') {
 				this.getBands();
 			} else if (accion === 'refrescar shows') {

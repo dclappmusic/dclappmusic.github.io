@@ -22,12 +22,13 @@ export default new Vuex.Store({
         //before store it, sort them by time
             if (shows) {
                 shows.sort(function(a,b){
-                    return new Date(a.timestamp) - new Date(b.timestamp);
+                    return a.timestamp - b.timestamp;
                 });
             }
             state.shows = shows;
         },
         updateBands(state, bands) {
+            if (bands) bands.sort((a, b) => b.id - a.id);
             state.bands = bands;
         },
         updateVenues(state, venues) {
