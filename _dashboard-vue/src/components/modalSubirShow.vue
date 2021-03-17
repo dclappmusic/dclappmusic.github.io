@@ -24,7 +24,7 @@
             <input class="parr" placeholder="image" v-model="new_band.image" />
           </div>
         </div>
-        <div v-if="edited_show === 'new'">
+        <div v-if="edited_show">
           <h3 class="tit">Show de {{new_show.band}}</h3>
           <div class="fila show">
             <input class="parr" type="date" v-model="new_show.fecha" placeholder="fecha*"/>
@@ -137,6 +137,8 @@ export default {
       this.new_band = this.edited_band;
     } else if (this.edited_show?.id >= 0) {
       this.new_show = this.edited_show;
+      this.new_show.fecha = this.$moment(this.new_show.timestamp).format('YYYY-MM-DD');
+      this.new_show.hora = this.$moment(this.new_show.timestamp).format('HH:mm');
     }
 	},
   mounted: function(){},

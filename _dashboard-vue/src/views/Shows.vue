@@ -21,7 +21,7 @@
 					<p class="id">{{show.id}}</p>
 					<p class="band">{{show.band}}</p>
 					<p class="where">{{show.venue}}</p>
-					<p class="when">{{show.timestamp ? $moment(show.timestamp).format('DD/MM/YYYY') : 'Sin fecha'}}</p>
+					<p class="when">{{show.timestamp ? $moment(show.timestamp).format('DD/MM/YYYY HH:mm') : 'Sin fecha'}}</p>
 					<!-- <p class="fest">{{show.festival}}</p> -->
 					<!-- <p class="clicks">{{show.clicks}}</p> -->
 				</div>

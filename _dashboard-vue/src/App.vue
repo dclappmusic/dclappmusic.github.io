@@ -102,9 +102,9 @@ export default {
 			this.edited_band = false;
 			this.edited_show = false;
 			if (accion === 'refrescar bands') {
-				this.getBands();
+				// this.getBands();
 			} else if (accion === 'refrescar shows') {
-				this.getShows();
+				// this.getShows();
 			}
 		}
 	}
