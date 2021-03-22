@@ -3,7 +3,7 @@
 		<div class="cabecera">
 			<h1 class="tit">Bands</h1>
 			<router-link to="/Shows" class="nav_link">Shows</router-link>
-			<p class="cta" @click="$emit('openModalSubirShow', 'band')">Crear banda</p>
+			<p class="cta" @click="$emit('openModalSubirShow', 'band')">Subir banda</p>
 		</div>
 		<div class="view">
 			<div class="tabla">

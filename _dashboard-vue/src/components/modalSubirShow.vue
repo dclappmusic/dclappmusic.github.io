@@ -62,14 +62,11 @@
       </form>
       <div class="new_band form" v-else-if="edited_show && !edited_show.id">
         <input class="parr band_name" placeholder="Seleccionar grupo" type="text" v-model="new_band.name" list="filtros">
-        <div class="botones">
-          <button class="boton cta" @click="new_show.band = new_band.name || ' '">Banda nueva</button>
-          <small class="parr">(se dará de alta a la vez que el show)</small>
-        </div>
         <div class="filtradas">
           <div class="banda" v-for="(band, index) in bandas_filtradas" :key="index" @click="elegirBand(band)">
             <p class="parr">{{band.name}}</p>
           </div>
+          <button v-if="new_band.name" class="boton cta" @click="new_show.band = new_band.name || ' '">Banda nueva</button>
         </div>
       </div>
     </div>
@@ -279,15 +276,7 @@ export default {
     justify-content: flex-start;
     flex-wrap: wrap;
     input {width: 30%;}
-    .botones {
-      display: flex;
-      flex-flow: column;
-      justify-content: center;
-      align-content: center;
-      margin-right: auto;
-      button {text-align: center; margin: 0;}
-      small {text-align: center; width: 100%; margin: 0}
-    }
+    button {text-align: center; margin: 1em 0;}
     .filtradas {flex-basis: 100%}
   }
 }
