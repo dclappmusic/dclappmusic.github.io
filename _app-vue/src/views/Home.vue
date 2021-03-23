@@ -1,20 +1,17 @@
 <template>
     <div class="page home" data-page="home">
-        <!-- <Header :user="this.user" /> -->
-        <router-link class="boton btn_preclapp" to="/clapp">
-            <img src="images/icon_clapp.png" />
-        </router-link>
-        <!-- <router-link class="boton btn_preclapp" to="clapp">
-            <img src="images/icon_clapp.png" />
-        </router-link> -->
-		<div class="intro_clapp">
-			<a href="sign_band.html"><h3 class="display-med">applaud<br>the talent</h3></a>
-		</div>
-        <div class="overlay" v-if="show_overlay" @click="show_overlay = false">
-            <div class="ov_box">
-                <p>{{overlay_msgs.msg}}</p>
-            </div>
-        </div>
+			<!-- <Header :user="this.user" /> -->
+			<router-link class="boton btn_preclapp" to="/clapp">
+					<img src="@/assets/images/iconClapp_white.svg" />
+			</router-link>
+			<div class="intro_clapp">
+				<a href="sign_band.html"><h3 class="display-med">applaud<br>the talent</h3></a>
+			</div>
+			<div class="overlay" v-if="show_overlay" @click="show_overlay = false">
+				<div class="ov_box">
+					<p>{{overlay_msgs.msg}}</p>
+				</div>
+			</div>
     </div>
 </template>
 
