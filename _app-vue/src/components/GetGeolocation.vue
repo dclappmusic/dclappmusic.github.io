@@ -20,17 +20,17 @@ export default {
             this.$store.commit("updateGeolocation", this.geolocation);
         },
         findLocation() {
-            this.get_geolocation();
+            this.getGeolocation();
         }
     },
     created() {
-        this.get_geolocation(); 
+        this.getGeolocation(); 
     },
     mounted() {
     },
     methods: {
     //geolocation functions
-        get_geolocation: function() {
+        getGeolocation: function() {
             if (localStorage.getItem('coords')){
                 this.geolocation = JSON.parse(localStorage.getItem('coords'));
                 console.log(this.geolocation);
@@ -82,13 +82,6 @@ export default {
                 console.log("API Geolocation error! \n\n"+err);
                 this.$emit("geolocationError",  "API Geolocation error! \n\n"+err);
             })
-            // jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function(success) {
-            //     this.apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
-            // })
-            // .fail(function(err) {
-            //     console.log("API Geolocation error! \n\n"+err);
-            //     this.$emit("geolocationError",  "API Geolocation error! \n\n"+err);
-            // });
         },
 
         apiGeolocationSuccess: function(position) {
