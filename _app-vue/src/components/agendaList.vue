@@ -148,10 +148,6 @@ export default {
 		color: var(--color_primario);
 		width: 100vw;
 	}
-	.show {
-		width: 400px;
-		margin: 0 1em 1em;
-	}
 	.dia > div {
 		display: flex;
 		flex-wrap: wrap;
