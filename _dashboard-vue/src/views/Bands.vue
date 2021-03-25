@@ -23,7 +23,7 @@
 					<p class="parr id">{{band.id}}</p>
 					<p class="parr name">{{band.name}}</p>
 					<p class="parr location">{{band.city}}</p>
-					<p class="parr insta">{{band.instagram}}</p>
+					<a class="parr insta" @click.stop :href="'https://www.instagram.com/' + band.instagram + '/'" target="blank">{{band.instagram}}</a>
 					<p class="parr fb">{{band.facebool}}</p>
 					<!-- <p class="parr image"><img class="band_image" :src="band.image" /></p> -->
 					<!-- <p class="parr similar">{{band.afin_a}}</p> -->

@@ -46,18 +46,18 @@
           </div>
         </div>
         <div v-if="edited_show === 'new'" class="fila_botones">
-          <button class="boton cta" @click.prevent="subirShow">Subir show</button>
+          <button class="boton cta" @click.prevent="subirShow">subir show</button>
         </div>
         <div v-else-if="edited_band === 'new'" class="fila_botones">
           <button class="boton cta" @click.prevent="subirBand">subir banda</button>
         </div>
         <div v-else-if="edited_show.id" class="fila_botones">
           <button class="boton eliminar" @click.prevent="deleteShow">borrar show</button>
-          <button class="boton cta" @click.prevent="editShow">editar show</button>
+          <button class="boton cta" @click.prevent="editShow">guardar cambios</button>
         </div>
         <div v-else-if="edited_band.id" class="fila_botones">
           <button class="boton eliminar" @click.prevent="deleteBand">borrar banda</button>
-          <button class="boton cta" @click.prevent="editBand">editar banda</button>
+          <button class="boton cta" @click.prevent="editBand">guardar cambios</button>
         </div>
       </form>
       <div class="new_band form" v-else-if="edited_show && !edited_show.id">
@@ -202,7 +202,7 @@ export default {
     },
 		subirShow() {
 			const show_id = this.shows.length;
-			const timestamp = new Date(this.new_show.fecha + ',' + this.new_show.hora).getTime();
+			const timestamp = this.$moment(this.new_show.fecha + ' ' + this.new_show.hora, 'YYYY/MM/YYYY HH:mm').toDate().getTime();
       debugger;
 			if (!this.bands.find(bnd => bnd.name === this.new_show.band)) {
         this.subirBand();
@@ -227,9 +227,10 @@ export default {
 			}
 		},
     editShow() {
+      const timestamp = this.$moment(this.new_show.fecha + ' ' + this.new_show.hora, 'YYYY/MM/YYYY HH:mm').toDate().getTime();
       this.db.collection("shows").doc('show_' + this.new_show.id).set({
         id: this.new_show.id,
-        timestamp: this.new_show.timestamp || null,
+        timestamp: timestamp || null,
         festival: this.new_show.festival || null,
         link: this.new_show.link || null,
         band: this.new_show.band || null,
