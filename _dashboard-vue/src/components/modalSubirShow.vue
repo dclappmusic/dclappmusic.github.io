@@ -46,18 +46,18 @@
           </div>
         </div>
         <div v-if="edited_show === 'new'" class="fila_botones">
-          <button class="boton cta" @click.prevent="subirShow">subir show</button>
+          <button class="boton cta" :disabled="!new_show.fecha || !new_show.hora || new_show.band" @click.prevent="subirShow">subir show</button>
         </div>
         <div v-else-if="edited_band === 'new'" class="fila_botones">
-          <button class="boton cta" @click.prevent="subirBand">subir banda</button>
+          <button class="boton cta" :disabled="!new_band.name" @click.prevent="subirBand">subir banda</button>
         </div>
         <div v-else-if="edited_show.id" class="fila_botones">
           <button class="boton eliminar" @click.prevent="deleteShow">borrar show</button>
-          <button class="boton cta" @click.prevent="editShow">guardar cambios</button>
+          <button class="boton cta" :disabled="!new_show.fecha || !new_show.hora || new_show.band" @click.prevent="editShow">guardar cambios</button>
         </div>
         <div v-else-if="edited_band.id" class="fila_botones">
           <button class="boton eliminar" @click.prevent="deleteBand">borrar banda</button>
-          <button class="boton cta" @click.prevent="editBand">guardar cambios</button>
+          <button class="boton cta" :disabled="!new_band.name" @click.prevent="editBand">guardar cambios</button>
         </div>
       </form>
       <div class="new_band form" v-else-if="edited_show && !edited_show.id">
@@ -126,7 +126,7 @@ export default {
 	},
 	watch: {
 		'new_band.name' () {
-			this.bandas_filtradas = this.bands.filter(band => band.name.toLowerCase().includes(this.new_band.name.toLowerCase()));
+			this.bandas_filtradas = this.bands.filter(band => band.name ? band.name.toLowerCase().includes(this.new_band.name.toLowerCase()) : '');
 		}
 	},
 	created: function() {
