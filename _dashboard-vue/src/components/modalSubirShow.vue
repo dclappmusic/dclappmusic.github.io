@@ -202,8 +202,7 @@ export default {
     },
 		subirShow() {
 			const show_id = this.shows.length;
-			const timestamp = this.$moment(this.new_show.fecha + ' ' + this.new_show.hora, 'YYYY/MM/YYYY HH:mm').toDate().getTime();
-      debugger;
+			const timestamp = this.$moment(this.new_show.fecha + ' ' + this.new_show.hora).unix()*1000;
 			if (!this.bands.find(bnd => bnd.name === this.new_show.band)) {
         this.subirBand();
 			} else {
@@ -227,7 +226,7 @@ export default {
 			}
 		},
     editShow() {
-      const timestamp = this.$moment(this.new_show.fecha + ' ' + this.new_show.hora, 'YYYY/MM/YYYY HH:mm').toDate().getTime();
+      const timestamp = this.$moment(this.new_show.fecha + ' ' + this.new_show.hora).unix()*1000;
       this.db.collection("shows").doc('show_' + this.new_show.id).set({
         id: this.new_show.id,
         timestamp: timestamp || null,
