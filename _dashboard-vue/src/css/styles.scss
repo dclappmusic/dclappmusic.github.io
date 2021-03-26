@@ -143,6 +143,7 @@
 					border-radius: .25em;
 					margin-bottom: 1em;
 					&:focus { outline:none; }
+					&:disabled {opacity: .5;}
 				}
 				.fila_botones {
 					display: flex;
