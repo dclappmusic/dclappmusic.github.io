@@ -190,7 +190,7 @@ export default {
             .form-label {display: block; margin: 1em auto;}
         }
         // .boton {
-        //     // background-color: var(--color_primario);
+        //     // background-color: var(--color-primario-fans);
         // }
     }
     

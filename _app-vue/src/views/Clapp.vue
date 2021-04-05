@@ -228,7 +228,7 @@ export default {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background: var(--color_primario);
+    background: var(--color-primario-fans);
     z-index: -1;
     // background-blend-mode: screen;
     .band {
@@ -240,21 +240,21 @@ export default {
             width: 100%;
             font-size: 15vw;
             text-align: center;
-            color: var(--color_secundario);
+            color: var(--color-primario-bands);
             transition: all .5s ease-in-out;
         }
         .clapps {
             position: absolute;
             top: 20px;
             right: 20px;
-            color: var(--color_secundario);
+            color: var(--color-primario-bands);
         }
         .name {
             position: absolute;
             width: 100%;
             bottom: 20vh;
             font-size: 15vw;
-            color: var(--color_secundario);
+            color: var(--color-primario-bands);
             text-align: center;
             line-height: 85%;
         }
@@ -284,7 +284,7 @@ export default {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: var(--color_primario);
+                background: var(--color-primario-fans);
                 mix-blend-mode: screen;
             }
         }

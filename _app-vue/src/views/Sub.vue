@@ -43,7 +43,56 @@ export default {
 <style scoped lang="scss">
 .sub {
 	padding-top: 2em;
-	// background: var(--color_secundario);
-    background: linear-gradient(116.98deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+	// background: var(--color-primario-bands);
+  background: linear-gradient(116.98deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+  .back {
+		position: fixed;
+		z-index: 100;
+		width: 24px;
+		height: 24px;
+		left: 15px;
+		top: 15px;
+		z-index: 100;
+		svg {width: 100%; height: 100%;}
+	}
+}
+.bands {
+  width: 100%;
+  padding: 20px;
+  .banda {
+    display: block;
+    position: relative;
+    height: 60px;
+    width: 100%;
+    margin-bottom: 2%;
+    a {
+      display: flex;
+      justify-content: center;
+      img {
+        // position: absolute;
+        width: 15vw;
+        height: 15vw;
+        margin-right: 10px;
+        // left: 75px;
+        // top: 27px;
+        // background: url(../images/perfil_markuser.jpg);
+        // background-size: cover;
+        border-radius: 87px;
+      }
+      .band {
+        // display: inline-block;
+        width: 70%;
+        font-family: var(--roboto);
+        color: white;
+        font-size: 20px;
+      }
+      .clapps_dados {
+        // display: inline-block;
+        font-family: var(--roboto);
+        color: white;
+        font-size: 20px;
+      }
+    }	
+  }
 }
 </style>

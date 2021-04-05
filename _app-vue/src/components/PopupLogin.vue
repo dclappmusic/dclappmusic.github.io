@@ -93,3 +93,39 @@
 		}   
 	}
 </script>
+<style scoped lang="scss">
+.form {
+	margin: 5% auto;
+	width: 100%;
+	.titulo {
+		text-align: center;
+		margin-bottom: 2em;
+	}
+	.form-label {color: #333;}
+	.form-input {
+		display: block;
+		width: 100%;
+		border-radius: .2em;
+		box-shadow: 0 0 5px rgba(0,0,0,.15);
+		text-align: center;
+		background: transparent;
+		border: none;
+		border-bottom: 4px solid white;
+		font-family: var(--changa);
+		font-size: 25px;
+		font-weight: 600;
+		color: white;
+		&::placeholder {opacity: .5; color: white; font-weight: 200;}
+	}
+
+	.reset {display: none;}
+	.reset_btn {
+		display: block;
+		text-align: center; 
+		width: 100%; 
+		text-decoration: underline!important;
+		margin-top: 2em;
+		color: #333;
+	}
+}
+</style>

@@ -5,7 +5,7 @@
                 <circle cx="40" cy="40" r="40" fill="white"/>
             </svg>
         </span>
-        <router-link class="menu-tit slider_link historial" to="/historial">historial</router-link>
+        <router-link class="menu-tit slider_link manifest" to="/manifest">about</router-link>
         <router-link class="menu-tit slider_link home" to="/">home</router-link>
         <router-link class="menu-tit slider_link agenda" to="/agenda">shows</router-link>
     </nav>
@@ -27,38 +27,37 @@ export default {
 	height: 8vh;
 	bottom: 0;
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 3%;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 5px;
 	text-align: center;
-    &.fondo {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0) -46.67%, rgba(255, 255, 255, 0.0441989) 12.92%, rgba(255, 255, 255, 0.54) 49.58%, #FFFEFE 100%);
-    }
+	&.fondo {
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0) -46.67%, rgba(255, 255, 255, 0.0441989) 12.92%, rgba(255, 255, 255, 0.54) 49.58%, #FFFEFE 100%);
+	}
 	.menu-tit {
-		color: var(--color_secundario);
+		color: var(--color-primario-bands);
 		width: 20%;
-        z-index: 10;
-        padding-top: 3%;
-        user-select: none!important;
-        outline: none!important;
+		z-index: 10;
+		padding-top: 3%;
+		user-select: none!important;
+		outline: none!important;
 		&.router-link-exact-active {
-			// position: relative;
-            font-weight: bold;
-            font-size: 1.1em;
+			font-weight: bold;
+			font-size: 1.1em;
 		}
 	}
-    .selected {
-        position: absolute;
-        left: 33%;
-        width: 33%;
-        border-radius: 100%;
-        transition: all .3s ease-in-out;
-        svg {
-            width: 70%;
-            height: 10vh;
-        }
-        &.historial { left: -5%; }
-        &.agenda { left: 75%; }
-    }
+	.selected {
+		position: absolute;
+		left: 33%;
+		width: 33%;
+		border-radius: 100%;
+		transition: all .3s ease-in-out;
+		svg {
+				width: 70%;
+				height: 10vh;
+		}
+		&.manifest { left: -7%; }
+		&.agenda { left: 75%; }
+	}
 }
 </style>

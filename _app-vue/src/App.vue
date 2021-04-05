@@ -1,5 +1,5 @@
 <template>
-	<div id="app" class="container">
+	<div id="app">
     <get-geolocation @geolocationError="geolocationError" :findLocation="findLocation"/>
     <keep-alive>
         <router-view />
@@ -12,7 +12,6 @@
 			@cerrar_popup="event_cerrar_popup"
 		/>
 	</div>
-    
 </template>
 
 <script>
@@ -156,3 +155,15 @@
 		}
 	};
 </script>
+<style lang="scss">
+#app {
+  position: relative;
+  // position: fixed;
+	// left: 0;
+  // padding: 20px 15px 10px;
+	width: 100vw;
+	height: 100%;
+	background-color: var(--color-fondo-light); 
+	// overflow-x: hidden;
+}
+</style>

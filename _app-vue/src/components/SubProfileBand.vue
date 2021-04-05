@@ -185,7 +185,7 @@ export default {
             //     background: url(../images/clapp-rojo.png) no-repeat;
             //     background-position: center;
             //     background-size: 75%;
-            //     background-color: var(--color_primario);
+            //     background-color: var(--color-primario-fans);
             //     border: none;
             //     border-radius: 5px;
             // }
@@ -215,7 +215,7 @@ export default {
             text-align: center;
             border-radius: 12px;
             background: #FFFFFF;
-            color: var(--color_secundario);
+            color: var(--color-primario-bands);
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
             &.active {
                 border: 1px solid white;

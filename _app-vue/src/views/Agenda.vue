@@ -1,5 +1,5 @@
 <template>
-	<div class="page agenda" data-page="agenda">
+	<div class="page agenda">
 		<get-geolocation @geolocationError="geolocationError" :findLocation="findLocation" />
 		<div class="cabecera">
 			<h1 class="titulo">Agenda de conciertos</h1>
@@ -111,109 +111,99 @@
 	}
 </script>
 <style scoped lang="scss">
-	.agenda {
-		.cabecera {
+.agenda {
+	--color_titulo: var(--color-primario-fans);
+	.display-med {
+		&.active {
+			background-color: white;
+			color: var(--color-primario-fans);
+			padding: .3em;
+			border-radius: 5em;
 			position: absolute;
-			padding: 0 15px;
-
-			.logo {
-				position: fixed;
-				top: 15px;
-				right: 15px;
-
-				img {
-					width: 2em;
-					border-radius: 10px;
-					box-shadow: 0 0 15px rgba(0, 0, 0, .15);
-				}
-			}
-
-			.titulo {
-				max-width: calc(100% - 2em);
-				text-align: left;
-			}
-
-			.display-med {
-				&.active {
-					background-color: white;
-					color: var(--color_primario);
-					padding: .3em;
-					border-radius: 5em;
-					position: absolute;
-					right: 10px;
-					top: 0;
-					font-size: .6em;
-					width: 25%;
-
-					&.mapa {
-						background-color: var(--color_primario);
-						color: white;
-					}
-				}
-
-				&.filtros {
-					position: absolute;
-					width: 25%;
-					top: 0;
-					left: 10px;
-					font-size: .6em;
-					background-color: white;
-					color: var(--color_primario);
-					padding: .3em;
-					border-radius: 5em;
-				}
-			}
-		}
-
-		.spinner {
-			// display: none;
-			opacity: .8;
-			position: fixed;
+			right: 10px;
 			top: 0;
-			left: 0;
-			width: 100vw;
-			height: 0;
-			background: var(--color_primario);
-			// display: flex;
-			align-items: center;
-			justify-content: center;
-			transition: all .5s ease-in-out;
+			font-size: .6em;
+			width: 25%;
 
-			&.active {
-				display: flex;
-				flex-flow: column;
-				opacity: .8;
-				height: 100vh;
-
-				.display-sm,
-				.display-med {
-					display: initial;
-				}
-
-				a {
-					margin-top: 4em;
-					text-decoration: underline !important;
-				}
-
-				// transition: all 1s ease-in-out;
-			}
-
-			.display-sm,
-			.display-med {
+			&.mapa {
+				background-color: var(--color-primario-fans);
 				color: white;
-				text-align: center;
-				display: none;
-				margin: .5em;
-				max-width: 35em;
 			}
 		}
 
-		@media (max-width:768px) {
-			.cabecera {
-				.titulo {
-					font-size: 6vw;
-				}
+		&.filtros {
+			position: absolute;
+			width: 25%;
+			top: 0;
+			left: 10px;
+			font-size: .6em;
+			background-color: white;
+			color: var(--color-primario-fans);
+			padding: .3em;
+			border-radius: 5em;
+		}
+	}
+}
+
+.spinner {
+	// display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 0;
+	background: var(--color-primario-fans);
+	// display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all .5s ease-in-out;
+
+	&.active {
+		display: flex;
+		flex-flow: column;
+		opacity: .8;
+		height: 100vh;
+
+		.display-sm,
+		.display-med {
+			display: initial;
+		}
+
+		a {
+			margin-top: 4em;
+			text-decoration: underline !important;
+		}
+
+		// transition: all 1s ease-in-out;
+	}
+
+	.display-sm,
+	.display-med {
+		color: white;
+		text-align: center;
+		display: none;
+		margin: .5em;
+		max-width: 35em;
+	}
+}
+
+@media (min-width: 768px) {
+	.cabecera {
+		.titulo {
+			max-width: calc(100% - 2em);
+			text-align: left;
+		}
+		.logo {
+			position: fixed;
+			top: 15px;
+			right: 15px;
+			img {
+				width: 2em;
+				border-radius: 10px;
+				box-shadow: 0 0 15px rgba(0, 0, 0, .15);
 			}
 		}
 	}
+}
 </style>

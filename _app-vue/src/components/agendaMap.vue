@@ -130,15 +130,15 @@ export default {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--color_secundario);
+            color: var(--color-primario-bands);
             font-weight: bold;
         }
     }
     &::v-deep .mapboxgl-popup {
         min-width: 90vw!important;
-        .mapboxgl-popup-tip {border-top-color: var(--color_secundario);}
+        .mapboxgl-popup-tip {border-top-color: var(--color-primario-bands);}
         .mapboxgl-popup-content {
-            background-color: var(--color_secundario);
+            background-color: var(--color-primario-bands);
             border-radius: 10px;
             padding: 5% 0;
             .hora {color: white; }

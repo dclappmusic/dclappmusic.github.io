@@ -24,6 +24,12 @@ export default new Router({
       component: () => import('./views/Historial.vue')
     },
     {
+      path: '/manifest',
+      name: 'manifest',
+      props: true,
+      component: () => import('./views/Manifest.vue')
+    },
+    {
       path: '/agenda',
       name: 'agenda',
       props: true,

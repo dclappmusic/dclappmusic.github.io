@@ -51,6 +51,7 @@ export default {
 <style scoped lang="scss">
 //PAGINAS INDIVIDUALES
 .page.home {
+	background-color: var(--color-fondo-light); 
 	.options {
 		.options_login {
 			display: none;
@@ -73,7 +74,7 @@ export default {
 		display: flex;
 		align-items: center;
 		border-radius: 100%;
-		background-color: var(--color_primario);
+		background-color: var(--color-primario-fans);
 		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.27), 0px 0px 20px rgba(252, 81, 48, 0.2);
 		&:hover {box-shadow: none;}
 		img {
@@ -87,7 +88,7 @@ export default {
 		width: 80%;
 		left: 10%;
 		text-align: center;
-		color: var(--color_secundario);
+		color: var(--color-primario-bands);
 		font-family: var(--roboto);
 	}
 }

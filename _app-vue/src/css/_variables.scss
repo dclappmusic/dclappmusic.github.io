@@ -4,25 +4,36 @@
   --roboto: "Roboto", Arial, helvetica;
   --changa: "Changa", Arial, helvetica;
 
-  --color_primario: #FC5130;
-  --color_secundario: #0C3847;
-  --color_fondo: #F1F1F1;
+  --color-dark: #050401;
+  --color-light: #ffffff;
+  --color-degradado-ppal: linear-gradient(162.44deg, rgba(252, 81, 48, 0.78) 0%, rgba(252, 81, 48, 0.893016) 51.37%, #FC5130 100%);
+  --color-primario-fans: #FC5130;
+  --color-primario-bands: #0C3847;
+  --color-fondo-degradado-fans: linear-gradient(132.46deg, #D65238 3.41%, #7D352B 97.16%, #17225C 111.5%);
+  --color-fondo-degradado-bands: linear-gradient(163.66deg, #0C334B 3.84%, #1B5274 90.94%);
+  --color-fondo-light: #F1F1F1;
+  --color-fondo-dark: #031927;
 
   --Bigdesktop:"(min-width:1366px)";
   --mobile:"(max-width:768px)";
 }
 
 // ESTILOS GLOBALES
-
-.titulo {
-	font-family: var(--changa);
-	font-size: 40px;
+p,li,a,span {
+	color: var(--color_texto);
 }
-.display-big {
+h1,h2,h3 {
+	color: var(--color_titulo, var(--color_texto));
+}
+.titulo, h1 {
+	font-family: var(--changa);
+	font-size: clamp(30px, 4.5vw, 45px);
+}
+.display-big, h2 {
 	font-family: var(--changa);
 	font-size: 35px;
 }
-.display-med {
+.display-med, h3 {
 	font-family: var(--changa);
 	font-size: 25px;
 }
@@ -51,10 +62,12 @@
 	font-size: 20px;
 	line-height: 1.5em;
 }
-.parrafo, .parr {
+p, .parrafo, .parr {
 	font-family: var(--roboto);
-	font-size: 15px;
-	line-height: 1.5em;
+	font-size: clamp(13px, calc(13px + .5vw), 17px);
+	line-height: 1.3em;
+	font-weight: 300;
+	margin-bottom: 1.2em;
 }
 .parrafo-sm {
 	font-family: var(--roboto);

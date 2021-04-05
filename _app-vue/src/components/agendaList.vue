@@ -134,18 +134,17 @@ export default {
 	}
 }
 </script>
-<style scoped lang="scss" > 
+<style scoped lang="scss"> 
 .shows {
+	--color_titulo: var(--color-primario-fans);
 	width: 100%;
-	padding: 20px;
-	margin-top: 10vh;
 	display: flex;
 	flex-direction: column;
 	// flex-wrap: wrap;
 	// justify-content: center;
 	.when {
 		margin-top: 1em;
-		color: var(--color_primario);
+		color: var(--color-primario-fans);
 		width: 100vw;
 	}
 	.dia > div {
