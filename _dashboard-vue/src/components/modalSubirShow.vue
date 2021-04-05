@@ -54,14 +54,14 @@
         </div>
         <div class="fila_botones">
           <template v-if="edited_show === 'new'">
-            <button class="boton cta" :disabled="disable || !new_show.fecha || !new_show.hora || new_show.band" @click.prevent="subirShow">subir show</button>
+            <button class="boton cta" :disabled="disable || !new_show.fecha || !new_show.hora || !new_show.band" @click.prevent="subirShow">subir show</button>
           </template>
           <template v-else-if="edited_band === 'new'">
             <button class="boton cta" :disabled="disable || !new_band.name" @click.prevent="subirBand">subir banda</button>
           </template>
           <template v-else-if="edited_show.id">
             <button class="boton eliminar" :disabled="disable" @click.prevent="deleteShow">borrar show</button>
-            <button class="boton cta" :disabled="disable || !new_show.fecha || !new_show.hora || new_show.band" @click.prevent="editShow">guardar cambios</button>
+            <button class="boton cta" :disabled="disable || !new_show.fecha || !new_show.hora || !new_show.band" @click.prevent="editShow">guardar cambios</button>
           </template>
           <template v-else-if="edited_band.id">
             <button class="boton eliminar" :disabled="disable" @click.prevent="deleteBand">borrar banda</button>

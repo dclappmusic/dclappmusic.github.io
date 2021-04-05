@@ -13,9 +13,6 @@
 					<h3 class="tit location">location</h3>
 					<h3 class="tit insta">insta</h3>
 					<h3 class="tit fb">facebook</h3>
-					<!-- <h3 class="tit image">image</h3> -->
-					<!-- <h3 class="tit similar">similar to</h3> -->
-					<!-- <h3 class="tit shows">shows</h3> -->
 				</div>
 				<div class="fila" v-for="(band, index) in bands_filtradas" :key="index"
 					@click="$emit('openModalSubirShow', 'band', band)"
@@ -25,9 +22,6 @@
 					<p class="parr location">{{band.city}}</p>
 					<a class="parr insta" @click.stop :href="'https://www.instagram.com/' + band.instagram + '/'" target="blank">{{band.instagram}}</a>
 					<p class="parr fb">{{band.facebool}}</p>
-					<!-- <p class="parr image"><img class="band_image" :src="band.image" /></p> -->
-					<!-- <p class="parr similar">{{band.afin_a}}</p> -->
-					<!-- <p class="parr shows">{{band.shows}}</p> -->
 				</div>
 			</div>
 		</div>
@@ -35,9 +29,8 @@
 </template>
 
 <script>
-	import {
-		mapState
-	} from 'vuex';
+	import {mapState} from 'vuex';
+	// import firebase from "firebase";
 
 	export default {
 		name: 'Bands',
@@ -82,6 +75,12 @@
 		},
 		created() {
 			this.bands_filtradas = [...this.bands].sort((a, b) => b.id - a.id);
+
+			// this.bands.filter(band => band.id > 238).forEach(ban => {
+			// 	firebase.firestore().collection("bands").doc('band_' + ban.id).delete().then(() => {
+      //     console.log('banda borrada');
+      //   })
+			// });
 		}
 	}
 </script>
