@@ -7,7 +7,8 @@
 			<p class="parr">Número de shows: <b class="tit">{{num_shows}}</b></p>
 			<p class="parr">Número de bandas: <b class="tit">{{num_bands}}</b></p>
 		</div>
-		<modal-subir-show v-if="subir_form" :edited_band="edited_band" :edited_show="edited_show" @close="closeModalSubirShow"/>
+		<modal-subir-show v-if="modal_create_band" :edited_band="edited_band" :edited_show="edited_show" @close="closeModalSubirShow"/>
+		<modal-login v-if="modal_login" @close="modal_login = false" />
 		<main class="view">
 			<router-view 
 				@openModalSubirShow="openModalSubirShow"
@@ -17,14 +18,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import firebase from "firebase";
-// import axios from 'axios';
-import ModalSubirShow from './components/modalSubirShow.vue';
+import { mapState } from 'vuex'
+import firebase from "firebase"
+import ModalSubirShow from './components/modalSubirShow.vue'
+import ModalLogin from './components/modalLogin.vue'
 
 export default {
 	name: 'App',
-	components: {ModalSubirShow},
+	components: {ModalSubirShow, ModalLogin},
 	computed: {
 		...mapState([
 			"shows", "bands", "venues", 'user'
@@ -38,33 +39,24 @@ export default {
 	},
 	data() {
 		return {
-			// shows_gs: [],
 			shows_fb: [],
-			// bands_gs: [],
 			bands_fb: [],
-			subir_form: false,
+			modal_create_band: false,
+			modal_login: true,
 			edited_band: false,
 			edited_show: false,
+			loggedUser: null
 		}
 	},
 	watch: {
-		// shows_gs: function() {
-		// 	this.$store.commit("updateShows", this.shows_fb);
-		// },
-		// shows_fb: function() {
-		// 	if (this.shows_fb.length) this.$store.commit("updateShows", this.shows_fb);
-		// },
-		// bands_gs: function() {
-		// 	this.$store.commit("updateBands", this.bands_fb);
-		// },
-		// bands_fb: function() {
-		// 	if (this.bands_fb.length) this.$store.commit("updateBands", this.bands_fb);
-		// },
 	},
 	created() {
-		// this.getFakeDb();
+		// if (!this.user) {
+		// 	this.modal_login = true;
+		// }
 		this.getShows();
 		this.getBands();
+		this.login();
 	},
 	methods: {
 	//gets the shows from the firebase database
@@ -95,16 +87,32 @@ export default {
 		openModalSubirShow(tipo, id) {
 			if (tipo && tipo === 'band') this.edited_band = id || 'new';
 			if (tipo && tipo === 'show') this.edited_show = id || 'new';
-			this.subir_form = true;
+			this.modal_create_band = true;
 		},
 		closeModalSubirShow(accion) {
-			this.subir_form = false;
+			this.modal_create_band = false;
 			this.edited_band = false;
 			this.edited_show = false;
 			if (accion === 'refrescar bands') {
 				// this.getBands();
 			} else if (accion === 'refrescar shows') {
 				// this.getShows();
+			}
+		},
+		login() {
+			if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+				let email = window.localStorage.getItem('emailForSignIn');
+				if (!email) email = window.prompt('Please provide your email for confirmation');
+				firebase.auth().signInWithEmailLink(email, window.location.href).then((result) => {
+					window.localStorage.removeItem('emailForSignIn');
+					this.logged_user = result.user;
+						this.modal_login = false;
+				}).catch((error) => {
+					alert(error);
+				});
+			} else {
+				this.loggedUser = null;
+				this.modal_login = true;
 			}
 		}
 	}
