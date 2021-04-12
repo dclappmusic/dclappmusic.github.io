@@ -39,19 +39,28 @@ export default {
   mounted: function(){},
 	methods: {
     autenticate() {
-      let actionCodeSettings = {
-        url: 'https://weclapp.live/dashboard/',
-        handleCodeInApp: true
-      };
-      firebase.auth().sendSignInLinkToEmail(this.email, actionCodeSettings).then(() => {
-          // The link was successfully sent. Inform the user.
-          // Save the email locally so you don't need to ask the user for it again
-          // if they open the link on the same device.
-          window.localStorage.setItem('emailForSignIn', this.email);
-          this.preaction = false;
-          // ...
-        })
-        .catch((error) => {console.log(error)});
+      const emails = [
+        'japimes@gmail.com', 
+        'marinamoya@protonmail.com',
+        'aniramayom7@gmail.com',
+        'bassistnumtwo@gmail.com',
+        'vie.bora.music@gmail.com'
+      ];
+      if (emails.find(em => em === this.email)) {
+        let actionCodeSettings = {
+          url: 'https://weclapp.live/dashboard/',
+          handleCodeInApp: true
+        };
+        firebase.auth().sendSignInLinkToEmail(this.email, actionCodeSettings).then(() => {
+            // The link was successfully sent. Inform the user.
+            // Save the email locally so you don't need to ask the user for it again
+            // if they open the link on the same device.
+            window.localStorage.setItem('emailForSignIn', this.email);
+            this.preaction = false;
+            // ...
+          })
+          .catch((error) => {console.log(error)});
+      }
     }
   }
 }

@@ -19,16 +19,16 @@
             <input v-else class="parr" placeholder="name*" v-model="new_band.name" />
           </div>
           <div class="fila band">
-            <input class="parr" :disabled="new_band.id" placeholder="city" v-model="new_band.city" />
-            <input class="parr" :disabled="new_band.id" placeholder="afin a" v-model="new_band.afin_a" />
-            <input class="parr" :disabled="new_band.id" placeholder="estilo" v-model="new_band.estilo" />
-            <input class="parr" :disabled="new_band.id" placeholder="descripción" v-model="new_band.description" />
-            <input class="parr" :disabled="new_band.id" placeholder="image" v-model="new_band.image" />
+            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="city" v-model="new_band.city" />
+            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="afin a" v-model="new_band.afin_a" />
+            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="estilo" v-model="new_band.estilo" />
+            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="descripción" v-model="new_band.description" />
+            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="image" v-model="new_band.image" />
           </div>
           <div class="fila band">
-            <input class="parr" :disabled="new_band.id" placeholder="instagram" v-model="new_band.instagram" />
-            <input class="parr" :disabled="new_band.id" placeholder="facebook" v-model="new_band.facebook" />
-            <input class="parr" :disabled="new_band.id" placeholder="youtube" v-model="new_band.youtube" />
+            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="instagram" v-model="new_band.instagram" />
+            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="facebook" v-model="new_band.facebook" />
+            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="youtube" v-model="new_band.youtube" />
           </div>
         </div>
         <div v-if="edited_show">
