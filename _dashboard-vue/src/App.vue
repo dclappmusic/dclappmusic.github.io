@@ -6,8 +6,9 @@
 		<div class="nav">
 			<p class="parr">Número de shows: <b class="tit">{{num_shows}}</b></p>
 			<p class="parr">Número de bandas: <b class="tit">{{num_bands}}</b></p>
+			<p class="parr">Loggeado como: <b class="tit">{{logged_user}}</b></p>
 		</div>
-		<modal-subir-show v-if="modal_create_band" :edited_band="edited_band" :edited_show="edited_show" @close="closeModalSubirShow"/>
+		<modal-subir-show v-if="logged_user && modal_create_band" :edited_band="edited_band" :edited_show="edited_show" @close="closeModalSubirShow"/>
 		<modal-login v-if="modal_login" @close="modal_login = false" />
 		<main class="view">
 			<router-view 
@@ -45,7 +46,7 @@ export default {
 			modal_login: true,
 			edited_band: false,
 			edited_show: false,
-			loggedUser: null
+			logged_user: null
 		}
 	},
 	watch: {
@@ -105,8 +106,8 @@ export default {
 				if (!email) email = window.prompt('Please provide your email for confirmation');
 				firebase.auth().signInWithEmailLink(email, window.location.href).then((result) => {
 					window.localStorage.removeItem('emailForSignIn');
-					this.logged_user = result.user;
-						this.modal_login = false;
+					this.logged_user = result.user.email;
+					this.modal_login = false;
 				}).catch((error) => {
 					alert(error);
 				});
