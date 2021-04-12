@@ -58,6 +58,16 @@ export default {
 		this.getShows();
 		this.getBands();
 		this.login();
+		firebase.auth().onAuthStateChanged(user => {
+			if (user) {
+				console.log('loggeado');
+				this.logged_user = user.email;
+				this.modal_login = false;
+			} else {
+				console.log('no loggeado');
+				// No user is signed in.
+			}
+		});
 	},
 	methods: {
 	//gets the shows from the firebase database

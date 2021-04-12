@@ -6,7 +6,7 @@
       </svg> -->
       <form class="form" v-if="preaction">
         <input class="parr" v-model="email" placeholder="email"/>
-        <button :disabled="!email" class="boton cta" @click="autenticate">entrar</button>
+        <button :disabled="!email" class="boton cta" @click.prevent="autenticate">entrar</button>
       </form>
       <div v-else class="form">
         <p class="parr">Vale, te hemos mandao un email, cierra esta pestaña y sigue desde la que te abrirá el link del email</p>
