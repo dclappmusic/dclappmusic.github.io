@@ -148,7 +148,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/app/img/iconClapp_white.1b9e6438.svg"
   },
   {
-    "revision": "5b323e79f6e427f50d3dd7d359e0bfba",
+    "revision": "218783ece166a0774cd00b38cd682881",
     "url": "/app/index.html"
   },
   {
