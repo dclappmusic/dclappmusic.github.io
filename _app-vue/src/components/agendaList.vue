@@ -77,6 +77,7 @@ export default {
 			let today = this.$moment().hours(12).minutes(0).seconds(0).millisecond(0);
 			let now = this.$moment();
 			this.shows_week = {};
+			this.other_shows = [];
 
 			this.shows_here.forEach(show => {
 				if (show.timestamp) {
