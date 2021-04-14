@@ -36,7 +36,7 @@ export default {
 	}
 	.menu-tit {
 		color: var(--color-primario-bands);
-		width: 20%;
+		width: 15%;
 		z-index: 10;
 		padding-top: 3%;
 		user-select: none!important;

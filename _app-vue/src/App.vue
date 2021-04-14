@@ -37,19 +37,14 @@
         // user: {},
         show_install: false,
         deferredPrompt: null,
-        shows_gs: [],
         shows_fb: [],
-        bands_gs: [],
         bands_fb: [],
-        venues_gs: [],
         venues_fb: [],
         findLocation: false
 			}
 		},
     computed: {
-        ...mapState([
-            "shows", "bands", "venues", 'user'
-        ]),
+      ...mapState(["shows", "bands", "venues", 'user']),
     },
     watch: {
       // shows_fb: function() {
@@ -91,7 +86,7 @@
             this.show_login = false;
           //download user
             db.collection("fans").doc(user.uid).onSnapshot((doc) => {
-              this.user = doc.data();
+              // this.user = doc.data();
               console.log(this.user);
               this.$store.commit("updateUser", user);
             });
@@ -162,7 +157,7 @@
 	// left: 0;
   // padding: 20px 15px 10px;
 	width: 100vw;
-	height: 100%;
+	// height: 100%;
 	background-color: var(--color-fondo-light); 
 	// overflow-x: hidden;
 }
