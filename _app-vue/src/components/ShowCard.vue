@@ -41,8 +41,8 @@
 				</div>
 			</div>
 			<div class="botones">
-				<a v-if="show.link" class="boton-sm comprar" :href="show.link"
-					target="blank">{{show.live ? 'Ver concierto' : 'Ir a la página'}}</a>
+				<!-- <a v-if="show.link" class="boton-sm comprar" :href="show.link"
+					target="blank">{{show.live ? 'Ver concierto' : 'Ir a la página'}}</a> -->
 			</div>
 		</div>
 	</div>
@@ -73,8 +73,7 @@
 		},
 		methods: {
 			ampliar() {
-				// document.querySelectorAll(".show").removeClass("open");
-				this.ampliado = !this.ampliado;
+				// this.ampliado = !this.ampliado;
 			},
 			getBand(id) {
 				let band = this.bands.find(band => band.id === id);
@@ -211,7 +210,6 @@ p, .parr {margin-bottom: 0}
 			min-height: 5em;
 			.foto_container {
 				position: relative;
-				width: 30%;
 				height: 100%;
 				margin-right: 5%;
 				.foto {

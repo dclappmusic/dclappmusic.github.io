@@ -1,8 +1,8 @@
 <template>
 	<div class="page agenda">
 		<get-geolocation @geolocationError="geolocationError" :findLocation="findLocation" />
-		<div class="cabecera">
-			<h1 class="titulo">Agenda de conciertos</h1>
+		<!-- <div class="cabecera"> -->
+			<!-- <h1 class="titulo">Agenda de conciertos</h1> -->
 
 			<!-- <a href="https://weclapp.live/" target="blank" class="logo">
 							<img src="images/icon_completo.png" />
@@ -14,7 +14,7 @@
 			</keep-alive> -->
 			<!-- <p v-if="!map" class="display-med mapa" :class="{'active': !map}" @click="map = !map">mapa</p>
 			<p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p> -->
-		</div>
+		<!-- </div> -->
 		<div class="view" v-if="shows[0]">
 			<!-- <keep-alive v-if="map">
 				<agendaMap :shows="shows_filtered" />
