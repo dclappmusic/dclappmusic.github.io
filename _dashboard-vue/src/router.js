@@ -23,5 +23,11 @@ export default new Router({
       props: true,
       component: () => import('./views/Shows.vue')
     },
+    {
+      path: '/Venues',
+      name: 'venues',
+      props: true,
+      component: () => import('./views/Venues.vue')
+    }
   ]
 })

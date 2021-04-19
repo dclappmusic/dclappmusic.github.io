@@ -122,6 +122,16 @@ export default {
         lat: null,
         lon: null,
         price: null
+			},
+			new_venue: {
+        id: null,
+        name: null,
+        lat: null,
+        lon: null,
+        city: null,
+        logo: null,
+        web: null,
+        capacity: null,
 			}
 		}
 	},
@@ -141,6 +151,8 @@ export default {
       this.new_show.fecha = this.$moment(this.new_show.timestamp).format('YYYY-MM-DD');
       this.new_show.hora = this.$moment(this.new_show.timestamp).format('HH:mm');
       this.new_band = this.bands.find(bnd => bnd.id === this.new_show.band_id);
+    } else if (this.edited_venue?.id >= 0) {
+      this.new_venue = this.edited_venue;
     }
 	},
   mounted: function(){},

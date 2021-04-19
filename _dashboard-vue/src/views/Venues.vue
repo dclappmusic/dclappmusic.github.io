@@ -1,28 +1,28 @@
 <template>
 	<div id="bands" class="page bands">
 		<div class="cabecera">
-			<h1 class="tit">Bands</h1>
 			<router-link to="/Shows" class="nav_link">Shows</router-link>
-			<router-link to="/Venues" class="nav_link">Venues</router-link>
-			<p class="cta" @click="$emit('openModalSubirShow', 'band')">Subir banda</p>
+			<router-link to="/Bands" class="nav_link">Bands</router-link>
+			<h1 class="tit">Venues</h1>
+			<p class="cta" @click="$emit('openModalSubirShow', 'venue')">Subir venue</p>
 		</div>
 		<div class="view">
 			<div class="tabla">
 				<div class="fila cabecero">
 					<h3 class="tit id sort" @click="ordenarPor('id')">id &#8661;</h3>
 					<h3 class="tit name sort" @click="ordenarPor('name')">name &#8661;</h3>
-					<h3 class="tit location">location</h3>
-					<h3 class="tit insta">insta</h3>
-					<h3 class="tit fb">facebook</h3>
+					<h3 class="tit location">city</h3>
+					<h3 class="tit capacity">capacity</h3>
+					<h3 class="tit web">web</h3>
 				</div>
-				<div class="fila" v-for="(band, index) in bands_filtradas" :key="index"
-					@click="$emit('openModalSubirShow', 'band', band)"
+				<div class="fila" v-for="(venue, index) in venues_filtradas" :key="index"
+					@click="$emit('openModalSubirShow', 'venue', venue)"
 				>
-					<p class="parr id">{{band.id}}</p>
-					<p class="parr name">{{band.name}}</p>
-					<p class="parr location">{{band.city}}</p>
-					<a class="parr insta" @click.stop :href="'https://www.instagram.com/' + band.instagram + '/'" target="blank">{{band.instagram}}</a>
-					<p class="parr fb">{{band.facebool}}</p>
+					<p class="parr id">{{venue.id}}</p>
+					<p class="parr name">{{venue.name}}</p>
+					<p class="parr location">{{venue.city}}</p>
+					<p class="parr capacity">{{venue.capacity}}</p>
+					<a class="parr web" @click.stop :href="venue.web" target="blank">{{venue.web}}</a>
 				</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 	// import firebase from "firebase";
 
 	export default {
-		name: 'Bands',
+		name: 'Venues',
 		props: [],
 		components: {},
 		computed: {
@@ -44,12 +44,12 @@
 		},
 		data() {
 			return {
-				bands_filtradas: []
+				venues_filtradas: []
 			}
 		},
 		watch: {
 			bands() {
-				this.bands_filtradas = [...this.bands].sort((a, b) => b.id - a.id);
+				this.venues_filtradas = [...this.venues].sort((a, b) => b.id - a.id);
 			}
 		},
 		methods: {
@@ -57,14 +57,14 @@
 				let sentido_ascendente;
 				// if (typeof categoria === 'number') {
 				if (categoria === 'id') {
-					sentido_ascendente = this.bands_filtradas[0][categoria] < this.bands_filtradas[this.bands_filtradas.length - 1][categoria];
-					this.bands_filtradas.sort((a, b) => {
+					sentido_ascendente = this.venues_filtradas[0][categoria] < this.venues_filtradas[this.venues_filtradas.length - 1][categoria];
+					this.venues_filtradas.sort((a, b) => {
 						if (sentido_ascendente) return b[categoria] - a[categoria]
 						else {return a[categoria] - b[categoria]}
 					});
 				} else {
-					sentido_ascendente = this.bands_filtradas[0][categoria].localeCompare(this.bands_filtradas[this.bands_filtradas.length - 1][categoria]);
-					this.bands_filtradas.sort((a, b) => {
+					sentido_ascendente = this.venues_filtradas[0][categoria].localeCompare(this.venues_filtradas[this.venues_filtradas.length - 1][categoria]);
+					this.venues_filtradas.sort((a, b) => {
 						if (sentido_ascendente > 0) {
 							return a[categoria].localeCompare(b[categoria])
 						} else {
@@ -75,9 +75,9 @@
 			}
 		},
 		created() {
-			this.bands_filtradas = [...this.bands].sort((a, b) => b.id - a.id);
+			this.venues_filtradas = [...this.venues].sort((a, b) => b.id - a.id);
 
-			// this.bands.filter(band => band.id > 238).forEach(ban => {
+			// this.venues.filter(band => band.id > 238).forEach(ban => {
 			// 	firebase.firestore().collection("bands").doc('band_' + ban.id).delete().then(() => {
       //     console.log('banda borrada');
       //   })

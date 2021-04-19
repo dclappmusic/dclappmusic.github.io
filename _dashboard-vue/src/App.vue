@@ -42,6 +42,7 @@ export default {
 		return {
 			shows_fb: [],
 			bands_fb: [],
+			venues_fb: [],
 			modal_create_band: false,
 			modal_login: true,
 			edited_band: false,
@@ -57,6 +58,7 @@ export default {
 		// }
 		this.getShows();
 		this.getBands();
+		this.getVenues();
 		this.login();
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
@@ -93,6 +95,40 @@ export default {
 				});
 				if (this.bands_fb.length) this.$store.commit("updateBands", this.bands_fb);
 			});
+		},
+		getVenues() {
+			var db = firebase.firestore();
+			db.collection("venues").onSnapshot((querySnapshot) => {
+				this.venues_fb = [];
+				querySnapshot.forEach((doc) => {
+					let venue = doc.data();
+					this.venues_fb.push(venue);
+				});
+				if (this.venues_fb.length) this.$store.commit("updateVenues", this.venues_fb);
+			});
+		},
+		getVenuesGS() {
+			console.log("get fake bd");
+			fetch('https://script.google.com/macros/s/AKfycbyb7k9jrcoz2cZwPrrzDcoS96WuBXfxMUuUP7FWrw/exec')
+				.then(response => {return response.json()})
+				.then(result => {
+					var venues = result.venues;
+					this.venues_gs = venues.map(ven => {
+						return {
+							id: ven.id,
+							name: ven.name,
+							lat: parseInt(ven.latitud),
+							lon: parseInt(ven.longitud),
+							city: ven.city,
+							logo: ven.logo,
+							web: ven.web_venue,
+							capacity: parseInt(ven.capacity) || 0,
+						}
+					})
+					// this.venues_gs.forEach(venue => {
+					// 	firebase.firestore().collection("venues").doc('venue_' + venue.id).set(venue);
+					// });
+				})
 		},
 
 //open modal edit show/band
