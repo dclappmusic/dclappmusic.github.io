@@ -8,7 +8,12 @@
 			<p class="parr">Número de bandas: <b class="tit">{{num_bands}}</b></p>
 			<p class="parr">Loggeado como: <b class="tit">{{logged_user}}</b></p>
 		</div>
-		<modal-subir-show v-if="logged_user && modal_create_band" :edited_band="edited_band" :edited_show="edited_show" @close="closeModalSubirShow"/>
+		<modal-subir-show v-if="logged_user && modal_create_band" 
+			:edited_band="edited_band" 
+			:edited_show="edited_show" 
+			:edited_venue="edited_venue" 
+			@close="closeModalSubirShow"
+		/>
 		<modal-login v-if="modal_login" @close="modal_login = false" />
 		<main class="view">
 			<router-view 
@@ -37,6 +42,7 @@ export default {
 		num_bands() {
 			return this.bands.length
 		},
+		db() {return firebase.firestore();}
 	},
 	data() {
 		return {
@@ -47,6 +53,7 @@ export default {
 			modal_login: true,
 			edited_band: false,
 			edited_show: false,
+			edited_venue: false,
 			logged_user: null
 		}
 	},
@@ -75,8 +82,7 @@ export default {
 	methods: {
 	//gets the shows from the firebase database
 		getShows() {
-			var db = firebase.firestore();
-			db.collection("shows").onSnapshot((querySnapshot) => {
+			this.db.collection("shows").onSnapshot((querySnapshot) => {
 				this.shows_fb = [];
 				querySnapshot.forEach((doc) => {
 					let show = doc.data();
@@ -86,8 +92,7 @@ export default {
 			});
 		},
 		getBands() {
-			var db = firebase.firestore();
-			db.collection("bands").onSnapshot((querySnapshot) => {
+			this.db.collection("bands").onSnapshot((querySnapshot) => {
 				this.bands_fb = [];
 				querySnapshot.forEach((doc) => {
 					let band = doc.data();
@@ -97,8 +102,7 @@ export default {
 			});
 		},
 		getVenues() {
-			var db = firebase.firestore();
-			db.collection("venues").onSnapshot((querySnapshot) => {
+			this.db.collection("venues").onSnapshot((querySnapshot) => {
 				this.venues_fb = [];
 				querySnapshot.forEach((doc) => {
 					let venue = doc.data();
@@ -107,40 +111,42 @@ export default {
 				if (this.venues_fb.length) this.$store.commit("updateVenues", this.venues_fb);
 			});
 		},
-		getVenuesGS() {
-			console.log("get fake bd");
-			fetch('https://script.google.com/macros/s/AKfycbyb7k9jrcoz2cZwPrrzDcoS96WuBXfxMUuUP7FWrw/exec')
-				.then(response => {return response.json()})
-				.then(result => {
-					var venues = result.venues;
-					this.venues_gs = venues.map(ven => {
-						return {
-							id: ven.id,
-							name: ven.name,
-							lat: parseInt(ven.latitud),
-							lon: parseInt(ven.longitud),
-							city: ven.city,
-							logo: ven.logo,
-							web: ven.web_venue,
-							capacity: parseInt(ven.capacity) || 0,
-						}
-					})
-					// this.venues_gs.forEach(venue => {
-					// 	firebase.firestore().collection("venues").doc('venue_' + venue.id).set(venue);
-					// });
-				})
-		},
+		// getVenuesGS() {
+		// 	console.log("get fake bd");
+		// 	fetch('https://script.google.com/macros/s/AKfycbyb7k9jrcoz2cZwPrrzDcoS96WuBXfxMUuUP7FWrw/exec')
+		// 		.then(response => {return response.json()})
+		// 		.then(result => {
+		// 			var venues = result.venues;
+		// 			this.venues_gs = venues.map(ven => {
+		// 				return {
+		// 					id: ven.id,
+		// 					name: ven.name,
+		// 					lat: parseInt(ven.latitud),
+		// 					lon: parseInt(ven.longitud),
+		// 					city: ven.city,
+		// 					logo: ven.logo,
+		// 					web: ven.web_venue,
+		// 					capacity: parseInt(ven.capacity) || 0,
+		// 				}
+		// 			})
+		// 			// this.venues_gs.forEach(venue => {
+		// 			// 	firebase.firestore().collection("venues").doc('venue_' + venue.id).set(venue);
+		// 			// });
+		// 		})
+		// },
 
 //open modal edit show/band
 		openModalSubirShow(tipo, id) {
 			if (tipo && tipo === 'band') this.edited_band = id || 'new';
 			if (tipo && tipo === 'show') this.edited_show = id || 'new';
+			if (tipo && tipo === 'venue') this.edited_venue = id || 'new';
 			this.modal_create_band = true;
 		},
 		closeModalSubirShow(accion) {
 			this.modal_create_band = false;
 			this.edited_band = false;
 			this.edited_show = false;
+			this.edited_venue = false;
 			if (accion === 'refrescar bands') {
 				// this.getBands();
 			} else if (accion === 'refrescar shows') {

@@ -20,11 +20,7 @@ export default new Vuex.Store({
         },
         updateShows(state, shows) {
         //before store it, sort them by time
-            if (shows) {
-                shows.sort(function(a,b){
-                    return a.timestamp - b.timestamp;
-                });
-            }
+            if (shows) shows.sort((a,b) => a.timestamp - b.timestamp);
             state.shows = shows;
         },
         updateBands(state, bands) {
@@ -32,6 +28,7 @@ export default new Vuex.Store({
             state.bands = bands;
         },
         updateVenues(state, venues) {
+            if (venues) venues.sort((a, b) => b.id - a.id);
             state.venues = venues;
         },
         updateGeolocation(state, geolocation) {

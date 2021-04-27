@@ -1,8 +1,8 @@
 <template>
 	<div id="bands" class="page bands">
 		<div class="cabecera">
+			<router-link to="/" class="nav_link">Bands</router-link>
 			<router-link to="/Shows" class="nav_link">Shows</router-link>
-			<router-link to="/Bands" class="nav_link">Bands</router-link>
 			<h1 class="tit">Venues</h1>
 			<p class="cta" @click="$emit('openModalSubirShow', 'venue')">Subir venue</p>
 		</div>

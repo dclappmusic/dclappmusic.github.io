@@ -49,20 +49,6 @@
 			return {
 				subir_show: false,
 				shows_filtrados: [],
-				new_show: {
-					id: null,
-					link: null,
-					band: null,
-					band_id: null,
-					timestamp: null,
-					city: null,
-					venue: null,
-					festival: null,
-					image: null,
-					lat: null,
-					lon: null,
-					price: null
-				}
 			}
 		},
 		watch: {

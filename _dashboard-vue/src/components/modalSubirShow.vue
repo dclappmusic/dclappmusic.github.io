@@ -5,52 +5,43 @@
         <path d="M0.646446 18.6464C0.451185 18.8417 0.451184 19.1583 0.646446 19.3536C0.841709 19.5488 1.15829 19.5488 1.35355 19.3536L10 10.7071L18.6464 19.3536C18.8417 19.5488 19.1583 19.5488 19.3536 19.3536C19.5488 19.1583 19.5488 18.8417 19.3536 18.6464L10.7071 10L19.3536 1.35355C19.5488 1.15829 19.5488 0.841709 19.3536 0.646447C19.1583 0.451185 18.8417 0.451185 18.6464 0.646447L10 9.29289L1.35356 0.646446C1.15829 0.451185 0.841711 0.451185 0.646448 0.646446C0.451186 0.841709 0.451186 1.15829 0.646448 1.35355L9.29289 10L0.646446 18.6464Z" fill="#B4B4B7"/>
       </svg>
       <form class="form banda">
-        <div>
-          <h3 class="tit">Band</h3>
-          <div class="fila band">
-            <template v-if="edited_show && !edited_show.id">
-              <input class="parr band_name" placeholder="Seleccionar grupo" type="text" v-model="new_band.name" list="filtros">
-              <ul class="filtradas" v-if="bandas_filtradas.length && !new_band.id">
-                <li class="banda" v-for="(band, index) in bandas_filtradas" :key="index" @click="elegirBand(band)">
+        <h3 class="tit">{{title}}</h3>
+        <formBand v-if="edited_band" :edited_band="edited_band" :new_band="new_band" />
+        <formVenue v-if="edited_venue" :edited_venue="edited_venue" :new_venue="new_venue" />
+        <div v-if="edited_show">
+          <h3 class="tit">Show de {{new_show.band}}</h3>
+          <div class="fila show">
+            <template>
+              <input class="parr band_name" placeholder="Seleccionar grupo" type="text" 
+                v-model="new_band.name" list="filtros"
+                :disabled="edited_show != 'new'"
+              />
+              <ul class="filtradas" v-if="bandas_filtradas.length && (new_band.id == null)">
+                <li class="banda" v-for="(band, index) in bandas_filtradas" :key="index" @click="elegir('band', band)">
                   <p class="parr">{{band.name}}</p>
                 </li>
               </ul>
             </template>
-            <input v-else class="parr" placeholder="name*" v-model="new_band.name" />
-          </div>
-          <div class="fila band">
-            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="city" v-model="new_band.city" />
-            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="afin a" v-model="new_band.afin_a" />
-            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="estilo" v-model="new_band.estilo" />
-            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="descripción" v-model="new_band.description" />
-            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="image" v-model="new_band.image" />
-          </div>
-          <div class="fila band">
-            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="instagram" v-model="new_band.instagram" />
-            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="facebook" v-model="new_band.facebook" />
-            <input class="parr" :disabled="!edited_band && new_band.id" placeholder="youtube" v-model="new_band.youtube" />
-          </div>
-        </div>
-        <div v-if="edited_show">
-          <h3 class="tit">Show de {{new_show.band}}</h3>
-          <div class="fila show">
             <input class="parr" type="date" v-model="new_show.fecha" placeholder="fecha*"/>
             <input class="parr" type="time" v-model="new_show.hora" placeholder="hora*"/>
-            <input class="parr" v-model="new_show.venue" placeholder="sala"/>
           </div>
           <div class="fila show">
+            <template>
+              <input class="parr band_name" placeholder="Seleccionar venue" type="text" 
+                v-model="new_venue.name" list="filtros"
+                :disabled="edited_show != 'new'"
+              />
+              <ul class="filtradas" v-if="venues_filtradas.length && (new_venue.id == null)">
+                <li class="venue" v-for="(venue, index) in venues_filtradas" :key="index" @click="elegir('venue', venue)">
+                  <p class="parr">{{venue.name}}</p>
+                </li>
+              </ul>
+            </template>
+            <input class="parr" v-model="new_show.price" placeholder="precio"/>
             <input class="parr" v-model="new_show.link" placeholder="link"/>
-            <input class="parr" v-model="new_show.city" placeholder="ciudad"/>
+            <input :disabled="new_venue.id == null" class="parr" v-model="new_show.city" placeholder="ciudad"/>
             <input class="parr" v-model="new_show.festival" placeholder="festival"/>
             </div>
-          <div class="fila show">
-            <input class="parr" v-model="new_show.lat" placeholder="lat"/>
-            <input class="parr" v-model="new_show.lon" placeholder="lon"/>
-            </div>
-          <div class="fila show">
-            <input class="parr" v-model="new_show.image" placeholder="imagen"/>
-            <input class="parr" v-model="new_show.price" placeholder="precio"/>
-          </div>
         </div>
         <div class="fila_botones">
           <template v-if="edited_show === 'new'">
@@ -58,6 +49,9 @@
           </template>
           <template v-else-if="edited_band === 'new'">
             <button class="boton cta" :disabled="disable || !new_band.name" @click.prevent="subirBand">subir banda</button>
+          </template>
+          <template v-else-if="edited_venue === 'new'">
+            <button class="boton cta" :disabled="disable || !new_venue.name" @click.prevent="subirVenue">subir venue</button>
           </template>
           <template v-else-if="edited_show.id">
             <button class="boton eliminar" :disabled="disable" @click.prevent="deleteShow">borrar show</button>
@@ -67,22 +61,28 @@
             <button class="boton eliminar" :disabled="disable" @click.prevent="deleteBand">borrar banda</button>
             <button class="boton cta" :disabled="disable || !new_band.name" @click.prevent="editBand">guardar cambios</button>
           </template>
+          <template v-else-if="edited_venue.id">
+            <button class="boton eliminar" :disabled="disable" @click.prevent="deleteVenue">borrar venue</button>
+            <button class="boton cta" :disabled="disable || !new_venue.name" @click.prevent="editVenue">guardar cambios</button>
+          </template>
         </div>
       </form>
     </div>
   </div>
 </template>
-
 <script>
 import { mapState } from 'vuex';
 import firebase from "firebase";
+import formBand from "@/components/formBand";
+import formVenue from "@/components/formVenue";
 
 export default {
 	name: 'ModalSubirShow',
-	components: {},
+	components: {formBand, formVenue},
   props: {
     edited_band: {},
-    edited_show: {}
+    edited_show: {},
+    edited_venue: {},
   },
 	computed: {
 		...mapState([
@@ -93,7 +93,9 @@ export default {
 	data() {
 		return {
 			subir_form: false,
+      title: '',
       bandas_filtradas: [],
+      venues_filtradas: [],
       disable: false,
 			new_band: {
         id: null,
@@ -109,14 +111,15 @@ export default {
 			},
 			new_show: {
         id: null,
-				link: null,
 				band: null,
 				band_id: null,
+        venue: null,
+        venue_id: null,
+				link: null,
         fecha: null,
         hora: '12:00',
         timestamp: null,
         city: null,
-        venue: null,
 				festival: null,
         image: null,
         lat: null,
@@ -131,7 +134,7 @@ export default {
         city: null,
         logo: null,
         web: null,
-        capacity: null,
+        capacity: null
 			}
 		}
 	},
@@ -141,26 +144,57 @@ export default {
         if (!this.edited_band && this.new_band.id && oldComponents) this.new_band.id = null;
         this.bandas_filtradas = this.bands.filter(band => band.name ? band.name.toLowerCase().includes(this.new_band.name.toLowerCase()) : '');
       }
+		},
+		'new_venue.name': {
+      handler(newComponents, oldComponents) {
+        if (!this.venue_band && this.new_venue.id && oldComponents) this.new_venue.id = null;
+        this.venues_filtradas = this.venues.filter(venue => venue.name ? venue.name.toLowerCase().includes(this.new_venue.name.toLowerCase()) : '');
+      }
 		}
 	},
 	created: function() {
-    if (this.edited_band?.name) {
-      this.new_band = this.edited_band;
-    } else if (this.edited_show?.id >= 0) {
-      this.new_show = this.edited_show;
-      this.new_show.fecha = this.$moment(this.new_show.timestamp).format('YYYY-MM-DD');
-      this.new_show.hora = this.$moment(this.new_show.timestamp).format('HH:mm');
-      this.new_band = this.bands.find(bnd => bnd.id === this.new_show.band_id);
-    } else if (this.edited_venue?.id >= 0) {
-      this.new_venue = this.edited_venue;
+    if (this.edited_band) {
+      this.title = 'Crear banda';
+      if (this.edited_band?.name) {
+        this.new_band = this.edited_band;
+        this.title = 'Editar banda';
+      }
+    } else if (this.edited_show) {
+      this.title = 'Crear show';
+      if (this.edited_show?.id >= 0) {
+        this.new_show = this.edited_show;
+        this.new_show.fecha = this.$moment(this.new_show.timestamp).format('YYYY-MM-DD');
+        this.new_show.hora = this.$moment(this.new_show.timestamp).format('HH:mm');
+        this.new_band = this.bands.find(bnd => bnd.id === this.new_show.band_id);
+        if (this.new_show.venue_id) this.new_venue = this.venues.find(vne => vne.id === this.new_show.venue_id);
+        else { this.new_venue.name = this.new_show.venue; }
+        this.title = 'Editar show';
+      }
+    } else if (this.edited_venue) {
+      this.title = 'Crear venue';
+      if (this.edited_venue?.id >= 0) {
+        this.title = 'Editar venue';
+        this.new_venue = this.edited_venue;
+      }
     }
 	},
   mounted: function(){},
 	methods: {
-		elegirBand(band) {
-			this.new_show.band = band.name;
-			this.new_show.band_id = band.id;
-			this.new_band = {...band};
+		elegir(tipo, elegido) {
+      if (tipo === 'band') {
+        this.new_show.band = elegido.name;
+        this.new_show.band_id = elegido.id;
+        this.new_band = {...elegido};
+      } else if (tipo === 'venue') {
+        this.new_show.venue = elegido.name;
+        this.new_show.venue_id = elegido.id;
+        if (elegido.lat) {
+          this.new_show.lat = elegido.lat;
+          this.new_show.lon = elegido.lon;
+        }
+        if (elegido.city) this.new_show.city = elegido.city;
+        this.new_venue = {...elegido};
+      }
 		},
     editBand() {
       this.disable = true;
@@ -215,6 +249,7 @@ export default {
       }
     },
 		subirShow() {
+      debugger;
       this.disable = true;
 			const show_id = this.shows.length;
 			const timestamp = this.$moment(this.new_show.fecha + ' ' + this.new_show.hora).unix()*1000;
@@ -230,6 +265,7 @@ export default {
           band_id: this.new_show.band_id,
           city: this.new_show.city,
           venue: this.new_show.venue,
+          venue_id: this.new_show.venue_id,
           image: this.new_show.image,
           lat: this.new_show.lat,
           lon: this.new_show.lon,
@@ -269,19 +305,68 @@ export default {
           this.$emit('close', 'refrescar shows');
         })
       }
-    }
+    },
+    editVenue() {
+      debugger;
+      this.disable = true;
+      this.db.collection("venues").doc('venue_' + this.new_venue.id).set({
+        id: this.new_venue.id,
+        name: this.new_venue.name || null,
+        lat: this.new_venue.lat || null,
+        lon: this.new_venue.lon || null,
+        city: this.new_venue.city || null,
+        logo: this.new_venue.logo || null,
+        web: this.new_venue.web || null,
+        capacity: this.new_venue.capacity || null
+      }, {merge: true}).then(() => {
+        console.log("venue editada");
+        this.$emit('close', 'refrescar venues');
+      })
+    },
+    subirVenue() {
+      this.disable = true;
+      this.new_venue.id = this.venues[0].id + 1;
+      this.db.collection("venues").doc('venue_' + this.new_venue.id).set({
+        id: this.new_venue.id,
+        name: this.new_venue.name,
+        lat: this.new_venue.lat,
+        lon: this.new_venue.lon,
+        city: this.new_venue.city,
+        logo: this.new_venue.logo,
+        web: this.new_venue.web,
+        capacity: this.new_venue.capacity
+      }).then(() => {
+        console.log('venue subida');
+        if (!this.edited_venue && this.new_show.fecha) {
+          this.new_show.venue_id = this.new_venue.id;
+          this.new_show.venue = this.new_venue.name;
+          this.subirShow();
+        } else {
+          this.$emit('close', 'refrescar venues');
+        }
+      });
+    },
+    deleteVenue() {
+      if (window.confirm("Tas seguro?")) {
+        this.disable = true;
+        this.db.collection("venues").doc('venue_' + this.new_venue.id).delete().then(() => {
+          console.log('venue borrada');
+          this.$emit('close', 'refrescar venues');
+        })
+      }
+    },
 	}
 }
 </script>
 
 <style scoped lang="scss">
 #app .modal .sub_modal {
-  .filtradas .banda .parr {
+  .filtradas li .parr {
     cursor: pointer;
     &:hover {text-decoration: underline;}
   }
   .tit {margin-bottom: 1em;}
-  .parr, .tit, input {
+  ::v-deep .parr, .tit, input {
     color: white!important;
     margin-right: 1em;
   }
