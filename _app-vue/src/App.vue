@@ -85,9 +85,9 @@
             console.log(user);
             this.show_login = false;
           //download user
-            db.collection("fans").doc(user.uid).onSnapshot((doc) => {
+            db.collection("fans").doc(user.uid).onSnapshot(() => {
               // this.user = doc.data();
-              console.log(this.user);
+              console.log(user);
               this.$store.commit("updateUser", user);
             });
           } else {
