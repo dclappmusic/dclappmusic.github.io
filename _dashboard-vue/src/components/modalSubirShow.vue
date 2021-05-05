@@ -16,7 +16,7 @@
                 v-model="new_band.name" list="filtros"
                 :disabled="edited_show != 'new'"
               />
-              <ul class="filtradas" v-if="bandas_filtradas.length && (new_band.id == null)">
+              <ul class="filtradas" v-if="bandas_filtradas.length">
                 <li class="banda" v-for="(band, index) in bandas_filtradas" :key="index" @click="elegir('band', band)">
                   <p class="parr">{{band.name}}</p>
                 </li>
@@ -29,14 +29,15 @@
             <template>
               <input class="parr band_name" placeholder="Seleccionar venue" type="text" 
                 v-model="new_venue.name" list="filtros"
-                :disabled="edited_show != 'new'"
               />
-              <ul class="filtradas" v-if="venues_filtradas.length && (new_venue.id == null)">
+              <ul class="filtradas" v-if="venues_filtradas.length">
                 <li class="venue" v-for="(venue, index) in venues_filtradas" :key="index" @click="elegir('venue', venue)">
                   <p class="parr">{{venue.name}}</p>
                 </li>
               </ul>
             </template>
+          </div>
+          <div class="fila show">
             <input class="parr" v-model="new_show.price" placeholder="precio"/>
             <input class="parr" v-model="new_show.link" placeholder="link"/>
             <input :disabled="new_venue.id == null" class="parr" v-model="new_show.city" placeholder="ciudad"/>
@@ -141,14 +142,20 @@ export default {
 	watch: {
 		'new_band.name': {
       handler(newComponents, oldComponents) {
-        if (!this.edited_band && this.new_band.id && oldComponents) this.new_band.id = null;
-        this.bandas_filtradas = this.bands.filter(band => band.name ? band.name.toLowerCase().includes(this.new_band.name.toLowerCase()) : '');
+        if (this.new_show.band_id == null || (this.new_show.band_id !== null && (oldComponents?.length > newComponents?.length))) {
+          this.new_show.band = null;
+          this.new_show.band_id = null;
+          this.bandas_filtradas = this.bands.filter(band => band.name ? band.name.toLowerCase().includes(this.new_band.name.toLowerCase()) : '');
+        }
       }
 		},
 		'new_venue.name': {
       handler(newComponents, oldComponents) {
-        if (!this.venue_band && this.new_venue.id && oldComponents) this.new_venue.id = null;
-        this.venues_filtradas = this.venues.filter(venue => venue.name ? venue.name.toLowerCase().includes(this.new_venue.name.toLowerCase()) : '');
+        if (this.new_show.venue == null || (this.new_show.venue !== null && (oldComponents?.length > newComponents?.length))) {
+            this.new_show.venue = null;
+            this.new_show.venue_id = null;
+            this.venues_filtradas = this.venues.filter(venue => venue.name ? venue.name.toLowerCase().includes(this.new_venue.name.toLowerCase()) : '');
+        }
       }
 		}
 	},
@@ -162,19 +169,19 @@ export default {
     } else if (this.edited_show) {
       this.title = 'Crear show';
       if (this.edited_show?.id >= 0) {
-        this.new_show = this.edited_show;
-        this.new_show.fecha = this.$moment(this.new_show.timestamp).format('YYYY-MM-DD');
-        this.new_show.hora = this.$moment(this.new_show.timestamp).format('HH:mm');
-        this.new_band = this.bands.find(bnd => bnd.id === this.new_show.band_id);
+        this.new_show = {...this.edited_show};
+        this.new_show.fecha = this.new_show.timestamp ? this.$moment(this.new_show.timestamp).format('YYYY-MM-DD') : null;
+        this.new_show.hora = this.new_show.timestamp ? this.$moment(this.new_show.timestamp).format('HH:mm') : null;
+        this.new_band = this.bands.find(bnd => bnd.id === this.new_show.band_id) || {name: this.new_show.band};
         if (this.new_show.venue_id) this.new_venue = this.venues.find(vne => vne.id === this.new_show.venue_id);
-        else { this.new_venue.name = this.new_show.venue; }
+        else { this.new_venue.name = this.new_show.venue || ""; }
         this.title = 'Editar show';
       }
     } else if (this.edited_venue) {
       this.title = 'Crear venue';
       if (this.edited_venue?.id >= 0) {
         this.title = 'Editar venue';
-        this.new_venue = this.edited_venue;
+        this.new_venue = {...this.edited_venue};
       }
     }
 	},
@@ -182,11 +189,13 @@ export default {
 	methods: {
 		elegir(tipo, elegido) {
       if (tipo === 'band') {
+        this.bandas_filtradas = [];
         this.new_show.band = elegido.name;
         this.new_show.band_id = elegido.id;
         this.new_band = {...elegido};
       } else if (tipo === 'venue') {
         this.new_show.venue = elegido.name;
+        this.venues_filtradas = [];
         this.new_show.venue_id = elegido.id;
         if (elegido.lat) {
           this.new_show.lat = elegido.lat;
