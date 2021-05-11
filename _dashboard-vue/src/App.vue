@@ -63,16 +63,16 @@ export default {
 		// if (!this.user) {
 		// 	this.modal_login = true;
 		// }
-		this.getShows();
-		this.getBands();
-		this.getVenues();
 		this.login();
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				console.log('loggeado');
 				this.logged_user = user.email;
 				this.modal_login = false;
-				this.$router.replace( {name: 'bands'} );
+				this.getShows();
+				this.getBands();
+				this.getVenues();
+				// this.$router.replace( {name: 'bands'} );
 			} else {
 				console.log('no loggeado');
 				// No user is signed in.
@@ -161,7 +161,10 @@ export default {
 					window.localStorage.removeItem('emailForSignIn');
 					this.logged_user = result.user.email;
 					this.modal_login = false;
-					this.$router.replace( {name: 'bands'} );
+					this.$router.replace('/');
+					this.getShows();
+					this.getBands();
+					this.getVenues();
 				}).catch((error) => {
 					alert(error);
 				});
