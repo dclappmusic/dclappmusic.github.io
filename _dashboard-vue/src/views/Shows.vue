@@ -66,8 +66,8 @@
 				if (categoria === 'id' || categoria === 'timestamp') {
 					sentido_ascendente = this.shows_filtrados[0][categoria] < this.shows_filtrados[this.shows_filtrados.length - 1][categoria];
 					this.shows_filtrados.sort((a, b) => {
-						if (sentido_ascendente) return b[categoria] - a[categoria]
-						else {return a[categoria] - b[categoria]}
+						if (sentido_ascendente) return (a[categoria] && b[categoria]) ? b[categoria] - a[categoria] : -1
+						else {return (a[categoria] && b[categoria]) ? a[categoria] - b[categoria] : -1}
 					});
 				} else {
 					sentido_ascendente = this.shows_filtrados[0][categoria].localeCompare(this.shows_filtrados[this.shows_filtrados.length - 1][categoria]);
