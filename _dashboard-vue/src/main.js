@@ -4,9 +4,16 @@ import App from './App.vue'
 import firebase from 'firebase'
 import router from './router';
 import store from './store';
+
 import moment from 'moment';
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css' //Vuesax styles
 //General styles
 import "@/css/styles.scss"
+
+
+Vue.use(Vuesax);
+
 
 Vue.config.productionTip = false;
 
