@@ -165,9 +165,11 @@ export default {
       }
 		},
     location_type() {
-      this.new_show.venue = null;
-      this.new_show.venue_id = null;
-      this.new_venue.name = null;
+      if (this.location_type != 'venue') {
+        this.new_venue.name = null;
+        this.new_show.venue_id = 0;
+        this.new_show.venue = this.location_type;
+      }
     }
 	},
 	created: function() {
@@ -276,10 +278,6 @@ export default {
 			if (!this.bands.find(bnd => bnd.name === this.new_show.band) && !this.new_band.id) {
         this.subirBand();
 			} else {
-        if (this.location_type != 'venue') {
-          this.venue_id = 0;
-          this.venue = this.location_type;
-        }
 				this.db.collection("shows").doc('show_' + show_id).set({
 					id: show_id,
 					timestamp: timestamp,
@@ -413,6 +411,7 @@ export default {
     padding: .5em;
     margin-top: -.9em;
     box-shadow: 0 5px 5px rgba(0,0,0, .3);
+    z-index: 10;
   }
 }
 </style>
