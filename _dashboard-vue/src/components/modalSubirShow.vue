@@ -25,17 +25,22 @@
             <input class="parr" type="date" v-model="new_show.fecha" placeholder="fecha*"/>
             <input class="parr" type="time" v-model="new_show.hora" placeholder="hora*"/>
           </div>
-          <div class="fila show">
-            <template>
-              <input class="parr band_name" placeholder="Seleccionar venue" type="text" 
-                v-model="new_venue.name" list="filtros"
-              />
-              <ul class="filtradas" v-if="venues_filtradas.length">
-                <li class="venue" v-for="(venue, index) in venues_filtradas" :key="index" @click="elegir('venue', venue)">
-                  <p class="parr">{{venue.name}}</p>
-                </li>
-              </ul>
-            </template>
+          <div class="fila location">
+            <vs-radio v-model="location_type" val="venue">
+              <template>
+                <input class="parr band_name" placeholder="Seleccionar venue" type="text" 
+                  v-model="new_venue.name" list="filtros"
+                  v-on:focusin="location_type = 'venue'"
+                />
+                <ul class="filtradas" v-if="venues_filtradas.length">
+                  <li class="venue" v-for="(venue, index) in venues_filtradas" :key="index" @click="elegir('venue', venue)">
+                    <p class="parr">{{venue.name}}</p>
+                  </li>
+                </ul>
+              </template>
+            </vs-radio>
+            <vs-radio v-model="location_type" val="streaming" class="parr">Streaming</vs-radio>
+            <vs-radio v-model="location_type" val="otros" class="parr">Otros</vs-radio>
           </div>
           <div class="fila show">
             <input class="parr" v-model="new_show.price" placeholder="precio"/>
@@ -95,6 +100,7 @@ export default {
 		return {
 			subir_form: false,
       title: '',
+      location_type: 'venue',
       bandas_filtradas: [],
       venues_filtradas: [],
       disable: false,
@@ -157,7 +163,12 @@ export default {
             this.venues_filtradas = this.venues.filter(venue => venue.name ? venue.name.toLowerCase().includes(this.new_venue.name.toLowerCase()) : '');
         }
       }
-		}
+		},
+    location_type() {
+      this.new_show.venue = null;
+      this.new_show.venue_id = null;
+      this.new_venue.name = null;
+    }
 	},
 	created: function() {
     if (this.edited_band) {
@@ -265,6 +276,10 @@ export default {
 			if (!this.bands.find(bnd => bnd.name === this.new_show.band) && !this.new_band.id) {
         this.subirBand();
 			} else {
+        if (this.location_type != 'venue') {
+          this.venue_id = 0;
+          this.venue = this.location_type;
+        }
 				this.db.collection("shows").doc('show_' + show_id).set({
 					id: show_id,
 					timestamp: timestamp,
@@ -378,6 +393,10 @@ export default {
   ::v-deep .parr, .tit, input {
     color: white!important;
     margin-right: 1em;
+  }
+  .fila.location {
+    display: flex;
+    align-items: center;
   }
   // .new_band {
   //   display: flex;

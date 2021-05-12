@@ -57,8 +57,7 @@ export default {
 			logged_user: null
 		}
 	},
-	watch: {
-	},
+	watch: {},
 	created() {
 		// if (!this.user) {
 		// 	this.modal_login = true;
@@ -161,7 +160,7 @@ export default {
 					window.localStorage.removeItem('emailForSignIn');
 					this.logged_user = result.user.email;
 					this.modal_login = false;
-					this.$router.replace('/');
+					this.$router.replace( {name: 'bands'} );
 					this.getShows();
 					this.getBands();
 					this.getVenues();
