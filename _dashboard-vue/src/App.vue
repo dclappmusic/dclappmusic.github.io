@@ -105,7 +105,7 @@ export default {
 				this.venues_fb = [];
 				querySnapshot.forEach((doc) => {
 					let venue = doc.data();
-					this.venues_fb.push(venue);
+					if (venue.city != 'Berlin') this.venues_fb.push(venue);
 				});
 				if (this.venues_fb.length) this.$store.commit("updateVenues", this.venues_fb);
 			});
@@ -160,7 +160,7 @@ export default {
 					window.localStorage.removeItem('emailForSignIn');
 					this.logged_user = result.user.email;
 					this.modal_login = false;
-					this.$router.replace( {name: 'bands'} );
+					this.$router.replace('/');
 					this.getShows();
 					this.getBands();
 					this.getVenues();
