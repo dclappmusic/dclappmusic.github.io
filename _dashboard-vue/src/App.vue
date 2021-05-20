@@ -133,6 +133,51 @@ export default {
 		// 			// });
 		// 		})
 		// },
+		// getShowsGS() {
+		// 	console.log("get fake bd");
+
+		// 	fetch('https://script.google.com/macros/s/AKfycbwtfaKRfZS_gULhNygGn0453Z23HN9QSlyHN2z_a_ed8MXTdSM/exec')
+		// 		.then(response => {return response.json()})
+		// 		.then(result => {
+		// 			var shows = result.shows;
+					
+		// 			function toTitleCase(str) {
+		// 				return str.replace(
+		// 					/\w\S*/g,
+		// 					function(txt) {
+		// 						return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		// 					}
+		// 				);
+		// 			}
+
+		// 			this.shows_gs = shows.map(sho => {
+		// 				return {
+		// 					id: sho.show_id,
+		// 					band: toTitleCase(sho.show),
+		// 					band_id: 0,
+		// 					venue: sho.venue,
+		// 					venue_id: sho.venue_id,
+		// 					link: sho.link,
+		// 					fecha: null,
+		// 					hora: null,
+		// 					timestamp: this.$moment(sho.timestamp).unix()*1000,
+		// 					city: "Madrid",
+		// 					festival: sho.festival,
+		// 					image: null,
+		// 					lat: null,
+		// 					lon: null,
+		// 					price: parseInt(sho['price (anticipada)']) || null,
+		// 					consumicion: sho['consumición']
+		// 				}
+		// 			})
+		// 			this.$store.commit("updateShows", [... this.shows_gs, ...this.shows_fb]);
+		// 			debugger;
+		// 			this.shows_gs.forEach(show => {
+		// 				firebase.firestore().collection("shows").doc('show_' + show.id).set(show);
+		// 			});
+		// 			debugger;
+		// 		})
+		// },
 
 //open modal edit show/band
 		openModalSubirShow(tipo, id) {
