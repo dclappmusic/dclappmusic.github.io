@@ -48,7 +48,7 @@
 			}
 		},
 		watch: {
-			bands() {
+			venues() {
 				this.venues_filtradas = [...this.venues].sort((a, b) => b.id - a.id);
 			}
 		},
