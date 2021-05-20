@@ -9,7 +9,10 @@ export default new Vuex.Store({
         bands: [],
         venues: [],
         user: null,
-        geolocation: {},
+        geolocation: {
+            lat: 40.41668329317987,
+            lon: -3.7038310128452934
+        },
         city: null
     },
     getters: {

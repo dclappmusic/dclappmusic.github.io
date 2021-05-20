@@ -12,16 +12,20 @@
 			</svg>
 
 			<div class="primera_fila">
-				<div class="foto_container" v-if="getBand(show.band_id).image">
+				<div class="foto_container" v-if="show.band_id !== 0">
 					<p v-if="show.live" class="label_live small">live</p>
-					<img class="foto"
-						:src="getBand(show.band_id).image ? getBand(show.band_id).image : 'images/avatar_placeholder.jpg'">
+					<img class="foto" 
+						:src="show.band_id && getBand(show.band_id).image ? getBand(show.band_id).image : 'images/avatar_placeholder.jpg'">
 				</div>
 				<div class="datos_principales">
-					<router-link class="banda"
+					<router-link v-if="show.band_id !== 0" class="banda"
 						:to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'>
 						<p class="display-med">{{show.band ? show.band : ''}}</p>
 					</router-link>
+					<a class="banda" v-else>
+						<p class="display-med">{{show.band ? show.band : ''}}</p>
+					</a>
+
 					<div class="fila">
 						<p class="sala tipo parrafo" v-if="show.venue">
 							<svg class="pin" width="7" height="9" viewBox="0 0 7 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +36,7 @@
 						<p class="precio parr-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p>
 					</div>
 					<div class="fila">
-						<p class="tipo parrafo" v-if="getBand(show.band_id).estilo">{{getBand(show.band_id).estilo}}</p>
+						<p class="tipo parrafo" v-if="show.band_id && getBand(show.band_id).estilo">{{getBand(show.band_id).estilo}}</p>
 						<!-- <router-link class="sala"
 							:to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_venue", id: show.venue_id }}'>
 							<p class="parrafo">{{show.festival ? show.festival : ''}}</p>
