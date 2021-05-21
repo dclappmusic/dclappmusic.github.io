@@ -239,27 +239,31 @@ export default {
     subirBand() {
       this.disable = true;
       this.new_band.id = this.bands[0].id + 1;
-      this.db.collection("bands").doc('band_' + this.new_band.id).set({
-        id: this.new_band.id,
-        name: this.new_band.name,
-        description: this.new_band.description,
-        youtube: this.new_band.youtube,
-        instagram: this.new_band.instagram,
-        facebook: this.new_band.facebook,
-        city: this.new_band.city,
-        afin_a: this.new_band.afin_a,
-        estilo: this.new_band.estilo,
-        image: this.new_band.image
-      }).then(() => {
-        console.log('banda subida');
-        if (!this.edited_band && this.new_show.fecha) {
-          this.new_show.band_id = this.new_band.id;
-          this.new_show.band = this.new_band.name;
-          this.subirShow();
-        } else {
-          this.$emit('close', 'refrescar bands');
-        }
-      });
+      if (!this.bands.find(bnd => bnd.id === this.new_band.id)) {
+        this.db.collection("bands").doc('band_' + this.new_band.id).set({
+          id: this.new_band.id,
+          name: this.new_band.name,
+          description: this.new_band.description,
+          youtube: this.new_band.youtube,
+          instagram: this.new_band.instagram,
+          facebook: this.new_band.facebook,
+          city: this.new_band.city,
+          afin_a: this.new_band.afin_a,
+          estilo: this.new_band.estilo,
+          image: this.new_band.image
+        }).then(() => {
+          console.log('banda subida');
+          if (!this.edited_band && this.new_show.fecha) {
+            this.new_show.band_id = this.new_band.id;
+            this.new_show.band = this.new_band.name;
+            this.subirShow();
+          } else {
+            this.$emit('close', 'refrescar bands');
+          }
+        });
+      } else {
+        alert('ya hay una banda con ese id, mandarle pantallazo de esto a Rober');
+      }
     },
     deleteBand() {
       if (window.confirm("Tas seguro?")) {
@@ -273,29 +277,34 @@ export default {
 		subirShow() {
       debugger;
       this.disable = true;
-			const show_id = this.shows.length;
+      this.shows.sort((a,b) => b.id - a.id);
+			const show_id = this.shows[0].id + 1;
 			const timestamp = this.$moment(this.new_show.fecha + ' ' + this.new_show.hora).unix()*1000;
 			if (!this.bands.find(bnd => bnd.name === this.new_show.band) && !this.new_band.id) {
         this.subirBand();
 			} else {
-				this.db.collection("shows").doc('show_' + show_id).set({
-					id: show_id,
-					timestamp: timestamp,
-					festival: this.new_show.festival,
-					link: this.new_show.link,
-          band: this.new_show.band,
-          band_id: this.new_show.band_id,
-          city: this.new_show.city,
-          venue: this.new_show.venue,
-          venue_id: this.new_show.venue_id,
-          image: this.new_show.image,
-          lat: this.new_show.lat,
-          lon: this.new_show.lon,
-          price: this.new_show.price
-				}).then(() => {
-          console.log("show subido");
-          this.$emit('close', 'refrescar shows');
-        })
+        if (!this.shows.find(sho => sho.id === show_id)) {
+          this.db.collection("shows").doc('show_' + show_id).set({
+            id: show_id,
+            timestamp: timestamp,
+            festival: this.new_show.festival,
+            link: this.new_show.link,
+            band: this.new_show.band,
+            band_id: this.new_show.band_id,
+            city: this.new_show.city,
+            venue: this.new_show.venue,
+            venue_id: this.new_show.venue_id,
+            image: this.new_show.image,
+            lat: this.new_show.lat,
+            lon: this.new_show.lon,
+            price: this.new_show.price
+          }).then(() => {
+            console.log("show subido");
+            this.$emit('close', 'refrescar shows');
+          })
+        } else {
+          alert('ya hay un show con ese id, mandarle pantallazo de esto a Rober');
+        }
 			}
 		},
     editShow() {
@@ -348,25 +357,29 @@ export default {
     subirVenue() {
       this.disable = true;
       this.new_venue.id = this.venues[0].id + 1;
-      this.db.collection("venues").doc('venue_' + this.new_venue.id).set({
-        id: this.new_venue.id,
-        name: this.new_venue.name,
-        lat: this.new_venue.lat,
-        lon: this.new_venue.lon,
-        city: this.new_venue.city,
-        logo: this.new_venue.logo,
-        web: this.new_venue.web,
-        capacity: this.new_venue.capacity
-      }).then(() => {
-        console.log('venue subida');
-        if (!this.edited_venue && this.new_show.fecha) {
-          this.new_show.venue_id = this.new_venue.id;
-          this.new_show.venue = this.new_venue.name;
-          this.subirShow();
-        } else {
-          this.$emit('close', 'refrescar venues');
-        }
-      });
+      if (!this.venues.find(ven => ven.id === this.new_venue.id)) {
+        this.db.collection("venues").doc('venue_' + this.new_venue.id).set({
+          id: this.new_venue.id,
+          name: this.new_venue.name,
+          lat: this.new_venue.lat,
+          lon: this.new_venue.lon,
+          city: this.new_venue.city,
+          logo: this.new_venue.logo,
+          web: this.new_venue.web,
+          capacity: this.new_venue.capacity
+        }).then(() => {
+          console.log('venue subida');
+          if (!this.edited_venue && this.new_show.fecha) {
+            this.new_show.venue_id = this.new_venue.id;
+            this.new_show.venue = this.new_venue.name;
+            this.subirShow();
+          } else {
+            this.$emit('close', 'refrescar venues');
+          }
+        });
+      } else {
+        alert('ya hay una venue con ese id, mandarle pantallazo de esto a Rober');
+      }
     },
     deleteVenue() {
       if (window.confirm("Tas seguro?")) {
