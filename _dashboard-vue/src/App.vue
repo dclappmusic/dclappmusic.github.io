@@ -206,6 +206,7 @@ export default {
 					this.logged_user = result.user.email;
 					this.modal_login = false;
 					this.$router.replace('/');
+					window.location.replace(location.protocol + '//' + location.host + location.pathname);
 					this.getShows();
 					this.getBands();
 					this.getVenues();
