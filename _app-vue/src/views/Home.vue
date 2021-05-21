@@ -1,11 +1,19 @@
 <template>
     <div class="page home" data-page="home">
 			<!-- <Header :user="this.user" /> -->
-			<router-link class="boton btn_preclapp" to="/clapp">
+			<!-- <router-link class="boton btn_preclapp" to="/clapp">
 					<img src="@/assets/images/iconClapp_white.svg" />
+			</router-link> -->
+			<router-link class="boton btn_premap" to="/agenda">
+					<img src="/images/find_shows_button.png" />
 			</router-link>
 			<div class="intro_clapp">
-				<a href="sign_band.html"><h3 class="display-med">applaud<br>the talent</h3></a>
+				<h3 class="display-med">
+					Tap to<br>
+					<b>find shows</b><br>
+					nearby
+				</h3>
+				<img src="/images/clapp_soon.png" />
 			</div>
 			<div class="overlay" v-if="show_overlay" @click="show_overlay = false">
 				<div class="ov_box">
@@ -82,14 +90,34 @@ export default {
 			margin: 0 auto;
 		}
 	}
+	.btn_premap {
+		position: absolute;
+		top: 17%;
+		left: calc(50% - 90px);
+		width: 180px;
+		background-color: transparent;
+		box-shadow: none;
+		padding: 0;
+		&:hover img {filter: none;}
+		img {
+			filter: drop-shadow(0px 0px 20px rgba(12, 56, 71, 0.2)) drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.27));
+			display: block;
+			margin: 0 auto;
+		}
+	}
 	.intro_clapp {
 		position: absolute;
-		bottom: 25%;
+		bottom: 15%;
 		width: 80%;
 		left: 10%;
 		text-align: center;
 		color: var(--color-primario-bands);
 		font-family: var(--roboto);
+		.display-med {
+			font-weight: 100;
+			margin-bottom: 1em;
+			b {font-weight: bold;}
+		}
 	}
 }
 </style>
