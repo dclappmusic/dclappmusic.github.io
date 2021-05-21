@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2472bd332244aaee1c43",
+    "revision": "c7414de9bf5924751485",
     "url": "/app/css/app.762428e3.css"
   },
   {
@@ -8,12 +8,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/app/css/chunk-03eb0790.4ff35f54.css"
   },
   {
-    "revision": "42d5e0d7d78524315e01",
-    "url": "/app/css/chunk-18ce0346.bdea5115.css"
-  },
-  {
     "revision": "68f373f3309b18647337",
     "url": "/app/css/chunk-197d98c3.dfb5ec01.css"
+  },
+  {
+    "revision": "83f2a15c980694263918",
+    "url": "/app/css/chunk-216e0292.6a0ede57.css"
   },
   {
     "revision": "f18c0a59a7ca348b264f",
@@ -152,24 +152,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/app/images/pin_liveshow_white.png"
   },
   {
-    "revision": "d2be142484feb53ba2d4ff46f1270d55",
+    "revision": "c3109d91d3862dde00ccaabc3f223d77",
     "url": "/app/index.html"
   },
   {
-    "revision": "2472bd332244aaee1c43",
-    "url": "/app/js/app.3c5aa923.js"
+    "revision": "c7414de9bf5924751485",
+    "url": "/app/js/app.dc53df9b.js"
   },
   {
     "revision": "96b2a2570a98cb8646d1",
     "url": "/app/js/chunk-03eb0790.90adbcd1.js"
   },
   {
-    "revision": "42d5e0d7d78524315e01",
-    "url": "/app/js/chunk-18ce0346.6c4f379c.js"
-  },
-  {
     "revision": "68f373f3309b18647337",
     "url": "/app/js/chunk-197d98c3.4dafdfa6.js"
+  },
+  {
+    "revision": "83f2a15c980694263918",
+    "url": "/app/js/chunk-216e0292.8e9d5e7d.js"
   },
   {
     "revision": "2d007590ee3ba57c2c13",

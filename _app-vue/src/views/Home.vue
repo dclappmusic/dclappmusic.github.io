@@ -5,7 +5,7 @@
 					<img src="@/assets/images/iconClapp_white.svg" />
 			</router-link> -->
 			<router-link class="boton btn_premap" to="/agenda">
-					<img src="/images/find_shows_button.png" />
+					<img src="images/find_shows_button.png" />
 			</router-link>
 			<div class="intro_clapp">
 				<h3 class="display-med">
@@ -13,7 +13,7 @@
 					<b>find shows</b><br>
 					nearby
 				</h3>
-				<img src="/images/clapp_soon.png" />
+				<img src="images/clapp_soon.png" />
 			</div>
 			<div class="overlay" v-if="show_overlay" @click="show_overlay = false">
 				<div class="ov_box">
