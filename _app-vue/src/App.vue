@@ -64,7 +64,10 @@
       setInterval(() => {
         this.fecha_hoy = new Date();
       }, 1000);
-			this.loginState();
+			// this.loginState();
+      firebase.auth().signInAnonymously().then(() => {
+        console.log("ya estas logueado");
+      }).catch((error) => alert(error));
 		},
 		mounted() {
 			window.addEventListener('beforeinstallprompt', (e) => {
