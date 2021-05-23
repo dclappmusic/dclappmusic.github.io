@@ -40,9 +40,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapState([
-			"city", "geolocation"
-		])
+		...mapState(["city", "geolocation"])
 	},
 	watch: {
 		shows() {

@@ -12,16 +12,16 @@
 			<!-- <keep-alive>
 				<AgendaFilters v-if="filters" @filters_popup="filters = false" @filtering="filtering"/>
 			</keep-alive> -->
-			<!-- <p v-if="!map" class="display-med mapa" :class="{'active': !map}" @click="map = !map">mapa</p>
-			<p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p> -->
+			<p v-if="!map" class="display-med mapa" :class="{'active': !map}" @click="map = !map">mapa</p>
+			<p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p>
 		<!-- </div> -->
 		<div class="view" v-if="shows[0]">
-			<!-- <keep-alive v-if="map">
+			<keep-alive v-if="map">
 				<agendaMap :shows="shows_filtered" />
-			</keep-alive> -->
-			<!-- <keep-alive v-else> -->
+			</keep-alive>
+			<keep-alive v-else>
 				<agendaList :shows="shows_filtered" />
-			<!-- </keep-alive> -->
+			</keep-alive>
 		</div>
 		<!-- <div class="spinner active">
 					<p class="display-med">
@@ -36,25 +36,24 @@
 <script>
 	import {mapState} from 'vuex';
 	import GetGeolocation from '@/components/GetGeolocation';
-	// import agendaMap from '@/components/agendaMap';
+	import agendaMap from '@/components/agendaMap';
 	import agendaList from "@/components/agendaList";
 	// import ModalSubirShow from "@/components/ModalSubirShow";
 	// import AgendaFilters from "@/components/AgendaFilters";
-	import axios from 'axios';
 
 	export default {
 		name: 'Agenda',
 		props: [],
 		components: {
 			agendaList,
-			// agendaMap,
+			agendaMap,
 			// AgendaFilters,
 			// ModalSubirShow,
 			GetGeolocation
 		},
 		data() {
 			return {
-				map: false,
+				map: true,
 				accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
 				city: null,
 				filters: false,
@@ -84,12 +83,10 @@
 		mounted() {},
 		methods: {
 			getCity() {
-				let call = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + this.geolocation.lon + "," + this.geolocation
-					.lat + ".json?access_token=" + this.accessToken;
-				axios
-					.get(call)
-					.then((response) => {
-						this.city = response.data.features[3].text;
+				fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/' + this.geolocation.lon + "," + this.geolocation.lat + ".json?access_token=" + this.accessToken)
+					.then(response => {return response.json()})
+					.then(result => {
+						this.city = result.features[4].text;
 						this.$store.commit("updateCity", this.city);
 					})
 			},
