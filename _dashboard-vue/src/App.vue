@@ -120,8 +120,8 @@ export default {
 		// 				return {
 		// 					id: ven.id,
 		// 					name: ven.name,
-		// 					lat: parseInt(ven.latitud),
-		// 					lon: parseInt(ven.longitud),
+		// 					lat: parseFloat(ven.latitud),
+		// 					lon: parseFloat(ven.longitud),
 		// 					city: ven.city,
 		// 					logo: ven.logo,
 		// 					web: ven.web_venue,
