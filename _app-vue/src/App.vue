@@ -74,6 +74,7 @@
 			});
       this.getShows();
       this.getBands();
+      this.getVenues();
       // this.forceSWupdate();  
 		},
 		methods: {
@@ -118,17 +119,27 @@
           this.$store.commit("updateBands", this.bands_fb);
         });
       },
-
-      //Crosses the venues and shows DB to set the show coords
-      set_show_cords(shows, venues) {
-        shows.forEach(show => {
-          var venue_id = show.venue_id;
-          if (venue_id) {
-            show.lat = venues[venue_id].latitud;
-            show.lon = venues[venue_id].longitud;
-          }
+      getVenues() {
+        db.collection("venues").onSnapshot((querySnapshot) => {
+          this.venues_fb = [];
+          querySnapshot.forEach((doc) => {
+            let venue = doc.data();
+            if (venue.city != 'Berlin') this.venues_fb.push(venue);
+          });
+          this.$store.commit("updateVenues", this.venues_fb);
         });
       },
+
+      //Crosses the venues and shows DB to set the show coords
+      // set_show_cords(shows, venues) {
+      //   shows.forEach(show => {
+      //     var venue_id = show.venue_id;
+      //     if (venue_id) {
+      //       show.lat = venues[venue_id].latitud;
+      //       show.lon = venues[venue_id].longitud;
+      //     }
+      //   });
+      // },
       //close the PWA install popup
       event_cerrar_popup(deferredPrompt) {
 				this.show_install = false;
