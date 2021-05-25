@@ -167,13 +167,21 @@ p, .parr {margin-bottom: 0}
 
 	&.mapa {
 		margin-bottom: 0;
+		.hora {top: -15px;}
 		.caja {
-			padding: 1em .5em;
-
+			padding: 0 .5em;
+			.icon_share {top: 0;}
+			.primera_fila .datos_principales .fila .sala .pin path {
+				fill: white;
+			}
 			.segunda_fila {
 				background: none;
 				margin: 1em -1.5em -2em;
 				width: calc(100% + 2em);
+			}
+			.botones {
+				background: none;
+				.comprar {margin: 0;}
 			}
 		}
 	}
@@ -287,7 +295,7 @@ p, .parr {margin-bottom: 0}
 			background-color: rgba(255, 255, 255, .1);
 			display: flex;
 			justify-content: flex-end;
-			width: calc(100% + 1em);
+			width: calc(100% + .5em);
 			// margin: 0 -.5em -2em;
 			.comprar {
 				background-color: var(--color-primario-fans);

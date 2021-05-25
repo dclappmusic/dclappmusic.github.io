@@ -148,7 +148,7 @@ export default {
 		.mapboxgl-popup-content {
 			background-color: var(--color-primario-bands);
 			border-radius: 10px;
-			padding: 5% 0;
+			padding: 1em;
 			.hora {color: white; }
 		}
 	}
