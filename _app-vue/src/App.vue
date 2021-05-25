@@ -63,8 +63,11 @@
 		created() {
       setInterval(() => {
         this.fecha_hoy = new Date();
-      }, 1000);
+      }, 60000*10);
 			this.loginState();
+      firebase.auth().signInAnonymously().then(() => {
+        console.log("ya estas logueado");
+      }).catch((error) => alert(error));
 		},
 		mounted() {
 			window.addEventListener('beforeinstallprompt', (e) => {
@@ -82,19 +85,21 @@
       loginState() {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
-            console.log("ya estas logueado");
-            console.log(user);
-            this.show_login = false;
+            this.getShows();
+            this.getBands();
+            // console.log("ya estas logueado");
+            // console.log(user);
+            // this.show_login = false;
           //download user
-            db.collection("fans").doc(user.uid).onSnapshot(() => {
-              // this.user = doc.data();
-              console.log(user);
-              this.$store.commit("updateUser", user);
-            });
+            // db.collection("fans").doc(user.uid).onSnapshot(() => {
+            //   // this.user = doc.data();
+            //   console.log(user);
+            //   this.$store.commit("updateUser", user);
+            // });
           } else {
             // No user is signed in.
-            this.show_login = true;
-            console.log("no estás logueado");
+            // this.show_login = true;
+            // console.log("no estás logueado");
           }
         });
       },
