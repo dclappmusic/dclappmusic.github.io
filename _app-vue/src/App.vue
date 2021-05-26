@@ -47,15 +47,6 @@
       ...mapState(["shows", "bands", "venues", 'user']),
     },
     watch: {
-      // shows_fb: function() {
-      //   this.$store.commit("updateShows", this.shows_fb);
-      // },
-      // bands_fb: function() {
-      //   this.$store.commit("updateBands", this.bands_fb);
-      // },
-      venues_fb: function() {
-        this.$store.commit("updateVenues", this.venues_fb);
-      },
       geolocation: function() {
         this.$store.commit("updateGeolocation", this.geolocation);
       }

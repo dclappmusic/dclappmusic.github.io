@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "cdeploy": "vue-cli-service build && rm -rf ../app  &&  cp -R  ../_app-vue/dist ../app"
+    "cdeploy": "vue-cli-service build && rm -rf ../app  &&  cp -R  ../_app-vue/dist ../app",
+    "cdevloy": "vue-cli-service build && rm -rf ../dev-app  &&  cp -R  ../_app-vue/dist ../dev-app"
   },
   "dependencies": {
     "@google/markerclusterer": "^1.0.3",

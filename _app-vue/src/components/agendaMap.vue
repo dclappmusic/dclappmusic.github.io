@@ -80,13 +80,10 @@ export default {
 			this.filter_shows_today();
 		},
 		shows_hoy() {
-			this.shows_hoy.forEach(sho => {
-				if (sho.venue_id && !sho.lat) {
-					let venue = this.venues.find(venu => venu.id == sho.venue_id) || null;
-					sho.lat = parseFloat(venue.lat.replace(/,/g, '.')) || null;
-					sho.lon = parseFloat(venue.lon.replace(/,/g, '.')) || null;
-				}
-			})
+			this.getShowPos();
+		},
+		venues() {
+			this.getShowPos();
 		}
 	},
 	created() {
@@ -120,6 +117,17 @@ export default {
 					this.shows_hoy.push(show);
 				}
 			});
+		},
+		getShowPos() {
+			if (this.venues.length) {
+				this.shows_hoy.forEach(sho => {
+					if (sho.venue_id && !sho.lat) {
+						let venue = this.venues.find(venu => venu.id == sho.venue_id) || null;
+						sho.lat = venue.lat || null;
+						sho.lon = venue.lon || null;
+					}
+				})
+			}
 		}
 	}
 }
