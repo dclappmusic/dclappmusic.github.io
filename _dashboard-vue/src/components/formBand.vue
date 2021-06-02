@@ -8,7 +8,14 @@
       <input class="parr" :disabled="!edited_band && new_band.id" placeholder="afin a" v-model="new_band.afin_a" />
       <input class="parr" :disabled="!edited_band && new_band.id" placeholder="estilo" v-model="new_band.estilo" />
       <input class="parr" :disabled="!edited_band && new_band.id" placeholder="descripción" v-model="new_band.description" />
-      <input class="parr" :disabled="!edited_band && new_band.id" placeholder="image" v-model="new_band.image" />
+      <input class="parr" 
+        :disabled="!edited_band && new_band.id" 
+        placeholder="image" 
+        type="file"
+        accept="image/*"
+        ref="band_image"
+        @change="onFilePicked"
+      />
     </div>
     <div class="fila band">
       <input class="parr" :disabled="!edited_band && new_band.id" placeholder="instagram" v-model="new_band.instagram" />
@@ -38,7 +45,12 @@ export default {
 	},
 	created: function() {},
   mounted: function(){},
-	methods: {}
+	methods: {
+    onFilePicked (event) {
+      const files = event.target.files;
+      this.new_band.image = files[0];
+    }
+  }
 }
 </script>
 
