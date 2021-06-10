@@ -114,7 +114,7 @@ export default {
 				var diff = show_time.diff(hoy, 'hours');
 				if (diff > -2 && diff < 16 ) {
 					diff > -1 && diff < 1 ? show.live = true : show.live = false;
-					this.shows_hoy.push(show);
+					if (show.lat) this.shows_hoy.push(show);
 				}
 			});
 		},
