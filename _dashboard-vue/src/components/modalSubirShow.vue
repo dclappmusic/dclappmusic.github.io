@@ -224,10 +224,24 @@ export default {
         this.new_venue = {...elegido};
       }
 		},
-    editBand() {
+    async editBand() {
       this.disable = true;
+      
+      let banda = {
+        id: this.new_band.id,
+        name: this.new_band.name,
+        description: this.new_band.description || null,
+        youtube: this.new_band.youtube || null,
+        instagram: this.new_band.instagram || null,
+        facebook: this.new_band.facebook || null,
+        city: this.new_band.city || null,
+        afin_a: this.new_band.afin_a || null,
+        estilo: this.new_band.estilo || null,
+        image: this.new_band.image_url || null
+      }
       if (this.band_image_cambiada) {
-        const upload = this.st.ref('band_images/' + this.new_band.id).put(this.new_band.image);
+        let imagen_comp = await this.resizeImage(this.new_band.image, 1500);
+        const upload = this.st.ref('band_images/' + this.new_band.id).put(imagen_comp);
         upload.on('state_changed', (snapshot) => {
           let progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
           console.log('Upload is ' + progress + '% done');
@@ -238,47 +252,26 @@ export default {
           upload.snapshot.ref.getDownloadURL().then((url) => {
             console.log("imagen guardada en: " + url);
             this.new_band.image_url = url;
-            this.db.collection("bands").doc('band_' + this.new_band.id).set({
-              id: this.new_band.id,
-              name: this.new_band.name,
-              description: this.new_band.description || null,
-              youtube: this.new_band.youtube || null,
-              instagram: this.new_band.instagram || null,
-              facebook: this.new_band.facebook || null,
-              city: this.new_band.city || null,
-              afin_a: this.new_band.afin_a || null,
-              estilo: this.new_band.estilo || null,
-              image: this.new_band.image_url || null
-            }, {merge: true}).then(() => {
+            this.db.collection("bands").doc('band_' + this.new_band.id).set(banda, {merge: true}).then(() => {
               console.log("banda editada");
               this.$emit('close', 'refrescar bands');
             })
           });
         });
       } else {
-        this.db.collection("bands").doc('band_' + this.new_band.id).set({
-          id: this.new_band.id,
-          name: this.new_band.name,
-          description: this.new_band.description || null,
-          youtube: this.new_band.youtube || null,
-          instagram: this.new_band.instagram || null,
-          facebook: this.new_band.facebook || null,
-          city: this.new_band.city || null,
-          afin_a: this.new_band.afin_a || null,
-          estilo: this.new_band.estilo || null,
-          image: this.new_band.image_url || null
-        }, {merge: true}).then(() => {
+        this.db.collection("bands").doc('band_' + this.new_band.id).set(banda, {merge: true}).then(() => {
           console.log("banda editada");
           this.$emit('close', 'refrescar bands');
         })
       }
     },
-    subirBand() {
+    async subirBand() {
       this.disable = true;
       this.new_band.id = this.bands[0].id + 1;
       if (!this.bands.find(bnd => bnd.id === this.new_band.id)) {
         if (this.new_band.image) {
-          const upload = this.st.ref('band_images/' + this.new_band.id).put(this.new_band.image);
+          let imagen_comp = await this.resizeImage(this.new_band.image, 1500);
+          const upload = this.st.ref('band_images/' + this.new_band.id).put(imagen_comp);
           upload.on('state_changed', (snapshot) => {
 						let progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 						console.log('Upload is ' + progress + '% done');
@@ -463,6 +456,57 @@ export default {
         })
       }
     },
+    resizeImage(file, maxSize) {
+      const reader = new FileReader();
+      const image = new Image();
+      const canvas = document.createElement('canvas');
+      const dataURItoBlob = (dataURI) => {
+          const bytes = dataURI.split(',')[0].indexOf('base64') >= 0
+              ? atob(dataURI.split(',')[1])
+              : unescape(dataURI.split(',')[1]);
+          const mime = dataURI.split(',')[0].split(':')[1].split(';')[0];
+          const max = bytes.length;
+          const ia = new Uint8Array(max);
+          for (let i = 0; i < max; i += 1) ia[i] = bytes.charCodeAt(i);
+          return new Blob([ia], { type: mime });
+      };
+
+      const resize = () => {
+          let { width, height } = image;
+
+          if (width > height) {
+              if (width > maxSize) {
+                  height *= maxSize / width;
+                  width = maxSize;
+              }
+          } else if (height > maxSize) {
+              width *= maxSize / height;
+              height = maxSize;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+
+          const dataUrl = canvas.toDataURL('image/jpeg');
+
+          return dataURItoBlob(dataUrl);
+      };
+
+      return new Promise((ok, no) => {
+          if (!file.type.match(/image.*/)) {
+              no(new Error('Not an image'));
+              return;
+          }
+
+          reader.onload = (readerEvent) => {
+              image.onload = () => ok(resize());
+              image.src = readerEvent.target.result;
+          };
+
+          reader.readAsDataURL(file);
+      });
+    }
 	}
 }
 </script>
