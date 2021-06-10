@@ -391,6 +391,7 @@ export default {
         band_id: this.new_show.band_id || null,
         city: this.new_show.city || null,
         venue: this.new_show.venue || null,
+        venue_id: this.new_show.venue_id || null,
         image: this.new_show.image || null,
         lat: this.new_show.lat || null,
         lon: this.new_show.lon || null,
