@@ -252,6 +252,7 @@ export default {
           upload.snapshot.ref.getDownloadURL().then((url) => {
             console.log("imagen guardada en: " + url);
             this.new_band.image_url = url;
+            banda.image = url;
             this.db.collection("bands").doc('band_' + this.new_band.id).set(banda, {merge: true}).then(() => {
               console.log("banda editada");
               this.$emit('close', 'refrescar bands');

@@ -1,5 +1,5 @@
 <template>
-<div class="shows">
+<div class="shows" v-if="bands.length">
 	<div v-for="(day, index) in shows_week" :key="index" class="dia">
 		<div v-if="day[0]">
 			<p class="when display-med">{{index === "0" ? "Hoy" : index === "1" ? "Mañana" : $moment(day[0].timestamp).format('dddd DD')}}</p>
@@ -40,9 +40,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapState([
-			"city", "geolocation"
-		])
+		...mapState(['city', 'geolocation', 'bands'])
 	},
 	watch: {
 		shows() {
