@@ -13,7 +13,7 @@
 					<b>find shows</b><br>
 					nearby
 				</h3>
-				<img src="images/clapp_soon.png" />
+				<!-- <img src="images/clapp_soon.png" /> -->
 			</div>
 			<div class="overlay" v-if="show_overlay" @click="show_overlay = false">
 				<div class="ov_box">
@@ -91,10 +91,11 @@ export default {
 		}
 	}
 	.btn_premap {
-		position: absolute;
-		top: 17%;
-		left: calc(50% - 90px);
-		width: 180px;
+		position: relative;
+		display: block;
+		margin-top: 18vh;
+		margin-left: calc(50% - 90px);
+		width: clamp(180px, 45vw, 200px);
 		background-color: transparent;
 		box-shadow: none;
 		padding: 0;
@@ -106,10 +107,8 @@ export default {
 		}
 	}
 	.intro_clapp {
-		position: absolute;
-		bottom: 15%;
-		width: 80%;
-		left: 10%;
+		width: 100%;
+    margin: 2rem auto;
 		text-align: center;
 		color: var(--color-primario-bands);
 		font-family: var(--roboto);
