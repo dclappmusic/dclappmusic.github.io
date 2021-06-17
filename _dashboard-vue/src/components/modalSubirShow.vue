@@ -94,7 +94,8 @@ export default {
 		...mapState([
 			"shows", "bands", "venues", 'user'
 		]),
-    db() {return firebase.firestore();}
+    db() {return firebase.firestore()},
+    st() {return firebase.storage()}
 	},
 	data() {
 		return {
@@ -104,6 +105,7 @@ export default {
       bandas_filtradas: [],
       venues_filtradas: [],
       disable: false,
+      band_image_cambiada: false,
 			new_band: {
         id: null,
 				name: null,
@@ -114,7 +116,8 @@ export default {
 				city: null,
         afin_a: null,
         estilo: null,
-        image: null
+        image: null,
+        image_url: null
 			},
 			new_show: {
         id: null,
@@ -170,6 +173,9 @@ export default {
         this.new_show.venue_id = 0;
         this.new_show.venue = this.location_type;
       }
+    },
+    'new_band.image'() {
+      this.band_image_cambiada = true;
     }
 	},
 	created: function() {
@@ -218,9 +224,10 @@ export default {
         this.new_venue = {...elegido};
       }
 		},
-    editBand() {
+    async editBand() {
       this.disable = true;
-      this.db.collection("bands").doc('band_' + this.new_band.id).set({
+      
+      let banda = {
         id: this.new_band.id,
         name: this.new_band.name,
         description: this.new_band.description || null,
@@ -230,37 +237,93 @@ export default {
         city: this.new_band.city || null,
         afin_a: this.new_band.afin_a || null,
         estilo: this.new_band.estilo || null,
-        image: this.new_band.image || null
-      }, {merge: true}).then(() => {
-        console.log("banda editada");
-        this.$emit('close', 'refrescar bands');
-      })
+        image: this.new_band.image_url || null
+      }
+      if (this.band_image_cambiada) {
+        let imagen_comp = await this.resizeImage(this.new_band.image, 1500);
+        const upload = this.st.ref('band_images/' + this.new_band.id).put(imagen_comp);
+        upload.on('state_changed', (snapshot) => {
+          let progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          console.log('Upload is ' + progress + '% done');
+        }, (error) => {
+          console.log("error:");
+          console.log(error);
+        }, () => {
+          upload.snapshot.ref.getDownloadURL().then((url) => {
+            console.log("imagen guardada en: " + url);
+            this.new_band.image_url = url;
+            banda.image = url;
+            this.db.collection("bands").doc('band_' + this.new_band.id).set(banda, {merge: true}).then(() => {
+              console.log("banda editada");
+              this.$emit('close', 'refrescar bands');
+            })
+          });
+        });
+      } else {
+        this.db.collection("bands").doc('band_' + this.new_band.id).set(banda, {merge: true}).then(() => {
+          console.log("banda editada");
+          this.$emit('close', 'refrescar bands');
+        })
+      }
     },
-    subirBand() {
+    async subirBand() {
       this.disable = true;
       this.new_band.id = this.bands[0].id + 1;
       if (!this.bands.find(bnd => bnd.id === this.new_band.id)) {
-        this.db.collection("bands").doc('band_' + this.new_band.id).set({
-          id: this.new_band.id,
-          name: this.new_band.name,
-          description: this.new_band.description,
-          youtube: this.new_band.youtube,
-          instagram: this.new_band.instagram,
-          facebook: this.new_band.facebook,
-          city: this.new_band.city,
-          afin_a: this.new_band.afin_a,
-          estilo: this.new_band.estilo,
-          image: this.new_band.image
-        }).then(() => {
-          console.log('banda subida');
-          if (!this.edited_band && this.new_show.fecha) {
-            this.new_show.band_id = this.new_band.id;
-            this.new_show.band = this.new_band.name;
-            this.subirShow();
-          } else {
-            this.$emit('close', 'refrescar bands');
-          }
-        });
+        if (this.new_band.image) {
+          let imagen_comp = await this.resizeImage(this.new_band.image, 1500);
+          const upload = this.st.ref('band_images/' + this.new_band.id).put(imagen_comp);
+          upload.on('state_changed', (snapshot) => {
+						let progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+						console.log('Upload is ' + progress + '% done');
+					}, (error) => {
+						console.log("error:");
+						console.log(error);
+					}, () => {
+						upload.snapshot.ref.getDownloadURL().then((url) => {
+							console.log("imagen guardada en: " + url);
+							this.new_band.image_url = url;
+              this.db.collection("bands").doc('band_' + this.new_band.id).set({
+                id: this.new_band.id,
+                name: this.new_band.name,
+                description: this.new_band.description,
+                youtube: this.new_band.youtube,
+                instagram: this.new_band.instagram,
+                facebook: this.new_band.facebook,
+                city: this.new_band.city,
+                afin_a: this.new_band.afin_a,
+                estilo: this.new_band.estilo,
+                image: this.new_band.image_url
+              }).then(() => {
+                console.log('banda subida');
+                  this.$emit('close', 'refrescar bands');
+              });
+						});
+					});
+        } else {
+          this.db.collection("bands").doc('band_' + this.new_band.id).set({
+            id: this.new_band.id,
+            name: this.new_band.name,
+            description: this.new_band.description,
+            youtube: this.new_band.youtube,
+            instagram: this.new_band.instagram,
+            facebook: this.new_band.facebook,
+            city: this.new_band.city,
+            afin_a: this.new_band.afin_a,
+            estilo: this.new_band.estilo,
+            image: this.new_band.image_url
+          }).then(() => {
+            console.log('banda subida');
+            // if (!this.edited_band && this.new_show.fecha) {
+            //   this.new_show.band_id = this.new_band.id;
+            //   this.new_show.band = this.new_band.name;
+            //   this.subirShow();
+            // } else {
+              this.$emit('close', 'refrescar bands');
+            // }
+          });
+
+        }
       } else {
         alert('ya hay una banda con ese id, mandarle pantallazo de esto a Rober');
       }
@@ -268,6 +331,9 @@ export default {
     deleteBand() {
       if (window.confirm("Tas seguro?")) {
         this.disable = true;
+        if (this.new_band.image) {
+          this.st.ref().child('band_images/' + this.new_band.id).delete();
+        }
         this.db.collection("bands").doc('band_' + this.new_band.id).delete().then(() => {
           console.log('banda borrada');
           this.$emit('close', 'refrescar bands');
@@ -319,6 +385,7 @@ export default {
         band_id: this.new_show.band_id || null,
         city: this.new_show.city || null,
         venue: this.new_show.venue || null,
+        venue_id: this.new_show.venue_id || null,
         image: this.new_show.image || null,
         lat: this.new_show.lat || null,
         lon: this.new_show.lon || null,
@@ -390,6 +457,57 @@ export default {
         })
       }
     },
+    resizeImage(file, maxSize) {
+      const reader = new FileReader();
+      const image = new Image();
+      const canvas = document.createElement('canvas');
+      const dataURItoBlob = (dataURI) => {
+          const bytes = dataURI.split(',')[0].indexOf('base64') >= 0
+              ? atob(dataURI.split(',')[1])
+              : unescape(dataURI.split(',')[1]);
+          const mime = dataURI.split(',')[0].split(':')[1].split(';')[0];
+          const max = bytes.length;
+          const ia = new Uint8Array(max);
+          for (let i = 0; i < max; i += 1) ia[i] = bytes.charCodeAt(i);
+          return new Blob([ia], { type: mime });
+      };
+
+      const resize = () => {
+          let { width, height } = image;
+
+          if (width > height) {
+              if (width > maxSize) {
+                  height *= maxSize / width;
+                  width = maxSize;
+              }
+          } else if (height > maxSize) {
+              width *= maxSize / height;
+              height = maxSize;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+
+          const dataUrl = canvas.toDataURL('image/jpeg');
+
+          return dataURItoBlob(dataUrl);
+      };
+
+      return new Promise((ok, no) => {
+          if (!file.type.match(/image.*/)) {
+              no(new Error('Not an image'));
+              return;
+          }
+
+          reader.onload = (readerEvent) => {
+              image.onload = () => ok(resize());
+              image.src = readerEvent.target.result;
+          };
+
+          reader.readAsDataURL(file);
+      });
+    }
 	}
 }
 </script>

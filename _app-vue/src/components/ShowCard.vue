@@ -1,7 +1,7 @@
 <template>
 	<div class="show" @click="ampliar" :class="{open: ampliado, live: show.live, highlight: show.highlight}">
 		<p v-if="type==='list_soon'" class="display-sm soon">{{this.$moment(show.timestamp).format("DD/MM")}}</p>
-		<p class="parrafo-sm hora">{{this.$moment(show.timestamp).format("HH:mm")}}</p>
+		<p class="txt-md hora">{{this.$moment(show.timestamp).format("HH:mm")}}</p>
 		<div class="caja">
 			<svg @click="sharePic(show)" class="icon_share" width="20" height="20" viewBox="0 0 20 20" fill="none"
 				xmlns="http://www.w3.org/2000/svg">
@@ -20,20 +20,20 @@
 				<div :class="['datos_principales', !(show.band_id !== 0 && getBand(show.band_id).image) ? 'sin_imagen' : '']">
 					<router-link v-if="show.band_id !== 0" class="banda"
 						:to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'>
-						<p class="parrafo-big">{{show.band ? show.band : ''}}</p>
+						<p class="txt-lg">{{show.band ? show.band : ''}}</p>
 					</router-link>
 					<a class="banda" v-else>
-						<p class="parrafo-big">{{show.band ? show.band : ''}}</p>
+						<p class="txt-lg">{{show.band ? show.band : ''}}</p>
 					</a>
 
 					<div class="fila">
-						<p v-if="show.venue && show.venue_id != 0" class="sala tipo parrafo">
+						<p v-if="show.venue && show.venue_id != 0" class="sala tipo txt-sm">
 							<svg class="pin" width="7" height="9" viewBox="0 0 7 9" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M5.86079 4.31678C6.00326 3.98154 6.08214 3.61234 6.08214 3.22458C6.08214 1.69101 4.84844 0.447815 3.32659 0.447815C1.80474 0.447815 0.571045 1.69101 0.571045 3.22458C0.571045 3.61234 0.649921 3.98154 0.792387 4.31678H0.756561L2.75325 8.0925C2.97248 8.50706 3.5647 8.51155 3.7902 8.10038L5.61818 4.76713C5.70458 4.63705 5.78036 4.49921 5.84427 4.35486L5.86516 4.31678H5.86079Z" fill="white"/>
 							</svg>
 							{{show.venue}}
 						</p>
-						<p v-else-if="show.venue === 'streaming'" class="sala tipo parrafo">
+						<p v-else-if="show.venue === 'streaming'" class="sala tipo txt-sm">
 							<svg class="pin" width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M4.02405 0.536433C3.95729 0.468315 3.87776 0.41402 3.79001 0.37665C3.70225 0.339279 3.608 0.319567 3.51262 0.318638C3.41725 0.317709 3.32263 0.335583 3.23416 0.371237C3.1457 0.406892 3.06513 0.459628 2.99705 0.526433C2.227 1.29201 1.61616 2.20249 1.19978 3.20535C0.783399 4.2082 0.569713 5.28358 0.571051 6.36943C0.569802 7.49695 0.800305 8.6127 1.24825 9.64742C1.6962 10.6821 2.35204 11.6138 3.17505 12.3844C3.31357 12.5125 3.49654 12.5815 3.68512 12.5768C3.8737 12.5722 4.05304 12.4942 4.18505 12.3594C4.50105 12.0434 4.46205 11.5404 4.15805 11.2494C3.49755 10.62 2.97194 9.86277 2.61317 9.02386C2.2544 8.18494 2.06995 7.28184 2.07105 6.36943C2.07105 4.52343 2.81205 2.84943 4.01405 1.63143C4.30405 1.33643 4.33405 0.846433 4.02405 0.536433Z" fill="black"/>
 								<path d="M5.78505 2.29843C5.65335 2.16292 5.4733 2.08514 5.28436 2.08214C5.09541 2.07914 4.91299 2.15117 4.77705 2.28243C4.23588 2.81651 3.80635 3.45289 3.51347 4.15455C3.22058 4.8562 3.07019 5.6091 3.07105 6.36943C3.07105 8.06143 3.80105 9.58243 4.96405 10.6334C5.1013 10.7547 5.27994 10.8185 5.46295 10.8116C5.64596 10.8047 5.81931 10.7277 5.94705 10.5964C6.27505 10.2684 6.21405 9.75243 5.90605 9.46243C5.48386 9.06557 5.14756 8.58632 4.91794 8.05432C4.68831 7.52232 4.57025 6.94887 4.57105 6.36943C4.57105 5.21943 5.02805 4.17543 5.77105 3.40943C6.05705 3.11543 6.10405 2.61643 5.78505 2.29843Z" fill="black"/>
@@ -43,8 +43,8 @@
 							</svg>
 							Streaming
 						</p>
-						<p class="parrafo" v-if="show.price >= 0">·</p>
-						<p class="precio parrafo">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p>
+						<p class="txt-sm" v-if="show.price >= 0">·</p>
+						<p class="precio txt-sm">{{show.price > 0 ? show.price + "€" : "GRATIS"}}</p>
 					</div>
 					<div class="fila" v-if="show.band_id && getBand(show.band_id).estilo">
 						<p class="tipo parrafo" v-if="show.band_id && getBand(show.band_id).estilo">{{getBand(show.band_id).estilo}}</p>
@@ -85,9 +85,7 @@
 			])
 		},
 		created() {},
-		mounted() {
-
-		},
+		mounted() {},
 		methods: {
 			ampliar() {
 				// this.ampliado = !this.ampliado;
@@ -112,7 +110,7 @@
 	}
 </script>
 <style scoped lang="scss">
-p, .parr {margin-bottom: 0}
+p, .parr, .txt-sm {margin-bottom: 0}
 .show {
 	position: relative;
 	display: flex;
@@ -122,7 +120,9 @@ p, .parr {margin-bottom: 0}
 	margin: 0 auto 1em;
 
 	&.live {
-		.hora {color: var(--color-primario-fans);}
+		.hora {
+			color: var(--color-primario-fans);
+		}
 		.label_live {
 			position: absolute;
 			top: -15%;
@@ -199,16 +199,14 @@ p, .parr {margin-bottom: 0}
 	.soon {margin-right: 100%;}
 
 	.hora {
-		position: relative;
-		display: inline-block;
+		// position: relative;
+		// display: inline-block;
 		transform: rotate(-90deg);
-		transform-origin: top;
-		width: 13%;
+		// transform-origin: top;
+		width: 5%;
 		color: #333;
-		font-weight: bold;
-		font-size: 1.2em;
-		margin-left: -8%;
-		top: 15px;
+		margin-left: -2%;
+		// top: 15px;
 	}
 
 	.caja {
@@ -257,10 +255,6 @@ p, .parr {margin-bottom: 0}
 				.banda {
 					width: 100%;
 					margin-bottom: .5em;
-					p {
-						font-weight: bold;
-						line-height: 1em;
-					}
 				}
 
 				.fila {

@@ -56,9 +56,6 @@
         this.fecha_hoy = new Date();
       }, 60000*10);
 			this.loginState();
-      firebase.auth().signInAnonymously().then(() => {
-        console.log("ya estas logueado");
-      }).catch((error) => alert(error));
 		},
 		mounted() {
 			window.addEventListener('beforeinstallprompt', (e) => {
@@ -88,6 +85,9 @@
             //   this.$store.commit("updateUser", user);
             // });
           } else {
+            firebase.auth().signInAnonymously().then(() => {
+              console.log("ya estas logueado");
+            }).catch((error) => alert(error));
             // No user is signed in.
             // this.show_login = true;
             // console.log("no estás logueado");

@@ -74,7 +74,8 @@ export default {
 				// this.$router.replace( {name: 'bands'} );
 			} else {
 				console.log('no loggeado');
-				// No user is signed in.
+				this.loggedUser = null;
+				this.modal_login = true;
 			}
 		});
 	},
@@ -213,9 +214,6 @@ export default {
 				}).catch((error) => {
 					alert(error);
 				});
-			} else {
-				this.loggedUser = null;
-				this.modal_login = true;
 			}
 		}
 	}
