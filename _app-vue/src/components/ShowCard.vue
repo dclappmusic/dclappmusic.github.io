@@ -18,11 +18,11 @@
 						:src="getBand(show.band_id).image">
 				</div>
 				<div :class="['datos_principales', !(show.band_id !== 0 && getBand(show.band_id).image) ? 'sin_imagen' : '']">
-					<router-link v-if="show.band_id !== 0" class="banda"
+					<!-- <router-link v-if="show.band_id !== 0" class="banda"
 						:to='{ name: "sub", params: {from: "agenda", sub_page: "sub_profile_band", id: show.band_id }}'>
 						<p class="txt-lg">{{show.band ? show.band : ''}}</p>
-					</router-link>
-					<a class="banda" v-else>
+					</router-link> -->
+					<a class="banda">
 						<p class="txt-lg">{{show.band ? show.band : ''}}</p>
 					</a>
 
