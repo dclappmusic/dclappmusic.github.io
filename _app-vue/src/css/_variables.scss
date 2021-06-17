@@ -73,6 +73,21 @@ p, .parrafo, .parr {
 	font-family: var(--roboto);
 	font-size: 10px;
 }
+.txt-sm {
+	font-family: var(--roboto);
+	font-size: 12px;
+	font-weight: normal;
+}
+.txt-md {
+	font-family: var(--roboto);
+	font-size: 16px;
+	font-weight: bold;
+}
+.txt-lg {
+	font-family: var(--roboto);
+	font-size: 21px;
+	font-weight: bold;
+}
 .boton-med {
 	font-family: var(--roboto);
 	font-size: 20px;
