@@ -40,11 +40,7 @@ export default {
 		}
 	},
 	computed: {
-<<<<<<< HEAD
-		...mapState(["city", "geolocation"])
-=======
 		...mapState(['city', 'geolocation', 'bands'])
->>>>>>> master
 	},
 	watch: {
 		shows() {
@@ -143,6 +139,7 @@ export default {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	margin-top: 3em;
 	// flex-wrap: wrap;
 	// justify-content: center;
 	.when {

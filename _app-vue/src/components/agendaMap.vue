@@ -9,10 +9,13 @@
 			:attributionControl="false"
 			id="map"
 		>
-			<MglGeolocateControl 
+			<!-- <MglGeolocateControl 
 				position="top-left" 
 				:trackUserLocation="true"
-			/>
+			/> -->
+			<!-- <MglNavigationControl position="top-right"/> -->
+			<MglGeolocateControl position="bottom-right" />
+
 			<MglMarker v-for="(show, index) in shows_hoy" :key="index"
 				:coordinates="[show.lon, show.lat]"
 				:anchor="'bottom'"
@@ -47,7 +50,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { 
 	MglMap, 
 	MglPopup,
-	// MglNavigationControl,
 	MglGeolocateControl, 
 	MglMarker 
 } from "vue-mapbox";
@@ -58,7 +60,6 @@ export default {
 	components: {
 		// Mapbox,
 		MglMap,
-		// MglNavigationControl,
 		MglGeolocateControl,
 		MglPopup,
 		MglMarker,
@@ -169,13 +170,13 @@ export default {
 		background-attachment: rgba(255,0,0,.5);
 	}
 	&::v-deep .mapboxgl-ctrl-logo {
-		// display: none!important;
+		display: none!important;
 	}
-	&::v-deep .mapboxgl-ctrl-top-left {
+	&::v-deep .mapboxgl-ctrl-bottom-right {
 		top: auto;
-		bottom: 2%;
-		right: 2%;
-		.mapboxgl-ctrl.mapboxgl-ctrl-group {float: right;}
+		bottom: 3.5rem;
+		right: 0;
+		// .mapboxgl-ctrl.mapboxgl-ctrl-group {float: right;}
 	}
 }
 </style>

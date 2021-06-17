@@ -12,10 +12,10 @@
 			</svg>
 
 			<div class="primera_fila">
-				<div class="foto_container" v-if="show.band_id !== 0">
+				<div class="foto_container" v-if="show.band_id !== 0 && show.band_id && getBand(show.band_id) && getBand(show.band_id).image">
 					<p v-if="show.live" class="label_live small">live</p>
 					<img class="foto" 
-						:src="show.band_id && getBand(show.band_id).image ? getBand(show.band_id).image : 'images/avatar_placeholder.jpg'">
+						:src="getBand(show.band_id).image">
 				</div>
 				<div :class="['datos_principales', !(show.band_id !== 0 && getBand(show.band_id).image) ? 'sin_imagen' : '']">
 					<router-link v-if="show.band_id !== 0" class="banda"
