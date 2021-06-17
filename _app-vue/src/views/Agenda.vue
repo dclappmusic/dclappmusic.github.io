@@ -1,20 +1,18 @@
 <template>
 	<div class="page agenda">
 		<get-geolocation @geolocationError="geolocationError" :findLocation="findLocation" />
-		<!-- <div class="cabecera"> -->
+		<div class="cabecera">
 			<!-- <h1 class="titulo">Agenda de conciertos</h1> -->
-
-			<!-- <a href="https://weclapp.live/" target="blank" class="logo">
-							<img src="images/icon_completo.png" />
-					</a> -->
 			<!-- <router-link class="display-med subir" to="/subirShow">subir show</router-link>
 			<p class="display-med filtros" @click="filters = true">filtros</p> -->
 			<!-- <keep-alive>
 				<AgendaFilters v-if="filters" @filters_popup="filters = false" @filtering="filtering"/>
 			</keep-alive> -->
-			<p v-if="!map" class="display-med mapa" :class="{'active': !map}" @click="map = !map">mapa</p>
-			<p v-else class="display-med lista" :class="{'active': map}" @click="map = !map">lista</p>
-		<!-- </div> -->
+			<div class="switch">
+				<p class="boton display-med mapa" :class="{'active': map}" @click="map = true">mapa</p>
+				<p class="boton display-med lista" :class="{'active': !map}" @click="map = false">lista</p>
+			</div>
+		</div>
 		<div class="view" v-if="shows[0]">
 			<keep-alive v-if="map">
 				<agendaMap :shows="shows_filtered" />
@@ -43,7 +41,6 @@
 
 	export default {
 		name: 'Agenda',
-		props: [],
 		components: {
 			agendaList,
 			agendaMap,
@@ -51,9 +48,15 @@
 			// ModalSubirShow,
 			GetGeolocation
 		},
+		props: {
+			agendaView: {
+        type: String,
+        default: 'list'
+      },
+		},
 		data() {
 			return {
-				map: true,
+				map: false,
 				accessToken: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
 				city: null,
 				filters: false,
@@ -72,9 +75,13 @@
 			shows_filtered() {},
 			shows() {
 				this.shows_filtered = [...this.shows];
+			},
+			agendaView() {
+				this.agendaView === 'map' ? this.map = true : this.map = false;
 			}
 		},
 		created() {
+			if (this.agendaView === 'map') this.map = true;
 			this.shows_filtered = [...this.shows];
 			if (this.geolocation.lat) {
 				this.getCity();
@@ -110,97 +117,46 @@
 <style scoped lang="scss">
 .agenda {
 	--color_titulo: var(--color-primario-fans);
-	.display-med {
-		&.active {
-			background-color: white;
-			color: var(--color-primario-fans);
-			padding: .3em;
-			border-radius: 5em;
-			position: absolute;
-			right: 10px;
-			top: 0;
-			font-size: .6em;
-			width: 25%;
-
-			&.mapa {
-				background-color: var(--color-primario-fans);
-				color: white;
+	.cabecera {
+		position: fixed;
+		left: 0;
+		padding: 0 15px;
+		margin-bottom: 50px;
+		.switch {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: rgba(255,255,255,.5);
+			border-radius: 1rem;
+			.boton {
+				width: 50%;
+				background-color: transparent;
+				box-shadow: none;
+				color: var(--color-primario-bands);
+				font-weight: bold;
+				&.active {
+					background-color: var(--color-primario-bands);
+					color: white;
+					width: 50%;
+				}
 			}
 		}
-
-		&.filtros {
-			position: absolute;
-			width: 25%;
-			top: 0;
-			left: 10px;
-			font-size: .6em;
-			background-color: white;
-			color: var(--color-primario-fans);
-			padding: .3em;
-			border-radius: 5em;
-		}
 	}
-}
-
-.spinner {
-	// display: none;
-	opacity: .8;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 0;
-	background: var(--color-primario-fans);
-	// display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: all .5s ease-in-out;
-
-	&.active {
-		display: flex;
-		flex-flow: column;
-		opacity: .8;
-		height: 100vh;
-
-		.display-sm,
-		.display-med {
-			display: initial;
-		}
-
-		a {
-			margin-top: 4em;
-			text-decoration: underline !important;
-		}
-
-		// transition: all 1s ease-in-out;
-	}
-
-	.display-sm,
-	.display-med {
-		color: white;
-		text-align: center;
-		display: none;
-		margin: .5em;
-		max-width: 35em;
+	.filtros {
+		position: absolute;
+		width: 25%;
+		top: 0;
+		left: 10px;
+		font-size: .6em;
+		background-color: white;
+		color: var(--color-primario-fans);
+		padding: .3em;
+		border-radius: 5em;
 	}
 }
 
 @media (min-width: 768px) {
-	.cabecera {
-		.titulo {
-			max-width: calc(100% - 2em);
-			text-align: left;
-		}
-		.logo {
-			position: fixed;
-			top: 15px;
-			right: 15px;
-			img {
-				width: 2em;
-				border-radius: 10px;
-				box-shadow: 0 0 15px rgba(0, 0, 0, .15);
-			}
-		}
-	}
+
 }
 </style>

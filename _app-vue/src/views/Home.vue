@@ -4,7 +4,7 @@
 			<!-- <router-link class="boton btn_preclapp" to="/clapp">
 					<img src="@/assets/images/iconClapp_white.svg" />
 			</router-link> -->
-			<router-link class="boton btn_premap" to="/agenda">
+			<router-link class="boton btn_premap" :to="{name: 'agenda', params: {'agendaView': 'map'}}">
 					<img src="images/find_shows_button.png" />
 			</router-link>
 			<div class="intro_clapp">
