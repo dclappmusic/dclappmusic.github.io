@@ -6,11 +6,11 @@
     </keep-alive>
     <Nav></Nav>
     <!-- <PopupLogin v-if="show_login" /> -->
-		<PopupInstall 
+		<!-- <PopupInstall 
 			v-if="show_install" 
 			:deferredPrompt="this.deferredPrompt" 
 			@cerrar_popup="event_cerrar_popup"
-		/>
+		/> -->
 	</div>
 </template>
 
@@ -19,7 +19,7 @@
   import {db} from '@/firebaseConfig'
 	import firebase from "firebase";
 	import Nav from '@/components/Nav';
-	import PopupInstall from '@/components/PopupInstall';
+	// import PopupInstall from '@/components/PopupInstall';
   // import PopupLogin from '@/components/PopupLogin';
   import GetGeolocation from '@/components/GetGeolocation';
 
@@ -27,7 +27,7 @@
 		name: 'app',
 		components: {
 			Nav,
-			PopupInstall,
+			// PopupInstall,
       // PopupLogin,
       GetGeolocation
 		},
