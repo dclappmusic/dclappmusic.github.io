@@ -11,6 +11,7 @@
         placeholder="dirección"
         countries="es"
         language="es"
+        :reverseGeocode="reverse_geocode"
         @mb-created="instance => control = instance" 
         @mb-result="resultado"
       />
@@ -47,14 +48,33 @@ export default {
       access_token: "pk.eyJ1IjoiamFwaW1lcyIsImEiOiJjazF3cWdma2QwNDZwM2VxdGpldDQxZWlwIn0.NXdh9SyvQKYtfDyIKGy-ZQ",
 		}
 	},
-	created: function() {},
-  mounted: function() {},
+	created: function() {
+    if (this.new_venue.lat) {
+      this.reverse_geocode = true;
+      // this.reverseGeo().then(result => {
+      //   console.log(result);
+      //   debugger;
+      // });
+      // document.querySelector('.mapboxgl-ctrl-geocoder--input').value = this.new_venue.lat + ', ' + this.new_venue.lon;
+      // document.querySelector('.mapboxgl-ctrl-geocoder--input').value = this.new_venue.address;
+    }
+
+  },
+  mounted: function(){
+    if (this.reverse_geocode) document.querySelector('.mapboxgl-ctrl-geocoder--input').value = this.new_venue.lon + ',' + this.new_venue.lat;
+  },
 	methods: {
     resultado(result) {
       debugger;
       this.new_venue.lat = result.result.center[0];
       this.new_venue.lon = result.result.center[1];
+      // this.new_venue.address = result.result.place_name;
     },
+    async reverseGeo() {
+      return await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.new_venue.lat},${this.new_venue.lon}.json?access_token=${this.access_token}`,
+        { mode: 'no-cors'})
+    }
   }
 }
 </script>
